@@ -1,14 +1,14 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 // import VuePlyr from "vue-plyr";
-import "vue-plyr/dist/vue-plyr.css";
+// import "vue-plyr/dist/vue-plyr.css";
 import router from "./router/router";
 
 const app = createApp(App);
 app.use(router);
-app.use(VuePlyr, {
-	plyr: {},
-});
+// app.use(VuePlyr, {
+// 	plyr: {},
+// });
 
 app.mount("#app");
 
