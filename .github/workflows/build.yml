@@ -13,6 +13,6 @@ jobs:
           npm run build
           
       - name: Store artifacts
-        uses: actions/upload-artifact@2.2.4
+        uses: actions/upload-artifact@v2.2.4
         with:
           path: dist
