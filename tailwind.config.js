@@ -24,7 +24,10 @@ module.exports = {
 		},
 	},
 	variants: {
-		extend: {},
+		extend: {
+			borderWidth: ["responsive", "hover", "focus"],
+			opacity: ["responsive", "hover", "focus", "group-focus"],
+		},
 	},
-	plugins: [],
+	plugins: [require("@tailwindcss/typography")],
 };
