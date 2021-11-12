@@ -1,11 +1,14 @@
-# Vue 3 + Typescript + Vite
+# Bergflix Frontend
 
-This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Bergflix is back!
 
-## Recommended IDE Setup
+⌛ After being discontinued on the 28th July 2021, Bergflix is back with a new website and a new API. We are currently just two people instead of the 8 that worked on the original project, but oh well. \
+We decided to start completely from scratch, with a brand new techstack and design.
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+## Live and Developement version
 
-## Type Support For `.vue` Imports in TS
+🌱 The project is currently in a very early stage in developement, so there is no hosted version yet. You can still download the latest build artifacts from the [Actions page](https://github.com/Bergflix-Remake/frontend/actions).
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+## Contributing
+
+🔧 Check [CONTRIBUTING.md](/CONTRIBUTING.md) for more information.
