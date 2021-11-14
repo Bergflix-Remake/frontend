@@ -27,6 +27,7 @@ module.exports = {
 		extend: {
 			borderWidth: ["responsive", "hover", "focus"],
 			opacity: ["responsive", "hover", "focus", "group-focus"],
+			textColor: ["responsive", "hover", "focus", "group-focus"],
 		},
 	},
 	plugins: [require("@tailwindcss/typography")],
