@@ -1,5 +1,7 @@
 # Bergflix Frontend
 
+[![Build](https://github.com/Bergflix-Remake/frontend/actions/workflows/build.yml/badge.svg)](https://github.com/Bergflix-Remake/frontend/actions/workflows/build.yml)
+
 ## Bergflix is back!
 
 ⌛ After being discontinued on the 28th July 2021, Bergflix is back with a new website and a new API. We are currently just two people instead of the 8 that worked on the original project, but oh well. \
