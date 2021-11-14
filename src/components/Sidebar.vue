@@ -1,40 +1,39 @@
 <template>
-    <div id="side" v-if="showSidebar">
-        <div id="sidebar-container" class="flex flex-col items-center content-center h-full">
-          <div class="flex flex-row content-center w-full">
-            <h1 class="text-4xl font-bold text-white">Menu<span class="font-bold text-primary-100">.</span></h1>
-            <XIcon class="w-5 ml-auto text-white cursor-pointer" @click="closeSidebar"/>
-        </div>
-          <ul id="sidebar-items" class="mt-10 space-y-5 text-center text-gray-500">
-              <li v-for="item in menuItems">
-                <a class="hover:text-primary-100" :href="item.href">{{ item.title }}</a>
-              </li>
-          </ul>
-          <ul class="mt-auto mb-10 space-y-5 text-center text-gray-500">
-              <li v-for="item in footerItems" >
-                <a class="hover:text-primary-100" :href="item.href">{{ item.title }}</a>
-              </li>
-          </ul>
-        </div>
-    </div>
+    <transition name="slide">
+      <div id="side" v-if="showSidebar()">
+          <div id="sidebar-container" class="flex flex-col items-center content-center h-full">
+            <div class="flex flex-row content-center w-full">
+              <h1 class="text-4xl font-bold text-white">Menu<span class="font-bold text-primary-100">.</span></h1>
+              <XIcon class="w-7 ml-auto mr-2.5 text-gray-500 hover:text-primary-100 cursor-pointer" @click="closeSidebar"/>
+          </div>
+            <ul id="sidebar-items" class="mt-10 space-y-5 text-center text-gray-500">
+                <li v-for="item in menuItems">
+                  <a class="hover:text-primary-100" :href="item.href">{{ item.title }}</a>
+                </li>
+            </ul>
+            <ul class="mt-auto mb-10 space-y-5 text-center text-gray-500">
+                <li v-for="item in footerItems" >
+                  <a class="hover:text-primary-100" :href="item.href">{{ item.title }}</a>
+                </li>
+            </ul>
+          </div>
+      </div>
+    </transition>
 </template>
 <script setup lang="ts">
 import { XIcon } from '@heroicons/vue/outline'
-import { toRefs, ref } from 'vue';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 
-let props = defineProps({
-    open: {
-        type: Boolean,
-        default: true
-    },
-})
+const store = useStore();
 
-let { open } = toRefs(props)
 
-let showSidebar = ref(open.value)
+let showSidebar = () => {
+  return store.state.sidebarOpen;
+}
 
 function closeSidebar() {
-    showSidebar.value = false
+    store.commit('toggleSidebar');
 }
 
 const menuItems = [{
@@ -75,6 +74,13 @@ const footerItems = [
 </script>
 <style lang="scss">
 @import "../styles/colors";
+.slide-enter-from, .slide-leave-to {
+  transform: translateX(100%);
+}
+
+.slide-enter-active, .slide-leave-active {
+  transition: transform 0.2s linear;
+}
 
 #sidebar-container {
     z-index: 1000;

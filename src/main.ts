@@ -1,14 +1,30 @@
 import { createApp } from "vue";
+import { createStore } from "vuex";
 import App from "./App.vue";
 // import VuePlyr from "vue-plyr";
 // import "vue-plyr/dist/vue-plyr.css";
 import router from "./router/router";
+
+const store = createStore({
+  state() {
+    return {
+      sidebarOpen: false,
+    };
+  },
+  mutations: {
+    toggleSidebar(state: any) {
+      state.sidebarOpen = !state.sidebarOpen;
+    },
+  },
+});
+
 
 const app = createApp(App);
 app.use(router);
 // app.use(VuePlyr, {
 // 	plyr: {},
 // });
+app.use(store);
 
 app.mount("#app");
 
