@@ -11,6 +11,36 @@ We decided to start completely from scratch, with a brand new techstack and desi
 
 🌱 The project is currently in a very early stage in developement, so there is no hosted version yet. You can still download the latest build artifacts from the [Actions page](https://github.com/Bergflix-Remake/frontend/actions).
 
+## Developement
+
+👥 Clone the repository:
+
+```bash
+git clone https://github.com/Bergflix-Remake/frontend.git
+```
+
+🔽 Download and install the dependencies
+
+```bash
+npm install
+```
+
+💹 Start local `json-server` and developement server
+
+```bash
+json-server -p 3001 --watch db.json & # To see json server output, do "fg"
+npm run dev
+```
+
+*When starting the server, or reloading the page without cache, it will take a while to load. This is normal and expected. Loading times will be faster on the live production version.*
+
+🔨 Build the project before submitting a PR
+
+```bash
+npm run build
+# npm run serve to see the live version.
+```
+
 ## Contributing
 
 🔧 Check [CONTRIBUTING.md](/CONTRIBUTING.md) for more information.
