@@ -1,9 +1,10 @@
 import { createApp } from "vue";
 import { createStore } from "vuex";
 import App from "./App.vue";
-// import VuePlyr from "vue-plyr";
-// import "vue-plyr/dist/vue-plyr.css";
+import VuePlyr from "vue-plyr";
+import "vue-plyr/dist/vue-plyr.css";
 import router from "./router/router";
+import "vue-loaders/dist/vue-loaders.css";
 
 const store = createStore({
   state() {
@@ -18,12 +19,11 @@ const store = createStore({
   },
 });
 
-
 const app = createApp(App);
 app.use(router);
-// app.use(VuePlyr, {
-// 	plyr: {},
-// });
+app.use(VuePlyr, {
+	plyr: {},
+});
 app.use(store);
 
 app.mount("#app");

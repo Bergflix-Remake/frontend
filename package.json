@@ -11,6 +11,8 @@
     "@heroicons/vue": "^1.0.5",
     "@tailwindcss/typography": "^0.4.1",
     "vue": "^3.2.16",
+    "vue-loaders": "^4.1.4",
+    "vue-plyr": "^7.0.0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
@@ -21,7 +23,6 @@
     "tailwindcss": "^2.2.19",
     "typescript": "^4.4.3",
     "vite": "^2.6.4",
-    "vue-plyr": "^7.0.0",
     "vue-router": "^4.0.12",
     "vue-tsc": "0.2.2"
   }

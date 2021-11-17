@@ -1,5 +1,4 @@
 <template>
-<Navbar></Navbar>
 <div class="h-screen" id="background-section">
     <div class="max-w-md p-10 bg-gray-900 bg-opacity-75 rounded-md shadow-lg backdrop-filter backdrop-blur-sm" id="center-thing">
         <h1 class="text-5xl font-bold text-white">404<span class="font-bold text-primary-100">.</span></h1>
@@ -12,7 +11,6 @@
 </div>
 </template>
 <script setup lang="ts">
-import Navbar from '../components/Navbar.vue'
 </script>
 <style lang="scss">
 @import '../styles/colors.scss';
