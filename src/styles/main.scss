@@ -1,3 +1,4 @@
+@import './colors.scss';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,6 +16,16 @@
     .aspect-1\/1 {
         aspect-ratio: 1/1;
     }
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: #f40f3a;
+}
+
+::selection {
+  color: white;
+  background: #f40f3a;
 }
 
 html {

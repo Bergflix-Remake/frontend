@@ -75,10 +75,12 @@ const footerItems = [
 <style lang="scss">
 @import "../styles/colors";
 .slide-enter-from, .slide-leave-to {
+  z-index: 1000;
   transform: translateX(100%);
 }
 
 .slide-enter-active, .slide-leave-active {
+  z-index: 1000;
   transition: transform 0.2s linear;
 }
 

@@ -5,7 +5,7 @@
       "title": "Episode 24",
       "age": "16+",
       "original": true,
-      "description": "Bergmann hat Paluten und Sturmwaffel ein unvergessliches Weihnachtsfest versprochen. Blöd nur, dass er einen Tag vor Weihnachten realisiert, dass er rein gar nichts vorbereitet hat. Es beginnt eine wahnwitzige Reise quer durch Pineapple Bay, um Weihnachten wieder einmal in letzter Sekunde zu retten. Wäre da doch nur nicht diese verdammte Ananas...",
+      "description": "Bergmann hat Paluten und Sturmwaffel ein unvergessliches Weihnachtsfest versprochen. Blöd nur, dass er einen Tag vor Weihnachten realisiert, dass er rein gar nichts vorbereitet hat. Es beginnt eine wahnwitzige Reise quer durch Pineapple Bay, um Weihnachten wieder einmal in letzter Sekunde zu retten. Wäre da doch nur nicht diese verdammte Ananas... 'KNALL IHN AB!' - Tofu ",
       "video_id": "jcrLgMpLFvc",
       "background_image": "https://cdn.bergflix.de/imgs/captain_pineapple.png",
       "thumbnail": "https://m.media-amazon.com/images/M/MV5BZTlkZDk1MDMtNjM2MC00YzA1LTkyZTEtMTEyNDNjZWI3OGQwXkEyXkFqcGdeQXVyNjYzMzM0MDM@._V1_.jpg",
@@ -14,20 +14,8 @@
       "genre": "Action",
       "rating": "99%",
       "series": {
-        "id": 2,
-        "title": "Captain Pineapple",
-        "title_image": "http://localhost:3000/images/pineapple-text.png",
-        "description": "Bergmann hat Paluten und Sturmwaffel ein unvergessliches Weihnachtsfest versprochen. Blöd nur, dass er einen Tag vor Weihnachten realisiert, dass er rein gar nichts vorbereitet hat. Es beginnt eine wahnwitzige Reise quer durch Pineapple Bay, um Weihnachten wieder einmal in letzter Sekunde zu retten. Wäre da doch nur nicht diese verdammte Ananas...",
-        "year": "2020/21",
-        "genre": "Krimikomödie",
-        "image": "http://i.ytimg.com/vi/dQw4w9WgXcQ/default.jpg",
-        "rating": "99%",
-        "seasons": [
-          {
-            "id": 1,
-            "name": "Season 1"
-          }
-        ]
+        "id": 1,
+        "seasons": ["Season 1"]
       }
     },
     {
@@ -42,7 +30,11 @@
       "duration": "9:18 min",
       "year": "2017",
       "genre": "Action",
-      "rating": "99%"
+      "rating": "99%",
+      "series": {
+        "id": 1,
+        "seasons": ["Season 1"]
+      }
     }
   ],
   "series": [
@@ -52,7 +44,9 @@
       "description": "Bergmann hat Paluten und Sturmwaffel ein unvergessliches Weihnachtsfest versprochen. Blöd nur, dass er einen Tag vor Weihnachten realisiert, dass er rein gar nichts vorbereitet hat. Es beginnt eine wahnwitzige Reise quer durch Pineapple Bay, um Weihnachten wieder einmal in letzter Sekunde zu retten. Wäre da doch nur nicht diese verdammte Ananas...",
       "year": "2020/21",
       "genre": "Krimikomödie",
+      "title_image": "/images/pineapple-text.png",
       "image": "http://i.ytimg.com/vi/dQw4w9WgXcQ/default.jpg",
+      "age": "16+",
       "rating": "99%",
       "videos": [
         {
@@ -78,7 +72,15 @@
       ],
       "seasons": [
         {
-          "name": "Season 1"
+          "name": "Season 1",
+          "episodes": [
+            {
+              "id": 1
+            },
+            {
+              "id": 2
+            }
+          ]
         }
       ]
     }

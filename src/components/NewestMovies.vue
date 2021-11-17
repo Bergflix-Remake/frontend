@@ -5,7 +5,7 @@
         :poster="movie.thumbnail"
         :title="movie.title"
         :subtitle="movie.year.toString()"
-        :series="movie.series?.title"
+        :series="movie.series"
     />
 </template>
 

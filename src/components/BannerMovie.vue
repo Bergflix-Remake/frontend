@@ -72,7 +72,7 @@
         <h1 v-else-if="banner_movie.series.title" class="text-5xl font-black text-white">{{ banner_movie.series.title }}</h1>
         <h1 v-else class="text-5xl font-black text-white">{{ banner_movie.title }}</h1>
         <div class="flex flex-row flex-wrap max-w-xl text-white">
-            <p id="year" class="mr-5">{{ banner_movie.title }} <span v-if="banner_movie.series">| {{ banner_movie.series.title}}</span></p>
+            <p id="year" class="mr-5">{{ banner_movie.title }}</p>
             <p class="px-1 mr-5 border-2 rounded border-light text-primary-100">{{ banner_movie.age }}</p>
                 <p class="mr-5 italic">{{ banner_movie.duration }}</p>
                 <div class="mr-5 border-l-2 border-light"></div>
@@ -97,7 +97,7 @@
 </template>
 
 <script setup lang="ts">
-import { Movie, get_movie } from '../api_handler'
+import { Movie, get_movie, Series, get_series } from '../api_handler'
 import { Dialog, DialogDescription, DialogOverlay, DialogTitle, TransitionChild, TransitionRoot } from "@headlessui/vue";
 import { PlayIcon, CursorClickIcon } from "@heroicons/vue/outline";
 
@@ -107,7 +107,7 @@ const showMore = ref(false);
 
 const banner_movie_id = await fetch('http://localhost:3001/banner').then(res => res.json());
 const banner_movie: Movie = await get_movie(banner_movie_id.id)
-.then((movie: Movie) =>{
+.then(async (movie: Movie) =>{
     document.getElementById("image-section")!.style.backgroundImage = `url(${movie.background_image})`;
     fullDescription.value = movie.description;
     // if description is longer than 500 characters, cut it down to 500 characters
@@ -117,6 +117,12 @@ const banner_movie: Movie = await get_movie(banner_movie_id.id)
         // add ... at the end
         movie.description += "...";
         showMore.value = true;
+    }
+    if (movie.series) {
+        movie.series = await get_series(movie.series.id)
+        .then((series: Series) => {
+            return series;
+        });
     }
     console.log(movie);
     return movie;

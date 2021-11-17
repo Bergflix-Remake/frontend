@@ -19,12 +19,13 @@ interface Series {
 	title: string;
 	title_image: string;
 	description: string;
+  age: string;
 	year: number;
 	genre: Genre;
 	image: string;
 	rating: string;
-	videos: [Movie];
-	seasons: [Season];
+	videos: Movie[];
+	seasons: Season[];
 }
 
 type Genre =
@@ -55,7 +56,7 @@ interface Season {
   id: number;
   name: string;
   description: string;
-  episodes: [Movie];
+  episodes: Movie[];
 }
 
 async function get_movie(id: number): Promise<Movie> {
@@ -64,16 +65,21 @@ async function get_movie(id: number): Promise<Movie> {
   return data;
 }
 
-async function get_series(id: number | Movie): Promise<Series> {
-  if (typeof id === "number") {
-    const response = await fetch(`http://localhost:3001/series/${id}`);
-    const data = await response.json();
-    return data;
-  } else {
-    const response = await fetch(`http://localhost:3001/series/${id.series.id}`);
-    const data = await response.json();
-    return data;
-  }
+async function get_series(id: number): Promise<Series> {
+  const response = await fetch(`http://localhost:3001/series/${id}`);
+  const data = await response.json();
+  return data;
+}
+
+async function get_movie_season(movie: Movie): Promise<Season> {
+	const response = await fetch(`http://localhost:3001/series/${movie.series.id}`);
+	const data = await response.json();
+	const season = data["seasons"].forEach((element: Season) => {
+		if(movie.id in element.episodes) {
+			return element;
+		}
+	});
+	return season;
 }
 
 async function get_all_movies(): Promise<Movie[]> {
@@ -102,5 +108,6 @@ export {
   get_series,
   get_all_movies,
   get_all_series,
-  get_banner_movie
+	get_banner_movie,
+	get_movie_season
 };
