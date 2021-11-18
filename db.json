@@ -15,7 +15,9 @@
       "rating": "99%",
       "series": {
         "id": 1,
-        "seasons": ["Season 1"]
+        "seasons": [
+          "Season 1"
+        ]
       }
     },
     {
@@ -33,11 +35,173 @@
       "rating": "99%",
       "series": {
         "id": 1,
-        "seasons": ["Season 1"]
+        "seasons": [
+          "Season 1"
+        ]
       }
     },
     {
       "id": 3,
+      "title": "Episode 23",
+      "age": "16+",
+      "original": true,
+      "description": "Bergmann hat Paluten und Sturmwaffel ein unvergessliches Weihnachtsfest versprochen. Blöd nur, dass er einen Tag vor Weihnachten realisiert, dass er rein gar nichts vorbereitet hat. Es beginnt eine wahnwitzige Reise quer durch Pineapple Bay, um Weihnachten wieder einmal in letzter Sekunde zu retten. Wäre da doch nur nicht diese verdammte Ananas... 'KNALL IHN AB!' - Tofu ",
+      "video_id": "jcrLgMpLFvc",
+      "background_image": "https://cdn.bergflix.de/imgs/captain_pineapple.png",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BZTlkZDk1MDMtNjM2MC00YzA1LTkyZTEtMTEyNDNjZWI3OGQwXkEyXkFqcGdeQXVyNjYzMzM0MDM@._V1_.jpg",
+      "duration": "8:16 min",
+      "year": "2021",
+      "genre": "Action",
+      "rating": "99%",
+      "series": {
+        "id": 1,
+        "seasons": [
+          "Season 1"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "title": "Episode 23",
+      "age": "16+",
+      "original": true,
+      "description": "Bergmann hat Paluten und Sturmwaffel ein unvergessliches Weihnachtsfest versprochen. Blöd nur, dass er einen Tag vor Weihnachten realisiert, dass er rein gar nichts vorbereitet hat. Es beginnt eine wahnwitzige Reise quer durch Pineapple Bay, um Weihnachten wieder einmal in letzter Sekunde zu retten. Wäre da doch nur nicht diese verdammte Ananas... 'KNALL IHN AB!' - Tofu ",
+      "video_id": "jcrLgMpLFvc",
+      "background_image": "https://cdn.bergflix.de/imgs/captain_pineapple.png",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BZTlkZDk1MDMtNjM2MC00YzA1LTkyZTEtMTEyNDNjZWI3OGQwXkEyXkFqcGdeQXVyNjYzMzM0MDM@._V1_.jpg",
+      "duration": "8:16 min",
+      "year": "2021",
+      "genre": "Action",
+      "rating": "99%",
+      "series": {
+        "id": 1,
+        "seasons": [
+          "Season 1"
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "title": "Episode 23",
+      "age": "16+",
+      "original": true,
+      "description": "Bergmann hat Paluten und Sturmwaffel ein unvergessliches Weihnachtsfest versprochen. Blöd nur, dass er einen Tag vor Weihnachten realisiert, dass er rein gar nichts vorbereitet hat. Es beginnt eine wahnwitzige Reise quer durch Pineapple Bay, um Weihnachten wieder einmal in letzter Sekunde zu retten. Wäre da doch nur nicht diese verdammte Ananas... 'KNALL IHN AB!' - Tofu ",
+      "video_id": "jcrLgMpLFvc",
+      "background_image": "https://cdn.bergflix.de/imgs/captain_pineapple.png",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BZTlkZDk1MDMtNjM2MC00YzA1LTkyZTEtMTEyNDNjZWI3OGQwXkEyXkFqcGdeQXVyNjYzMzM0MDM@._V1_.jpg",
+      "duration": "8:16 min",
+      "year": "2021",
+      "genre": "Action",
+      "rating": "99%",
+      "series": {
+        "id": 1,
+        "seasons": [
+          "Season 1"
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "title": "Episode 23",
+      "age": "16+",
+      "original": true,
+      "description": "Bergmann hat Paluten und Sturmwaffel ein unvergessliches Weihnachtsfest versprochen. Blöd nur, dass er einen Tag vor Weihnachten realisiert, dass er rein gar nichts vorbereitet hat. Es beginnt eine wahnwitzige Reise quer durch Pineapple Bay, um Weihnachten wieder einmal in letzter Sekunde zu retten. Wäre da doch nur nicht diese verdammte Ananas... 'KNALL IHN AB!' - Tofu ",
+      "video_id": "jcrLgMpLFvc",
+      "background_image": "https://cdn.bergflix.de/imgs/captain_pineapple.png",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BZTlkZDk1MDMtNjM2MC00YzA1LTkyZTEtMTEyNDNjZWI3OGQwXkEyXkFqcGdeQXVyNjYzMzM0MDM@._V1_.jpg",
+      "duration": "8:16 min",
+      "year": "2021",
+      "genre": "Action",
+      "rating": "99%",
+      "series": {
+        "id": 1,
+        "seasons": [
+          "Season 1"
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "title": "Episode 23",
+      "age": "16+",
+      "original": true,
+      "description": "Bergmann hat Paluten und Sturmwaffel ein unvergessliches Weihnachtsfest versprochen. Blöd nur, dass er einen Tag vor Weihnachten realisiert, dass er rein gar nichts vorbereitet hat. Es beginnt eine wahnwitzige Reise quer durch Pineapple Bay, um Weihnachten wieder einmal in letzter Sekunde zu retten. Wäre da doch nur nicht diese verdammte Ananas... 'KNALL IHN AB!' - Tofu ",
+      "video_id": "jcrLgMpLFvc",
+      "background_image": "https://cdn.bergflix.de/imgs/captain_pineapple.png",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BZTlkZDk1MDMtNjM2MC00YzA1LTkyZTEtMTEyNDNjZWI3OGQwXkEyXkFqcGdeQXVyNjYzMzM0MDM@._V1_.jpg",
+      "duration": "8:16 min",
+      "year": "2021",
+      "genre": "Action",
+      "rating": "99%",
+      "series": {
+        "id": 1,
+        "seasons": [
+          "Season 1"
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "title": "Episode 23",
+      "age": "16+",
+      "original": true,
+      "description": "Bergmann hat Paluten und Sturmwaffel ein unvergessliches Weihnachtsfest versprochen. Blöd nur, dass er einen Tag vor Weihnachten realisiert, dass er rein gar nichts vorbereitet hat. Es beginnt eine wahnwitzige Reise quer durch Pineapple Bay, um Weihnachten wieder einmal in letzter Sekunde zu retten. Wäre da doch nur nicht diese verdammte Ananas... 'KNALL IHN AB!' - Tofu ",
+      "video_id": "jcrLgMpLFvc",
+      "background_image": "https://cdn.bergflix.de/imgs/captain_pineapple.png",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BZTlkZDk1MDMtNjM2MC00YzA1LTkyZTEtMTEyNDNjZWI3OGQwXkEyXkFqcGdeQXVyNjYzMzM0MDM@._V1_.jpg",
+      "duration": "8:16 min",
+      "year": "2021",
+      "genre": "Action",
+      "rating": "99%",
+      "series": {
+        "id": 1,
+        "seasons": [
+          "Season 1"
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "title": "Episode 23",
+      "age": "16+",
+      "original": true,
+      "description": "Bergmann hat Paluten und Sturmwaffel ein unvergessliches Weihnachtsfest versprochen. Blöd nur, dass er einen Tag vor Weihnachten realisiert, dass er rein gar nichts vorbereitet hat. Es beginnt eine wahnwitzige Reise quer durch Pineapple Bay, um Weihnachten wieder einmal in letzter Sekunde zu retten. Wäre da doch nur nicht diese verdammte Ananas... 'KNALL IHN AB!' - Tofu ",
+      "video_id": "jcrLgMpLFvc",
+      "background_image": "https://cdn.bergflix.de/imgs/captain_pineapple.png",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BZTlkZDk1MDMtNjM2MC00YzA1LTkyZTEtMTEyNDNjZWI3OGQwXkEyXkFqcGdeQXVyNjYzMzM0MDM@._V1_.jpg",
+      "duration": "8:16 min",
+      "year": "2021",
+      "genre": "Action",
+      "rating": "99%",
+      "series": {
+        "id": 1,
+        "seasons": [
+          "Season 1"
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "title": "Episode 23",
+      "age": "16+",
+      "original": true,
+      "description": "Bergmann hat Paluten und Sturmwaffel ein unvergessliches Weihnachtsfest versprochen. Blöd nur, dass er einen Tag vor Weihnachten realisiert, dass er rein gar nichts vorbereitet hat. Es beginnt eine wahnwitzige Reise quer durch Pineapple Bay, um Weihnachten wieder einmal in letzter Sekunde zu retten. Wäre da doch nur nicht diese verdammte Ananas... 'KNALL IHN AB!' - Tofu ",
+      "video_id": "jcrLgMpLFvc",
+      "background_image": "https://cdn.bergflix.de/imgs/captain_pineapple.png",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BZTlkZDk1MDMtNjM2MC00YzA1LTkyZTEtMTEyNDNjZWI3OGQwXkEyXkFqcGdeQXVyNjYzMzM0MDM@._V1_.jpg",
+      "duration": "8:16 min",
+      "year": "2021",
+      "genre": "Action",
+      "rating": "99%",
+      "series": {
+        "id": 1,
+        "seasons": [
+          "Season 1"
+        ]
+      }
+    },
+    {
+      "id": 11,
       "title": "Der Zeitdieb",
       "age": "12+",
       "original": true,
@@ -59,29 +223,39 @@
       "year": "2020/21",
       "genre": "Krimikomödie",
       "title_image": "/images/pineapple-text.png",
-      "image": "http://i.ytimg.com/vi/dQw4w9WgXcQ/default.jpg",
+      "image": "https://cdn.bergflix.de/imgs/captain_pineapple.png",
       "age": "16+",
       "rating": "99%",
       "videos": [
         {
-          "id": 1,
-          "title": "Video Title",
-          "description": "Video Description",
-          "url": "http://www.youtube.com/watch?v=dQw4w9WgXcQ",
-          "thumbnail": "http://i.ytimg.com/vi/dQw4w9WgXcQ/default.jpg",
-          "duration": "00:00:00",
-          "year": "2021",
-          "rating": "69%"
+          "id": 1
         },
         {
-          "id": 2,
-          "title": "Video Title",
-          "description": "Video Description",
-          "url": "http://www.youtube.com/watch?v=dQw4w9WgXcQ",
-          "thumbnail": "http://i.ytimg.com/vi/dQw4w9WgXcQ/default.jpg",
-          "duration": "00:00:00",
-          "year": "2021",
-          "rating": "69%"
+          "id": 2
+        },
+        {
+          "id": 3
+        },
+        {
+          "id": 4
+        },
+        {
+          "id": 5
+        },
+        {
+          "id": 6
+        },
+        {
+          "id": 7
+        },
+        {
+          "id": 8
+        },
+        {
+          "id": 9
+        },
+        {
+          "id": 10
         }
       ],
       "seasons": [
@@ -93,6 +267,30 @@
             },
             {
               "id": 2
+            },
+            {
+              "id": 3
+            },
+            {
+              "id": 4
+            },
+            {
+              "id": 5
+            },
+            {
+              "id": 6
+            },
+            {
+              "id": 7
+            },
+            {
+              "id": 8
+            },
+            {
+              "id": 9
+            },
+            {
+              "id": 10
             }
           ]
         }

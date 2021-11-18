@@ -1,5 +1,5 @@
 <template>
-<div class="flex-col hidden w-1/4 h-screen p-5 mt-10 ml-2 rounded-md shadow-xl lg:flex bg-darker">
+<div class="flex-col p-5 mt-10 ml-2 overflow-y-hidden rounded-md shadow-xl bg-darker">
     <div id="header" class="flex flex-row flex-wrap w-full text-white">
         <VideoCameraIcon class="hidden mt-1 h-7 xl:block"/>
         <h1 class="ml-2 text-2xl font-bold">{{ series.title }}</h1>
@@ -13,7 +13,7 @@
         <p class="px-1 mr-5 border-2 rounded border-light text-primary-100">{{ series.age }}</p>
         <p class="mt-0.5">{{ series.genre }}</p>
     </div>
-    <div class="flex flex-col py-5 space-y-5">
+    <div class="flex flex-col py-5 space-y-5 overflow-y-auto">
         <PlaylistMovieEntry v-for="movie in series.videos" :movie_id="movie.id"/>
     </div>
 </div>

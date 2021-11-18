@@ -7,7 +7,7 @@
     <button @click="$router.push('/')" id="watch_button" class="flex flex-row p-2 mt-5 text-white bg-gray-900 bg-opacity-50 rounded shadow-lg min-w-min hover:bg-primary-200 focus:bg-primary-200 hover:bg-opacity-30 focus:bg-opacity-30" tabindex="0"><ChevronLeftIcon class="w-5 mr-2 text-white"/>Back</button>
 </div>
 <!-- Watch -->
-<section class="flex flex-row w-full p-10">
+<section class="flex flex-row w-full p-10" @scroll="">
     <div v-if="!invalidId" class="flex flex-col justify-center w-full h-full" :class="movie.series ? 'lg:w-3/4' : 'w-full'">
         <div id="spacer" class="my-5"></div>
         <vue-plyr>
@@ -37,7 +37,7 @@
             <p class="italic text-gray-500">{{ movie.description }}</p>
         </div>
     </div>
-    <Playlist v-if="movie.series" :series_id="movie.series.id"/>
+    <Playlist class="hidden w-1/4 h-screen lg:flex" v-if="movie.series" :series_id="movie.series.id"/>
 </section>
 </template>
 <script lang="ts" setup>
@@ -70,6 +70,10 @@ movie.value = await get_movie(Number(pageid)).then(async (movie: Movie) => {
     }
     return movie;
 });
+
+function scroll() {
+    
+}
 
 // let loaded = ref(false);
 // let id = ref(0);
