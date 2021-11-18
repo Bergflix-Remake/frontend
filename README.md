@@ -28,7 +28,6 @@ npm install
 💹 Start local `json-server` and developement server
 
 ```bash
-json-server -p 3001 --watch db.json & # To see json server output, do "fg"
 npm run dev
 ```
 

@@ -20,6 +20,24 @@
     },
     {
       "id": 2,
+      "title": "Episode 23",
+      "age": "16+",
+      "original": true,
+      "description": "Bergmann hat Paluten und Sturmwaffel ein unvergessliches Weihnachtsfest versprochen. Blöd nur, dass er einen Tag vor Weihnachten realisiert, dass er rein gar nichts vorbereitet hat. Es beginnt eine wahnwitzige Reise quer durch Pineapple Bay, um Weihnachten wieder einmal in letzter Sekunde zu retten. Wäre da doch nur nicht diese verdammte Ananas... 'KNALL IHN AB!' - Tofu ",
+      "video_id": "jcrLgMpLFvc",
+      "background_image": "https://cdn.bergflix.de/imgs/captain_pineapple.png",
+      "thumbnail": "https://m.media-amazon.com/images/M/MV5BZTlkZDk1MDMtNjM2MC00YzA1LTkyZTEtMTEyNDNjZWI3OGQwXkEyXkFqcGdeQXVyNjYzMzM0MDM@._V1_.jpg",
+      "duration": "8:16 min",
+      "year": "2021",
+      "genre": "Action",
+      "rating": "99%",
+      "series": {
+        "id": 1,
+        "seasons": ["Season 1"]
+      }
+    },
+    {
+      "id": 3,
       "title": "Der Zeitdieb",
       "age": "12+",
       "original": true,
@@ -30,11 +48,7 @@
       "duration": "9:18 min",
       "year": "2017",
       "genre": "Action",
-      "rating": "99%",
-      "series": {
-        "id": 1,
-        "seasons": ["Season 1"]
-      }
+      "rating": "99%"
     }
   ],
   "series": [
