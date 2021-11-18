@@ -12,7 +12,7 @@
     </ul>
     <div style="margin-left: auto; margin-right: 2rem;" class="flex flex-row" id="items-right">
         <span class="hidden w-5 h-5 mt-1 md:block" id="backend-status"><ServerIcon class="text-red-600"/></span>
-        <span class="flex-row hidden px-2 mr-2 font-mono italic align-middle rounded-md lg:flex bg-darker flex-nowrap">v0.4 - Preview<TagIcon class="h-5 mt-1 ml-2"/></span>
+        <span class="flex-row hidden px-2 mr-2 font-mono italic align-middle rounded-md lg:flex bg-darker flex-nowrap">v0.5 - Dev Preview<TagIcon class="h-5 mt-1 ml-2"/></span>
         <AdjustmentsIcon class="text-gray-500 cursor-pointer h-7 hover:text-primary-100" @click="toggleSidebar"/>
     </div>
 </nav>

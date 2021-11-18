@@ -1,4 +1,5 @@
 <template>
+<title>Watching "{{ movie.title }}" | {{ movie.series ? movie.series.title + " | Bergflix" : " Bergflix"}}</title>
 <!-- Invalid ID -->
 <div v-if="invalidId" id="invalid-id" class="flex flex-col justify-center max-w-md p-10 mt-4 text-center align-middle rounded-md shadow-lg bg-darker flex-column">
     <h1 class="text-2xl font-bold text-white" >Error<span class="font-bold text-primary-100">.</span></h1>

@@ -1,4 +1,5 @@
 <template>
+<title>{{ movie.title }} | {{ movie.series ? movie.series.title + " | Bergflix" : " Bergflix"}}</title>
 <!-- Dialog -->
 <TransitionRoot appear :show="showDialog" as="template"
 >

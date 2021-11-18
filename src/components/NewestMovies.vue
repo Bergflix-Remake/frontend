@@ -1,7 +1,7 @@
 <template>
     <Poster
-        v-for="movie in movies"
-        :link="'/watch/' + movie.id"
+        v-for="movie in movies.slice(0, 3)"
+        :link="'/media/' + movie.id"
         :poster="movie.thumbnail"
         :title="movie.title"
         :subtitle="movie.year.toString()"
