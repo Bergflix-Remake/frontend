@@ -59,6 +59,7 @@ interface Season {
   episodes: Movie[];
 }
 
+
 async function get_movie(id: number): Promise<Movie> {
   const response = await fetch(`http://localhost:3001/movies/${id}`);
   const data = await response.json();
@@ -100,6 +101,45 @@ async function get_banner_movie(): Promise<Movie> {
   return data;
 }
 
+async function get_github_version(): Promise<string | null> {
+	const response = await fetch(
+		`https://api.github.com/repos/Bergflix-remake/frontend/tags`
+	).catch(() => {
+		return null;
+	});
+	let data = await response?.json();
+	data = data[0].name;
+	return data;
+}
+
+async function get_backend_status(): Promise<boolean> {
+	const response = await fetch(`http://localhost:3001/status`).then(() => {
+		return true;
+	}).catch((err) => {
+		return false;
+	});
+	return response;
+}
+
+let backend_status = true;
+backend_status = await get_backend_status();
+console.log(backend_status);
+
+
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+// run the get_backend_status function every 5 seconds
+setInterval(async () => {
+	const old_status = backend_status;
+	backend_status = await get_backend_status();
+	if(!old_status && backend_status) {
+		console.log('Back online! Refreshing content...');
+		
+		router.go(0);
+	}
+}, 5000);
+
 export {
   Movie,
   Series,
@@ -109,5 +149,7 @@ export {
   get_all_movies,
   get_all_series,
 	get_banner_movie,
-	get_movie_season
+	get_movie_season,
+	get_github_version,
+	backend_status
 };
