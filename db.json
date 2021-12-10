@@ -223,7 +223,7 @@
       "year": "2020/21",
       "genre": "Krimikomödie",
       "title_image": "/images/pineapple-text.png",
-      "image": "https://cdn.bergflix.de/imgs/captain_pineapple.png",
+      "image": "https://cdn.bergflix.de/thumbnails/Captain%20Pineapple-Thumbail.png",
       "age": "16+",
       "rating": "99%",
       "videos": [
@@ -298,7 +298,8 @@
     }
   ],
   "banner": {
-    "id": 1
+    "id": 1,
+    "type": "series"
   },
   "status": [true]
 }

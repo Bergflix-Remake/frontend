@@ -105,7 +105,7 @@ import { Movie, get_movie, Series, get_series } from '../api_handler'
 import { Dialog, DialogDescription, DialogOverlay, DialogTitle, TransitionChild, TransitionRoot } from "@headlessui/vue";
 import { PlayIcon, CursorClickIcon } from "@heroicons/vue/outline";
 
-import { ref, Ref } from 'vue';
+import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Playlist from '../components/Playlist.vue';
 const fullDescription = ref();
