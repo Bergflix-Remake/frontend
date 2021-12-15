@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import './assets/font/stylesheet.css'
 import './index.css'
 import VuePlyr from "vue-plyr";
 import "vue-plyr/dist/vue-plyr.css";
