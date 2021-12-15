@@ -5,3 +5,8 @@
 :root {
     --plyr-color-main: #f40f3a;
 }
+
+::selection {
+    background: var(--plyr-color-main);
+    color: #fff;
+}
