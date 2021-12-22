@@ -4,6 +4,11 @@
 		:to="to ? `/${to}` : '#'"
 		class="ease-in-out cursor-pointer h-min dark:text-white hover:border-b-primary hover:border-b-2 transition-border"
 	>
+		<component
+			v-if="icon"
+			:is="icon"
+			class="inline w-5 h-5 mr-1 transition-colors dark:text-white"
+		/>
 		<slot />
 	</router-link>
 	<router-link
@@ -13,6 +18,11 @@
 		:to="to ? `/out/${to}` : '#'"
 		class="inline ease-in-out cursor-pointer h-min group dark:text-white hover:border-b-primary hover:border-b-2 transition-border"
 	>
+		<component
+			v-if="icon"
+			:is="icon"
+			class="inline w-5 h-5 mr-1 transition-colors dark:text-white"
+		/>
 		<slot />
 		<ArrowCircleRightIcon
 			class="inline w-5 h-5 mb-1 ml-0.5 transition-colors dark:text-white group-hover:text-primary"
@@ -26,7 +36,7 @@
 		<component
 			v-if="icon"
 			:is="icon"
-			class="inline w-5 h-5 transition-colors dark:text-white"
+			class="inline w-5 h-5 mr-1 transition-colors dark:text-white"
 		/>
 		<slot />
 	</router-link>
@@ -46,7 +56,8 @@ const props = defineProps({
 		type: String,
 	},
 	icon: {
-		type: Object as () => RenderFunction
+		type: Object as () => RenderFunction,
+		required: false,
 	}
 	});
 </script>

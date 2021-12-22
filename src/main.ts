@@ -16,4 +16,25 @@ app.use(VuePlyr, {
 app.use(router)
 app.use(store)
 
+// Global Functions
+const loginDebug = (name?: any, image?: any) => {
+  store.commit("login", {
+		name: name ? name : "Test",
+		image: image ? image : "https://picsum.photos/200",
+  });
+}
+const logoutDebug = () => {
+  store.commit('logout');
+}
+
 app.mount('#app')
+
+declare global {
+  interface Window {
+    DebugNamespace: any;
+  }
+}
+
+window.DebugNamespace = window.DebugNamespace || {};
+window.DebugNamespace.login = loginDebug;
+window.DebugNamespace.logout = logoutDebug;

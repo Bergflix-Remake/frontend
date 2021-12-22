@@ -1,5 +1,5 @@
 <template>
-	<div class="w-full p-8 bg-gray-200 dark:bg-darkest-dark dark:text-white">
+	<div class="w-full p-8 bg-gray-100 shadow-inner dark:bg-darkest-dark dark:text-white">
 		<div class="mb-4 sm:flex">
 			<div class="h-auto text-3xl text-center sm:w-1/12 sm:text-sm md:text-base lg:text-lg xl:text-2xl">
 				<div class="mb-2 font-bold dark:text-white text-clean-dark">Bergflix<span class="text-primary">.</span></div>

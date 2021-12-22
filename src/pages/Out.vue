@@ -26,7 +26,7 @@ const url = route.params.link.toString()
 
 const known_routes: any = {
     "github": "https://github.com/bergflix-remake/",
-    "patreon": "https://www.patreon.com/bergflix",
+    "patreon": "https://www.patreon.com/bergflixtogo",
     "discord": "https://discord.gg/JP9UKrW",
     "twitter": "https://twitter.com/bergflixtogo",
 }
