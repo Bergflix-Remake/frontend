@@ -6,6 +6,7 @@ import VuePlyr from "vue-plyr";
 import "vue-plyr/dist/vue-plyr.css";
 import { router } from './router';
 import { store } from './store';
+import Markdown from 'vue3-markdown-it'
 
 const app = createApp(App);
 
@@ -26,6 +27,8 @@ const loginDebug = (name?: any, image?: any) => {
 const logoutDebug = () => {
   store.commit('logout');
 }
+
+app.use(Markdown)
 
 app.mount('#app')
 

@@ -2,7 +2,7 @@
   "name": "bergflix-rewrite",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview"
   },
@@ -12,10 +12,12 @@
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.0",
+    "typescript": "4.3.2",
     "vite-plugin-rewrite-all": "^0.1.2",
     "vue": "^3.2.23",
     "vue-plyr": "^7.0.0",
     "vue-router": "^4.0.12",
+    "vue3-markdown-it": "^1.0.9",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

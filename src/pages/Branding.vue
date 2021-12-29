@@ -24,7 +24,7 @@
                 </h2>
                 <div class="flex flex-row items-center w-1/2 h-32">
                     <Button type="link" to="branding">
-                        <img src="https://bergflix.com/assets/bergflix-logo.svg" alt="Bergflix Logo" class="w-full h-full">
+                        <img src="https://cdn.bergflix.de/assets/bergflix-logo.svg" alt="Bergflix Logo" class="w-full h-full">
                     </Button>
                 </div>
             </div>
@@ -33,8 +33,8 @@
                 <h2 class="text-3xl font-bold text-nice-red">
                     Unsere Markenfarben.
                 </h2>
-                <div class="grid grid-cols-1 grid-rows-6 gap-10 m-2 md:grid-cols-3 md:grid-rows-2">
-                    <div class="flex flex-col items-center justify-center flex-shrink-0 w-full aspect-square bg-primary">
+                <div class="grid grid-cols-2 h-96 grid-rows-3 gap-10 m-2 md:grid-cols-3 md:grid-rows-2">
+                    <div class="flex flex-col items-center justify-center w-full aspect-square bg-primary">
                         <h1 class="text-xl font-bold text-darkest-dark">#FF0230</h1>
                         <h1 class="text-xl text-white">Schickes Rot</h1>
                     </div>
@@ -66,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import Button from './components/Button.vue';
+import Button from '../components/Button.vue';
 </script>
 
 <style lang="scss"></style>
