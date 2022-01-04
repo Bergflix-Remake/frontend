@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "./pages/Home.vue";
 import Out from "./pages/Out.vue";
 import Branding from "./pages/Branding.vue";
+import Register from "./pages/Register.vue";
 
 const routes = [
 	{ path: "/", redirect: "/home" },
@@ -9,6 +10,7 @@ const routes = [
 	{ path: "/login", redirect: "/home"},
 	{ path: "/out/:link(.*)", component: Out },
 	{ path: "/branding", component: Branding },
+	{ path: "/register", component: Register },
 ];
 
 export const router = createRouter({
