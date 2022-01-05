@@ -19,6 +19,7 @@ export const store = createStore({
 		},
 		logout(state) {
 			state.accounts.loggedIn = false;
+			localStorage.removeItem("token");
 			state.accounts.user = {};
 		}
 	},
@@ -28,7 +29,7 @@ export const store = createStore({
 				return state.accounts.user;
 			} else {
 				return {
-					name: "Guest",
+					username: "Guest",
 					image: "https://cdn.bergflix.de/logo/light_bg.png",
 				};
 			}

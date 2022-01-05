@@ -4,21 +4,14 @@
             id="window"
             class="flex flex-col items-center justify-center p-3 text-center bg-gray-100 rounded-lg shadow-md dark:bg-gray-900 w-96 h-min"
         >
-            <h1 class="text-2xl font-bold">Register</h1>
-            <p class="text-green-300" v-if="registered">Registered successfuly! You will be redirected any second...</p>
+            <h1 class="text-2xl font-bold">Login</h1>
+            <p class="text-green-300" v-if="logged_in">Logged in successfuly! You will be redirected any second...</p>
             <p class="text-red-300" v-if="error">{{ error }}</p>
             <p class="italic text-gray-300" v-if="refer">You will be redirected to <span class="font-mono">{{refer}}</span> afterwards</p>
             <form
                 class="flex flex-col items-center justify-center"
-                @submit.prevent="register"
+                @submit.prevent="login"
             >
-                <input
-                    type="text"
-                    class="w-full p-2 my-2 bg-gray-800 rounded-md"
-                    placeholder="Username"
-                    v-model="username"
-                    required
-                />
                 <input
                     type="email"
                     class="w-full p-2 my-2 bg-gray-800 rounded-md"
@@ -33,11 +26,11 @@
                     v-model="password"
                     required
                 />
-                <Button type="link" :to="refer ? `login?ref=${refer}` : 'login'">Don't have an account yet?</Button>
+                <Button type="link" :to="refer ? `register?ref=${refer}` : 'register'">Don't have an account yet?</Button>
                 <input
                     type="submit"
                     class="inline p-2 transition-colors ease-in-out bg-gray-300 bg-opacity-25 rounded cursor-pointer h-min group dark:text-white dark:bg-darkest-dark dark:bg-opacity-25 dark:hover:bg-primary hover:bg-primary hover:bg-opacity-50 dark:hover:bg-opacity-50"
-                    value="Register"
+                    value="Login"
                 />
             </form>
         </div>
@@ -53,10 +46,9 @@ import { useStore } from 'vuex';
 const store = useStore();
 const router = useRouter();
 
-const username = ref('');
 const email = ref('');
 const password = ref('');
-const registered = ref(false);
+const logged_in = ref(false);
 const error = ref('');
 
 const route = useRoute();
@@ -68,17 +60,16 @@ if (store.state.accounts.loggedIn) {
     router.push(refer ? "/" + refer : '/home');
 }
 
-const register = () => {
-    // https://api.bergflix.de/api/auth/local/register
-    // make a post request to the register endpoint, containing the username, email and password
-    // if the request is successful, set the registered property to true
-    axios.post('https://api.bergflix.de/api/auth/local/register', {
-        username: username.value,
-        email: email.value,
+const login = () => {
+    // https://api.bergflix.de/api/auth/local
+    // make a post request to the login endpoint, containing the username, email and password
+    // if the request is successful, set the logged_in property to true
+    axios.post('https://api.bergflix.de/api/auth/local', {
+        identifier: email.value,
         password: password.value,
     }).then((res) => {
         console.log(res)
-        registered.value = true;
+        logged_in.value = true;
         error.value = ''
         // set a local storage item called 'token' with the token from the response
         localStorage.setItem('token', res.data.jwt);

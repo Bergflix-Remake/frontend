@@ -19,7 +19,6 @@ import Navbar from './components/Navbar.vue';
             </template>
         </Suspense>
     </div>
-    <div class="spinner"></div>
     <Footer />
 </template>
 
