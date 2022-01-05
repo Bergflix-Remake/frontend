@@ -12,9 +12,11 @@
 import Textblock from '../components/Common/Textblock.vue';
 import Button from '../components/Common/Button.vue';
 // Our API URL is https://wizardly-galileo121114.a.eun01.geode.host/api/
-// asyncrhonously fetch the data from the /homepage endpoint, using the populate query param with the * value.
+// asyncrhonously fetch the data from the /about endpoint, using the populate query param with the * value.
 // This will populate the data for us, and we can use it in our template.
-const response = await fetch(`https://wizardly-galileo121114.a.eun01.geode.host/api/homepage?populate=*`).then(res => res.json()).then(data => data);
+const response = await fetch(`https://wizardly-galileo121114.a.eun01.geode.host/api/about?populate=*`).then(res => res.json()).then(data => data);
+console.log(response);
+
 const items = response.data.attributes.page;
 console.log(items);
 

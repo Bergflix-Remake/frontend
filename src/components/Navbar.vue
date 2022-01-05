@@ -4,10 +4,10 @@
 		class="fixed top-0 z-50 flex-row items-center hidden w-screen h-20 p-2 space-x-5 text-gray-500 sm:flex bg-gradient-to-b from-dark to-transparent backdrop-blur-sm"
 	>
 		<div class="ml-2"></div>
-		<h1 class="text-4xl font-bold text-darkest-dark dark:text-white md:hidden">
+		<h1 @click="$router.push('/home')" class="text-4xl font-bold cursor-pointer text-darkest-dark dark:text-white md:hidden">
 			Bf<span class="font-bold text-primary">.</span>
 		</h1>
-		<h1 class="hidden text-4xl font-bold text-darkest-dark dark:text-white md:block">
+		<h1 @click="$router.push('/home')" class="hidden text-4xl font-bold cursor-pointer text-darkest-dark dark:text-white md:block">
 			Bergflix<span class="font-bold text-primary">.</span>
 		</h1>
 		<div class="h-5 mr-5 border-r-2 border-gray-600"></div>
@@ -136,7 +136,7 @@ import {
 	LoginIcon,
 } from "@heroicons/vue/outline";
 import Sidebar from "./Sidebar.vue";
-import Button from "./Button.vue";
+import Button from "./Common/Button.vue";
 import { useStore } from "vuex";
 const route = useRoute();
 const path = computed(() => route.path);

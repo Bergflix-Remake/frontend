@@ -6,7 +6,8 @@ export const store = createStore({
 		accounts: {
 			loggedIn: false,
 			user: {}
-		}
+		},
+		language: "en",
 	},
 	mutations: {
 		toggleSidebar(state) {
@@ -31,6 +32,9 @@ export const store = createStore({
 					image: "https://cdn.bergflix.de/logo/light_bg.png",
 				};
 			}
+		},
+		getLanguage(state) {
+			return state.language;
 		}
 	}
 });

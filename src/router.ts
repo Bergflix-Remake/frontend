@@ -3,6 +3,7 @@ import Home from "./pages/Home.vue";
 import Out from "./pages/Out.vue";
 import Branding from "./pages/Branding.vue";
 import Register from "./pages/Register.vue";
+import About from "./pages/About.vue";
 
 const routes = [
 	{ path: "/", redirect: "/home" },
@@ -11,6 +12,7 @@ const routes = [
 	{ path: "/out/:link(.*)", component: Out },
 	{ path: "/branding", component: Branding },
 	{ path: "/register", component: Register },
+	{ path: "/about", component: About },
 ];
 
 export const router = createRouter({

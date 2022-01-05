@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { onBeforeRouteLeave, useRoute, useRouter } from 'vue-router';
-import Button from '../components/Button.vue';
+import Button from '../components/Common/Button.vue';
 
 const router = useRouter();
 const route = useRoute()

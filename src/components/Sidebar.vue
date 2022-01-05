@@ -70,7 +70,7 @@ import {
 } from "@heroicons/vue/outline";
 import { computed } from "vue";
 import { useStore } from "vuex";
-import Button from "./Button.vue";
+import Button from "./Common/Button.vue";
 const store = useStore();
 let showSidebar = () => {
 	return store.state.sidebarOpen;

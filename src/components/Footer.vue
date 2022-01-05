@@ -85,7 +85,7 @@
 </template>
 
 <script setup lang="ts">
-import Button from './Button.vue'
+import Button from './Common/Button.vue'
 </script>
 
 <style></style>

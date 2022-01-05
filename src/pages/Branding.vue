@@ -33,7 +33,7 @@
                 <h2 class="text-3xl font-bold text-nice-red">
                     Unsere Markenfarben.
                 </h2>
-                <div class="grid grid-cols-2 h-96 grid-rows-3 gap-10 m-2 md:grid-cols-3 md:grid-rows-2">
+                <div class="grid grid-cols-2 grid-rows-3 gap-10 m-2 h-96 md:grid-cols-3 md:grid-rows-2">
                     <div class="flex flex-col items-center justify-center w-full aspect-square bg-primary">
                         <h1 class="text-xl font-bold text-darkest-dark">#FF0230</h1>
                         <h1 class="text-xl text-white">Schickes Rot</h1>
@@ -66,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import Button from '../components/Button.vue';
+import Button from '../components/Common/Button.vue';
 </script>
 
 <style lang="scss"></style>
