@@ -50,6 +50,8 @@ import { onBeforeRouteLeave, useRoute, useRouter } from 'vue-router';
 import Button from '../components/Common/Button.vue';
 import axios from 'axios';
 import { useStore } from 'vuex';
+import { strapi } from '../main'
+
 const store = useStore();
 const router = useRouter();
 
@@ -69,31 +71,41 @@ if (store.state.accounts.loggedIn) {
 }
 
 const register = () => {
-    // https://api.bergflix.de/api/auth/local/register
-    // make a post request to the register endpoint, containing the username, email and password
-    // if the request is successful, set the registered property to true
-    axios.post('https://api.bergflix.de/api/auth/local/register', {
-        username: username.value,
-        email: email.value,
-        password: password.value,
-    }).then((res) => {
-        console.log(res)
+    strapi.register({ username: username.value, email: email.value, password: password.value }).then((res: any) => {
         registered.value = true;
-        error.value = ''
-        // set a local storage item called 'token' with the token from the response
-        localStorage.setItem('token', res.data.jwt);
-        store.commit('login', res.data.user)
-        // redirect to the home page
-        router.push(refer ? "/" + refer : '/home');
+        store.commit('login', res.user)
+        
     }).catch((err) => {
-        if (err.response.data.error.message){
-            error.value = err.response.data.error.message;
-        }
-        else {
-            error.value = 'Something went wrong! Please try again later.';
-        }
+        error.value = err.error.message;
     });
-};
+}
+
+// const register = () => {
+//     // https://api.bergflix.de/api/auth/local/register
+//     // make a post request to the register endpoint, containing the username, email and password
+//     // if the request is successful, set the registered property to true
+//     axios.post('https://api.bergflix.de/api/auth/local/register', {
+//         username: username.value,
+//         email: email.value,
+//         password: password.value,
+//     }).then((res) => {
+//         console.log(res)
+//         registered.value = true;
+//         error.value = ''
+//         // set a local storage item called 'token' with the token from the response
+//         localStorage.setItem('token', res.data.jwt);
+//         store.commit('login', res.data.user)
+//         // redirect to the home page
+//         router.push(refer ? "/" + refer : '/home');
+//     }).catch((err) => {
+//         if (err.response.data.error.message){
+//             error.value = err.response.data.error.message;
+//         }
+//         else {
+//             error.value = 'Something went wrong! Please try again later.';
+//         }
+//     });
+// };
 </script>
 
 <style lang="scss">
