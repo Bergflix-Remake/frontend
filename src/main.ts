@@ -18,6 +18,18 @@ app.use(VuePlyr, {
 app.use(router)
 app.use(store)
 
+import Strapi from "strapi-sdk-js";
+
+export const strapi = new Strapi({
+	store: {
+		key: "strapi_jwt",
+		useLocalStorage: false,
+		cookieOptions: { path: "/" },
+  },
+  url: "https://api.bergflix.de/",
+  prefix: "/api"
+});
+
 // Global Functions
 const loginDebug = (name?: any, image?: any) => {
   store.commit("login", {

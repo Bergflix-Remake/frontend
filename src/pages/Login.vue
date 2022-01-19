@@ -5,13 +5,16 @@
             class="flex flex-col items-center justify-center p-3 text-center bg-gray-100 rounded-lg shadow-md dark:bg-gray-900 w-96 h-min"
         >
             <h1 class="text-2xl font-bold">Login</h1>
-            <p class="text-green-300" v-if="logged_in">Logged in successfuly! You will be redirected any second...</p>
+            <p
+                class="text-green-300"
+                v-if="logged_in"
+            >Logged in successfuly! You will be redirected any second...</p>
             <p class="text-red-300" v-if="error">{{ error }}</p>
-            <p class="italic text-gray-300" v-if="refer">You will be redirected to <span class="font-mono">{{refer}}</span> afterwards</p>
-            <form
-                class="flex flex-col items-center justify-center"
-                @submit.prevent="login"
-            >
+            <p class="italic text-gray-300" v-if="refer">
+                You will be redirected to
+                <span class="font-mono">{{ refer }}</span> afterwards
+            </p>
+            <form class="flex flex-col items-center justify-center" @submit.prevent="login">
                 <input
                     type="email"
                     class="w-full p-2 my-2 rounded-md shadow-md bg-gray-50 dark:bg-gray-800"
@@ -26,7 +29,10 @@
                     v-model="password"
                     required
                 />
-                <Button type="link" :to="refer ? `register?ref=${refer}` : 'register'">Don't have an account yet?</Button>
+                <Button
+                    type="link"
+                    :to="refer ? `register?ref=${refer}` : 'register'"
+                >Don't have an account yet?</Button>
                 <input
                     type="submit"
                     class="inline p-2 transition-colors ease-in-out bg-gray-300 bg-opacity-25 rounded cursor-pointer h-min group dark:text-white dark:bg-darkest-dark dark:bg-opacity-25 dark:hover:bg-primary hover:bg-primary hover:bg-opacity-50 dark:hover:bg-opacity-50"
@@ -43,6 +49,9 @@ import { onBeforeRouteLeave, useRoute, useRouter } from 'vue-router';
 import Button from '../components/Common/Button.vue';
 import axios from 'axios';
 import { useStore } from 'vuex';
+import { strapi } from '../main'
+import { StrapiAuthenticationResponse } from 'strapi-sdk-js';
+
 const store = useStore();
 const router = useRouter();
 
@@ -53,7 +62,6 @@ const error = ref('');
 
 const route = useRoute();
 const refer = route.query.ref;
-console.log(refer);
 
 // if the user is logged in, redirect to the refer page, or to the home page if no refer page is specified
 if (store.state.accounts.loggedIn) {
@@ -61,30 +69,39 @@ if (store.state.accounts.loggedIn) {
 }
 
 const login = () => {
-    // https://api.bergflix.de/api/auth/local
-    // make a post request to the login endpoint, containing the username, email and password
-    // if the request is successful, set the logged_in property to true
-    axios.post('https://api.bergflix.de/api/auth/local', {
-        identifier: email.value,
-        password: password.value,
-    }).then((res) => {
-        console.log(res)
+    strapi.login({ identifier: email.value, password: password.value }).then((res: StrapiAuthenticationResponse) => {
         logged_in.value = true;
-        error.value = ''
-        // set a local storage item called 'token' with the token from the response
-        localStorage.setItem('token', res.data.jwt);
-        store.commit('login', res.data.user)
-        // redirect to the home page
-        router.push(refer ? "/" + refer : '/home');
+        store.commit('login', res.user);
     }).catch((err) => {
-        if (err.response.data.error.message){
-            error.value = err.response.data.error.message;
-        }
-        else {
-            error.value = 'Something went wrong! Please try again later.';
-        }
+        error.value = err.error.message;
     });
-};
+}
+
+// const login = () => {
+//     // https://api.bergflix.de/api/auth/local
+//     // make a post request to the login endpoint, containing the username, email and password
+//     // if the request is successful, set the logged_in property to true
+//     axios.post('https://api.bergflix.de/api/auth/local', {
+//         identifier: email.value,
+//         password: password.value,
+//     }).then((res) => {
+//         console.log(res)
+//         logged_in.value = true;
+//         error.value = ''
+//         // set a local storage item called 'token' with the token from the response
+//         localStorage.setItem('token', res.data.jwt);
+//         store.commit('login', res.data.user)
+//         // redirect to the home page
+//         router.push(refer ? "/" + refer : '/home');
+//     }).catch((err) => {
+//         if (err.response.data.error.message) {
+//             error.value = err.response.data.error.message;
+//         }
+//         else {
+//             error.value = 'Something went wrong! Please try again later.';
+//         }
+//     });
+// };
 </script>
 
 <style lang="scss">
