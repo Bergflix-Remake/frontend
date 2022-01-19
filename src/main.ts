@@ -35,6 +35,8 @@ const getUserDebug = () => {
 
 app.use(Markdown)
 
+
+
 app.mount('#app')
 
 declare global {
@@ -47,21 +49,3 @@ window.DebugNamespace = window.DebugNamespace || {};
 window.DebugNamespace.login = loginDebug;
 window.DebugNamespace.logout = logoutDebug;
 window.DebugNamespace.getUser = getUserDebug;
-
-// if there is a token in localStorage, login the user
-if (localStorage.getItem("token")) {
-  axios
-    .get('https://api.bergflix.de/api/users/me', {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token")
-      }
-    })
-    .then(response => {
-      console.log("User logged in:", response.data);
-      store.commit("login", response.data);
-    }
-  )
-    .catch(error => {
-      console.log(error);
-    });
-}

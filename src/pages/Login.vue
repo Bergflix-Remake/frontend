@@ -14,14 +14,14 @@
             >
                 <input
                     type="email"
-                    class="w-full p-2 my-2 bg-gray-800 rounded-md"
+                    class="w-full p-2 my-2 rounded-md shadow-md bg-gray-50 dark:bg-gray-800"
                     placeholder="Email"
                     v-model="email"
                     required
                 />
                 <input
                     type="password"
-                    class="w-full p-2 my-2 bg-gray-800 rounded-md"
+                    class="w-full p-2 my-2 rounded-md shadow-md bg-gray-50 dark:bg-gray-800"
                     placeholder="Password"
                     v-model="password"
                     required

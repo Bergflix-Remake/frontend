@@ -5,6 +5,8 @@ const Branding = () => import("./pages/Branding.vue");
 const Register = () => import("./pages/Register.vue");
 const About = () => import("./pages/About.vue");
 const Login = () => import("./pages/Login.vue");
+const Profile = () => import("./pages/Profile.vue");
+const Movies = () => import("./pages/Movies.vue");
 
 const routes = [
 	{ path: "/", redirect: "/home" },
@@ -14,6 +16,8 @@ const routes = [
 	{ path: "/branding", component: Branding },
 	{ path: "/register", component: Register },
 	{ path: "/about", component: About },
+	{ path: "/profile", component: Profile },
+	{ path: "/movies", component: Movies },
 ];
 
 export const router = createRouter({
