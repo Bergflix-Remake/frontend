@@ -48,17 +48,17 @@
 				<div class="mb-2 font-bold text-delorean">Rechtliches & Hilfe</div>
 				<ul class="leading-normal list-reset">
                     <li>
-                        <Button type="link" to="your-data">
+                        <Button type="link" to="legal/privacy">
                             Datenschutz<span class="hidden md:inline">erklärung</span>
                         </Button>
                     </li>
                     <li>
-                        <Button type="link" to="cookies">
+                        <Button type="link" to="legal/cookies">
                             Cookies & Sicherheit
                         </Button>
                     </li>
                     <li>
-                        <Button type="link" to="imprint">
+                        <Button type="link" to="legal/imprint">
                             Impressum
                         </Button>
                     </li>

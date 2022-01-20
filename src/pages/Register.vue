@@ -74,7 +74,7 @@ const register = () => {
     strapi.register({ username: username.value, email: email.value, password: password.value }).then((res: any) => {
         registered.value = true;
         store.commit('login', res.user)
-        
+        router.push(refer ? "/" + refer : '/home');
     }).catch((err) => {
         error.value = err.error.message;
     });

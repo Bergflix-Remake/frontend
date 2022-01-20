@@ -71,6 +71,7 @@ const login = () => {
     strapi.login({ identifier: email.value, password: password.value }).then((res: StrapiAuthenticationResponse) => {
         logged_in.value = true;
         store.commit('login', res.user);
+        router.push(refer ? "/" + refer : '/home');
     }).catch((err: any) => {
         error.value = err.error.message;
     });
