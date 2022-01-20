@@ -47,7 +47,6 @@
 import { ref } from 'vue';
 import { onBeforeRouteLeave, useRoute, useRouter } from 'vue-router';
 import Button from '../components/Common/Button.vue';
-import axios from 'axios';
 import { useStore } from 'vuex';
 import { strapi } from '../main'
 import { StrapiAuthenticationResponse } from 'strapi-sdk-js';
@@ -72,7 +71,7 @@ const login = () => {
     strapi.login({ identifier: email.value, password: password.value }).then((res: StrapiAuthenticationResponse) => {
         logged_in.value = true;
         store.commit('login', res.user);
-    }).catch((err) => {
+    }).catch((err: any) => {
         error.value = err.error.message;
     });
 }
