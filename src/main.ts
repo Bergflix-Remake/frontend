@@ -29,7 +29,7 @@ export const strapi = new Strapi({
   prefix: "/api"
 });
 
-await strapi.fetchUser().then(user => {
+strapi.fetchUser().then(user => {
   if (user) {
     console.log("User is logged in:", user);
     store.commit("login");
