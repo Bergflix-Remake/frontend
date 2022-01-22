@@ -7,7 +7,6 @@ import "vue-plyr/dist/vue-plyr.css";
 import { router } from './router';
 import { store } from './store';
 import Markdown from 'vue3-markdown-it'
-import axios from 'axios';
 
 const app = createApp(App);
 
@@ -17,6 +16,28 @@ app.use(VuePlyr, {
 });
 app.use(router)
 app.use(store)
+
+import Strapi from "strapi-sdk-js";
+
+export const strapi = new Strapi({
+	store: {
+		key: "strapi_jwt",
+		useLocalStorage: false,
+		cookieOptions: { path: "/" },
+  },
+  url: "https://api.bergflix.de/",
+  prefix: "/api"
+});
+
+strapi.fetchUser().then(user => {
+  if (user) {
+    console.log("User is logged in:", user);
+    store.commit("login");
+  } else {
+    console.log("No user found");
+    
+  }
+})
 
 // Global Functions
 const loginDebug = (name?: any, image?: any) => {

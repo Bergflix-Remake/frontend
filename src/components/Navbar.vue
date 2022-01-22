@@ -67,7 +67,7 @@
 									: 'login'
 							"
 							type="link"
-							:icon="LoginIcon"
+							:icon="store.state.accounts.loggedIn ? LogoutIcon : LoginIcon"
 							@click="logout"
 						>
 							{{
@@ -86,7 +86,7 @@
 		class="fixed bottom-0 z-50 flex flex-row w-full py-2 text-white h-11 justify-evenly sm:hidden rounded-t-md"
 		:class="store.state.accounts.loggedIn ? 'bg-black' : 'bg-gradient-to-b to-black from-transparent'"
 	>
-		<ChatIcon class="cursor-pointer hover:text-primary" @click="$router.push('/party')"/>
+		<ChatIcon class="cursor-pointer hover:text-primary" @click="$router.push('/party')" />
 		<SearchIcon class="cursor-pointer hover:text-primary" @click="$router.push('/search')" />
 		<HomeIcon class="cursor-pointer hover:text-primary" @click="$router.push('/home')" />
 		<FilmIcon class="cursor-pointer hover:text-primary" @click="$router.push('/library')" />
@@ -113,9 +113,7 @@
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import {
-	AdjustmentsIcon,
-	TagIcon,
-	ServerIcon,
+	LogoutIcon,
 	HomeIcon,
 	CogIcon,
 	SearchIcon,
@@ -129,6 +127,8 @@ import {
 import Sidebar from "./Sidebar.vue";
 import Button from "./Common/Button.vue";
 import { useStore } from "vuex";
+import { strapi } from '../main';
+
 const route = useRoute();
 const path = computed(() => route.path);
 const store = useStore();
@@ -176,6 +176,7 @@ const menuItems = [
 	},
 ];
 const logout = () => {
+	strapi.logout();
 	store.commit("logout");
 }
 </script>

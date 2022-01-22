@@ -1,12 +1,28 @@
 <template>
-<div class="flex flex-row flex-wrap items-center justify-center w-full my-20">
-    <Poster v-for="movie in movies" :name="movie.attributes.title"
-    :subtitle="movie.attributes.series ? movie.attributes.series.data.attributes.Title : movie.attributes.rating + ' stars'"
-    :image="`https://api.bergflix.de${movie.attributes.background_image.data.attributes.url}`"
-    :link-icon="PencilIcon"
-    :link="`/movies/${movie.id}`" />
-
-</div>
+    <!-- Movies -->
+    <h1 class="text-xl font-bold mt-20 mb-2">Movies</h1>
+    <div class="flex flex-row flex-nowrap w-full h-min">
+        <Poster
+            v-for="movie in movies"
+            :name="movie.attributes!.title"
+            :subtitle="movie.attributes!.rating + ' stars'"
+            :image="`https://api.bergflix.de${movie.attributes!.background_image?.data?.attributes?.url}`"
+            :link-icon="PencilIcon"
+            :link="`/movies/${movie.id}`"
+        />
+    </div>
+    <!-- Episodes -->
+    <h1 class="text-xl font-bold mt-20 mb-2">New Episodes</h1>
+    <div class="flex flex-row flex-nowrap w-full h-min">
+        <Poster
+            v-for="movie in episodes"
+            :name="movie.attributes!.title"
+            :subtitle="movie.attributes!.series?.data?.attributes?.Title"
+            :image="`https://api.bergflix.de${movie.attributes!.background_image!.data?.attributes?.formats.thumbnail.url}`"
+            :link-icon="PencilIcon"
+            :link="`/movies/${movie.id}`"
+        />
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -14,16 +30,38 @@ import Axios from 'axios';
 import { useStore } from 'vuex';
 import Poster from '../components/Common/Poster.vue';
 import { PencilIcon } from '@heroicons/vue/outline';
+import { strapi } from '../main';
+import { Video, VideoEntity, VideoEntityResponse, VideoEntityResponseCollection } from '../models/types';
 
 const store = useStore();
-// get all movies from this endpoint, and write them to a variable called movies: https://api.bergflix.de/api/videos?populate=*
-const movies = await Axios.get('https://api.bergflix.de/api/videos?populate=*&locale=' + store.state.language).then((res) => {
-    return res.data.data;
+
+const movies = await strapi.find('videos', {
+    populate: ['series', 'background_image'],
+    filters: {
+        series: {
+            id: {
+                $null: true
+            }
+        }
+    }
+}).then(res => {
+    return res.data as VideoEntity[];
 });
-console.log(movies);
+
+const episodes = await strapi.find('videos', {
+    populate: ['series', 'series.title', 'background_image'],
+    filters: {
+        series: {
+            id: {
+                $notNull: true
+            }
+        }
+    }
+}).then(res => {
+    return res.data as VideoEntity[];
+});
 
 </script>
 
 <style lang="scss">
-
 </style>
