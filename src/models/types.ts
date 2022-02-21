@@ -653,7 +653,8 @@ export type ImprintInput = {
 export type Imprint = {
   __typename?: 'Imprint';
   impressum: Scalars['String'];
-  privacy?: Maybe<Scalars['String']>;
+  privacy: Scalars['String'];
+  terms: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
