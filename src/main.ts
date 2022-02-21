@@ -31,11 +31,7 @@ export const strapi = new Strapi({
 
 strapi.fetchUser().then(user => {
   if (user) {
-    console.log("User is logged in:", user);
     store.commit("login");
-  } else {
-    console.log("No user found");
-    
   }
 })
 

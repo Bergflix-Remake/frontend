@@ -1,6 +1,6 @@
 <template>
-    <h1 class="text-xl font-bold mt-20 mb-2">Movies</h1>
-    <div class="flex flex-row flex-nowrap w-full h-min">
+    <h1 class="mt-20 mb-2 text-xl font-bold">Movies</h1>
+    <div class="flex flex-row w-full flex-nowrap h-min">
         <Poster
             v-for="serie in series"
             :name="serie.attributes!.Title"
@@ -23,7 +23,6 @@ const series = await strapi.find('series', {
 }).then(res => {
     return res.data as SerieEntity[];
 });
-console.log(series);
 
 
 </script>

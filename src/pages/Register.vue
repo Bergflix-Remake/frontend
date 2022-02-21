@@ -63,7 +63,6 @@ const error = ref('');
 
 const route = useRoute();
 const refer = route.query.ref;
-console.log(refer);
 
 // if the user is logged in, redirect to the refer page, or to the home page if no refer page is specified
 if (store.state.accounts.loggedIn) {
@@ -80,32 +79,6 @@ const register = () => {
     });
 }
 
-// const register = () => {
-//     // https://api.bergflix.de/api/auth/local/register
-//     // make a post request to the register endpoint, containing the username, email and password
-//     // if the request is successful, set the registered property to true
-//     axios.post('https://api.bergflix.de/api/auth/local/register', {
-//         username: username.value,
-//         email: email.value,
-//         password: password.value,
-//     }).then((res) => {
-//         console.log(res)
-//         registered.value = true;
-//         error.value = ''
-//         // set a local storage item called 'token' with the token from the response
-//         localStorage.setItem('token', res.data.jwt);
-//         store.commit('login', res.data.user)
-//         // redirect to the home page
-//         router.push(refer ? "/" + refer : '/home');
-//     }).catch((err) => {
-//         if (err.response.data.error.message){
-//             error.value = err.response.data.error.message;
-//         }
-//         else {
-//             error.value = 'Something went wrong! Please try again later.';
-//         }
-//     });
-// };
 </script>
 
 <style lang="scss">

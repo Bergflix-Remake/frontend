@@ -16,7 +16,6 @@ import Button from '../components/Common/Button.vue';
 // This will populate the data for us, and we can use it in our template.
 const response = await fetch(`https://wizardly-galileo121114.a.eun01.geode.host/api/homepage?populate=*`).then(res => res.json()).then(data => data);
 const items = response.data.attributes.page;
-console.log(items);
 
 </script>
 

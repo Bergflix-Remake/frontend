@@ -76,32 +76,6 @@ const login = () => {
         error.value = err.error.message;
     });
 }
-
-// const login = () => {
-//     // https://api.bergflix.de/api/auth/local
-//     // make a post request to the login endpoint, containing the username, email and password
-//     // if the request is successful, set the logged_in property to true
-//     axios.post('https://api.bergflix.de/api/auth/local', {
-//         identifier: email.value,
-//         password: password.value,
-//     }).then((res) => {
-//         console.log(res)
-//         logged_in.value = true;
-//         error.value = ''
-//         // set a local storage item called 'token' with the token from the response
-//         localStorage.setItem('token', res.data.jwt);
-//         store.commit('login', res.data.user)
-//         // redirect to the home page
-//         router.push(refer ? "/" + refer : '/home');
-//     }).catch((err) => {
-//         if (err.response.data.error.message) {
-//             error.value = err.response.data.error.message;
-//         }
-//         else {
-//             error.value = 'Something went wrong! Please try again later.';
-//         }
-//     });
-// };
 </script>
 
 <style lang="scss">
