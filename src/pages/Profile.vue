@@ -10,11 +10,8 @@
             <img src="https://cdn.bergflix.de/logo/light_bg.png" class="w-32 h-32 rounded-full" />
             <h1 class="text-2xl font-bold">{{ user.username }}</h1>
             <p class="text-gray-700">{{ user.email }}</p>
-            <Button v-if="store.state.loggedIn" type="link" to="favorites" :icon="StarIcon">
+            <Button type="link" to="favorites" :icon="StarIcon">
                 Favorites
-            </Button>
-            <Button v-else type="link" to="login?ref=profile" :icon="LoginIcon">
-                Login
             </Button>
         </div>
     </div>
@@ -24,16 +21,15 @@
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import Button from '../components/Common/Button.vue';
-import { StarIcon, PencilIcon, LoginIcon } from '@heroicons/vue/outline';
+import { StarIcon } from '@heroicons/vue/outline';
 import { ref } from 'vue';
 
 const store = useStore();
 const router = useRouter();
 
-const newUsername = ref('')
-
-const editingUser = ref(false);
-
+if(!store.state.accounts.loggedIn) {
+    router.push('/login');
+}
 
 const user = store.getters.getUser;
 </script>
