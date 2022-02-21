@@ -14,13 +14,7 @@ jobs:
           npm install
           npm run build
           
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.5
-        with:
-          branch: gh-pages
-          folder: dist
-          
-      - name: Store artifacts
+      - name: Store artifacts 📦
         uses: actions/upload-artifact@v2.2.4
         with:
           path: dist
