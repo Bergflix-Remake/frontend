@@ -10,6 +10,7 @@ const Movies = () => import("./pages/Movies.vue");
 const Series = () => import("./pages/Series.vue");
 const Imprint = () => import("./pages/Imprint.vue");
 const Privacy = () => import("./pages/Privacy.vue");
+const Terms = () => import("./pages/Terms.vue");
 
 const routes = [
 	{ path: "/", redirect: "/home" },
@@ -24,6 +25,7 @@ const routes = [
 	{ path: "/series", component: Series },
 	{ path: "/legal/imprint", component: Imprint },
 	{ path: "/legal/privacy", component: Privacy },
+	{ path: "/legal/terms", component: Terms },
 	{ path: "/legal", redirect: "/legal/imprint" },
 ];
 
@@ -31,5 +33,3 @@ export const router = createRouter({
 	history: createWebHistory(),
 	routes,
 });
-
-// 27:05
