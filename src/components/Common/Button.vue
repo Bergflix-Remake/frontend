@@ -24,7 +24,7 @@
 			class="inline w-5 h-5 mr-1 transition-colors dark:text-white"
 		/>
 		<slot />
-		<ArrowCircleRightIcon
+		<ExternalLinkIcon
 			class="inline w-5 h-5 mb-1 ml-0.5 transition-colors dark:text-white group-hover:text-primary"
 		/>
 	</router-link>
@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowCircleRightIcon } from "@heroicons/vue/outline";
+import { ExternalLinkIcon } from "@heroicons/vue/outline";
 import { RenderFunction } from "@vue/runtime-core";
 const props = defineProps({
 	type: {
