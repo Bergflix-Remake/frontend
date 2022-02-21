@@ -1,8 +1,9 @@
 <template>
     <!-- Movies -->
-    <h1 class="text-xl font-bold mt-20 mb-2">Movies</h1>
-    <div class="flex flex-row flex-nowrap w-full h-min">
+    <h1 class="mt-20 mb-2 text-xl font-bold">Movies</h1>
+    <div class="flex flex-row w-full flex-nowrap h-min">
         <Poster
+            v-if="movies"
             v-for="movie in movies"
             :name="movie.attributes!.title"
             :subtitle="movie.attributes!.rating + ' stars'"
@@ -12,8 +13,8 @@
         />
     </div>
     <!-- Episodes -->
-    <h1 class="text-xl font-bold mt-20 mb-2">New Episodes</h1>
-    <div class="flex flex-row flex-nowrap w-full h-min">
+    <h1 class="mt-20 mb-2 text-xl font-bold">New Episodes</h1>
+    <div class="flex flex-row w-full flex-nowrap h-min">
         <Poster
             v-for="movie in episodes"
             :name="movie.attributes!.title"
@@ -26,12 +27,11 @@
 </template>
 
 <script setup lang="ts">
-import Axios from 'axios';
 import { useStore } from 'vuex';
 import Poster from '../components/Common/Poster.vue';
 import { PencilIcon } from '@heroicons/vue/outline';
 import { strapi } from '../main';
-import { Video, VideoEntity, VideoEntityResponse, VideoEntityResponseCollection } from '../models/types';
+import { VideoEntity } from '../models/types';
 
 const store = useStore();
 
