@@ -33,7 +33,7 @@
                     v-model="password"
                     required
                 />
-                <Button type="link" :to="refer ? `login?ref=${refer}` : 'login'">Don't have an account yet?</Button>
+                <Button type="link" :to="refer ? `login?ref=${refer}` : 'login'">You have an account?</Button>
                 <input
                     type="submit"
                     class="inline p-2 transition-colors ease-in-out bg-gray-300 bg-opacity-25 rounded cursor-pointer h-min group dark:text-white dark:bg-darkest-dark dark:bg-opacity-25 dark:hover:bg-primary hover:bg-primary hover:bg-opacity-50 dark:hover:bg-opacity-50"
