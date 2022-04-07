@@ -1,10 +1,11 @@
 <template>
+<Loader class="mt-20" v-if="movies.isLoading || episodes.isLoading" />
+<main v-if="movies.isSuccess && episodes.isSuccess">
     <!-- Movies -->
     <h1 class="mt-20 mb-2 text-xl font-bold">Movies</h1>
     <div class="flex flex-row w-full flex-nowrap h-min">
         <Poster
-            v-if="movies"
-            v-for="movie in movies"
+            v-for="movie in movies.data"
             :name="movie.attributes!.title"
             :subtitle="movie.attributes!.rating + ' stars'"
             :image="`https://api.bergflix.de${movie.attributes!.background_image?.data?.attributes?.url}`"
@@ -16,7 +17,7 @@
     <h1 class="mt-20 mb-2 text-xl font-bold">New Episodes</h1>
     <div class="flex flex-row w-full flex-nowrap h-min">
         <Poster
-            v-for="movie in episodes"
+            v-for="movie in episodes.data"
             :name="movie.attributes!.title"
             :subtitle="movie.attributes!.series?.data?.attributes?.Title"
             :image="`https://api.bergflix.de${movie.attributes!.background_image!.data?.attributes?.formats.thumbnail.url}`"
@@ -24,18 +25,16 @@
             :link="`/movies/${movie.id}`"
         />
     </div>
+    </main>
 </template>
 
 <script setup lang="ts">
-import { useStore } from 'vuex';
 import Poster from '../components/Common/Poster.vue';
 import { PencilIcon } from '@heroicons/vue/outline';
-import { strapi } from '../main';
-import { VideoEntity } from '../models/types';
+import { useStrapi } from '../main';
+import Loader from '../components/Loader.vue';
 
-const store = useStore();
-
-const movies = await strapi.find('videos', {
+const movies: any = useStrapi(['videos', {
     populate: ['series', 'background_image'],
     filters: {
         series: {
@@ -43,12 +42,9 @@ const movies = await strapi.find('videos', {
                 $null: true
             }
         }
-    }
-}).then(res => {
-    return res.data as VideoEntity[];
-});
+    }}])
 
-const episodes = await strapi.find('videos', {
+const episodes: any = useStrapi(['videos', {
     populate: ['series', 'series.title', 'background_image'],
     filters: {
         series: {
@@ -56,10 +52,7 @@ const episodes = await strapi.find('videos', {
                 $notNull: true
             }
         }
-    }
-}).then(res => {
-    return res.data as VideoEntity[];
-});
+    }}]);
 
 </script>
 

@@ -22,7 +22,7 @@ import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import Button from '../components/Common/Button.vue';
 import { StarIcon } from '@heroicons/vue/outline';
-import { ref } from 'vue';
+
 
 const store = useStore();
 const router = useRouter();

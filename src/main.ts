@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, reactive } from 'vue'
 import App from './App.vue'
 import './assets/font/stylesheet.css'
 import './index.css'
@@ -7,6 +7,9 @@ import "vue-plyr/dist/vue-plyr.css";
 import { router } from './router';
 import { store } from './store';
 import Markdown from 'vue3-markdown-it'
+import { VueQueryPlugin, useQuery, UseQueryOptions } from "vue-query";
+import './three-dots.css'
+
 
 const app = createApp(App);
 
@@ -18,6 +21,7 @@ app.use(router)
 app.use(store)
 
 import Strapi from "strapi-sdk-js";
+import { QueryKey } from 'react-query/types/core';
 
 export const strapi = new Strapi({
 	store: {
@@ -28,6 +32,28 @@ export const strapi = new Strapi({
   url: "https://api.bergflix.de/",
   prefix: "/api"
 });
+
+const useStrapiQuery = ({ queryKey }: any) => {
+	return strapi
+		.find(queryKey[0], queryKey[1] ? queryKey[1] : {})
+		.then((res) => {
+			return res.data;
+		});
+};
+
+export const useStrapi = (
+	queryKey: any,
+	options?: Omit<
+		UseQueryOptions<unknown, unknown, unknown, QueryKey>,
+		"queryFn" | "queryKey"
+	>
+) => {
+	return reactive(useQuery(queryKey, useStrapiQuery, options));
+};
+
+export const getUser = () => {
+    return reactive(useQuery("user", () => strapi.fetchUser()))
+}
 
 strapi.fetchUser().then(user => {
   if (user) {
@@ -50,9 +76,9 @@ const getUserDebug = () => {
   return store.getters.getUser;
 }
 
-app.use(Markdown)
+app.use(Markdown);
 
-
+app.use(VueQueryPlugin);
 
 app.mount('#app')
 

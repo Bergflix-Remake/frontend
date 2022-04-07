@@ -1,6 +1,7 @@
 <template>
 	<div id="spacer" class="mt-20"></div>
-	<section v-for="item in items" class="my-2">
+	<Loader v-if="content.isLoading" />
+	<section v-if="content.isSuccess" v-for="item in content.data.attributes.page" class="my-2">
 		<Textblock v-if="item.__component == 'common.text-block'" :title="item.title" :content="item.text" />
 		<Button v-if="item.__component == 'common.button'" :type="item.type" :to="item.to" :icon="item.icon" >
 			{{ item.text }}
@@ -11,11 +12,15 @@
 <script setup lang="ts">
 import Textblock from '../components/Common/Textblock.vue';
 import Button from '../components/Common/Button.vue';
-// Our API URL is https://wizardly-galileo121114.a.eun01.geode.host/api/
-// asyncrhonously fetch the data from the /about endpoint, using the populate query param with the * value.
-// This will populate the data for us, and we can use it in our template.
-const response = await fetch(`https://wizardly-galileo121114.a.eun01.geode.host/api/about?populate=*`).then(res => res.json()).then(data => data);
-const items = response.data.attributes.page;
+import { useStrapi } from '../main';
+import Loader from '../components/Loader.vue'
+
+const content: any = useStrapi([
+	"about",
+	{
+		populate: '*'
+	}
+]);
 
 </script>
 

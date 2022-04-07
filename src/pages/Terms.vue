@@ -1,18 +1,16 @@
 <template>
 <h1 class="mt-20 text-xl font-bold">Terms</h1>
-<div class="mb-10 div" v-html="content.attributes?.terms"></div>
+<Loader v-if="content.isLoading" />
+<div class="mb-10 div" v-html="content.data.attributes?.terms" v-if="content.isSuccess"></div>
 </template>
 
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router';
-import { strapi } from '../main';
-import { ImprintEntity } from '../models/types';
+import { useStrapi } from '../main';
+import Loader from '../components/Loader.vue';
 
-const content = await strapi.find('imprint', {
+const content: any = useStrapi(['imprint', {
     fields: ['terms'],
-}).then(res => {
-    return res.data as ImprintEntity;
-});
+}])
 </script>
 
 <style lang="scss">
