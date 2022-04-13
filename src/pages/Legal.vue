@@ -1,15 +1,20 @@
 <template>
-<h1 class="mt-20 text-xl font-bold">Terms</h1>
+<h1 class="mt-20 text-xl font-bold">{{ part.toUpperCase() }}</h1>
 <Loader v-if="content.isLoading" />
-<div class="mb-10 div" v-html="content.data.attributes?.terms" v-if="content.isSuccess"></div>
+<div class="mb-10 div" v-html="content.data.attributes?.terms || content.data.attributes?.privacy || content.data.attributes?.impressum" v-if="content.isSuccess"></div>
 </template>
 
 <script setup lang="ts">
 import { useStrapi } from '../main';
 import Loader from '../components/Loader.vue';
+import { useRoute } from "vue-router"
+
+const route = useRoute()
+
+const part = route.params.part
 
 const content: any = useStrapi(['imprint', {
-    fields: ['terms'],
+    fields: [part],
 }])
 </script>
 
