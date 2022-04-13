@@ -53,12 +53,12 @@
                         </Button>
                     </li>
                     <li>
-                        <Button type="link" to="legal/cookies">
+                        <Button type="link" to="legal/terms">
                             Cookies & Sicherheit
                         </Button>
                     </li>
                     <li>
-                        <Button type="link" to="legal/imprint">
+                        <Button type="link" to="legal/impressum">
                             Impressum
                         </Button>
                     </li>

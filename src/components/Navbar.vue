@@ -28,13 +28,14 @@
 			style="margin-left: auto; margin-right: 2rem"
 			class="flex flex-row h-full"
 			id="items-right"
+
 			@mouseleave="showUserPopup = false"
 		>
-			<!-- <AdjustmentsIcon class="text-gray-500 cursor-pointer h-7 hover:text-primary" @click="toggleSidebar"/> -->
-			<div class="flex flex-col items-end">
+			<!-- User Icon - User is logged in -->
+			<div class="flex flex-col items-end" v-if="user.isSuccess"> 
 				<img
-					:src="store.getters.getUser.image ? store.getters.getUser.image : 'https://cdn.bergflix.de/logo/light_bg.png'"
-					:alt="'Logged in as ' + store.getters.getUser.username"
+					:src="'https://cdn.bergflix.de/logo/light_bg.png'"
+					:alt="'Logged in as ' + user.data!.username"
 					class="rounded-full shadow w-14 h-14"
 					@mouseenter="showUserPopup = true"
 				/>
@@ -45,14 +46,13 @@
 						class="flex flex-col p-5 mt-2 bg-black rounded-md spapce-y-5 h-max w-max"
 						@mouseleave="showUserPopup = false"
 					>
-						<h2 class="font-bold text-delorean">Hi, {{ store.getters.getUser.username }}!</h2>
+						<h2 class="font-bold text-delorean">Hi, {{ user.data!.username }}!</h2>
 						<ul>
 							<li v-for="item in menuItems">
 								<Button
 									:to="item.href.replace('/', '')"
 									type="link"
 									:icon="item.icon"
-									v-if="store.state.accounts.loggedIn"
 								>{{ item.title }}</Button>
 							</li>
 							<li>
@@ -61,30 +61,62 @@
 						</ul>
 						<hr class="my-2 border-delorean" />
 						<Button
-							:to="
-								store.state.accounts.loggedIn
-									? '#'
-									: 'login'
-							"
+							:to="'#'"
 							type="link"
-							:icon="store.state.accounts.loggedIn ? LogoutIcon : LoginIcon"
+							:icon="LogoutIcon"
 							@click="logout"
 						>
-							{{
-								store.state.accounts.loggedIn
-									? "Logout"
-									: "Login"
-							}}
+							Logout
 						</Button>
 					</div>
 				</transition>
 			</div>
+			<!-- User Icon - User is not logged in -->
+			<div class="flex flex-col items-end" v-if="user.isError"> 
+				<img
+					:src="'https://cdn.bergflix.de/logo/light_bg.png'"
+					:alt="'Not logged in!'"
+					class="rounded-full shadow w-14 h-14"
+					@mouseenter="showUserPopup = true"
+				/>
+				<transition name="slide">
+					<div
+						id="user-popup"
+						v-if="showUserPopup"
+						class="flex flex-col p-5 mt-2 bg-black rounded-md spapce-y-5 h-max w-max"
+						@mouseleave="showUserPopup = false"
+					>
+						<h2 class="font-bold text-delorean">Hi, Guest!</h2>
+						<ul>
+							<li>
+								<Button to="help" type="link" :icon="InformationCircleIcon">Hilfe & Feedback</Button>
+							</li>
+						</ul>
+						<hr class="my-2 border-delorean" />
+						<Button
+							:to="'login'"
+							type="link"
+							:icon="LoginIcon"
+						>
+							Login
+						</Button>
+					</div>
+				</transition>
+			</div>
+			<!-- User Loading Indicator -->
+			<div
+				class="flex flex-col items-end justify-center"
+				v-if="user.isLoading"
+			>
+				<Loader />
+			</div>
 		</div>
+
 	</nav>
 	<!-- Mobile Navbar -->
 	<nav
 		class="fixed bottom-0 z-50 flex flex-row w-full py-2 text-white h-11 justify-evenly sm:hidden rounded-t-md"
-		:class="store.state.accounts.loggedIn ? 'bg-black' : 'bg-gradient-to-b to-black from-transparent'"
+		:class="'bg-gradient-to-b to-black from-transparent'"
 	>
 		<ChatIcon class="cursor-pointer hover:text-primary" @click="$router.push('/party')" />
 		<SearchIcon class="cursor-pointer hover:text-primary" @click="$router.push('/search')" />
@@ -127,15 +159,17 @@ import {
 import Sidebar from "./Sidebar.vue";
 import Button from "./Common/Button.vue";
 import { useStore } from "vuex";
-import { strapi } from '../main';
+import { strapi, getUser } from '../main';
+import Loader from "./Loader.vue";
+import { StrapiUser } from "strapi-sdk-js";
 
-const route = useRoute();
-const path = computed(() => route.path);
 const store = useStore();
-const showSidebar = store.state.showSidebar;
 function toggleSidebar() {
 	store.commit("toggleSidebar");
 }
+
+const user = getUser();
+
 
 const showUserPopup = ref(false);
 
@@ -177,6 +211,6 @@ const menuItems = [
 ];
 const logout = () => {
 	strapi.logout();
-	store.commit("logout");
+	user.refetch();
 }
 </script>

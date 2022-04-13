@@ -27,6 +27,7 @@
                     class="w-full p-2 my-2 rounded-md shadow-md bg-gray-50 dark:bg-gray-800"
                     placeholder="Password"
                     v-model="password"
+                    current-password
                     required
                 />
                 <Button
@@ -50,6 +51,9 @@ import Button from '../components/Common/Button.vue';
 import { useStore } from 'vuex';
 import { strapi } from '../main'
 import { StrapiAuthenticationResponse } from 'strapi-sdk-js';
+import { useQueryClient } from 'vue-query';
+
+const queryClient = useQueryClient();
 
 const store = useStore();
 const router = useRouter();
@@ -63,14 +67,14 @@ const route = useRoute();
 const refer = route.query.ref;
 
 // if the user is logged in, redirect to the refer page, or to the home page if no refer page is specified
-if (store.state.accounts.loggedIn) {
+if (strapi.user) {
     router.push(refer ? "/" + refer : '/home');
 }
 
 const login = () => {
     strapi.login({ identifier: email.value, password: password.value }).then((res: StrapiAuthenticationResponse) => {
         logged_in.value = true;
-        store.commit('login', res.user);
+        queryClient.invalidateQueries(["user"])
         router.push(refer ? "/" + refer : '/home');
     }).catch((err: any) => {
         error.value = err.error.message;

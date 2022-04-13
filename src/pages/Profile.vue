@@ -19,19 +19,17 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
 import Button from '../components/Common/Button.vue';
 import { StarIcon } from '@heroicons/vue/outline';
+import { strapi, getUser } from '../main'
 
-
-const store = useStore();
 const router = useRouter();
 
-if(!store.state.accounts.loggedIn) {
+if(!strapi.user) {
     router.push('/login');
 }
 
-const user = store.getters.getUser;
+const user = getUser();
 </script>
 
 <style lang="scss">

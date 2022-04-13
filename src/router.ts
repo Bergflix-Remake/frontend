@@ -8,9 +8,10 @@ const Login = () => import("./pages/Login.vue");
 const Profile = () => import("./pages/Profile.vue");
 const Movies = () => import("./pages/Movies.vue");
 const Series = () => import("./pages/Series.vue");
-const Imprint = () => import("./pages/Imprint.vue");
+/* const Imprint = () => import("./pages/Imprint.vue");
 const Privacy = () => import("./pages/Privacy.vue");
-const Terms = () => import("./pages/Terms.vue");
+const Terms = () => import("./pages/Terms.vue"); */
+const Legal = () => import("./pages/Legal.vue");
 
 const routes = [
 	{ path: "/", redirect: "/home" },
@@ -23,9 +24,10 @@ const routes = [
 	{ path: "/profile", component: Profile },
 	{ path: "/movies", component: Movies },
 	{ path: "/series", component: Series },
-	{ path: "/legal/imprint", component: Imprint },
+/* 	{ path: "/legal/imprint", component: Imprint },
 	{ path: "/legal/privacy", component: Privacy },
-	{ path: "/legal/terms", component: Terms },
+	{ path: "/legal/terms", component: Terms }, */
+	{path: "/legal/:part(impressum|privacy|terms)", component: Legal},
 	{ path: "/legal", redirect: "/legal/imprint" },
 ];
 
