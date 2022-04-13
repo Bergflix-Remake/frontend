@@ -1,8 +1,9 @@
 <template>
-    <h1 class="mt-20 mb-2 text-xl font-bold">Movies</h1>
-    <div class="flex flex-row w-full flex-nowrap h-min">
+    <h1 class="mt-20 mb-2 text-xl font-bold">Series</h1>
+    <Loader v-if="series.isLoading" />
+    <div class="flex flex-row w-full flex-nowrap h-min" v-if="series.isSuccess">
         <Poster
-            v-for="serie in series"
+            v-for="serie in series.data"
             :name="serie.attributes!.Title"
             :subtitle="serie.attributes!.videos?.data.length + ' Episode' + (serie.attributes!.videos?.data.length! > 1 ? 's' : '')"
             :image="`https://api.bergflix.de${serie.attributes!.background_image?.data?.attributes?.url}`"
@@ -13,16 +14,14 @@
 </template>
 
 <script setup lang="ts">
-import { strapi } from '../main';
-import { SerieEntity, SerieEntityResponseCollection } from '../models/types';
+import { useStrapi } from '../main';
 import { PencilIcon } from '@heroicons/vue/outline';
 import Poster from '../components/Common/Poster.vue';
+import Loader from '../components/Loader.vue';
 
-const series = await strapi.find('series', {
-    populate: ['*', 'videos', 'background_image'],
-}).then(res => {
-    return res.data as SerieEntity[];
-});
+const series: any = useStrapi(['series', {
+    populate: '*',
+}])
 
 
 </script>

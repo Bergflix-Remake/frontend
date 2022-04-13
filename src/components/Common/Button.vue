@@ -56,7 +56,7 @@ const props = defineProps({
 		type: String,
 	},
 	icon: {
-		type: Object as () => RenderFunction,
+		type: Object as () => RenderFunction | string,
 		required: false,
 	}
 	});

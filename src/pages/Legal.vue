@@ -1,18 +1,21 @@
 <template>
-<h1 class="mt-20 text-xl font-bold">Terms</h1>
-<div class="mb-10 div" v-html="content.attributes?.terms"></div>
+<h1 class="mt-20 text-xl font-bold">{{ part.toUpperCase() }}</h1>
+<Loader v-if="content.isLoading" />
+<div class="mb-10 div" v-html="content.data.attributes?.terms || content.data.attributes?.privacy || content.data.attributes?.impressum" v-if="content.isSuccess"></div>
 </template>
 
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router';
-import { strapi } from '../main';
-import { ImprintEntity } from '../models/types';
+import { useStrapi } from '../main';
+import Loader from '../components/Loader.vue';
+import { useRoute } from "vue-router"
 
-const content = await strapi.find('imprint', {
-    fields: ['terms'],
-}).then(res => {
-    return res.data as ImprintEntity;
-});
+const route = useRoute()
+
+const part = route.params.part
+
+const content: any = useStrapi(['imprint', {
+    fields: [part],
+}])
 </script>
 
 <style lang="scss">

@@ -14,46 +14,60 @@
 						@click="closeSidebar"
 					/>
 				</div>
-				<ul
-					id="sidebar-items"
-					class="mt-10 space-y-5 text-center text-gray-500"
-				>
-					<li v-for="item in menuItems">
-						<Button
-							:to="item.href.replace('/', '')"
-							type="link"
-							:icon="item.icon"
-							v-if="store.state.accounts.loggedIn"
-							>{{ item.title }}</Button
-						>
-					</li>
-					<li>
-						<Button
-							to="help"
-							type="link"
-							:icon="InformationCircleIcon"
-							>Hilfe & Feedback</Button
-						>
-					</li>
-				</ul>
-				<ul class="mt-auto mb-10 space-y-5 text-center text-gray-500">
-					<li>
-						<Button
-							:to="
-								store.state.accounts.loggedIn
-									? 'logout'
-									: 'login'
-							"
-							type="link"
-							:icon="LoginIcon"
-							>{{
-								store.state.accounts.loggedIn
-									? "Logout"
-									: "Login"
-							}}</Button
-						>
-					</li>
-				</ul>
+				<!-- User is logged in -->
+				<div v-if="user.isSuccess" class="flex flex-col items-center content-center h-full">
+					<ul
+						id="sidebar-items"
+						class="mt-10 space-y-5 text-center text-gray-500"
+					>
+						<li v-for="item in menuItems">
+							<Button
+								:to="item.href.replace('/', '')"
+								type="link"
+								:icon="item.icon"
+								>{{ item.title }}</Button
+							>
+						</li>
+					</ul>
+					<ul class="mt-auto mb-10 space-y-5 text-center text-gray-500">
+						<li>
+							<Button
+								:to="'#'"
+								type="link"
+								:icon="LogoutIcon"
+								@click="logout"
+								>Logout</Button
+							>
+						</li>
+					</ul>
+				</div>
+				<!-- User is NOT logged in -->
+				<div v-if="user.isError" class="flex flex-col items-center content-center h-full">
+					<ul
+						id="sidebar-items"
+						class="mt-10 space-y-5 text-center text-gray-500"
+					>
+						<li>
+							<Button
+								:to="'help'"
+								type="link"
+								:icon="InformationCircleIcon"
+								>Hilfe & Feedback</Button
+							>
+						</li>
+					</ul>
+					<ul class="mt-auto mb-10 space-y-5 text-center text-gray-500">
+						<li>
+							<Button
+								:to="'login'"
+								type="link"
+								:icon="LogoutIcon"
+								@click="logout"
+								>Login</Button
+							>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</transition>
@@ -70,7 +84,12 @@ import {
 } from "@heroicons/vue/outline";
 import { computed } from "vue";
 import { useStore } from "vuex";
+import { getUser, strapi } from "../main";
 import Button from "./Common/Button.vue";
+
+const user = getUser();
+
+
 const store = useStore();
 let showSidebar = () => {
 	return store.state.sidebarOpen;
@@ -107,6 +126,13 @@ const footerItems = [
 		title: "Abmelden",
 	},
 ];
+
+const logout = () => {
+	strapi.logout();
+	user.refetch();
+}
+
+
 </script>
 <style>
 .slide-enter-from,
