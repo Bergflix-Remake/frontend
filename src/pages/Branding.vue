@@ -5,7 +5,7 @@
 			<span class="text-white">Bergflix</span>. Branding
 		</h1>
 	</section>
-	<section class="w-full h-screen">
+	<section class="w-full h-screen mb-60 md:mb-0">
 		<h3 class="text-xl text-white">Unsere Brand</h3>
 		<h2 class="text-4xl font-bold text-nice-red">
 			Nichts offizielles, aber dennoch wichtig.
