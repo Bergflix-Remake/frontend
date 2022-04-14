@@ -8,8 +8,8 @@
             <p class="p-2 font-mono text-white bg-red-500 rounded-sm">WIP</p>
         </div>
             <img src="https://cdn.bergflix.de/logo/light_bg.png" class="w-32 h-32 rounded-full" />
-            <h1 class="text-2xl font-bold">{{ user.username }}</h1>
-            <p class="text-gray-700">{{ user.email }}</p>
+            <h1 class="text-2xl font-bold">{{ user.data.username }}</h1>
+            <p class="text-gray-700">{{ user.data.email }}</p>
             <Button type="link" to="favorites" :icon="StarIcon">
                 Favorites
             </Button>
