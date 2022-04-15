@@ -17,12 +17,13 @@ import { useStrapi } from "../main";
 import Loader from "../components/Loader.vue";
 import { useRoute } from "vue-router";
 import { ref } from "vue";
+import { ImprintEntity } from "../models/types";
 
 const route = useRoute();
 
 const part = ref(route.params.part as string);
 
-const content = useStrapi([
+const content = useStrapi<ImprintEntity>([
   "imprint",
   {
     fields: [part],

@@ -647,6 +647,7 @@ export type HomepageRelationResponseCollection = {
 export type ImprintInput = {
   impressum?: Maybe<Scalars['String']>;
   privacy?: Maybe<Scalars['String']>;
+  terms?: Maybe<Scalars['String']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -669,6 +670,47 @@ export type ImprintEntity = {
 export type ImprintEntityResponse = {
   __typename?: 'ImprintEntityResponse';
   data?: Maybe<ImprintEntity>;
+};
+
+export type KnownUrlFiltersInput = {
+  id?: Maybe<IdFilterInput>;
+  url?: Maybe<StringFilterInput>;
+  title?: Maybe<StringFilterInput>;
+  createdAt?: Maybe<DateTimeFilterInput>;
+  updatedAt?: Maybe<DateTimeFilterInput>;
+  and?: Maybe<Array<Maybe<KnownUrlFiltersInput>>>;
+  or?: Maybe<Array<Maybe<KnownUrlFiltersInput>>>;
+  not?: Maybe<KnownUrlFiltersInput>;
+};
+
+export type KnownUrlInput = {
+  url?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type KnownUrl = {
+  __typename?: 'KnownUrl';
+  url: Scalars['String'];
+  title: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type KnownUrlEntity = {
+  __typename?: 'KnownUrlEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<KnownUrl>;
+};
+
+export type KnownUrlEntityResponse = {
+  __typename?: 'KnownUrlEntityResponse';
+  data?: Maybe<KnownUrlEntity>;
+};
+
+export type KnownUrlEntityResponseCollection = {
+  __typename?: 'KnownUrlEntityResponseCollection';
+  data: Array<KnownUrlEntity>;
+  meta: ResponseCollectionMeta;
 };
 
 export type SerieFiltersInput = {
@@ -864,7 +906,7 @@ export type VideoRelationResponseCollection = {
   data: Array<VideoEntity>;
 };
 
-export type GenericMorph = ComponentCommonButton | ComponentCommonTextBlock | ComponentMoviePoster | UploadFile | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | About | ComingSoon | Homepage | Imprint | Serie | SuggestedContent | Video;
+export type GenericMorph = ComponentCommonButton | ComponentCommonTextBlock | ComponentMoviePoster | UploadFile | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | About | ComingSoon | Homepage | Imprint | KnownUrl | Serie | SuggestedContent | Video;
 
 export type FileInfoInput = {
   name?: Maybe<Scalars['String']>;
@@ -950,6 +992,8 @@ export type Query = {
   comingSoon?: Maybe<ComingSoonEntityResponse>;
   homepage?: Maybe<HomepageEntityResponse>;
   imprint?: Maybe<ImprintEntityResponse>;
+  knownUrl?: Maybe<KnownUrlEntityResponse>;
+  knownUrls?: Maybe<KnownUrlEntityResponseCollection>;
   serie?: Maybe<SerieEntityResponse>;
   series?: Maybe<SerieEntityResponseCollection>;
   suggestedContent?: Maybe<SuggestedContentEntityResponse>;
@@ -1030,6 +1074,18 @@ export type QueryImprintArgs = {
 };
 
 
+export type QueryKnownUrlArgs = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryKnownUrlsArgs = {
+  filters?: Maybe<KnownUrlFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
 export type QuerySerieArgs = {
   id?: Maybe<Scalars['ID']>;
   locale?: Maybe<Scalars['I18NLocaleCode']>;
@@ -1072,6 +1128,9 @@ export type Mutation = {
   deleteHomepage?: Maybe<HomepageEntityResponse>;
   updateImprint?: Maybe<ImprintEntityResponse>;
   deleteImprint?: Maybe<ImprintEntityResponse>;
+  createKnownUrl?: Maybe<KnownUrlEntityResponse>;
+  updateKnownUrl?: Maybe<KnownUrlEntityResponse>;
+  deleteKnownUrl?: Maybe<KnownUrlEntityResponse>;
   createSerie?: Maybe<SerieEntityResponse>;
   updateSerie?: Maybe<SerieEntityResponse>;
   deleteSerie?: Maybe<SerieEntityResponse>;
@@ -1164,6 +1223,22 @@ export type MutationDeleteHomepageArgs = {
 
 export type MutationUpdateImprintArgs = {
   data: ImprintInput;
+};
+
+
+export type MutationCreateKnownUrlArgs = {
+  data: KnownUrlInput;
+};
+
+
+export type MutationUpdateKnownUrlArgs = {
+  id: Scalars['ID'];
+  data: KnownUrlInput;
+};
+
+
+export type MutationDeleteKnownUrlArgs = {
+  id: Scalars['ID'];
 };
 
 
