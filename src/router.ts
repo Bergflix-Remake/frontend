@@ -12,6 +12,7 @@ const Series = () => import("./pages/Series.vue");
 const Privacy = () => import("./pages/Privacy.vue");
 const Terms = () => import("./pages/Terms.vue"); */
 const Legal = () => import("./pages/Legal.vue");
+const InDev = () => import("./pages/InDev.vue");
 
 const routes = [
 	{ path: "/", redirect: "/home" },
@@ -24,10 +25,11 @@ const routes = [
 	{ path: "/profile", component: Profile },
 	{ path: "/movies", component: Movies },
 	{ path: "/series", component: Series },
-/* 	{ path: "/legal/imprint", component: Imprint },
+	{ path: "/:dev(favorites|settings|help)", component: InDev },
+	/* 	{ path: "/legal/imprint", component: Imprint },
 	{ path: "/legal/privacy", component: Privacy },
 	{ path: "/legal/terms", component: Terms }, */
-	{path: "/legal/:part(impressum|privacy|terms)", component: Legal},
+	{ path: "/legal/:part(impressum|privacy|terms)", component: Legal },
 	{ path: "/legal", redirect: "/legal/imprint" },
 ];
 
