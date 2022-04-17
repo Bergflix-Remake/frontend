@@ -120,6 +120,40 @@ watchEffect(() => {
       // Save the current time to localStorage
       localStorage.setItem(`${pageid}-watchTime`, plyr.value.player.currentTime);
     })
+    window.addEventListener("keydown", e => {
+      switch (e.key) {
+        case " ":
+          e.preventDefault();
+          plyr.value.player.togglePlay();
+          break;
+        case "ArrowLeft":
+          e.preventDefault();
+          plyr.value.player.rewind();
+          break;
+        case "ArrowRight":
+          e.preventDefault();
+          plyr.value.player.forward();
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          plyr.value.player.increaseVolume(.1);
+          break;
+        case "ArrowDown":
+          e.preventDefault();
+          plyr.value.player.decreaseVolume(.1);
+          break;
+        case "f":
+          e.preventDefault();
+          plyr.value.player.fullscreen.toggle();
+          break;
+        case "m":
+          e.preventDefault();
+          plyr.value.player.muted = !plyr.value.player.muted;
+          break;
+        default:
+          break;
+      }
+    })
   }
 });
 
