@@ -13,6 +13,8 @@ export type Scalars = {
   JSON: any;
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: any;
+  /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
+  Date: any;
   /** The `Upload` scalar type represents a file upload. */
   Upload: any;
   AboutPageDynamicZoneInput: any;
@@ -20,6 +22,7 @@ export type Scalars = {
   /** A string used to identify an i18n locale */
   I18NLocaleCode: any;
 };
+
 
 
 
@@ -161,6 +164,29 @@ export type FloatFilterInput = {
   in?: Maybe<Array<Maybe<Scalars['Float']>>>;
   notIn?: Maybe<Array<Maybe<Scalars['Float']>>>;
   between?: Maybe<Array<Maybe<Scalars['Float']>>>;
+};
+
+export type DateFilterInput = {
+  and?: Maybe<Array<Maybe<Scalars['Date']>>>;
+  or?: Maybe<Array<Maybe<Scalars['Date']>>>;
+  not?: Maybe<DateFilterInput>;
+  eq?: Maybe<Scalars['Date']>;
+  ne?: Maybe<Scalars['Date']>;
+  startsWith?: Maybe<Scalars['Date']>;
+  endsWith?: Maybe<Scalars['Date']>;
+  contains?: Maybe<Scalars['Date']>;
+  notContains?: Maybe<Scalars['Date']>;
+  containsi?: Maybe<Scalars['Date']>;
+  notContainsi?: Maybe<Scalars['Date']>;
+  gt?: Maybe<Scalars['Date']>;
+  gte?: Maybe<Scalars['Date']>;
+  lt?: Maybe<Scalars['Date']>;
+  lte?: Maybe<Scalars['Date']>;
+  null?: Maybe<Scalars['Boolean']>;
+  notNull?: Maybe<Scalars['Boolean']>;
+  in?: Maybe<Array<Maybe<Scalars['Date']>>>;
+  notIn?: Maybe<Array<Maybe<Scalars['Date']>>>;
+  between?: Maybe<Array<Maybe<Scalars['Date']>>>;
 };
 
 export type DateTimeFilterInput = {
@@ -822,6 +848,26 @@ export type SuggestedContentEntityResponse = {
   data?: Maybe<SuggestedContentEntity>;
 };
 
+export enum Enum_Video_Genre {
+  Action = 'Action',
+  Adventure = 'Adventure',
+  Animation = 'Animation',
+  Comedy = 'Comedy',
+  Crime = 'Crime',
+  Documentary = 'Documentary',
+  Drama = 'Drama',
+  Family = 'Family',
+  Fantasy = 'Fantasy',
+  History = 'History',
+  Horror = 'Horror',
+  Music = 'Music',
+  Mystery = 'Mystery',
+  Romance = 'Romance',
+  SciFi = 'SciFi',
+  Thriller = 'Thriller',
+  War = 'War'
+}
+
 export type VideoFiltersInput = {
   id?: Maybe<IdFilterInput>;
   title?: Maybe<StringFilterInput>;
@@ -830,6 +876,10 @@ export type VideoFiltersInput = {
   rating?: Maybe<FloatFilterInput>;
   series?: Maybe<SerieFiltersInput>;
   on_watchlist?: Maybe<UsersPermissionsUserFiltersInput>;
+  year?: Maybe<DateFilterInput>;
+  age?: Maybe<IntFilterInput>;
+  duration?: Maybe<StringFilterInput>;
+  genre?: Maybe<StringFilterInput>;
   createdAt?: Maybe<DateTimeFilterInput>;
   updatedAt?: Maybe<DateTimeFilterInput>;
   publishedAt?: Maybe<DateTimeFilterInput>;
@@ -849,6 +899,10 @@ export type VideoInput = {
   rating?: Maybe<Scalars['Float']>;
   series?: Maybe<Scalars['ID']>;
   on_watchlist?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  year?: Maybe<Scalars['Date']>;
+  age?: Maybe<Scalars['Int']>;
+  duration?: Maybe<Scalars['String']>;
+  genre?: Maybe<Enum_Video_Genre>;
   publishedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -862,6 +916,10 @@ export type Video = {
   rating?: Maybe<Scalars['Float']>;
   series?: Maybe<SerieEntityResponse>;
   on_watchlist?: Maybe<UsersPermissionsUserRelationResponseCollection>;
+  year?: Maybe<Scalars['Date']>;
+  age: Scalars['Int'];
+  duration: Scalars['String'];
+  genre: Enum_Video_Genre;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;

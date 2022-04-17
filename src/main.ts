@@ -22,7 +22,7 @@ app.use(store);
 app.use(VueQueryPlugin);
 
 // Strapi Query Client //
-import { Error as TError } from './models/types';
+import { ErrorResponse as TError } from './models/custom';
 import { QueryClient, useMutation, useQuery, UseQueryOptions } from "vue-query";
 import Strapi, { StrapiAuthenticationData, StrapiUser } from 'strapi-sdk-js'
 import { QueryKey } from 'react-query/types/core';
@@ -48,6 +48,14 @@ function useStrapiQuery<T>({ queryKey }: any) {
 		});
 }
 
+function useStrapiQueryOne<T>({ queryKey }: any) {
+	return strapi
+		.findOne(queryKey[0], queryKey[1], queryKey[2] ? queryKey[2] : {})
+		.then((res) => {
+			return res.data as T;
+		});
+}
+
 export const strapiLogout = () => {
 	strapi.logout();
 };
@@ -59,13 +67,23 @@ export const strapiLogin = () => {
 };
 
 export function useStrapi<T>(
-	queryKey: any,
+	queryKey: any[],
 	options?: Omit<
 		UseQueryOptions<T, TError, T, QueryKey>,
 		"queryFn" | "queryKey"
 	>
 ) {
 	return reactive(useQuery<T, TError>(queryKey, useStrapiQuery, options));
+}
+
+export function useStrapiOne<T>(
+	queryKey: QueryKey,
+	options?: Omit<
+		UseQueryOptions<T, TError, T, QueryKey>,
+		"queryFn" | "queryKey"
+	>
+) {
+	return reactive(useQuery<T, TError>(queryKey, useStrapiQueryOne, options));
 }
 
 export function getUser() {
