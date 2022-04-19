@@ -1,25 +1,27 @@
 <template>
-  <div id="spacer" class="mt-20"></div>
-  <Loader v-if="content.isLoading" />
-  <section
-    v-if="content.isSuccess"
-    v-for="item in content.data!.attributes.page!"
-    class="my-2"
-  >
-    <Textblock
-      v-if="item.__component == 'common.text-block'"
-      :title="item.title"
-      :content="item.text"
-    />
-    <Button
-      v-if="item.__component == 'common.button'"
-      :type="item.type"
-      :to="item.to"
-      :icon="item.icon"
+  <main class="p-10">
+    <div id="spacer" class="mt-20"></div>
+    <Loader v-if="content.isLoading" />
+    <section
+      v-if="content.isSuccess"
+      v-for="item in content.data!.attributes.page!"
+      class="my-2"
     >
-      {{ item.text }}
-    </Button>
-  </section>
+      <Textblock
+        v-if="item.__component == 'common.text-block'"
+        :title="item.title"
+        :content="item.text"
+      />
+      <Button
+        v-if="item.__component == 'common.button'"
+        :type="item.type"
+        :to="item.to"
+        :icon="item.icon"
+      >
+        {{ item.text }}
+      </Button>
+    </section>
+  </main>
 </template>
 
 <script setup lang="ts">

@@ -878,7 +878,6 @@ export type VideoFiltersInput = {
   on_watchlist?: Maybe<UsersPermissionsUserFiltersInput>;
   year?: Maybe<DateFilterInput>;
   age?: Maybe<IntFilterInput>;
-  duration?: Maybe<StringFilterInput>;
   genre?: Maybe<StringFilterInput>;
   createdAt?: Maybe<DateTimeFilterInput>;
   updatedAt?: Maybe<DateTimeFilterInput>;
@@ -901,7 +900,6 @@ export type VideoInput = {
   on_watchlist?: Maybe<Array<Maybe<Scalars['ID']>>>;
   year?: Maybe<Scalars['Date']>;
   age?: Maybe<Scalars['Int']>;
-  duration?: Maybe<Scalars['String']>;
   genre?: Maybe<Enum_Video_Genre>;
   publishedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -918,7 +916,6 @@ export type Video = {
   on_watchlist?: Maybe<UsersPermissionsUserRelationResponseCollection>;
   year?: Maybe<Scalars['Date']>;
   age: Scalars['Int'];
-  duration: Scalars['String'];
   genre: Enum_Video_Genre;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;

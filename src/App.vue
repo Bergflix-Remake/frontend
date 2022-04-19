@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar.vue";
 <template>
   <Navbar />
   <div
-    class="flex flex-col min-h-screen px-10 text-gray-900 bg-gray-200 dark:bg-clean-dark dark:text-clean-white"
+    class="flex flex-col min-h-screen text-gray-900 bg-gray-200 dark:bg-clean-dark dark:text-clean-white"
   >
     <router-view></router-view>
   </div>

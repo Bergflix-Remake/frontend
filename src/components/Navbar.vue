@@ -1,7 +1,7 @@
 <template>
   <!-- Desktop Navbar -->
   <nav
-    class="fixed top-0 z-50 flex-row items-center hidden w-screen h-20 p-2 space-x-5 text-gray-500 sm:flex bg-gradient-to-b from-dark to-transparent backdrop-blur-sm"
+    class="border-b-[1px] border-clean-dark fixed top-0 z-50 flex-row items-center hidden w-screen h-20 p-2 space-x-5 text-gray-500 sm:flex bg-darkest-dark bg-opacity-20 backdrop-blur-sm"
   >
     <div class="ml-2"></div>
     <h1
@@ -32,19 +32,19 @@
       id="items-right"
       @mouseleave="showUserPopup = false"
     >
-      <!-- User Icon - User is logged in -->
+      <!-- User Icon -->
       <div class="flex flex-col items-end" v-if="user.isFetched">
         <img
           :src="'https://cdn.bergflix.de/logo/light_bg.png'"
           :alt="'Logged in as ' + user.data?.username || 'Guest'"
-          class="rounded-full shadow w-14 h-14"
+          class="rounded-full shadow w-14 h-14 backdrop-blur-3xl"
           @mouseenter="showUserPopup = true"
         />
         <transition name="slide">
           <div
             id="user-popup"
             v-if="showUserPopup"
-            class="flex flex-col p-5 mt-2 bg-black rounded-md spapce-y-5 h-max w-max"
+            class="flex flex-col p-5 mt-2 bg-black rounded-md spapce-y-5 h-max w-max bg-opacity-70 backdrop-blur-3xl"
             @mouseleave="showUserPopup = false"
           >
             <h2 class="font-bold text-delorean">
@@ -92,21 +92,29 @@
     </div>
   </nav>
   <!-- Mobile Navbar -->
-  <nav
-    class="fixed bottom-0 z-50 flex flex-row w-full py-2 text-white h-11 justify-evenly sm:hidden rounded-t-md"
-    :class="'bg-gradient-to-b to-black from-transparent'"
-  >
-    <ChatIcon class="cursor-pointer hover:text-primary" @click="$router.push('/party')" />
-    <SearchIcon
-      class="cursor-pointer hover:text-primary"
-      @click="$router.push('/search')"
-    />
-    <HomeIcon class="cursor-pointer hover:text-primary" @click="$router.push('/home')" />
-    <FilmIcon
-      class="cursor-pointer hover:text-primary"
-      @click="$router.push('/library')"
-    />
-    <CogIcon class="cursor-pointer hover:text-primary" @click="toggleSidebar" />
+  <nav class="fixed bottom-0 z-50 w-full flex flex-col sm:hidden">
+    <MobileBanner />
+    <div
+      class="flex flex-row w-full py-2 text-white h-11 justify-evenly rounded-t-md bg-gradient-to-b to-black from-transparent"
+    >
+      <ChatIcon
+        class="cursor-pointer hover:text-primary"
+        @click="$router.push('/party')"
+      />
+      <SearchIcon
+        class="cursor-pointer hover:text-primary"
+        @click="$router.push('/search')"
+      />
+      <HomeIcon
+        class="cursor-pointer hover:text-primary"
+        @click="$router.push('/home')"
+      />
+      <FilmIcon
+        class="cursor-pointer hover:text-primary"
+        @click="$router.push('/library')"
+      />
+      <CogIcon class="cursor-pointer hover:text-primary" @click="toggleSidebar" />
+    </div>
   </nav>
   <Sidebar></Sidebar>
 </template>
@@ -118,6 +126,7 @@
   transform: translateY(25%);
   opacity: 0;
 }
+
 .slide-enter-active,
 .slide-leave-active {
   z-index: 1000;
@@ -146,6 +155,7 @@ import { useStore } from "vuex";
 import { strapi, getUser } from "../main";
 import Loader from "./Loader.vue";
 import { StrapiUser } from "strapi-sdk-js";
+import MobileBanner from "./MobileBanner.vue";
 
 const store = useStore();
 function toggleSidebar() {

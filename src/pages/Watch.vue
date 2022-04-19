@@ -34,11 +34,15 @@
         <div class="flex flex-row">
           <img
             class="mb-5 w-80"
-            v-if="movie.data?.attributes?.series?.data?.attributes?.title_image"
+            v-if="
+              movie.data.attributes?.title_image ||
+              movie.data?.attributes?.series?.data?.attributes?.title_image
+            "
             :src="
+              'https://api.bergflix.de' + movie.data.attributes?.title_image ||
               'https://api.bergflix.de' +
-              movie.data?.attributes?.series?.data?.attributes?.title_image.data
-                ?.attributes?.url
+                movie.data?.attributes?.series?.data?.attributes?.title_image.data
+                  ?.attributes?.url
             "
             :alt="movie.data.attributes.series.data.attributes.Title"
           />
@@ -48,7 +52,10 @@
           <h1 v-else class="mb-5 text-5xl font-black text-white">
             {{ movie.data?.attributes?.title }}
           </h1>
-          <div id="right-items" class="flex-row hidden ml-auto text-white md:flex h-7">
+          <div
+            id="right-items"
+            class="flex-row hidden ml-auto text-white md:flex h-7 items-center"
+          >
             <p id="year" class="mr-5">
               {{ getYearFromDate(movie.data?.attributes?.year) }}
             </p>
@@ -57,8 +64,8 @@
             >
               {{ movie.data?.attributes?.age }}+
             </p>
-            <p class="mr-5 italic">{{ movie.data?.attributes?.duration }}</p>
-            <div class="mr-5 border-l-2 border-light"></div>
+            <p class="mr-5 italic">{{ duration }}</p>
+            <div class="mr-5 border-l-2 border-light h-8"></div>
             <p class="mr-5 font-bold text-primary-100">
               {{ movie.data?.attributes?.genre }}
             </p>
@@ -67,30 +74,25 @@
         <p class="font-mono text-primary-100" v-if="isSeries">
           {{ movie.data?.attributes?.title }}
         </p>
-        <p class="text-gray-500 italic columns-2">
+        <p class="text-gray-500 italic max-w-3xl">
           <Textblock :content="movie.data?.attributes?.description" />
         </p>
       </div>
     </div>
   </section>
   <!-- Loading Error -->
-  <section class="flex flex-col w-full p-10 items-center" v-if="movie.isError">
-    <h1 class="text-5xl font-black text-white">
-      {{ movie.error.error.status }}
-    </h1>
-    <p class="text-gray-500 italic text-center">
-      Error while loading movie: <pre>{{ movie.error.error.message }}</pre>
-    </p>
-  </section>
+  <Error v-else-if="movie.isError" :title="movie.error.error.status">
+    Error while loading movie with ID {{ pageid }}: {{ movie.error.error.message }}
+  </Error>
 </template>
 <script lang="ts" setup>
-import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
-import { ChevronLeftIcon } from "@heroicons/vue/outline";
-import { watchEffect, ref, Ref, onMounted, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { watchEffect, ref } from "vue";
 import { useStrapiOne } from "../main";
 import { VideoEntity } from "../models/types";
 import Textblock from "../components/Common/Textblock.vue";
 import Loader from "../components/Loader.vue";
+import Error from "../components/Error.vue";
 const route = useRoute();
 const router = useRouter();
 const pageid = route.params.id;
@@ -101,12 +103,20 @@ if (isNaN(Number(pageid))) {
 }
 
 let isSeries = ref(false);
+let duration = ref(`HHh MMm SSs`);
 
 const plyr = ref();
 watchEffect(() => {
   if (plyr.value) {
     console.log("plyr", plyr.value);
     plyr.value.player.on("ready", () => {
+      // Get Video Length
+      const dur_seconds = plyr.value.player.duration;
+      // Convert into this time format: %Hh %Mm %Ss
+      const dur = new Date(dur_seconds * 1000).toISOString().slice(11, 19).split(":");
+      const result = `${dur[0]}h ${dur[1]}m ${dur[2]}s`;
+      duration.value = result;
+      console.log("duration", result);
       // Check if there is a watchtime saved in localStorage
       const watchTime = localStorage.getItem(`${pageid}-watchTime`);
       if (watchTime) {
@@ -115,45 +125,46 @@ watchEffect(() => {
         // And remove the watchtime from localStorage
         localStorage.removeItem("watchTime");
       }
+      // Keybinds
+      window.addEventListener("keydown", (e) => {
+        switch (e.key) {
+          case " ":
+            e.preventDefault();
+            plyr.value.player.togglePlay();
+            break;
+          case "ArrowLeft":
+            e.preventDefault();
+            plyr.value.player.rewind();
+            break;
+          case "ArrowRight":
+            e.preventDefault();
+            plyr.value.player.forward();
+            break;
+          case "ArrowUp":
+            e.preventDefault();
+            plyr.value.player.increaseVolume(0.1);
+            break;
+          case "ArrowDown":
+            e.preventDefault();
+            plyr.value.player.decreaseVolume(0.1);
+            break;
+          case "f":
+            e.preventDefault();
+            plyr.value.player.fullscreen.toggle();
+            break;
+          case "m":
+            e.preventDefault();
+            plyr.value.player.muted = !plyr.value.player.muted;
+            break;
+          default:
+            break;
+        }
+      });
     });
     plyr.value.player.on("timeupdate", () => {
       // Save the current time to localStorage
       localStorage.setItem(`${pageid}-watchTime`, plyr.value.player.currentTime);
-    })
-    window.addEventListener("keydown", e => {
-      switch (e.key) {
-        case " ":
-          e.preventDefault();
-          plyr.value.player.togglePlay();
-          break;
-        case "ArrowLeft":
-          e.preventDefault();
-          plyr.value.player.rewind();
-          break;
-        case "ArrowRight":
-          e.preventDefault();
-          plyr.value.player.forward();
-          break;
-        case "ArrowUp":
-          e.preventDefault();
-          plyr.value.player.increaseVolume(.1);
-          break;
-        case "ArrowDown":
-          e.preventDefault();
-          plyr.value.player.decreaseVolume(.1);
-          break;
-        case "f":
-          e.preventDefault();
-          plyr.value.player.fullscreen.toggle();
-          break;
-        case "m":
-          e.preventDefault();
-          plyr.value.player.muted = !plyr.value.player.muted;
-          break;
-        default:
-          break;
-      }
-    })
+    });
   }
 });
 
@@ -183,8 +194,6 @@ const movie = useStrapiOne<VideoEntity>(
 function getYearFromDate(date: string) {
   return date.split("-")[0];
 }
-
-
 </script>
 <style>
 #invalid-id {
@@ -193,6 +202,7 @@ function getYearFromDate(date: string) {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 :root {
   --plyr-color-main: #f40f3a;
 }
