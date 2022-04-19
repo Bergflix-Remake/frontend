@@ -93,6 +93,7 @@ import { VideoEntity } from "../models/types";
 import Textblock from "../components/Common/Textblock.vue";
 import Loader from "../components/Loader.vue";
 import Error from "../components/Error.vue";
+import { getYearFromDate } from "../utils";
 const route = useRoute();
 const router = useRouter();
 const pageid = route.params.id;
@@ -190,10 +191,6 @@ const movie = useStrapiOne<VideoEntity>(
     retry: false,
   }
 );
-
-function getYearFromDate(date: string) {
-  return date.split("-")[0];
-}
 </script>
 <style>
 #invalid-id {

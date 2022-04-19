@@ -11,6 +11,7 @@ const Series = () => import("./pages/Series.vue");
 const Legal = () => import("./pages/Legal.vue");
 const InDev = () => import("./pages/InDev.vue");
 const Watch = () => import("./pages/Watch.vue");
+const Details = () => import("./pages/Details.vue");
 
 const routes = [
 	{ path: "/", redirect: "/home" },
@@ -23,6 +24,7 @@ const routes = [
 	{ path: "/profile", component: Profile },
 	{ path: "/movies", component: Movies },
 	{ path: "/series", component: Series },
+	{ path: "/:type(movies|series)/:id", component: Details },
 	{ path: "/:dev(favorites|settings|help)", component: InDev },
 	{ path: "/watch", redirect: '/movies' },
 	{ path: "/watch/:id(\\d+)", component: Watch },
