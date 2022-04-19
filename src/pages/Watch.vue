@@ -41,10 +41,10 @@
             :src="
               'https://api.bergflix.de' + movie.data.attributes?.title_image ||
               'https://api.bergflix.de' +
-                movie.data?.attributes?.series?.data?.attributes?.title_image.data
+                movie.data?.attributes?.series?.data?.attributes?.title_image?.data
                   ?.attributes?.url
             "
-            :alt="movie.data.attributes.series.data.attributes.Title"
+            :alt="movie.data.attributes?.series?.data?.attributes?.Title"
           />
           <h1 v-else-if="isSeries" class="mb-5 text-5xl font-black text-white">
             {{ movie.data?.attributes?.series?.data?.attributes?.Title }}
