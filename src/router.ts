@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
-const Home = () => import("./pages/Home.vue");
-const Out = () => import("./pages/Out.vue");
-const Branding = () => import("./pages/Branding.vue");
-const Register = () => import("./pages/Register.vue");
-const About = () => import("./pages/About.vue");
-const Login = () => import("./pages/Login.vue");
-const Profile = () => import("./pages/Profile.vue");
-const Movies = () => import("./pages/Movies.vue");
-const Series = () => import("./pages/Series.vue");
-const Legal = () => import("./pages/Legal.vue");
-const InDev = () => import("./pages/InDev.vue");
-const Watch = () => import("./pages/Watch.vue");
-const Details = () => import("./pages/Details.vue");
+const Home = () => import("./pages/HomePage.vue");
+const Out = () => import("./pages/OutPage.vue");
+const Branding = () => import("./pages/BrandingPage.vue");
+const Register = () => import("./pages/RegisterPage.vue");
+const About = () => import("./pages/AboutPage.vue");
+const Login = () => import("./pages/LoginPage.vue");
+const Profile = () => import("./pages/ProfilePage.vue");
+const Movies = () => import("./pages/MoviesPage.vue");
+const Series = () => import("./pages/SeriesPage.vue");
+const Legal = () => import("./pages/LegalPage.vue");
+const InDev = () => import("./pages/InDevPage.vue");
+const Watch = () => import("./pages/WatchPage.vue");
+const Details = () => import("./pages/DetailsPage.vue");
 
 const routes = [
 	{ path: "/", redirect: "/home" },

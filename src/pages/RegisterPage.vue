@@ -10,7 +10,8 @@
       </p>
       <p class="text-red-300" v-if="error">{{ error }}</p>
       <p class="italic text-gray-300" v-if="refer">
-        You will be redirected to <span class="font-mono">{{ refer }}</span> afterwards
+        You will be redirected to
+        <span class="font-mono">{{ refer }}</span> afterwards
       </p>
       <form class="flex flex-col items-center justify-center" @submit.prevent="register">
         <input
@@ -49,9 +50,8 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { onBeforeRouteLeave, useRoute, useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import Button from "../components/Common/Button.vue";
-import axios from "axios";
 import { strapi } from "../main";
 import { useQueryClient } from "vue-query";
 
@@ -75,7 +75,11 @@ if (strapi.user) {
 
 const register = () => {
   strapi
-    .register({ username: username.value, email: email.value, password: password.value })
+    .register({
+      username: username.value,
+      email: email.value,
+      password: password.value,
+    })
     .then((res: any) => {
       registered.value = true;
       queryClient.invalidateQueries(["user"]);

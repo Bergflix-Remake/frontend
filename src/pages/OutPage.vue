@@ -9,7 +9,7 @@
         This link will redirect you to this website:
         <span class="font-mono text-primary">{{ url }}</span>
         You will be redirected in
-        <span class="font-mono text-primary">{{ time_remaining }}</span> seconds.
+        <span class="font-mono text-primary">{{ timeRemaining }}</span> seconds.
       </p>
       <Button type="button" to="/home">
         <span class="">Home</span>
@@ -20,11 +20,9 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { onBeforeRouteLeave, useRoute, useRouter } from "vue-router";
+import { onBeforeRouteLeave, useRoute } from "vue-router";
 import Button from "../components/Common/Button.vue";
 import { useStrapi } from "../main";
-
-const router = useRouter();
 const route = useRoute();
 
 const url = route.params.link.toString();
@@ -36,29 +34,29 @@ const url = route.params.link.toString();
     "twitter": "https://twitter.com/bergflixtogo",
 } */
 
-const known_routes: any = useStrapi(["known-urls"], {
+useStrapi(["known-urls"], {
   onSuccess: (data: any) => {
     const links = data.map((data: any) => ({
       [data.attributes.title]: data.attributes.url,
     }));
-    const known_url = links.find((link: any) => {
+    const knownUrl = links.find((link: any) => {
       return Object.keys(link).includes(url);
     });
-    if (known_url) {
-      window.location.href = known_url[url];
+    if (knownUrl) {
+      window.location.href = knownUrl[url];
     }
   },
 });
 
-const time_remaining = ref(5);
+const timeRemaining = ref(5);
 
 const redirect = setTimeout(() => {
   window.location.href = url;
 }, 5000);
 
 const countdown = setInterval(() => {
-  if (time_remaining.value > 0) {
-    time_remaining.value--;
+  if (timeRemaining.value > 0) {
+    timeRemaining.value--;
   } else {
     clearInterval(countdown);
   }

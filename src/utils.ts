@@ -1,7 +1,7 @@
-export function preloadImage(url: string) {
-  var img = new Image();
-  img.src = url;
+export function preloadImage (url: string) {
+  new Image().src = url
 }
-export function getYearFromDate(date: string) {
-  return date.split("-")[0];
+export function getYearFromDate (date: string) {
+  const d = new Date(date)
+  return d.getFullYear()
 }
