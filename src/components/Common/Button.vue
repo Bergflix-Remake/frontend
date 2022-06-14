@@ -37,7 +37,8 @@
 <script setup lang="ts">
 import { ExternalLinkIcon } from "@heroicons/vue/outline";
 import { RenderFunction, FunctionalComponent } from "@vue/runtime-core";
-const props = defineProps({
+import { defineProps } from "vue";
+defineProps({
   type: {
     type: String,
     default: "button",

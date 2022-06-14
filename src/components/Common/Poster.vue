@@ -18,10 +18,10 @@
 </template>
 
 <script setup lang="ts">
-import { RenderFunction, FunctionalComponent } from "vue";
+import { RenderFunction, FunctionalComponent, defineProps } from "vue";
 import Button from "./Button.vue";
 
-const props = defineProps({
+defineProps({
   name: {
     type: String,
     required: true,

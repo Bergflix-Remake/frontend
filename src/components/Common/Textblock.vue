@@ -6,7 +6,7 @@
 </template>
 <script setup lang="ts">
 import MarkdownIt from "markdown-it";
-import { toRefs } from "vue";
+import { toRefs, defineProps } from "vue";
 
 const md = new MarkdownIt();
 
@@ -21,7 +21,7 @@ const props = defineProps({
   },
 });
 
-const { title, content } = toRefs(props);
+const { title } = toRefs(props);
 
 const html = md.render(props.content);
 </script>

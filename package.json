@@ -5,7 +5,8 @@
     "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "types": "yarn strapi-generate-types quickgen https://api.bergflix.de/ -p ./src/models/"
+    "types": "yarn strapi-generate-types quickgen https://api.bergflix.de/ -p ./src/models/",
+    "lint": "eslint src/**/*.{ts,js,vue} --ext .ts,.js,.vue"
   },
   "dependencies": {
     "@headlessui/vue": "^1.5.0",

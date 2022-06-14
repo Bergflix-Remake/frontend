@@ -19,5 +19,9 @@ module.exports = {
   ],
   rules: {
     'no-console': ['error', { allow: ['warn', 'error', 'debug'] }],
-  }
+    'vue/multi-word-component-names': 'off'
+  },
+  "ignorePatterns": [
+    "src/models/*",
+  ]
 }
