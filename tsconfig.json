@@ -11,6 +11,9 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
     "allowJs": true,
+    "types": [
+      "vite/client"
+    ]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

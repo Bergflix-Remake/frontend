@@ -11,7 +11,3 @@ jobs:
       - name: Lint 🚚
         run: |
           yarn lint
-      - name: Store artifacts 📦
-        uses: actions/upload-artifact@v2.2.4
-        with:
-          path: dist

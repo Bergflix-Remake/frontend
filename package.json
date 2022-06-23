@@ -6,7 +6,9 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "types": "yarn strapi-generate-types quickgen https://api.bergflix.de/ -p ./src/models/",
-    "lint": "eslint src/**/*.{ts,js,vue} --ext .ts,.js,.vue"
+    "lint": "eslint src/**/*.{ts,js,vue} --ext .ts,.js,.vue",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@headlessui/vue": "^1.5.0",
@@ -28,23 +30,39 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@storybook/addon-actions": "^6.5.0",
+    "@storybook/addon-essentials": "^6.5.0",
+    "@storybook/addon-interactions": "^6.5.0",
+    "@storybook/addon-links": "^6.5.0",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/builder-vite": "^0.1.36",
+    "@storybook/builder-webpack5": "^6.5.0",
+    "@storybook/manager-webpack5": "^6.5.0",
+    "@storybook/testing-library": "^0.0.14-next.0",
+    "@storybook/vue3": "^6.5.0",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
     "@vitejs/plugin-vue": "^1.10.2",
     "autoprefixer": "^10.4.0",
+    "babel-loader": "^8.2.5",
     "eslint": "^8.14.0",
-    "strapi-generate-types": "^0.1.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.0",
     "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-storybook": "^0.5.12",
     "eslint-plugin-vue": "^8.7.1",
     "postcss": "^8.4.5",
     "sass": "^1.45.0",
+    "strapi-generate-types": "^0.1.4",
     "tailwindcss": "^3.0.5",
     "typescript": "^4.4.4",
     "vite": "^2.7.0",
-    "vue-tsc": "^0.28.10"
+    "vite-plugin-tailwind": "^0.0.4",
+    "vue-loader": "^16.8.3",
+    "vue-tsc": "^0.28.10",
+    "webpack": "5"
   }
 }
