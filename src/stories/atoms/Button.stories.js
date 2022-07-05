@@ -20,7 +20,7 @@ Primary.args = {
     text: 'Primary',
     to: '/',
     type: 'solid',
-    color: "#FF0230"
+    color: "primary"
 }
 
 export const Secondary = Template.bind({})
@@ -28,7 +28,7 @@ Secondary.args = {
     text: 'Secondary',
     to: '/',
     type: 'solid',
-    color: "#111111"
+    color: "clean-dark"
 }
 
 export const Solid = Template.bind({})
@@ -36,7 +36,7 @@ Solid.args = {
     text: 'Solid',
     to: '/',
     type: 'solid',
-    color: "#FF0230"
+    color: "primary"
 }
 
 export const Ghost = Template.bind({})
@@ -44,7 +44,7 @@ Ghost.args = {
     text: 'Ghost',
     to: '/',
     type: 'ghost',
-    color: "#FF0230"
+    color: "primary"
 }
 
 export const Outline = Template.bind({})
@@ -52,5 +52,5 @@ Outline.args = {
     text: 'Outline',
     to: '/',
     type: 'outline',
-    color: "#FF0230"
+    color: "primary"
 }
