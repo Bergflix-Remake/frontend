@@ -1,0 +1,18 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="🧬 Molecules / Introduction"/>
+
+# 🧬 Molecules
+
+Molecules are small, reusable components that represent a single piece of UI. Different to atoms, molecules can depend on other components (mostly Atoms) to function.
+Usually they are less universal than atoms, but are still able to be used in different ways.
+The best example of this is the **Avatar Component**, which is a component that can be used to represent a user's avatar. It uses the **Loading** atom to display a loading indicator while the avatar is being loaded.
+
+## In Conclusion:
+Everything that
+
+- depends on other components
+- can be used in different ways
+- has self-contained logic that doesn't affect application state
+
+should be made into a **Molecule**

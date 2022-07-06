@@ -1,10 +1,11 @@
 <template>
   <button
-    class="inline p-2 ease-in-out cursor-pointer h-min group transform transition-all text-white rounded shadow-md"
+    class="inline ease-in-out cursor-pointer h-min group transform transition-all rounded w-max"
     :class="classString"
     @click="$emit('click')"
   >
     <slot />
+    <component v-if="icon" :is="icon" class="inline ml-1 w-6 h-6 mb-1" />
   </button>
 </template>
 
@@ -13,14 +14,15 @@ import { defineProps, defineEmits } from "vue";
 const props = defineProps({
   color: {
     type: String,
-    required: true,
+    default: "primary",
   },
   type: {
     type: String as () => "solid" | "outline" | "ghost",
     default: "solid",
   },
-  to: {
-    type: String,
+  icon: {
+    type: null,
+    required: false,
   },
 });
 
@@ -30,11 +32,14 @@ let classString = "";
 
 switch (props.type) {
   case "solid":
-    classString = `bg-${props.color}-500 hover:bg-${props.color}-700`;
+    classString = `text-white bg-${props.color}-500 hover:bg-${props.color}-400 shadow-md hover:shadow-lg p-2`;
     break;
   case "outline":
+    classString = `text-white border-${props.color}-500 hover:border-${props.color}-400 hover:bg-${props.color}-400 border-2 p-2`;
     break;
   case "ghost":
+    classString = `text-${props.color}-500 hover:text-${props.color}-400`;
+    break;
 }
 </script>
 

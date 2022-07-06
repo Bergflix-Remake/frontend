@@ -69,6 +69,9 @@ module.exports = {
       require('@tailwindcss/aspect-ratio'),
       require('@tailwindcss/typography'),
     ],
-  safelist: [{ pattern: /.+/ }],
-  }
+  },
+  safelist: [{
+    pattern: /(bg|border|text)-.+-(500|400)/,
+    variants: ['hover']
+  }],
 };

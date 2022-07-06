@@ -1,8 +1,9 @@
 import ButtonVue from "./Button.vue"
+import { action } from "@storybook/addon-actions"
 export default {
     title: '⚛️ Atoms/Button',
     component: ButtonVue,
-    argTypes: { click: { action: 'clicked' }, type: { options: ['solid', 'ghost', 'outline'] } },
+    argTypes: { type: { options: ['solid', 'ghost', 'outline'] } },
 }
 
 const Template = (args) => ({
@@ -12,7 +13,10 @@ const Template = (args) => ({
             ...args
         }
     },
-    template: `<ButtonVue :color="color" :type="type" :classes="classes">{{ text }}</ButtonVue>`
+    template: `<ButtonVue :color="color" :type="type" :classes="classes" @click="onClick">{{ text }}</ButtonVue>`,
+    methods: {
+        onClick: action('click')
+    },
 })
 
 export const Primary = Template.bind({})

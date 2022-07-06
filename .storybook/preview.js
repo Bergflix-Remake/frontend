@@ -1,4 +1,5 @@
 import "../src/index.css";
+import "../src/three-dots.css"
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {

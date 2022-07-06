@@ -1,0 +1,17 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="⚛️ Atoms / Introduction" />
+
+# ⚛️ Atoms
+Atoms are like the smallest building blocks of the project. They should not be dependent on other components, and should be highly configurable.
+Then should'nt contain a lot of logic, and what logic there is should be self contained and not affecting the application state.
+As the smallest building blocks of the project, they should be **as reusable as possible**. Every new component adds complexity and complicates maintainability.
+Still keep in mind, that its better to abstract everything into a component, than having rougue code in the view.
+## In Conclusion:
+Everything that is
+
+- Used more than once in the application
+- Not dependent on other components
+- Can be self contained and not affecting the application state
+
+should be made into an **Atom**.
