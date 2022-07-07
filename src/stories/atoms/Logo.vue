@@ -1,6 +1,6 @@
 <template>
   <h1 class="font-bold text-white text-2xl" @click="$emit('click')">
-    {{ long ? "Bergflix" : "Bf" }}<span class="text-primary-500">.</span>
+    {{ long ? "Bergflix" : "Bf" }}<span class="text-primary-500">. <slot /></span>
   </h1>
 </template>
 <script setup>
