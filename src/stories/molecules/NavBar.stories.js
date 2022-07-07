@@ -1,6 +1,6 @@
 import NavBarComponent from './NavBar.vue'
 export default {
-    title: '🦠 Molecules / NavBar',
+    title: '🐺 Animals / Navbar',
     component: NavBarComponent,
 };
 
@@ -12,4 +12,4 @@ const Template = (args) => ({
     template: '<NavBarComponent v-bind="args"/>',
 });
 
-export const Default = Template.bind({});
+export const Navbar = Template.bind({});
