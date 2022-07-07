@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import Logo from "../atoms/Logo.vue";
 import NavLink from "../atoms/NavLink.vue";
-import Avatar from "./Avatar.vue";
+import Avatar from "../molecules/Avatar.vue";
 import ProfileDropdown from "../bacteria/ProfileDropdown.vue";
 import { ref } from "vue";
 
