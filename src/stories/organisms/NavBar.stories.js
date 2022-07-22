@@ -1,6 +1,6 @@
 import NavBarComponent from './NavBar.vue'
 export default {
-    title: '🐺 Animals / Navbar',
+    title: '🐺 Organisms / Navbar',
     component: NavBarComponent,
 };
 
