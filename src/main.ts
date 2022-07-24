@@ -13,7 +13,7 @@ import "./three-dots.css";
 
 // Strapi Query Client //
 import { ErrorResponse as TError } from './models/custom';
-import Strapi, { StrapiAuthenticationData, StrapiUser } from 'strapi-sdk-js'
+import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiUser } from 'strapi-sdk-js'
 import { QueryKey } from 'react-query/types/core';
 
 const app = createApp(App);
@@ -63,7 +63,7 @@ export const strapiLogin = () => {
 };
 
 export function useStrapi<T>(
-	queryKey: any[],
+	queryKey: [string, StrapiRequestParams | undefined],
 	options?: Omit<
 		UseQueryOptions<T, TError, T, QueryKey>,
 		"queryFn" | "queryKey"
