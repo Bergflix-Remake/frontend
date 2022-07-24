@@ -28,7 +28,7 @@ const part = ref(route.params.part as string);
 const content = useStrapi<ImprintEntity>([
   "imprint",
   {
-    fields: [part],
+    fields: [part.value],
   },
 ]);
 </script>

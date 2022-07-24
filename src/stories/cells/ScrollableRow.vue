@@ -45,7 +45,11 @@ const handleScroll = () => {
   leftScrollButton.value = el.scrollLeft > 0;
   rightScrollButton.value = el.scrollLeft + el.clientWidth < el.scrollWidth;
 };
-onMounted(handleScroll);
+onMounted(() => {
+  handleScroll();
+  window.addEventListener('resize', handleScroll);
+});
+
 
 
 </script>
