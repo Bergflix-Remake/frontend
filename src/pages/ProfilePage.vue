@@ -19,18 +19,18 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
-import Button from "../components/Common/Button.vue";
-import { StarIcon } from "@heroicons/vue/outline";
-import { strapi, getUser } from "../main";
+import { useRouter } from 'vue-router'
+import Button from '../components/Common/Button.vue'
+import { StarIcon } from '@heroicons/vue/outline'
+import { strapi, getUser } from '../main'
 
-const router = useRouter();
+const router = useRouter()
 
 if (!strapi.user) {
-  router.push("/login");
+  router.push('/login')
 }
 
-const user = getUser();
+const user = getUser()
 </script>
 
 <style lang="scss"></style>

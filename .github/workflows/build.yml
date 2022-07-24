@@ -1,15 +1,26 @@
 name: Build
 on: [push]
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
         with:
-          ref: 'rewrite'
+          ref: 'feature/detailspage'
 
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+      -   name: Setup SSH Keys and known_hosts 🔑
+          env:
+              SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+          run: |
+              mkdir -p ~/.ssh
+              ssh-keyscan github.com >> ~/.ssh/known_hosts
+              ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+              ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+
+      - name: Install and Build 🔧
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
           yarn install
           yarn build

@@ -1,15 +1,17 @@
 <template>
-  <h1 class="mt-20 text-xl font-bold underline">{{ part.toUpperCase() }}</h1>
-  <Loader v-if="content.isLoading" />
-  <div
-    class="mb-10 div"
-    v-html="
-      content.data.attributes?.terms ||
-      content.data.attributes?.privacy ||
-      content.data.attributes?.impressum
-    "
-    v-if="content.isSuccess"
-  ></div>
+  <main class="mt-20">
+    <h1 class="text-xl font-bold underline">{{ part.toUpperCase() }}</h1>
+    <Loader v-if="content.isLoading" />
+    <div
+      class="mb-10 div"
+      v-html="
+        content.data.attributes?.terms ||
+        content.data.attributes?.privacy ||
+        content.data.attributes?.impressum
+      "
+      v-if="content.isSuccess"
+    ></div>
+  </main>
 </template>
 
 <script setup lang="ts">

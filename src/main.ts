@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import { createApp , reactive } from "vue";
 import App from "./App.vue";
 import "./assets/font/stylesheet.css";
 import "./index.css";
@@ -8,8 +8,13 @@ import { router } from "./router";
 import { store } from "./store";
 import {
 	VueQueryPlugin,
-} from "vue-query";
+ useMutation, useQuery, UseQueryOptions } from "vue-query";
 import "./three-dots.css";
+
+// Strapi Query Client //
+import { ErrorResponse as TError } from './models/custom';
+import Strapi, { StrapiAuthenticationData, StrapiUser } from 'strapi-sdk-js'
+import { QueryKey } from 'react-query/types/core';
 
 const app = createApp(App);
 
@@ -21,13 +26,6 @@ app.use(router);
 app.use(store);
 app.use(VueQueryPlugin);
 
-// Strapi Query Client //
-import { ErrorResponse as TError } from './models/custom';
-import { QueryClient, useMutation, useQuery, UseQueryOptions } from "vue-query";
-import Strapi, { StrapiAuthenticationData, StrapiUser } from 'strapi-sdk-js'
-import { QueryKey } from 'react-query/types/core';
-import { reactive } from 'vue';
-
 export const strapi = new Strapi({
 	store: {
 		key: "strapi_jwt",
@@ -37,8 +35,6 @@ export const strapi = new Strapi({
 	url: "https://api.bergflix.de/",
 	prefix: "/api",
 });
-
-const queryClient = new QueryClient();
 
 function useStrapiQuery<T>({ queryKey }: any) {
 	return strapi

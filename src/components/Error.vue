@@ -11,8 +11,9 @@
 
 <script setup lang="ts">
 import Modal from "./Modal.vue";
+import { defineProps } from "vue";
 
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: "Error",

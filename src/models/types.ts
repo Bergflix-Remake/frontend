@@ -739,12 +739,36 @@ export type KnownUrlEntityResponseCollection = {
   meta: ResponseCollectionMeta;
 };
 
+export enum Enum_Serie_Genre {
+  Action = 'Action',
+  Adventure = 'Adventure',
+  Animation = 'Animation',
+  Comedy = 'Comedy',
+  Crime = 'Crime',
+  Documentary = 'Documentary',
+  Drama = 'Drama',
+  Family = 'Family',
+  Fantasy = 'Fantasy',
+  History = 'History',
+  Horror = 'Horror',
+  Music = 'Music',
+  Mystery = 'Mystery',
+  Romance = 'Romance',
+  SciFi = 'SciFi',
+  Thriller = 'Thriller',
+  War = 'War'
+}
+
 export type SerieFiltersInput = {
   id?: Maybe<IdFilterInput>;
   Title?: Maybe<StringFilterInput>;
   rating?: Maybe<FloatFilterInput>;
   description?: Maybe<StringFilterInput>;
   videos?: Maybe<VideoFiltersInput>;
+  original?: Maybe<BooleanFilterInput>;
+  year?: Maybe<DateFilterInput>;
+  genre?: Maybe<StringFilterInput>;
+  age?: Maybe<IntFilterInput>;
   createdAt?: Maybe<DateTimeFilterInput>;
   updatedAt?: Maybe<DateTimeFilterInput>;
   publishedAt?: Maybe<DateTimeFilterInput>;
@@ -762,6 +786,11 @@ export type SerieInput = {
   rating?: Maybe<Scalars['Float']>;
   description?: Maybe<Scalars['String']>;
   videos?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  thumbnail?: Maybe<Scalars['ID']>;
+  original?: Maybe<Scalars['Boolean']>;
+  year?: Maybe<Scalars['Date']>;
+  genre?: Maybe<Enum_Serie_Genre>;
+  age?: Maybe<Scalars['Int']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -773,6 +802,11 @@ export type Serie = {
   rating?: Maybe<Scalars['Float']>;
   description: Scalars['String'];
   videos?: Maybe<VideoRelationResponseCollection>;
+  thumbnail: UploadFileEntityResponse;
+  original?: Maybe<Scalars['Boolean']>;
+  year: Scalars['Date'];
+  genre: Enum_Serie_Genre;
+  age: Scalars['Int'];
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -879,6 +913,7 @@ export type VideoFiltersInput = {
   year?: Maybe<DateFilterInput>;
   age?: Maybe<IntFilterInput>;
   genre?: Maybe<StringFilterInput>;
+  original?: Maybe<BooleanFilterInput>;
   createdAt?: Maybe<DateTimeFilterInput>;
   updatedAt?: Maybe<DateTimeFilterInput>;
   publishedAt?: Maybe<DateTimeFilterInput>;
@@ -901,6 +936,8 @@ export type VideoInput = {
   year?: Maybe<Scalars['Date']>;
   age?: Maybe<Scalars['Int']>;
   genre?: Maybe<Enum_Video_Genre>;
+  thumbnail?: Maybe<Scalars['ID']>;
+  original?: Maybe<Scalars['Boolean']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -917,6 +954,8 @@ export type Video = {
   year?: Maybe<Scalars['Date']>;
   age: Scalars['Int'];
   genre: Enum_Video_Genre;
+  thumbnail: UploadFileEntityResponse;
+  original?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
