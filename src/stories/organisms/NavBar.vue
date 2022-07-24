@@ -1,7 +1,7 @@
 <template>
-  <div id="desktop-nav">
+  <div id="desktop-nav" class="fixed top-0 left-0 z-10 w-full">
     <nav
-      class="flex flex-row w-full h-16 px-4 text-white bg-gradient-to-b from-clean-dark-500 to-clean-dark-500/0 backdrop-blur-md border-b-darkest-dark">
+      class="flex flex-row w-full h-16 px-4 text-white bg-gradient-to-b from-clean-dark-500 to-transparent backdrop-blur-md border-b-darkest-dark">
       <div id="main-nav" class="flex flex-row items-center mr-auto space-x-5">
         <Logo :long="true"></Logo>
         <NavLink href="/home">Home</NavLink>
@@ -24,7 +24,7 @@
 import Logo from "../atoms/Logo.vue";
 import NavLink from "../atoms/NavLink.vue";
 import Avatar from "../molecules/Avatar.vue";
-import ProfileDropdown from "../cell/ProfileDropdown.vue";
+import ProfileDropdown from "../cells/ProfileDropdown.vue";
 import { ref } from "vue";
 
 const profileDropdownOpen = ref(false);

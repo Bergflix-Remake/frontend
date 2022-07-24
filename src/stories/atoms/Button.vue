@@ -1,11 +1,11 @@
 <template>
   <button
-    class="inline ease-in-out cursor-pointer h-min group transform transition-all rounded w-max"
+    class="inline-flex items-center transition-all ease-in-out transform rounded cursor-pointer h-min group w-max"
     :class="classString"
     @click="$emit('click')"
   >
+    <component v-if="icon" :is="icon" class="inline w-6 h-6 mr-1" />
     <slot />
-    <component v-if="icon" :is="icon" class="inline ml-1 w-6 h-6 mb-1" />
   </button>
 </template>
 

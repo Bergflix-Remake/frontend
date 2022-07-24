@@ -1,7 +1,7 @@
 import PosterRowComponent from './ScrollableRow.vue';
 import Poster from '../molecules/Poster.vue';
 export default {
-    title: '🦠 Cell / Scrollable Row',
+    title: '🦠 Cells / Scrollable Row',
     component: PosterRowComponent,
 }
 

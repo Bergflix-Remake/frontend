@@ -1,7 +1,7 @@
 import ProfileDropdownComponent from "./ProfileDropdown.vue"
 
 export default {
-    title: '🦠 Cell / Profile Dropdown',
+    title: '🦠 Cells / Profile Dropdown',
     component: ProfileDropdownComponent,
 }
 

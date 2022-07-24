@@ -2,9 +2,9 @@
   <transition name="slide">
     <div
       v-if="open"
-      class="flex flex-col justify-center bg-clean-dark-500 p-5 rounded-md shadow-lg w-max space-y-2"
+      class="z-50 flex flex-col justify-center p-5 space-y-2 rounded-md shadow-lg bg-clean-dark-500 w-max"
     >
-      <p class="text-delorean-500 font-bold leading-tight">
+      <p class="font-bold leading-tight text-delorean-500">
         Hi, {{ loggedIn ? username : "Guest" }}!
       </p>
       <div class="flex flex-col justify-center space-y-2" v-if="loggedIn">
