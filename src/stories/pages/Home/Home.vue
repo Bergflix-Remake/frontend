@@ -38,7 +38,6 @@
                 <Poster :loading="true" />
                 <Poster :loading="true" />
             </ScrollableRow>
-            <Footer />
         </section>
     </div>
 </template>
@@ -49,7 +48,6 @@ import ScrollableRow from '../../cells/ScrollableRow.vue';
 import Poster from '../../molecules/Poster.vue';
 import Title from '../../atoms/Title/Title.vue';
 import Logo from '../../atoms/Logo.vue';
-import Footer from '../../organisms/Footer/Footer.vue';
 </script>
 
 <style>

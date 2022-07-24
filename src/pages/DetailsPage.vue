@@ -1,13 +1,13 @@
 <template>
   <main
-    class="w-full min-h-screen bg-no-repeat bg-cover bg-center"
+    class="w-full min-h-screen bg-center bg-no-repeat bg-cover"
     :style="{ backgroundImage: `url(${bg})` }"
     v-if="series.isSuccess"
   >
     <div
-      class="flex flex-col md:flex-row items-center justify-center w-full min-h-screen backdrop-blur-sm bg-opacity-40 bg-darkest-dark"
+      class="flex flex-col items-center justify-center w-full min-h-screen md:flex-row backdrop-blur-sm bg-opacity-40 bg-darkest-dark"
     >
-      <div class="w-full md:w-1/2 h-full flex flex-col p-10 justify-center">
+      <div class="flex flex-col justify-center w-full h-full p-10 md:w-1/2">
         <img
           v-if="series.data.attributes?.title_image"
           class="w-full"
@@ -17,13 +17,13 @@
         <h1 class="text-2xl font-black text-white" v-else>
           {{ series.data.attributes?.Title }}
         </h1>
-        <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row mt-2">
+        <div class="flex flex-col mt-2 sm:flex-row md:flex-col lg:flex-row">
           <p class="font-bold text-primary" v-if="series.data.attributes?.original">
             <span class="text-white">Bergflix</span>. Original
           </p>
           <div
             id="right-items"
-            class="flex-row md-0 sm:ml-auto flex-nowrap md:ml-0 lg:ml-auto text-white flex h-7 items-center"
+            class="flex flex-row items-center text-white md-0 sm:ml-auto flex-nowrap md:ml-0 lg:ml-auto h-7"
           >
             <p id="year" class="mr-5">
               {{ getYearFromDate(series.data.attributes?.year) }}
@@ -35,16 +35,16 @@
             </p>
             <p class="mr-5 italic">
               {{ series.data.attributes?.videos?.data.length }} Episode{{
-                series.data.attributes?.videos?.data.length > 1 ? "n" : ""
+                series.data.attributes?.videos?.data.length! > 1 ? "n" : ""
               }}
             </p>
-            <div class="mr-5 border-l-2 border-light h-8"></div>
+            <div class="h-8 mr-5 border-l-2 border-light"></div>
             <p class="mr-5 font-bold text-primary-100">
               {{ series.data.attributes?.genre }}
             </p>
           </div>
         </div>
-        <p class="italic max-w-3xl">
+        <p class="max-w-3xl italic">
           <Textblock
             :content="series.data.attributes?.description"
             title="Beschreibung"
@@ -53,7 +53,7 @@
       </div>
       <div
         v-if="true"
-        class="w-full md:w-1/2 h-full flex flex-col p-10 justify-center items-center"
+        class="flex flex-col items-center justify-center w-full h-full p-10 md:w-1/2"
       >
         <Playlist
           :title="series.data.attributes?.Title!"

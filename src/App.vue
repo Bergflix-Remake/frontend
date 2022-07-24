@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import Footer from "./components/Footer.vue";
-import Navbar from "./components/Navbar.vue";
+import Footer from "./stories/organisms/Footer/Footer.vue";
+import Navbar from "./stories/organisms/NavBar.vue";
 </script>
 
 <template>
   <div>
     <Navbar />
     <div
-      class="flex flex-col min-h-screen text-gray-900 bg-gray-200 dark:bg-clean-dark dark:text-clean-white"
+      class="flex flex-col min-h-screen bg-clean-dark text-clean-white"
     >
       <router-view></router-view>
     </div>

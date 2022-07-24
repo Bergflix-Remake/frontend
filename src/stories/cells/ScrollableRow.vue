@@ -25,7 +25,6 @@
 import { onMounted, ref, Ref } from "vue";
 import BadgeButton from "../atoms/BadgeButton.vue";
 import { ArrowNarrowRightIcon, ArrowNarrowLeftIcon } from "@heroicons/vue/outline";
-import { useStrapi } from "../../main";
 
 const scrollContainer: Ref<HTMLElement | undefined> = ref();
 const leftScrollButton = ref(false);

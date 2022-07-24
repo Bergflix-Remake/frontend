@@ -1,5 +1,5 @@
 <template>
-  <div id="desktop-nav" class="fixed top-0 left-0 z-10 w-full">
+  <div id="desktop-nav" class="fixed top-0 left-0 z-50 w-full">
     <nav
       class="flex flex-row w-full h-16 px-4 text-white bg-gradient-to-b from-clean-dark-500 to-transparent backdrop-blur-md border-b-darkest-dark">
       <div id="main-nav" class="flex flex-row items-center mr-auto space-x-5">
