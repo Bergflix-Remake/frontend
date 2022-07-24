@@ -63,7 +63,7 @@ export const strapiLogin = () => {
 };
 
 export function useStrapi<T>(
-	queryKey: [string, StrapiRequestParams | undefined],
+	queryKey: [string, StrapiRequestParams?],
 	options?: Omit<
 		UseQueryOptions<T, TError, T, QueryKey>,
 		"queryFn" | "queryKey"
