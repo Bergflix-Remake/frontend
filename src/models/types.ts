@@ -18,6 +18,7 @@ export type Scalars = {
   /** The `Upload` scalar type represents a file upload. */
   Upload: any;
   AboutPageDynamicZoneInput: any;
+  ApplicationQuestionItemsDynamicZoneInput: any;
   HomepagePageDynamicZoneInput: any;
   /** A string used to identify an i18n locale */
   I18NLocaleCode: any;
@@ -235,6 +236,24 @@ export type JsonFilterInput = {
   between?: Maybe<Array<Maybe<Scalars['JSON']>>>;
 };
 
+export type ComponentApplicationCodeblock = {
+  __typename?: 'ComponentApplicationCodeblock';
+  id: Scalars['ID'];
+  filename: Scalars['String'];
+  editable: Scalars['Boolean'];
+  content?: Maybe<Scalars['String']>;
+};
+
+export type ComponentApplicationTweet = {
+  __typename?: 'ComponentApplicationTweet';
+  id: Scalars['ID'];
+  content: Scalars['String'];
+  username: Scalars['String'];
+  handle: Scalars['String'];
+  replies?: Maybe<Scalars['String']>;
+  avatar?: Maybe<Scalars['String']>;
+};
+
 export enum Enum_Componentcommonbutton_Type {
   Button = 'button',
   Link = 'link',
@@ -255,6 +274,18 @@ export type ComponentCommonTextBlock = {
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
   text?: Maybe<Scalars['String']>;
+};
+
+export type ComponentFeaturedFilm = {
+  __typename?: 'ComponentFeaturedFilm';
+  id: Scalars['ID'];
+  video?: Maybe<VideoEntityResponse>;
+};
+
+export type ComponentFeaturedSeries = {
+  __typename?: 'ComponentFeaturedSeries';
+  id: Scalars['ID'];
+  serie?: Maybe<SerieEntityResponse>;
 };
 
 export type ComponentMoviePoster = {
@@ -282,6 +313,8 @@ export type UploadFileFiltersInput = {
   previewUrl?: Maybe<StringFilterInput>;
   provider?: Maybe<StringFilterInput>;
   provider_metadata?: Maybe<JsonFilterInput>;
+  folder?: Maybe<UploadFolderFiltersInput>;
+  folderPath?: Maybe<StringFilterInput>;
   createdAt?: Maybe<DateTimeFilterInput>;
   updatedAt?: Maybe<DateTimeFilterInput>;
   and?: Maybe<Array<Maybe<UploadFileFiltersInput>>>;
@@ -304,6 +337,8 @@ export type UploadFileInput = {
   previewUrl?: Maybe<Scalars['String']>;
   provider?: Maybe<Scalars['String']>;
   provider_metadata?: Maybe<Scalars['JSON']>;
+  folder?: Maybe<Scalars['ID']>;
+  folderPath?: Maybe<Scalars['String']>;
 };
 
 export type UploadFile = {
@@ -341,6 +376,139 @@ export type UploadFileEntityResponse = {
 export type UploadFileEntityResponseCollection = {
   __typename?: 'UploadFileEntityResponseCollection';
   data: Array<UploadFileEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type UploadFileRelationResponseCollection = {
+  __typename?: 'UploadFileRelationResponseCollection';
+  data: Array<UploadFileEntity>;
+};
+
+export type UploadFolderFiltersInput = {
+  id?: Maybe<IdFilterInput>;
+  name?: Maybe<StringFilterInput>;
+  pathId?: Maybe<IntFilterInput>;
+  parent?: Maybe<UploadFolderFiltersInput>;
+  children?: Maybe<UploadFolderFiltersInput>;
+  files?: Maybe<UploadFileFiltersInput>;
+  path?: Maybe<StringFilterInput>;
+  createdAt?: Maybe<DateTimeFilterInput>;
+  updatedAt?: Maybe<DateTimeFilterInput>;
+  and?: Maybe<Array<Maybe<UploadFolderFiltersInput>>>;
+  or?: Maybe<Array<Maybe<UploadFolderFiltersInput>>>;
+  not?: Maybe<UploadFolderFiltersInput>;
+};
+
+export type UploadFolderInput = {
+  name?: Maybe<Scalars['String']>;
+  pathId?: Maybe<Scalars['Int']>;
+  parent?: Maybe<Scalars['ID']>;
+  children?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  files?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  path?: Maybe<Scalars['String']>;
+};
+
+export type UploadFolder = {
+  __typename?: 'UploadFolder';
+  name: Scalars['String'];
+  pathId: Scalars['Int'];
+  parent?: Maybe<UploadFolderEntityResponse>;
+  children?: Maybe<UploadFolderRelationResponseCollection>;
+  files?: Maybe<UploadFileRelationResponseCollection>;
+  path: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type UploadFolderChildrenArgs = {
+  filters?: Maybe<UploadFolderFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type UploadFolderFilesArgs = {
+  filters?: Maybe<UploadFileFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type UploadFolderEntity = {
+  __typename?: 'UploadFolderEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<UploadFolder>;
+};
+
+export type UploadFolderEntityResponse = {
+  __typename?: 'UploadFolderEntityResponse';
+  data?: Maybe<UploadFolderEntity>;
+};
+
+export type UploadFolderEntityResponseCollection = {
+  __typename?: 'UploadFolderEntityResponseCollection';
+  data: Array<UploadFolderEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type UploadFolderRelationResponseCollection = {
+  __typename?: 'UploadFolderRelationResponseCollection';
+  data: Array<UploadFolderEntity>;
+};
+
+export type AwesomeHelpHelpFiltersInput = {
+  id?: Maybe<IdFilterInput>;
+  contentType?: Maybe<StringFilterInput>;
+  path?: Maybe<StringFilterInput>;
+  helpContent?: Maybe<StringFilterInput>;
+  fieldName?: Maybe<StringFilterInput>;
+  containerType?: Maybe<StringFilterInput>;
+  zoneName?: Maybe<StringFilterInput>;
+  componentName?: Maybe<StringFilterInput>;
+  createdAt?: Maybe<DateTimeFilterInput>;
+  updatedAt?: Maybe<DateTimeFilterInput>;
+  and?: Maybe<Array<Maybe<AwesomeHelpHelpFiltersInput>>>;
+  or?: Maybe<Array<Maybe<AwesomeHelpHelpFiltersInput>>>;
+  not?: Maybe<AwesomeHelpHelpFiltersInput>;
+};
+
+export type AwesomeHelpHelpInput = {
+  contentType?: Maybe<Scalars['String']>;
+  path?: Maybe<Scalars['String']>;
+  helpContent?: Maybe<Scalars['String']>;
+  fieldName?: Maybe<Scalars['String']>;
+  containerType?: Maybe<Scalars['String']>;
+  zoneName?: Maybe<Scalars['String']>;
+  componentName?: Maybe<Scalars['String']>;
+};
+
+export type AwesomeHelpHelp = {
+  __typename?: 'AwesomeHelpHelp';
+  contentType?: Maybe<Scalars['String']>;
+  path?: Maybe<Scalars['String']>;
+  helpContent?: Maybe<Scalars['String']>;
+  fieldName?: Maybe<Scalars['String']>;
+  containerType?: Maybe<Scalars['String']>;
+  zoneName?: Maybe<Scalars['String']>;
+  componentName?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type AwesomeHelpHelpEntity = {
+  __typename?: 'AwesomeHelpHelpEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<AwesomeHelpHelp>;
+};
+
+export type AwesomeHelpHelpEntityResponse = {
+  __typename?: 'AwesomeHelpHelpEntityResponse';
+  data?: Maybe<AwesomeHelpHelpEntity>;
+};
+
+export type AwesomeHelpHelpEntityResponseCollection = {
+  __typename?: 'AwesomeHelpHelpEntityResponseCollection';
+  data: Array<AwesomeHelpHelpEntity>;
   meta: ResponseCollectionMeta;
 };
 
@@ -554,6 +722,145 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type EzformsSubmissionFiltersInput = {
+  id?: Maybe<IdFilterInput>;
+  score?: Maybe<StringFilterInput>;
+  data?: Maybe<JsonFilterInput>;
+  createdAt?: Maybe<DateTimeFilterInput>;
+  updatedAt?: Maybe<DateTimeFilterInput>;
+  and?: Maybe<Array<Maybe<EzformsSubmissionFiltersInput>>>;
+  or?: Maybe<Array<Maybe<EzformsSubmissionFiltersInput>>>;
+  not?: Maybe<EzformsSubmissionFiltersInput>;
+};
+
+export type EzformsSubmissionInput = {
+  score?: Maybe<Scalars['String']>;
+  data?: Maybe<Scalars['JSON']>;
+};
+
+export type EzformsSubmission = {
+  __typename?: 'EzformsSubmission';
+  score?: Maybe<Scalars['String']>;
+  data?: Maybe<Scalars['JSON']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type EzformsSubmissionEntity = {
+  __typename?: 'EzformsSubmissionEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<EzformsSubmission>;
+};
+
+export type EzformsSubmissionEntityResponse = {
+  __typename?: 'EzformsSubmissionEntityResponse';
+  data?: Maybe<EzformsSubmissionEntity>;
+};
+
+export type EzformsSubmissionEntityResponseCollection = {
+  __typename?: 'EzformsSubmissionEntityResponseCollection';
+  data: Array<EzformsSubmissionEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type EzformsRecipientFiltersInput = {
+  id?: Maybe<IdFilterInput>;
+  name?: Maybe<StringFilterInput>;
+  email?: Maybe<StringFilterInput>;
+  number?: Maybe<StringFilterInput>;
+  createdAt?: Maybe<DateTimeFilterInput>;
+  updatedAt?: Maybe<DateTimeFilterInput>;
+  and?: Maybe<Array<Maybe<EzformsRecipientFiltersInput>>>;
+  or?: Maybe<Array<Maybe<EzformsRecipientFiltersInput>>>;
+  not?: Maybe<EzformsRecipientFiltersInput>;
+};
+
+export type EzformsRecipientInput = {
+  name?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  number?: Maybe<Scalars['String']>;
+};
+
+export type EzformsRecipient = {
+  __typename?: 'EzformsRecipient';
+  name?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  number?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type EzformsRecipientEntity = {
+  __typename?: 'EzformsRecipientEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<EzformsRecipient>;
+};
+
+export type EzformsRecipientEntityResponse = {
+  __typename?: 'EzformsRecipientEntityResponse';
+  data?: Maybe<EzformsRecipientEntity>;
+};
+
+export type EzformsRecipientEntityResponseCollection = {
+  __typename?: 'EzformsRecipientEntityResponseCollection';
+  data: Array<EzformsRecipientEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export enum Enum_Graphsbuildergraph_Type {
+  Pie = 'pie',
+  Bar = 'bar',
+  Line = 'line',
+  DateLine = 'dateLine'
+}
+
+export type GraphsBuilderGraphFiltersInput = {
+  id?: Maybe<IdFilterInput>;
+  title?: Maybe<StringFilterInput>;
+  type?: Maybe<StringFilterInput>;
+  collectionX?: Maybe<StringFilterInput>;
+  collectionXAttribute?: Maybe<StringFilterInput>;
+  createdAt?: Maybe<DateTimeFilterInput>;
+  updatedAt?: Maybe<DateTimeFilterInput>;
+  and?: Maybe<Array<Maybe<GraphsBuilderGraphFiltersInput>>>;
+  or?: Maybe<Array<Maybe<GraphsBuilderGraphFiltersInput>>>;
+  not?: Maybe<GraphsBuilderGraphFiltersInput>;
+};
+
+export type GraphsBuilderGraphInput = {
+  title?: Maybe<Scalars['String']>;
+  type?: Maybe<Enum_Graphsbuildergraph_Type>;
+  collectionX?: Maybe<Scalars['String']>;
+  collectionXAttribute?: Maybe<Scalars['String']>;
+};
+
+export type GraphsBuilderGraph = {
+  __typename?: 'GraphsBuilderGraph';
+  title: Scalars['String'];
+  type: Enum_Graphsbuildergraph_Type;
+  collectionX: Scalars['String'];
+  collectionXAttribute?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type GraphsBuilderGraphEntity = {
+  __typename?: 'GraphsBuilderGraphEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<GraphsBuilderGraph>;
+};
+
+export type GraphsBuilderGraphEntityResponse = {
+  __typename?: 'GraphsBuilderGraphEntityResponse';
+  data?: Maybe<GraphsBuilderGraphEntity>;
+};
+
+export type GraphsBuilderGraphEntityResponseCollection = {
+  __typename?: 'GraphsBuilderGraphEntityResponseCollection';
+  data: Array<GraphsBuilderGraphEntity>;
+  meta: ResponseCollectionMeta;
+};
+
 export type AboutPageDynamicZone = ComponentCommonTextBlock | ComponentCommonButton | Error;
 
 
@@ -593,6 +900,180 @@ export type AboutRelationResponseCollection = {
   data: Array<AboutEntity>;
 };
 
+export type ApplicationFieldFiltersInput = {
+  id?: Maybe<IdFilterInput>;
+  name?: Maybe<StringFilterInput>;
+  description?: Maybe<StringFilterInput>;
+  applications?: Maybe<ApplicationSessionFiltersInput>;
+  questions?: Maybe<ApplicationQuestionFiltersInput>;
+  createdAt?: Maybe<DateTimeFilterInput>;
+  updatedAt?: Maybe<DateTimeFilterInput>;
+  and?: Maybe<Array<Maybe<ApplicationFieldFiltersInput>>>;
+  or?: Maybe<Array<Maybe<ApplicationFieldFiltersInput>>>;
+  not?: Maybe<ApplicationFieldFiltersInput>;
+};
+
+export type ApplicationFieldInput = {
+  name?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  applications?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  questions?: Maybe<Array<Maybe<Scalars['ID']>>>;
+};
+
+export type ApplicationField = {
+  __typename?: 'ApplicationField';
+  name: Scalars['String'];
+  description: Scalars['String'];
+  applications?: Maybe<ApplicationSessionRelationResponseCollection>;
+  questions?: Maybe<ApplicationQuestionRelationResponseCollection>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type ApplicationFieldApplicationsArgs = {
+  filters?: Maybe<ApplicationSessionFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type ApplicationFieldQuestionsArgs = {
+  filters?: Maybe<ApplicationQuestionFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  publicationState?: Maybe<PublicationState>;
+};
+
+export type ApplicationFieldEntity = {
+  __typename?: 'ApplicationFieldEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<ApplicationField>;
+};
+
+export type ApplicationFieldEntityResponse = {
+  __typename?: 'ApplicationFieldEntityResponse';
+  data?: Maybe<ApplicationFieldEntity>;
+};
+
+export type ApplicationFieldEntityResponseCollection = {
+  __typename?: 'ApplicationFieldEntityResponseCollection';
+  data: Array<ApplicationFieldEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ApplicationQuestionItemsDynamicZone = ComponentApplicationTweet | ComponentApplicationCodeblock | Error;
+
+
+export type ApplicationQuestionFiltersInput = {
+  id?: Maybe<IdFilterInput>;
+  title?: Maybe<StringFilterInput>;
+  description?: Maybe<StringFilterInput>;
+  field?: Maybe<ApplicationFieldFiltersInput>;
+  createdAt?: Maybe<DateTimeFilterInput>;
+  updatedAt?: Maybe<DateTimeFilterInput>;
+  publishedAt?: Maybe<DateTimeFilterInput>;
+  and?: Maybe<Array<Maybe<ApplicationQuestionFiltersInput>>>;
+  or?: Maybe<Array<Maybe<ApplicationQuestionFiltersInput>>>;
+  not?: Maybe<ApplicationQuestionFiltersInput>;
+};
+
+export type ApplicationQuestionInput = {
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  items?: Maybe<Array<Scalars['ApplicationQuestionItemsDynamicZoneInput']>>;
+  field?: Maybe<Scalars['ID']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ApplicationQuestion = {
+  __typename?: 'ApplicationQuestion';
+  title: Scalars['String'];
+  description: Scalars['String'];
+  items: Array<Maybe<ApplicationQuestionItemsDynamicZone>>;
+  field?: Maybe<ApplicationFieldEntityResponse>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ApplicationQuestionEntity = {
+  __typename?: 'ApplicationQuestionEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<ApplicationQuestion>;
+};
+
+export type ApplicationQuestionEntityResponse = {
+  __typename?: 'ApplicationQuestionEntityResponse';
+  data?: Maybe<ApplicationQuestionEntity>;
+};
+
+export type ApplicationQuestionEntityResponseCollection = {
+  __typename?: 'ApplicationQuestionEntityResponseCollection';
+  data: Array<ApplicationQuestionEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ApplicationQuestionRelationResponseCollection = {
+  __typename?: 'ApplicationQuestionRelationResponseCollection';
+  data: Array<ApplicationQuestionEntity>;
+};
+
+export type ApplicationSessionFiltersInput = {
+  id?: Maybe<IdFilterInput>;
+  identifier?: Maybe<StringFilterInput>;
+  completed?: Maybe<BooleanFilterInput>;
+  response?: Maybe<JsonFilterInput>;
+  name?: Maybe<StringFilterInput>;
+  field?: Maybe<ApplicationFieldFiltersInput>;
+  createdAt?: Maybe<DateTimeFilterInput>;
+  updatedAt?: Maybe<DateTimeFilterInput>;
+  and?: Maybe<Array<Maybe<ApplicationSessionFiltersInput>>>;
+  or?: Maybe<Array<Maybe<ApplicationSessionFiltersInput>>>;
+  not?: Maybe<ApplicationSessionFiltersInput>;
+};
+
+export type ApplicationSessionInput = {
+  identifier?: Maybe<Scalars['String']>;
+  completed?: Maybe<Scalars['Boolean']>;
+  response?: Maybe<Scalars['JSON']>;
+  name?: Maybe<Scalars['String']>;
+  field?: Maybe<Scalars['ID']>;
+};
+
+export type ApplicationSession = {
+  __typename?: 'ApplicationSession';
+  identifier: Scalars['String'];
+  completed: Scalars['Boolean'];
+  response?: Maybe<Scalars['JSON']>;
+  name: Scalars['String'];
+  field?: Maybe<ApplicationFieldEntityResponse>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ApplicationSessionEntity = {
+  __typename?: 'ApplicationSessionEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<ApplicationSession>;
+};
+
+export type ApplicationSessionEntityResponse = {
+  __typename?: 'ApplicationSessionEntityResponse';
+  data?: Maybe<ApplicationSessionEntity>;
+};
+
+export type ApplicationSessionEntityResponseCollection = {
+  __typename?: 'ApplicationSessionEntityResponseCollection';
+  data: Array<ApplicationSessionEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ApplicationSessionRelationResponseCollection = {
+  __typename?: 'ApplicationSessionRelationResponseCollection';
+  data: Array<ApplicationSessionEntity>;
+};
+
 export type ComingSoonInput = {
   Title?: Maybe<Scalars['String']>;
   Text?: Maybe<Scalars['String']>;
@@ -629,6 +1110,28 @@ export type ComingSoonEntityResponse = {
 export type ComingSoonRelationResponseCollection = {
   __typename?: 'ComingSoonRelationResponseCollection';
   data: Array<ComingSoonEntity>;
+};
+
+export type FeaturedInput = {
+  video?: Maybe<Scalars['ID']>;
+};
+
+export type Featured = {
+  __typename?: 'Featured';
+  video?: Maybe<VideoEntityResponse>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type FeaturedEntity = {
+  __typename?: 'FeaturedEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<Featured>;
+};
+
+export type FeaturedEntityResponse = {
+  __typename?: 'FeaturedEntityResponse';
+  data?: Maybe<FeaturedEntity>;
 };
 
 export type HomepagePageDynamicZone = ComponentCommonTextBlock | ComponentCommonButton | Error;
@@ -696,47 +1199,6 @@ export type ImprintEntity = {
 export type ImprintEntityResponse = {
   __typename?: 'ImprintEntityResponse';
   data?: Maybe<ImprintEntity>;
-};
-
-export type KnownUrlFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  url?: Maybe<StringFilterInput>;
-  title?: Maybe<StringFilterInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<KnownUrlFiltersInput>>>;
-  or?: Maybe<Array<Maybe<KnownUrlFiltersInput>>>;
-  not?: Maybe<KnownUrlFiltersInput>;
-};
-
-export type KnownUrlInput = {
-  url?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-};
-
-export type KnownUrl = {
-  __typename?: 'KnownUrl';
-  url: Scalars['String'];
-  title: Scalars['String'];
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type KnownUrlEntity = {
-  __typename?: 'KnownUrlEntity';
-  id?: Maybe<Scalars['ID']>;
-  attributes?: Maybe<KnownUrl>;
-};
-
-export type KnownUrlEntityResponse = {
-  __typename?: 'KnownUrlEntityResponse';
-  data?: Maybe<KnownUrlEntity>;
-};
-
-export type KnownUrlEntityResponseCollection = {
-  __typename?: 'KnownUrlEntityResponseCollection';
-  data: Array<KnownUrlEntity>;
-  meta: ResponseCollectionMeta;
 };
 
 export enum Enum_Serie_Genre {
@@ -850,36 +1312,6 @@ export type SerieEntityResponseCollection = {
 export type SerieRelationResponseCollection = {
   __typename?: 'SerieRelationResponseCollection';
   data: Array<SerieEntity>;
-};
-
-export type SuggestedContentInput = {
-  videos?: Maybe<Array<Maybe<Scalars['ID']>>>;
-};
-
-export type SuggestedContent = {
-  __typename?: 'SuggestedContent';
-  videos?: Maybe<VideoRelationResponseCollection>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-
-export type SuggestedContentVideosArgs = {
-  filters?: Maybe<VideoFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
-  publicationState?: Maybe<PublicationState>;
-};
-
-export type SuggestedContentEntity = {
-  __typename?: 'SuggestedContentEntity';
-  id?: Maybe<Scalars['ID']>;
-  attributes?: Maybe<SuggestedContent>;
-};
-
-export type SuggestedContentEntityResponse = {
-  __typename?: 'SuggestedContentEntityResponse';
-  data?: Maybe<SuggestedContentEntity>;
 };
 
 export enum Enum_Video_Genre {
@@ -1000,7 +1432,7 @@ export type VideoRelationResponseCollection = {
   data: Array<VideoEntity>;
 };
 
-export type GenericMorph = ComponentCommonButton | ComponentCommonTextBlock | ComponentMoviePoster | UploadFile | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | About | ComingSoon | Homepage | Imprint | KnownUrl | Serie | SuggestedContent | Video;
+export type GenericMorph = ComponentApplicationCodeblock | ComponentApplicationTweet | ComponentCommonButton | ComponentCommonTextBlock | ComponentFeaturedFilm | ComponentFeaturedSeries | ComponentMoviePoster | UploadFile | UploadFolder | AwesomeHelpHelp | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | EzformsSubmission | EzformsRecipient | GraphsBuilderGraph | About | ApplicationField | ApplicationQuestion | ApplicationSession | ComingSoon | Featured | Homepage | Imprint | Serie | Video;
 
 export type FileInfoInput = {
   name?: Maybe<Scalars['String']>;
@@ -1076,21 +1508,35 @@ export type Query = {
   __typename?: 'Query';
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
+  uploadFolder?: Maybe<UploadFolderEntityResponse>;
+  uploadFolders?: Maybe<UploadFolderEntityResponseCollection>;
+  awesomeHelpHelp?: Maybe<AwesomeHelpHelpEntityResponse>;
+  awesomeHelpHelps?: Maybe<AwesomeHelpHelpEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>;
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+  ezformsSubmission?: Maybe<EzformsSubmissionEntityResponse>;
+  ezformsSubmissions?: Maybe<EzformsSubmissionEntityResponseCollection>;
+  ezformsRecipient?: Maybe<EzformsRecipientEntityResponse>;
+  ezformsRecipients?: Maybe<EzformsRecipientEntityResponseCollection>;
+  graphsBuilderGraph?: Maybe<GraphsBuilderGraphEntityResponse>;
+  graphsBuilderGraphs?: Maybe<GraphsBuilderGraphEntityResponseCollection>;
   about?: Maybe<AboutEntityResponse>;
+  applicationField?: Maybe<ApplicationFieldEntityResponse>;
+  applicationFields?: Maybe<ApplicationFieldEntityResponseCollection>;
+  applicationQuestion?: Maybe<ApplicationQuestionEntityResponse>;
+  applicationQuestions?: Maybe<ApplicationQuestionEntityResponseCollection>;
+  applicationSession?: Maybe<ApplicationSessionEntityResponse>;
+  applicationSessions?: Maybe<ApplicationSessionEntityResponseCollection>;
   comingSoon?: Maybe<ComingSoonEntityResponse>;
+  featured?: Maybe<FeaturedEntityResponse>;
   homepage?: Maybe<HomepageEntityResponse>;
   imprint?: Maybe<ImprintEntityResponse>;
-  knownUrl?: Maybe<KnownUrlEntityResponse>;
-  knownUrls?: Maybe<KnownUrlEntityResponseCollection>;
   serie?: Maybe<SerieEntityResponse>;
   series?: Maybe<SerieEntityResponseCollection>;
-  suggestedContent?: Maybe<SuggestedContentEntityResponse>;
   video?: Maybe<VideoEntityResponse>;
   videos?: Maybe<VideoEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
@@ -1104,6 +1550,30 @@ export type QueryUploadFileArgs = {
 
 export type QueryUploadFilesArgs = {
   filters?: Maybe<UploadFileFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type QueryUploadFolderArgs = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryUploadFoldersArgs = {
+  filters?: Maybe<UploadFolderFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type QueryAwesomeHelpHelpArgs = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryAwesomeHelpHelpsArgs = {
+  filters?: Maybe<AwesomeHelpHelpFiltersInput>;
   pagination?: Maybe<PaginationArg>;
   sort?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
@@ -1145,9 +1615,82 @@ export type QueryUsersPermissionsUsersArgs = {
 };
 
 
+export type QueryEzformsSubmissionArgs = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryEzformsSubmissionsArgs = {
+  filters?: Maybe<EzformsSubmissionFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type QueryEzformsRecipientArgs = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryEzformsRecipientsArgs = {
+  filters?: Maybe<EzformsRecipientFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type QueryGraphsBuilderGraphArgs = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryGraphsBuilderGraphsArgs = {
+  filters?: Maybe<GraphsBuilderGraphFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
 export type QueryAboutArgs = {
   publicationState?: Maybe<PublicationState>;
   locale?: Maybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryApplicationFieldArgs = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryApplicationFieldsArgs = {
+  filters?: Maybe<ApplicationFieldFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type QueryApplicationQuestionArgs = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryApplicationQuestionsArgs = {
+  filters?: Maybe<ApplicationQuestionFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  publicationState?: Maybe<PublicationState>;
+};
+
+
+export type QueryApplicationSessionArgs = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryApplicationSessionsArgs = {
+  filters?: Maybe<ApplicationSessionFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
@@ -1165,18 +1708,6 @@ export type QueryHomepageArgs = {
 
 export type QueryImprintArgs = {
   publicationState?: Maybe<PublicationState>;
-};
-
-
-export type QueryKnownUrlArgs = {
-  id?: Maybe<Scalars['ID']>;
-};
-
-
-export type QueryKnownUrlsArgs = {
-  filters?: Maybe<KnownUrlFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
@@ -1214,22 +1745,43 @@ export type Mutation = {
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
+  createUploadFolder?: Maybe<UploadFolderEntityResponse>;
+  updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
+  deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
+  createAwesomeHelpHelp?: Maybe<AwesomeHelpHelpEntityResponse>;
+  updateAwesomeHelpHelp?: Maybe<AwesomeHelpHelpEntityResponse>;
+  deleteAwesomeHelpHelp?: Maybe<AwesomeHelpHelpEntityResponse>;
+  createEzformsSubmission?: Maybe<EzformsSubmissionEntityResponse>;
+  updateEzformsSubmission?: Maybe<EzformsSubmissionEntityResponse>;
+  deleteEzformsSubmission?: Maybe<EzformsSubmissionEntityResponse>;
+  createEzformsRecipient?: Maybe<EzformsRecipientEntityResponse>;
+  updateEzformsRecipient?: Maybe<EzformsRecipientEntityResponse>;
+  deleteEzformsRecipient?: Maybe<EzformsRecipientEntityResponse>;
+  createGraphsBuilderGraph?: Maybe<GraphsBuilderGraphEntityResponse>;
+  updateGraphsBuilderGraph?: Maybe<GraphsBuilderGraphEntityResponse>;
+  deleteGraphsBuilderGraph?: Maybe<GraphsBuilderGraphEntityResponse>;
   updateAbout?: Maybe<AboutEntityResponse>;
   deleteAbout?: Maybe<AboutEntityResponse>;
+  createApplicationField?: Maybe<ApplicationFieldEntityResponse>;
+  updateApplicationField?: Maybe<ApplicationFieldEntityResponse>;
+  deleteApplicationField?: Maybe<ApplicationFieldEntityResponse>;
+  createApplicationQuestion?: Maybe<ApplicationQuestionEntityResponse>;
+  updateApplicationQuestion?: Maybe<ApplicationQuestionEntityResponse>;
+  deleteApplicationQuestion?: Maybe<ApplicationQuestionEntityResponse>;
+  createApplicationSession?: Maybe<ApplicationSessionEntityResponse>;
+  updateApplicationSession?: Maybe<ApplicationSessionEntityResponse>;
+  deleteApplicationSession?: Maybe<ApplicationSessionEntityResponse>;
   updateComingSoon?: Maybe<ComingSoonEntityResponse>;
   deleteComingSoon?: Maybe<ComingSoonEntityResponse>;
+  updateFeatured?: Maybe<FeaturedEntityResponse>;
+  deleteFeatured?: Maybe<FeaturedEntityResponse>;
   updateHomepage?: Maybe<HomepageEntityResponse>;
   deleteHomepage?: Maybe<HomepageEntityResponse>;
   updateImprint?: Maybe<ImprintEntityResponse>;
   deleteImprint?: Maybe<ImprintEntityResponse>;
-  createKnownUrl?: Maybe<KnownUrlEntityResponse>;
-  updateKnownUrl?: Maybe<KnownUrlEntityResponse>;
-  deleteKnownUrl?: Maybe<KnownUrlEntityResponse>;
   createSerie?: Maybe<SerieEntityResponse>;
   updateSerie?: Maybe<SerieEntityResponse>;
   deleteSerie?: Maybe<SerieEntityResponse>;
-  updateSuggestedContent?: Maybe<SuggestedContentEntityResponse>;
-  deleteSuggestedContent?: Maybe<SuggestedContentEntityResponse>;
   createVideo?: Maybe<VideoEntityResponse>;
   updateVideo?: Maybe<VideoEntityResponse>;
   deleteVideo?: Maybe<VideoEntityResponse>;
@@ -1252,7 +1804,7 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   /** Update an existing user */
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
-  /** Update an existing user */
+  /** Delete an existing user */
   deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   login: UsersPermissionsLoginPayload;
   /** Register a user */
@@ -1282,6 +1834,86 @@ export type MutationDeleteUploadFileArgs = {
 };
 
 
+export type MutationCreateUploadFolderArgs = {
+  data: UploadFolderInput;
+};
+
+
+export type MutationUpdateUploadFolderArgs = {
+  id: Scalars['ID'];
+  data: UploadFolderInput;
+};
+
+
+export type MutationDeleteUploadFolderArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationCreateAwesomeHelpHelpArgs = {
+  data: AwesomeHelpHelpInput;
+};
+
+
+export type MutationUpdateAwesomeHelpHelpArgs = {
+  id: Scalars['ID'];
+  data: AwesomeHelpHelpInput;
+};
+
+
+export type MutationDeleteAwesomeHelpHelpArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationCreateEzformsSubmissionArgs = {
+  data: EzformsSubmissionInput;
+};
+
+
+export type MutationUpdateEzformsSubmissionArgs = {
+  id: Scalars['ID'];
+  data: EzformsSubmissionInput;
+};
+
+
+export type MutationDeleteEzformsSubmissionArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationCreateEzformsRecipientArgs = {
+  data: EzformsRecipientInput;
+};
+
+
+export type MutationUpdateEzformsRecipientArgs = {
+  id: Scalars['ID'];
+  data: EzformsRecipientInput;
+};
+
+
+export type MutationDeleteEzformsRecipientArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationCreateGraphsBuilderGraphArgs = {
+  data: GraphsBuilderGraphInput;
+};
+
+
+export type MutationUpdateGraphsBuilderGraphArgs = {
+  id: Scalars['ID'];
+  data: GraphsBuilderGraphInput;
+};
+
+
+export type MutationDeleteGraphsBuilderGraphArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateAboutArgs = {
   data: AboutInput;
   locale?: Maybe<Scalars['I18NLocaleCode']>;
@@ -1293,6 +1925,54 @@ export type MutationDeleteAboutArgs = {
 };
 
 
+export type MutationCreateApplicationFieldArgs = {
+  data: ApplicationFieldInput;
+};
+
+
+export type MutationUpdateApplicationFieldArgs = {
+  id: Scalars['ID'];
+  data: ApplicationFieldInput;
+};
+
+
+export type MutationDeleteApplicationFieldArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationCreateApplicationQuestionArgs = {
+  data: ApplicationQuestionInput;
+};
+
+
+export type MutationUpdateApplicationQuestionArgs = {
+  id: Scalars['ID'];
+  data: ApplicationQuestionInput;
+};
+
+
+export type MutationDeleteApplicationQuestionArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationCreateApplicationSessionArgs = {
+  data: ApplicationSessionInput;
+};
+
+
+export type MutationUpdateApplicationSessionArgs = {
+  id: Scalars['ID'];
+  data: ApplicationSessionInput;
+};
+
+
+export type MutationDeleteApplicationSessionArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type MutationUpdateComingSoonArgs = {
   data: ComingSoonInput;
   locale?: Maybe<Scalars['I18NLocaleCode']>;
@@ -1301,6 +1981,11 @@ export type MutationUpdateComingSoonArgs = {
 
 export type MutationDeleteComingSoonArgs = {
   locale?: Maybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationUpdateFeaturedArgs = {
+  data: FeaturedInput;
 };
 
 
@@ -1320,22 +2005,6 @@ export type MutationUpdateImprintArgs = {
 };
 
 
-export type MutationCreateKnownUrlArgs = {
-  data: KnownUrlInput;
-};
-
-
-export type MutationUpdateKnownUrlArgs = {
-  id: Scalars['ID'];
-  data: KnownUrlInput;
-};
-
-
-export type MutationDeleteKnownUrlArgs = {
-  id: Scalars['ID'];
-};
-
-
 export type MutationCreateSerieArgs = {
   data: SerieInput;
   locale?: Maybe<Scalars['I18NLocaleCode']>;
@@ -1352,11 +2021,6 @@ export type MutationUpdateSerieArgs = {
 export type MutationDeleteSerieArgs = {
   id: Scalars['ID'];
   locale?: Maybe<Scalars['I18NLocaleCode']>;
-};
-
-
-export type MutationUpdateSuggestedContentArgs = {
-  data: SuggestedContentInput;
 };
 
 

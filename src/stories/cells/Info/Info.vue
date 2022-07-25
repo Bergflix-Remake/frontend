@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col justify-center w-full space-y-2 text-white items-left">
-        <img v-if="image" :src="image" :alt="title">
+        <img v-if="title_image" :src="'https://api.bergflix.de' + title_image" :alt="title">
         <h1 class="text-5xl font-black" v-else>{{ title }}</h1>
         <Logo :long="true">Original</Logo>
         <InfoRow :year="year" :age="age" :episodes="episodes" :genre="genre"></InfoRow>
@@ -23,7 +23,7 @@ defineProps<{
     age: number;
     episodes: number;
     genre: string;
-    image?: string;
+    title_image?: string;
     description: string;
     buttons: {
         text: string,

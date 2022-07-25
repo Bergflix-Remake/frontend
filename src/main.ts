@@ -73,7 +73,7 @@ export function useStrapi<T>(
 }
 
 export function useStrapiOne<T>(
-	queryKey: QueryKey,
+	queryKey: [string, any, StrapiRequestParams?],
 	options?: Omit<
 		UseQueryOptions<T, TError, T, QueryKey>,
 		"queryFn" | "queryKey"
