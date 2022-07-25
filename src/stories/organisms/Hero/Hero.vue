@@ -1,40 +1,76 @@
 <template>
     <section class="relative flex w-full h-[90vh] min-h-[95vh] mb-20 bg-center bg-no-repeat bg-cover bg-clean-dark-500"
-        :style="{ backgroundImage: `url('https://cdn.bergflix.de/thumbnails/Adventskalender-2014-Finale-Thumbnail.png')` }">
+        :style="{ backgroundImage: `url('${featured?.image}')` }">
         <div id="gradient" class="absolute top-0 left-0 w-full h-full gradient"></div>
         <div class="z-10 flex flex-col justify-center w-full h-full p-10 lg:w-1/2">
-            <Info v-bind="featured" class="max-w-md" />
+            <Info v-if="item.isSuccess && featured" v-bind="featured" class="max-w-md" />
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
-import { ChevronDoubleRightIcon, PlayIcon } from '@heroicons/vue/outline';
+import { PlayIcon } from '@heroicons/vue/outline';
+import { computed, ref } from 'vue';
+import { useStrapi, useStrapiOne } from '../../../main';
+import { FeaturedEntity, VideoEntity } from '../../../models/types';
 import Info from '../../cells/Info/Info.vue';
 
-const featured = {
-    year: 2022,
-    age: 16,
-    episodes: 10,
-    genre: "Action",
-    title: "Captain Pineapple",
-    image: 'https://cdn.bergflix.de/video_icons/captain_pineapple.png',
-    description: 'Eum repellendus quasi quia libero quis est autem consequatur nisi. Harum debitis eaque quod. Iste vero molestiae doloribus est repellendus facilis. Et cum perspiciatis. Rerum doloremque sequi neque sequi possimus suscipit. Natus quasi in quaerat reprehenderit et minus.',
-    buttons: [
-        {
-            text: 'Ansehen',
-            to: '/watch/captain_pineapple',
-            icon: PlayIcon,
-        },
-        {
-            text: 'Folgen',
-            to: '/series/captain_pineapple',
-            icon: ChevronDoubleRightIcon,
-            color: "clean-dark"
-        }
-    ]
 
-}
+const featured = ref<{
+    title: string;
+    year: number;
+    age: number;
+    episodes: number;
+    genre: string;
+    title_image?: string;
+    image: string;
+    description: string;
+    buttons: {
+        text: string,
+        to: string,
+        type?: "solid" | "outline" | "ghost",
+        color?: string,
+        icon?: any,
+    }[];
+}>();
+
+
+const item = useStrapi<FeaturedEntity>(['featured', {
+    populate: 'video'
+}])
+
+const videoId = computed(() => item.data?.attributes?.video?.data?.id);
+const enabled = computed(() => !!item.data?.attributes?.video?.data?.id);
+
+useStrapiOne<VideoEntity>(['videos', videoId, {
+    populate: '*'
+}], {
+    onSuccess: (data) => {
+        const video = data?.attributes
+        featured.value = {
+            title: video?.title!,
+            year: new Date(video?.year).getFullYear(),
+            age: video?.age!,
+            episodes: video?.series?.data?.attributes?.videos?.data?.length || 1,
+            genre: video?.genre as string,
+            title_image: video?.title_image?.data?.attributes?.url,
+            image: "https://api.bergflix.de" + video?.thumbnail?.data?.attributes?.url,
+            description: video?.description!,
+            buttons: [
+                {
+                    text: 'Ansehen',
+                    to: `/video/${data.id}`,
+                    icon: PlayIcon,
+                }
+            ],
+        }
+
+    },
+    enabled
+})
+
+
+
 
 </script>
 
