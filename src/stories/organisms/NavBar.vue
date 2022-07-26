@@ -1,17 +1,17 @@
 <template>
   <div id="desktop-nav" class="fixed top-0 left-0 z-50 w-full">
-    <nav
-      class="flex flex-row w-full h-16 px-4 text-white bg-gradient-to-b from-clean-dark-500 to-transparent backdrop-blur-md border-b-darkest-dark">
+    <nav @mouseleave="profileDropdownOpen = false"
+      class="flex flex-row items-center w-full h-24 px-8 text-white bg-gradient-to-b from-clean-dark-500 to-transparent backdrop-blur-md border-b-darkest-dark">
       <div id="main-nav" class="flex flex-row items-center mr-auto space-x-5">
-        <Logo :long="true"></Logo>
-        <NavLink href="/home">Home</NavLink>
-        <NavLink href="/movies">Movies</NavLink>
-        <NavLink href="/series">Series</NavLink>
+        <Logo class="!text-4xl" :long="true"></Logo>
+        <NavLink name="Home" href="home">Home</NavLink>
+        <NavLink name="Filme" href="movies">Filme</NavLink>
+        <NavLink name="Serien" href="series">Serien</NavLink>
       </div>
-      <div class="flex flex-col items-end justify-start mt-3" @mouseenter="profileDropdownOpen = true"
-        @mouseleave="profileDropdownOpen = false">
-        <Avatar image="//picsum.photos/500" />
-        <ProfileDropdown :open="profileDropdownOpen" :logged-in="false" :username="'abc'" class="mt-2" />
+      <div class="relative min-w-fit min-h-fit">
+        <Avatar size="xl" image="//picsum.photos/500" @mouseenter="profileDropdownOpen = true" />
+        <ProfileDropdown :open="profileDropdownOpen" :logged-in="true" :username="'abc'"
+          @mouseleave="profileDropdownOpen = false" class="absolute right-0 top-16" />
       </div>
     </nav>
   </div>
