@@ -3,7 +3,7 @@
     <nav @mouseleave="profileDropdownOpen = false"
       class="flex flex-row items-center w-full h-24 px-8 text-white bg-gradient-to-b from-clean-dark-500 to-transparent backdrop-blur-md border-b-darkest-dark">
       <div id="main-nav" class="flex flex-row items-center mr-auto space-x-5">
-        <Logo class="!text-4xl" :long="true"></Logo>
+        <Logo class="!text-3xl" :long="true"></Logo>
         <NavLink name="Home" href="home">Home</NavLink>
         <NavLink name="Filme" href="movies">Filme</NavLink>
         <NavLink name="Serien" href="series">Serien</NavLink>
