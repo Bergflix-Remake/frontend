@@ -3,7 +3,7 @@
         <Hero />
         <section class="p-10">
             <Title class="mb-2">
-                <Logo :long="true" class="!text-5xl">Originals</Logo>
+                <Logo :long="true">Originals</Logo>
             </Title>
             <ScrollableRow>
                 <Poster v-if="originals.isLoading" loading />
