@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col bg-black">
         <Hero />
-        <section class="p-4">
+        <section class="p-10">
             <Title class="mb-2">
                 <Logo :long="true" class="!text-5xl">Originals</Logo>
             </Title>
