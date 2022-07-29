@@ -41,7 +41,8 @@ const handleWheel = (e: WheelEvent) => {
 };
 
 const handleScroll = () => {
-  const el = scrollContainer.value!;
+  const el = scrollContainer.value;
+  if (el == null) return;
   leftScrollButton.value = el.scrollLeft > 0;
   rightScrollButton.value = el.scrollLeft + el.clientWidth < el.scrollWidth;
 };

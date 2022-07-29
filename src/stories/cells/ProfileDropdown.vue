@@ -2,7 +2,7 @@
   <transition name="slide">
     <div
       v-if="open"
-      class="z-50 flex flex-col justify-center p-5 space-y-2 rounded-md shadow-lg bg-clean-dark-500 w-max"
+      class="z-50 flex flex-col justify-center p-5 space-y-2 rounded-md shadow-lg bg-clean-dark-800/90 w-max"
     >
       <p class="font-bold leading-tight text-delorean-500">
         Hi, {{ loggedIn ? username : "Guest" }}!
