@@ -8,7 +8,8 @@
     "types": "strapi-generate-types quickgen https://api.bergflix.de/ -p ./src/models/",
     "lint": "eslint src/**/*.{ts,js,vue} --ext .ts,.js,.vue",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@headlessui/vue": "^1.5.0",
@@ -57,6 +58,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-storybook": "^0.5.12",
     "eslint-plugin-vue": "^8.7.1",
+    "husky": "^8.0.0",
     "postcss": "^8.4.5",
     "sass": "^1.45.0",
     "tailwindcss": "^3.1.4",
