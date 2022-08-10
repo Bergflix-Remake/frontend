@@ -9,11 +9,37 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
+    "baseUrl": ".",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
     "allowJs": true,
     "types": [
       "vite/client"
-    ]
+    ],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@atoms/*": [
+        "src/stories/atoms/*"
+      ],
+      "@cells/*": [
+        "src/stories/cells/*"
+      ],
+      "@molecules/*": [
+        "src/stories/molecules/*"
+      ],
+      "@organisms/*": [
+        "src/stories/organisms/*"
+      ]
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ]
 }

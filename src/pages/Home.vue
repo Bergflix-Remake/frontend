@@ -1,3 +1,6 @@
+<route lang='yaml'>
+name: Home
+</route>
 <template>
     <div class="flex flex-col bg-black">
         <Hero />
@@ -33,13 +36,13 @@
 </template>
 
 <script setup lang="ts">
-import Hero from '../../organisms/Hero/Hero.vue';
-import ScrollableRow from '../../cells/ScrollableRow.vue';
-import Poster from '../../molecules/Poster.vue';
-import Title from '../../atoms/Title/Title.vue';
-import Logo from '../../atoms/Logo.vue';
-import { useStrapi } from '../../../main';
-import { SerieEntity, VideoEntity } from '../../../models/types';
+import Hero from '@organisms/Hero/Hero.vue';
+import ScrollableRow from '@cells/ScrollableRow.vue';
+import Poster from '@molecules/Poster.vue';
+import Title from '@atoms/Title/Title.vue';
+import Logo from '@atoms/Logo.vue';
+import { useStrapi } from '@/main';
+import { SerieEntity, VideoEntity } from '@/models/types';
 
 const originals = useStrapi<VideoEntity[]>(['videos', {
     filters: {
