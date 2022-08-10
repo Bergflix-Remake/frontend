@@ -12,6 +12,10 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '@atoms': path.resolve(__dirname, './src/stories/atoms'),
+      '@cells': path.resolve(__dirname, './src/stories/cells'),
+      '@molecules': path.resolve(__dirname, './src/stories/molecules'),
+      '@organisms': path.resolve(__dirname, './src/stories/organisms'),
     }
   },
 })
