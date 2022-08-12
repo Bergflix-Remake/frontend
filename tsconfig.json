@@ -25,9 +25,6 @@
       "@atoms/*": [
         "src/stories/atoms/*"
       ],
-      "@cells/*": [
-        "src/stories/cells/*"
-      ],
       "@molecules/*": [
         "src/stories/molecules/*"
       ],

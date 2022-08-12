@@ -24,7 +24,7 @@
 import Logo from "../atoms/Logo.vue";
 import NavLink from "../atoms/NavLink.vue";
 import Avatar from "../molecules/Avatar.vue";
-import ProfileDropdown from "../cells/ProfileDropdown.vue";
+import ProfileDropdown from "@molecules/ProfileDropdown.vue";
 import { ref } from "vue";
 
 const profileDropdownOpen = ref(false);

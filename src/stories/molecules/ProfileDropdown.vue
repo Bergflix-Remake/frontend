@@ -22,8 +22,8 @@
   </transition>
 </template>
 <script setup lang="ts">
-import Link from "../atoms/Link.vue";
-import Button from "../atoms/Button.vue";
+import Link from "@atoms/Link.vue";
+import Button from "@atoms/Button.vue";
 import {
   UserCircleIcon,
   CogIcon,

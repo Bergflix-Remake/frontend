@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref, Ref } from "vue";
-import BadgeButton from "../atoms/BadgeButton.vue";
+import BadgeButton from "@atoms/BadgeButton.vue";
 import { ArrowNarrowRightIcon, ArrowNarrowLeftIcon } from "@heroicons/vue/outline";
 
 const scrollContainer: Ref<HTMLElement | undefined> = ref();

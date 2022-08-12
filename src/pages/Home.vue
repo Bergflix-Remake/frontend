@@ -37,7 +37,7 @@ name: Home
 
 <script setup lang="ts">
 import Hero from '@organisms/Hero/Hero.vue';
-import ScrollableRow from '@cells/ScrollableRow.vue';
+import ScrollableRow from '@molecules/ScrollableRow.vue';
 import Poster from '@molecules/Poster.vue';
 import Title from '@atoms/Title/Title.vue';
 import Logo from '@atoms/Logo.vue';

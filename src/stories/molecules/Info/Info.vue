@@ -13,9 +13,9 @@
 </template>
 
 <script setup lang="ts">
-import Logo from '../../atoms/Logo.vue';
-import InfoRow from '../../molecules/InfoRow/InfoRow.vue';
-import Button from '../../atoms/Button.vue';
+import Logo from '@atoms/Logo.vue';
+import InfoRow from '../InfoRow/InfoRow.vue';
+import Button from '@atoms/Button.vue';
 
 defineProps<{
     title: string;
