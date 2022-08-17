@@ -58,7 +58,7 @@ module.exports = {
         gray: colors.neutral
       },
       fontFamily: {
-        'sans': ['Euclid Circular A']
+        'sans': ['Plus Jakarta Sans']
       },
       transitionProperty: {
         'border': 'border-width, border-bottom-width, border-left-width, border-right-width, border-top-width',
