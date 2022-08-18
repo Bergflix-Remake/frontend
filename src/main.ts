@@ -11,6 +11,7 @@ import {
 	useMutation, useQuery, UseQueryOptions, UseQueryReturnType
 } from 'vue-query';
 import "./three-dots.css";
+import { createHead } from '@vueuse/head'
 
 // Strapi Query Client //
 import { ErrorResponse as TError } from './models/custom';
@@ -18,8 +19,10 @@ import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiUser } fro
 import { QueryKey } from 'react-query/types/core';
 
 const app = createApp(App);
+const head = createHead();
 
 // Vue Plugins //
+app.use(head);
 app.use(VuePlyr, {
 	plyr: {},
 });
