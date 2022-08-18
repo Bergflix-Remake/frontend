@@ -1,9 +1,11 @@
+require("@rushstack/eslint-patch/modern-module-resolution")
+
 module.exports = {
   env: {
     browser: true,
     es2021: true
   },
-  extends: ['plugin:vue/essential', 'standard', 'prettier', 'plugin:storybook/recommended'],
+  extends: ['plugin:vue/vue3-essential', 'standard', 'prettier', 'plugin:storybook/recommended', '@vue/eslint-config-typescript'],
   parser: "vue-eslint-parser",
   parserOptions: {
     ecmaVersion: 'latest',
