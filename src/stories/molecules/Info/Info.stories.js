@@ -3,7 +3,7 @@ import { PlayIcon } from '@heroicons/vue/solid'
 import { ChevronDoubleRightIcon } from '@heroicons/vue/outline'
 
 export default {
-  title: '🦠 Cells / MovieInfo',
+  title: '🧬 Molecules / MovieInfo',
   component: Component
 };
 
