@@ -11,3 +11,8 @@ export const parameters = {
   },
   layout: 'fullscreen'
 }
+
+import { app } from "@storybook/vue3";
+import { VueQueryPlugin } from 'vue-query';
+
+app.use(VueQueryPlugin)

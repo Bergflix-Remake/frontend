@@ -1,7 +1,7 @@
 import ProfileDropdownComponent from "./ProfileDropdown.vue"
 
 export default {
-    title: '🦠 Cells / Profile Dropdown',
+    title: '🧬 Molecules / Profile Dropdown',
     component: ProfileDropdownComponent,
 }
 
