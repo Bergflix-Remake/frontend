@@ -1,7 +1,7 @@
 import SubtitleComponent from "./Subtitle.vue";
 
 export default {
-    title: "⚛️ Atoms / Subtitle",
+    title: "⚛ Atoms / Subtitle",
     component: SubtitleComponent,
 }
 

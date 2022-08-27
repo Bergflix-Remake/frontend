@@ -22,6 +22,7 @@
     "axios": "^0.24.0",
     "eslint-plugin-snakecasejs": "^2.2.0",
     "markdown-it": "^12.3.2",
+    "strapi-generate-types": "^0.1.4",
     "strapi-sdk-js": "^2.1.5",
     "three-dots": "^0.2.3",
     "typescript": "^4.4.4",
@@ -35,10 +36,6 @@
   "devDependencies": {
     "@babel/core": "^7.18.5",
     "@rushstack/eslint-patch": "^1.1.4",
-    "@storybook/addon-actions": "^6.5.0",
-    "@storybook/addon-essentials": "^6.5.0",
-    "@storybook/addon-interactions": "^6.5.0",
-    "@storybook/addon-links": "^6.5.0",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-interactions": "^6.5.10",

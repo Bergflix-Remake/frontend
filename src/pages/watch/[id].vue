@@ -1,65 +1,93 @@
 <template>
-  <article class='p-5 flex flex-col w-full min-h-screen space-y-2'>
-    <div class='flex flex-row space-x-2'>
-      <div class='bg-clean-dark-700 w-3/4 aspect-video rounded-l-lg overflow-hidden'>
-        <vue-plyr>
-          <div class='plyr__video-embed'>
-            <iframe
-              src='https://www.youtube.com/embed/G4dkLMj6GRQ?amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1'
-              allowfullscreen
-              allowtransparency
-              allow='autoplay'
-            ></iframe>
-          </div>
-        </vue-plyr>
+  <article v-if='!invalidId' class='p-5 flex flex-col w-full min-h-screen space-y-2'>
+    <div class='flex flex-col xl:flex-row xl:space-x-2'>
+      <!-- Player -->
+      <div class='bg-clean-dark-600 w-full aspect-video md:rounded-l-lg  overflow-hidden'>
+        <Player  v-if='movie.isSuccess' :vid='url'  :page-id='id'/>
+        <div v-else class='w-full h-full justify-center items-center flex'>
+          <Loader />
+        </div>
       </div>
-      <div class='w-1/3 bg-clean-dark-700 rounded-r-lg p-5 flex flex-col'>
-        <Title>Captain Pineapple 🍍</Title>
-        <div class='flex flex-col space-y-2 overflow-y-scroll h-min overflow-x-clip'>
-          <PlaylistEntry thumbnail='https://picsum.photos/1080/1920' title='Die Bombe ist Scharf!' episode='1'
-                         playing />
-          <PlaylistEntry thumbnail='https://picsum.photos/1080/1920' title='Die Bombe ist Scharf!' episode='1'
-                         playing />
-          <PlaylistEntry thumbnail='https://picsum.photos/1080/1920' title='Die Bombe ist Scharf!' episode='1'
-                         playing />
-          <PlaylistEntry thumbnail='https://picsum.photos/1080/1920' title='Die Bombe ist Scharf!' episode='1'
-                         playing />
-          <PlaylistEntry thumbnail='https://picsum.photos/1080/1920' title='Die Bombe ist Scharf!' episode='1'
-                         playing />
-          <PlaylistEntry thumbnail='https://picsum.photos/1080/1920' title='Die Bombe ist Scharf!' episode='1'
-                         playing />
-          <PlaylistEntry thumbnail='https://picsum.photos/1080/1920' title='Die Bombe ist Scharf!' episode='1'
-                         playing />
+      <!-- Playlist -->
+      <div v-if='series'
+           class='w-full xl:w-1/3 bg-clean-dark-600 xl:rounded-bl-none xl:rounded-r-lg rounded-b-lg p-5 flex flex-col'>
+        <img v-if='movie.data?.attributes?.series?.data?.attributes?.title_image?.data'
+             :src='`https://api.bergflix.de${movie.data?.attributes?.series?.data?.attributes?.title_image?.data?.attributes?.url}`'
+             class='max-w-md mb-5'>
+        <Title v-else>{{ series.title }}</Title>
+        <div class='flex flex-col space-y-2'>
+          <PlaylistEntry
+            v-for='(video, index) in series.videos?.data'
+            :id='video.id'
+            :key='video.id'
+            :episode='index + 1'
+            :thumbnail='`https://api.bergflix.de${video.attributes?.thumbnail?.data?.attributes?.url}`'
+            :title='video.attributes?.title'
+            :playing='Number(video.id) === id' />
         </div>
       </div>
     </div>
-    <div class='w-full p-10 bg-clean-dark-700 rounded-lg flex'>
-      <div class='w-1/2'>
-        <Title>Die Bombe ist Scharf!</Title>
+    <!-- Info -->
+    <div class='w-full p-10 bg-clean-dark-600 rounded-lg flex md:flex-row flex-col'>
+      <div class='md:w-1/2 w-full'>
+        <img v-if='movie.data?.attributes?.title_image?.data'
+             :src='`https://api.bergflix.de${movie.data?.attributes?.title_image?.data?.attributes?.url}`'
+             class='max-h-24' :alt='movie.data?.attributes?.title'>
+        <Title v-else>{{ title }}</Title>
         <p class='text-gray-500 font-light'>
-          lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          tincidunt, nisl nec ultricies luctus, nunc nisl aliquet nisl, sit amet
-          aliquet nunc nisl sit amet lorem. Donec tincidunt, nisl nec ultricies
-          luctus, nunc nisl aliquet nisl, sit amet aliquet nunc nisl sit amet
-          lorem. Donec tincidunt, nisl nec ultricies luctus, nunc nisl aliquet.
+          {{ description }}
         </p>
-        <Subtitle>Mitwirkende</Subtitle>
-        <div class='flex space-x-2 mt-5'>
-          <Contributor name='Schauspieler 1' role='Actor' image='https://picsum.photos/200' />
-        </div>
+
       </div>
-      <div class='ml-auto'>
+      <div class='md:ml-auto mt-5'>
         <InfoRow :year='2022' :age='16' genre='Action' />
       </div>
-
+    </div>
+    <div class='w-full p-10 bg-clean-dark-600 rounded-lg flex flex-col'>
+      <Subtitle>Mitwirkende</Subtitle>
+      <div class='flex flex-wrap'>
+        <Contributor
+          v-for='contributor in movie.data?.attributes?.contributors' :key='contributor?.id'
+          :name='contributor?.contributor?.data?.attributes?.name' :role='contributor?.role'
+          :character='contributor?.character'
+          :image='`https://api.bergflix.de${contributor?.contributor?.data?.attributes?.image?.data?.attributes?.url}`'
+          :url='contributor?.contributor?.data?.attributes?.href' />
+      </div>
     </div>
   </article>
 </template>
 
-<script setup>
+<script setup lang='ts'>
 import Title from '@atoms/Title/Title.vue';
 import InfoRow from '@molecules/InfoRow/InfoRow.vue';
 import Subtitle from '@atoms/Subtitle/Subtitle.vue';
 import Contributor from '@/pages/watch/Contributor.vue';
-import PlaylistEntry from '@/pages/watch/PlaylistEntry.vue';</script>
+import PlaylistEntry from '@/pages/watch/PlaylistEntry.vue';
+import { useStrapiOne } from '@/main';
+import { VideoEntity } from '@/models/types';
+import { useRoute } from 'vue-router';
+import Loader from '@/components/Loader.vue';
+import { computed } from 'vue';
+import { useHead } from '@vueuse/head';
+import Player from '@/pages/watch/Player.vue';
 
+const route = useRoute();
+const invalidId = computed(() => !route.params.id || isNaN(Number(route.params.id)));
+const id = computed(() => Number(route.params.id));
+const movie = useStrapiOne<VideoEntity>([
+  'videos',
+  id,
+  {
+    populate: ['contributors', 'contributors.contributor', 'contributors.contributor.image', 'series.videos', 'series.videos.thumbnail', 'series.title_image', 'title_image']
+  }
+]);
+const series = computed(() => movie.data?.attributes?.series?.data?.attributes);
+const url = computed(() => movie.data?.attributes?.youtube_url!.split('v=')[1]);
+
+useHead({
+  title: computed(() => `${movie.data?.attributes?.title ? 'Watching ' + movie.data?.attributes?.title : 'Loading'} · Bergflix`)
+});
+
+const title = computed(() => movie.data?.attributes?.title);
+const description = computed(() => movie.data?.attributes?.description);
+</script>
