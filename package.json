@@ -14,6 +14,7 @@
   "dependencies": {
     "@headlessui/vue": "^1.5.0",
     "@heroicons/vue": "^1.0.6",
+    "@skjnldsv/vue-plyr": "^7.3.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.0",
@@ -28,7 +29,6 @@
     "typescript": "^4.4.4",
     "vite-plugin-rewrite-all": "^0.1.2",
     "vue": "^3.2.23",
-    "vue-plyr": "^7.0.0",
     "vue-query": "^1.22.2",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2"
