@@ -24,7 +24,7 @@
           {{ movie.attributes?.title }}
         </h1>
         <p class="text-sm font-light text-white">
-          {{ movie.attributes?.series?.data?.attributes?.Title }} |
+          {{ movie.attributes?.series?.data?.attributes?.title }} |
           <span class="text-bold">{{ getYearFromDate(movie.attributes?.year) }}</span>
         </p>
       </div>

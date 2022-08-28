@@ -1300,7 +1300,7 @@ export enum Enum_Serie_Genre {
 
 export type SerieFiltersInput = {
   id?: Maybe<IdFilterInput>;
-  Title?: Maybe<StringFilterInput>;
+  title?: Maybe<StringFilterInput>;
   rating?: Maybe<FloatFilterInput>;
   description?: Maybe<StringFilterInput>;
   videos?: Maybe<VideoFiltersInput>;
@@ -1319,7 +1319,7 @@ export type SerieFiltersInput = {
 };
 
 export type SerieInput = {
-  Title?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
   title_image?: Maybe<Scalars['ID']>;
   background_image?: Maybe<Scalars['ID']>;
   rating?: Maybe<Scalars['Float']>;
@@ -1335,7 +1335,7 @@ export type SerieInput = {
 
 export type Serie = {
   __typename?: 'Serie';
-  Title: Scalars['String'];
+  title: Scalars['String'];
   title_image?: Maybe<UploadFileEntityResponse>;
   background_image?: Maybe<UploadFileEntityResponse>;
   rating?: Maybe<Scalars['Float']>;

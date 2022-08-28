@@ -3,7 +3,7 @@
     <div class='flex flex-col xl:flex-row xl:space-x-2'>
       <!-- Player -->
       <div class='bg-clean-dark-600 w-full aspect-video md:rounded-l-lg  overflow-hidden'>
-        <Player  v-if='movie.isSuccess' :key='url'  :vid='url' :page-id='id' />
+        <Player  v-if='movie.isSuccess' :key='url!'  :vid='url!' :page-id='id' />
         <div v-else class='w-full h-full justify-center items-center flex'>
           <Loader />
         </div>
@@ -20,11 +20,11 @@ v-if='movie.data?.attributes?.series?.data?.attributes?.title_image?.data'
         <div class='flex flex-col space-y-2'>
           <PlaylistEntry
             v-for='(video, index) in series.videos?.data'
-            :id='video.id'
-            :key='video.id'
+            :id='video.id!'
+            :key='video.id!'
             :episode='index + 1'
             :thumbnail='`https://api.bergflix.de${video.attributes?.thumbnail?.data?.attributes?.url}`'
-            :title='video.attributes?.title'
+            :title='video.attributes?.title!'
             :playing='Number(video.id) === id' />
         </div>
       </div>
@@ -51,10 +51,10 @@ v-if='movie.data?.attributes?.title_image?.data'
       <div class='flex flex-wrap'>
         <Contributor
           v-for='contributor in movie.data?.attributes?.contributors' :key='contributor?.id'
-          :name='contributor?.contributor?.data?.attributes?.name' :role='contributor?.role'
+          :name='contributor?.contributor?.data?.attributes?.name!' :role='contributor?.role!'
           :character='contributor?.character'
           :image='`https://api.bergflix.de${contributor?.contributor?.data?.attributes?.image?.data?.attributes?.url}`'
-          :url='contributor?.contributor?.data?.attributes?.href' />
+          :url='contributor?.contributor?.data?.attributes?.href!' />
       </div>
     </div>
   </article>
