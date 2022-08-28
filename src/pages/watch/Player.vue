@@ -32,7 +32,7 @@ watchEffect(() => {
     });
   }
   if(props.vid) {
-    console.log("%cPlayer","background-color: blue; color: white;","Video ID Changed:", props.vid);
+    console.debug("%cPlayer","background-color: blue; color: white;","Video ID Changed:", props.vid);
   }
 });
 </script>

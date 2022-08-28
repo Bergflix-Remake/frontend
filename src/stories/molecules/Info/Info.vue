@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col justify-center w-full space-y-2 text-white items-left">
         <img v-if="title_image" :src="'https://api.bergflix.de' + title_image" :alt="title">
-        <h1 class="text-5xl font-black" v-else>{{ title }}</h1>
+        <h1 v-else class="text-5xl font-black">{{ title }}</h1>
         <Logo :long="true">Original</Logo>
         <InfoRow :year="year" :age="age" :episodes="episodes" :genre="genre"></InfoRow>
         <p

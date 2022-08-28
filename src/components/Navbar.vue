@@ -6,15 +6,15 @@
     >
       <div class="ml-2"></div>
       <h1
-        @click="$router.push('/home')"
         class="text-4xl font-bold cursor-pointer text-darkest-dark dark:text-white md:hidden"
+        @click="$router.push('/home')"
       >
         Bf
         <span class="font-bold text-primary">.</span>
       </h1>
       <h1
-        @click="$router.push('/home')"
         class="hidden text-4xl font-bold cursor-pointer text-darkest-dark dark:text-white md:block"
+        @click="$router.push('/home')"
       >
         Bergflix
         <span class="font-bold text-primary">.</span>
@@ -28,13 +28,13 @@
         </li>
       </ul>
       <div
+        id="items-right"
         style="margin-left: auto; margin-right: 2rem"
         class="flex flex-row h-full"
-        id="items-right"
         @mouseleave="showUserPopup = false"
       >
         <!-- User Icon -->
-        <div class="flex flex-col items-end" v-if="user.isFetched">
+        <div v-if="user.isFetched" class="flex flex-col items-end">
           <img
             :src="'https://cdn.bergflix.de/logo/light_bg.png'"
             :alt="'Logged in as ' + user.data?.username || 'Guest'"
@@ -43,15 +43,15 @@
           />
           <transition name="slide">
             <div
-              id="user-popup"
               v-if="showUserPopup"
+              id="user-popup"
               class="flex flex-col p-5 mt-2 bg-black rounded-md spapce-y-5 h-max w-max bg-opacity-70 backdrop-blur-3xl"
               @mouseleave="showUserPopup = false"
             >
               <h2 class="font-bold text-delorean">
                 Hi, {{ user.data?.username || "Guest" }}!
               </h2>
-              <ul class="text-white" v-if="user.isSuccess">
+              <ul v-if="user.isSuccess" class="text-white">
                 <li v-for="item in menuItems" :key="item.title">
                   <Button
                     :to="item.href.replace('/', '')"
@@ -68,20 +68,20 @@
               </ul>
               <hr class="my-2 border-delorean" />
               <Button
+                v-if="user.isSuccess"
                 class="text-white"
                 :to="'#'"
                 type="link"
                 :icon="LogoutIcon"
                 @click="logout"
-                v-if="user.isSuccess"
               >
                 Logout
               </Button>
               <Button
+                v-if="user.isError"
                 :to="'login'"
                 type="link"
                 :icon="LoginIcon"
-                v-if="user.isError"
                 class="text-white"
               >
                 Login
@@ -90,7 +90,7 @@
           </transition>
         </div>
         <!-- User Loading Indicator -->
-        <div class="flex flex-col items-end justify-center" v-if="user.isLoading">
+        <div v-if="user.isLoading" class="flex flex-col items-end justify-center">
           <Loader />
         </div>
       </div>
@@ -123,21 +123,6 @@
     <Sidebar></Sidebar>
   </div>
 </template>
-
-<style>
-.slide-enter-from,
-.slide-leave-to {
-  z-index: 1000;
-  transform: translateY(25%);
-  opacity: 0;
-}
-
-.slide-enter-active,
-.slide-leave-active {
-  z-index: 1000;
-  transition: all 0.2s linear;
-}
-</style>
 
 <script setup lang="ts">
 import { ref } from "vue";
@@ -210,3 +195,18 @@ const logout = () => {
   user?.refetch();
 };
 </script>
+
+<style>
+.slide-enter-from,
+.slide-leave-to {
+  z-index: 1000;
+  transform: translateY(25%);
+  opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  z-index: 1000;
+  transition: all 0.2s linear;
+}
+</style>

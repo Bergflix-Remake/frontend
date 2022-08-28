@@ -4,7 +4,7 @@
     :class="classString"
     @click="$emit('click')"
   >
-    <component v-if="icon" :is="icon" class="inline w-6 h-6 mr-1" />
+    <component :is="icon" v-if="icon" class="inline w-6 h-6 mr-1" />
     <slot />
   </button>
 </template>

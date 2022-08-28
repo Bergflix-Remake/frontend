@@ -1,8 +1,8 @@
 <template>
   <div
-    @click='router.push(`/watch/${id}`)'
     class='bg-clean-dark-800 flex w-full h-24 rounded-md shadow-lg overflow-clip hover:-translate-x-1 transition-all flex-shrink-0 text-center cursor-pointer'
-    :class='{ "shadow-primary-500/5": playing}'>
+    :class='{ "shadow-primary-500/5": playing}'
+    @click='router.push(`/watch/${id}`)'>
     <div class='h-full aspect-video bg-cover' :style='`background-image: url(${thumbnail});`'></div>
     <div class='w-full flex flex-col justify-center items-center space-y-2'>
       <h3>{{ title }} <span v-if='episode' class='text-delorean-500'>#{{ episode }}</span></h3>

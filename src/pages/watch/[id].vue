@@ -3,15 +3,17 @@
     <div class='flex flex-col xl:flex-row xl:space-x-2'>
       <!-- Player -->
       <div class='bg-clean-dark-600 w-full aspect-video md:rounded-l-lg  overflow-hidden'>
-        <Player  v-if='movie.isSuccess' :vid='url'  :page-id='id' :key='url' />
+        <Player  v-if='movie.isSuccess' :key='url'  :vid='url' :page-id='id' />
         <div v-else class='w-full h-full justify-center items-center flex'>
           <Loader />
         </div>
       </div>
       <!-- Playlist -->
-      <div v-if='series'
+      <div
+v-if='series'
            class='w-full xl:w-1/3 bg-clean-dark-600 xl:rounded-bl-none xl:rounded-r-lg rounded-b-lg p-5 flex flex-col'>
-        <img v-if='movie.data?.attributes?.series?.data?.attributes?.title_image?.data'
+        <img
+v-if='movie.data?.attributes?.series?.data?.attributes?.title_image?.data'
              :src='`https://api.bergflix.de${movie.data?.attributes?.series?.data?.attributes?.title_image?.data?.attributes?.url}`'
              class='max-w-md mb-5'>
         <Title v-else>{{ series.title }}</Title>
@@ -30,7 +32,8 @@
     <!-- Info -->
     <div class='w-full p-10 bg-clean-dark-600 rounded-lg flex md:flex-row flex-col'>
       <div class='md:w-1/2 w-full'>
-        <img v-if='movie.data?.attributes?.title_image?.data'
+        <img
+v-if='movie.data?.attributes?.title_image?.data'
              :src='`https://api.bergflix.de${movie.data?.attributes?.title_image?.data?.attributes?.url}`'
              class='max-h-24' :alt='movie.data?.attributes?.title'>
         <Title v-else>{{ title }}</Title>

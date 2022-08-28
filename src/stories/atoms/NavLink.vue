@@ -1,5 +1,6 @@
 <template>
-  <router-link :to="href ? `/${href}` : '#'"
+  <router-link
+:to="href ? `/${href}` : '#'"
     class="text-xl font-thin transition-all ease-in-out cursor-pointer h-min hover:text-primary-500 group w-max"
     :class="isActive ? 'text-primary-500' : 'text-delorean-500'">
     <slot />
