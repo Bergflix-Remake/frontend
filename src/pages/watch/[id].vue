@@ -3,7 +3,7 @@
     <div class='flex flex-col xl:flex-row xl:space-x-2'>
       <!-- Player -->
       <div class='bg-clean-dark-600 w-full aspect-video md:rounded-l-lg  overflow-hidden'>
-        <Player  v-if='movie.isSuccess' :vid='url'  :page-id='id'/>
+        <Player  v-if='movie.isSuccess' :vid='url'  :page-id='id' :key='url' />
         <div v-else class='w-full h-full justify-center items-center flex'>
           <Loader />
         </div>
@@ -67,7 +67,7 @@ import { useStrapiOne } from '@/main';
 import { VideoEntity } from '@/models/types';
 import { useRoute } from 'vue-router';
 import Loader from '@/components/Loader.vue';
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { useHead } from '@vueuse/head';
 import Player from '@/pages/watch/Player.vue';
 
@@ -90,4 +90,8 @@ useHead({
 
 const title = computed(() => movie.data?.attributes?.title);
 const description = computed(() => movie.data?.attributes?.description);
+
+watch(id, () => {
+  location.reload();
+})
 </script>

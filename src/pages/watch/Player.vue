@@ -1,19 +1,17 @@
 <template>
-  <vue-plyr id='player' :key="vid">
-    <div data-plyr-provider="youtube" :data-plyr-embed-id="vid" />
+  <vue-plyr ref='player' :key='vid'>
+    <div data-plyr-provider='youtube' :data-plyr-embed-id='vid' />
   </vue-plyr>
 </template>
 <script setup lang='ts'>
-import { defineProps } from 'vue';
+import { defineProps, ref,  watchEffect } from 'vue';
 
 const props = defineProps<{
   vid: string;
   pageId: number;
 }>();
 
-
-/* const player = ref(); */
-/*
+ const player = ref();
 watchEffect(() => {
   if (player.value) {
 
@@ -33,9 +31,8 @@ watchEffect(() => {
       localStorage.setItem(`${props.pageId}-watchTime`, player.value.player.currentTime);
     });
   }
-  if(props.id) {
-    console.log("%cPlayer","background-color: blue; color: white;","Video ID Changed:", props.id);
+  if(props.vid) {
+    console.log("%cPlayer","background-color: blue; color: white;","Video ID Changed:", props.vid);
   }
 });
-*/
 </script>
