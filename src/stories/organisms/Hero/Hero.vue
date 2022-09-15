@@ -60,7 +60,7 @@ useStrapiOne<VideoEntity>(['videos', videoId, {
             buttons: [
                 {
                     text: 'Ansehen',
-                    to: `/video/${data.id}`,
+                    to: `/watch/${data.id}`,
                     icon: PlayIcon,
                 }
             ],
