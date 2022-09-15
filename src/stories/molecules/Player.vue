@@ -4,14 +4,14 @@
   </vue-plyr>
 </template>
 <script setup lang='ts'>
-import { defineProps, ref,  watchEffect } from 'vue';
+import { defineProps, ref, watchEffect } from 'vue';
 
 const props = defineProps<{
   vid: string;
   pageId: number;
 }>();
 
- const player = ref();
+const player = ref();
 watchEffect(() => {
   if (player.value) {
 
@@ -31,8 +31,8 @@ watchEffect(() => {
       localStorage.setItem(`${props.pageId}-watchTime`, player.value.player.currentTime);
     });
   }
-  if(props.vid) {
-    console.debug("%cPlayer","background-color: blue; color: white;","Video ID Changed:", props.vid);
+  if (props.vid) {
+    console.debug('%cPlayer', 'background-color: blue; color: white;', 'Video ID Changed:', props.vid);
   }
 });
 </script>

@@ -10,7 +10,7 @@
       </div>
       <!-- Playlist -->
       <div
-v-if='series'
+        v-if='series'
            class='w-full xl:w-1/3 bg-clean-dark-600 xl:rounded-bl-none xl:rounded-r-lg rounded-b-lg p-5 flex flex-col'>
         <img
 v-if='movie.data?.attributes?.series?.data?.attributes?.title_image?.data'
@@ -64,15 +64,15 @@ v-if='movie.data?.attributes?.title_image?.data'
 import Title from '@atoms/Title/Title.vue';
 import InfoRow from '@molecules/InfoRow/InfoRow.vue';
 import Subtitle from '@atoms/Subtitle/Subtitle.vue';
-import Contributor from '@/pages/watch/Contributor.vue';
-import PlaylistEntry from '@/pages/watch/PlaylistEntry.vue';
+import Contributor from '@molecules/Contributor.vue';
+import PlaylistEntry from '@molecules/PlaylistEntry.vue';
 import { useStrapiOne } from '@/main';
 import { VideoEntity } from '@/models/types';
 import { useRoute } from 'vue-router';
 import Loader from '@/components/Loader.vue';
 import { computed, watch } from 'vue';
 import { useHead } from '@vueuse/head';
-import Player from '@/pages/watch/Player.vue';
+import Player from '@molecules/Player.vue';
 
 const route = useRoute();
 const invalidId = computed(() => !route.params.id || isNaN(Number(route.params.id)));
@@ -85,7 +85,8 @@ const movie = useStrapiOne<VideoEntity>([
   }
 ]);
 const series = computed(() => movie.data?.attributes?.series?.data?.attributes);
-const url = computed(() => movie.data?.attributes?.youtube_url!.split('v=')[1]);
+// Get youtube video id from movie.data?.attributes?.youtube_url using regex
+const url = computed(() => movie.data?.attributes?.youtube_url?.match(/v=(.*)/)?.[1]);
 
 useHead({
   title: computed(() => `${movie.data?.attributes?.title ? 'Watching ' + movie.data?.attributes?.title : 'Loading'} · Bergflix`)
