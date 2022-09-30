@@ -1,6 +1,6 @@
-import { createApp , reactive } from "vue";
+import { createApp, reactive, UnwrapNestedRefs } from 'vue';
 import App from "./App.vue";
-import "./assets/font/stylesheet.css";
+import "./assets/font.css";
 import "./index.css";
 import VuePlyr from "vue-plyr";
 import "vue-plyr/dist/vue-plyr.css";
@@ -8,8 +8,10 @@ import { router } from "./router";
 import { store } from "./store";
 import {
 	VueQueryPlugin,
- useMutation, useQuery, UseQueryOptions } from "vue-query";
+	useMutation, useQuery, UseQueryOptions, UseQueryReturnType
+} from 'vue-query';
 import "./three-dots.css";
+import { createHead } from '@vueuse/head'
 
 // Strapi Query Client //
 import { ErrorResponse as TError } from './models/custom';
@@ -17,8 +19,10 @@ import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiUser } fro
 import { QueryKey } from 'react-query/types/core';
 
 const app = createApp(App);
+const head = createHead();
 
 // Vue Plugins //
+app.use(head);
 app.use(VuePlyr, {
 	plyr: {},
 });
@@ -38,7 +42,7 @@ export const strapi = new Strapi({
 
 function useStrapiQuery<T>({ queryKey }: any) {
 	return strapi
-		.find(queryKey[0], queryKey[1] ? queryKey[1] : {})
+		.find<T>(queryKey[0], queryKey[1] ? queryKey[1] : {})
 		.then((res) => {
 			return res.data as T;
 		});
@@ -46,9 +50,9 @@ function useStrapiQuery<T>({ queryKey }: any) {
 
 function useStrapiQueryOne<T>({ queryKey }: any) {
 	return strapi
-		.findOne(queryKey[0], queryKey[1], queryKey[2] ? queryKey[2] : {})
+		.findOne<T>(queryKey[0], queryKey[1], queryKey[2] ? queryKey[2] : {})
 		.then((res) => {
-			return res.data as T;
+			return res.data;
 		});
 }
 
@@ -68,7 +72,7 @@ export function useStrapi<T>(
 		UseQueryOptions<T, TError, T, QueryKey>,
 		"queryFn" | "queryKey"
 	>
-) {
+): UnwrapNestedRefs<UseQueryReturnType<T, TError>> {
 	return reactive(useQuery<T, TError>(queryKey, useStrapiQuery, options));
 }
 
@@ -78,11 +82,11 @@ export function useStrapiOne<T>(
 		UseQueryOptions<T, TError, T, QueryKey>,
 		"queryFn" | "queryKey"
 	>
-) {
+): UnwrapNestedRefs<UseQueryReturnType<T, TError>> {
 	return reactive(useQuery<T, TError>(queryKey, useStrapiQueryOne, options));
 }
 
-export function getUser() {
+export function getUser(): UnwrapNestedRefs<UseQueryReturnType<StrapiUser, TError>> {
 	return reactive(
 		useQuery<StrapiUser, TError>(
 			"user",

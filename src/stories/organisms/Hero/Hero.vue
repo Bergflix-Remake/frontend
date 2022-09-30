@@ -11,9 +11,9 @@
 <script setup lang="ts">
 import { PlayIcon } from '@heroicons/vue/outline';
 import { computed, ref } from 'vue';
-import { useStrapi, useStrapiOne } from '../../../main';
-import { FeaturedEntity, VideoEntity } from '../../../models/types';
-import Info from '../../cells/Info/Info.vue';
+import { useStrapi, useStrapiOne } from '@/main';
+import { FeaturedEntity, VideoEntity } from '@/models/types';
+import Info from '../../molecules/Info/Info.vue';
 
 
 const featured = ref<{

@@ -1,26 +1,42 @@
+const { mergeConfig } = require('vite');
+const path = require('path');
+
 module.exports = {
-  "stories": [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|ts|jsx|tsx)"
+  'stories': [
+    '../src/**/*.stories.mdx',
+    '../src/**/*.stories.@(js|ts|jsx|tsx)'
   ],
-  "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
+  'addons': [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
     {
-      name: "@storybook/addon-postcss",
+      name: '@storybook/addon-postcss',
       options: {
         postcssLoaderOptions: {
-          implementation: require("postcss")
+          implementation: require('postcss')
         }
       }
     }
   ],
-  "framework": "@storybook/vue3",
-  "core": {
-    "builder": "@storybook/builder-vite"
+  'framework': '@storybook/vue3',
+  'core': {
+    'builder': '@storybook/builder-vite'
   },
-  "features": {
-    "storyStoreV7": true
+  'features': {
+    'storyStoreV7': true
+  },
+  async viteFinal(config, { configType }) {
+    return mergeConfig(config, {
+      // TODO add vite-plugin-pages w/o breaking
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, '../src'),
+          '@atoms': path.resolve(__dirname, '../src/stories/atoms'),
+          '@molecules': path.resolve(__dirname, '../src/stories/molecules'),
+          '@organisms': path.resolve(__dirname, '../src/stories/organisms')
+        }
+      }
+    });
   }
-}
+};

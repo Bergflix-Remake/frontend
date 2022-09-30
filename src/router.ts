@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-const Home = () => import("./stories/pages/Home/Home.vue");
+import r from '~pages'
 
 const routes = [
-	{ path: "/", redirect: "/home", meta: { name: "Home" } },
-	{ path: "/home", component: Home, meta: { name: "Home" } },
-];
+	...r,
+	{ path: "/", redirect: "/home"},
+]
 
 export const router = createRouter({
 	history: createWebHistory(),
