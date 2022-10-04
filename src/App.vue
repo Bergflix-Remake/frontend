@@ -6,7 +6,7 @@ import Navbar from "./stories/organisms/NavBar.vue";
 <template>
   <div>
     <Navbar />
-    <div class="flex flex-col min-h-screen bg-black text-clean-white">
+    <div class="flex flex-col min-h-screen bg-black text-clean-white mt-20">
       <router-view></router-view>
     </div>
     <Footer />

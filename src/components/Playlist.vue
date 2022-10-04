@@ -5,10 +5,10 @@
     <h1 class="text-2xl font-bold">{{ title }}</h1>
     <h2 class="italic">{{ movies.length }} Episoden</h2>
     <div
-      id="playlist-item"
-      class="flex flex-row bg-darkest-dark w-full rounded my-2 max-h-40 cursor-pointer bg-opacity-40 backdrop-blur-sm border-darkest-dark border-2"
       v-for="movie in movies"
+      id="playlist-item"
       :key="movie.id!"
+      class="flex flex-row bg-darkest-dark w-full rounded my-2 max-h-40 cursor-pointer bg-opacity-40 backdrop-blur-sm border-darkest-dark border-2"
       @click="$router.push('/watch/' + movie.id!)"
     >
       <div class="w-1/2 flex flex-col p-1 justify-center">
@@ -24,7 +24,7 @@
           {{ movie.attributes?.title }}
         </h1>
         <p class="text-sm font-light text-white">
-          {{ movie.attributes?.series?.data?.attributes?.Title }} |
+          {{ movie.attributes?.series?.data?.attributes?.title }} |
           <span class="text-bold">{{ getYearFromDate(movie.attributes?.year) }}</span>
         </p>
       </div>

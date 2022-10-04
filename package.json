@@ -9,11 +9,14 @@
     "lint": "eslint src/**/*.{ts,js,vue} --ext .ts,.js,.vue",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "bump": "changelogen --bump",
+    "release": "changelogen --release"
   },
   "dependencies": {
     "@headlessui/vue": "^1.5.0",
     "@heroicons/vue": "^1.0.6",
+    "@skjnldsv/vue-plyr": "^7.3.0",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.0",
@@ -22,12 +25,12 @@
     "axios": "^0.24.0",
     "eslint-plugin-snakecasejs": "^2.2.0",
     "markdown-it": "^12.3.2",
+    "strapi-generate-types": "^0.1.4",
     "strapi-sdk-js": "^2.1.5",
     "three-dots": "^0.2.3",
     "typescript": "^4.4.4",
     "vite-plugin-rewrite-all": "^0.1.2",
     "vue": "^3.2.39",
-    "vue-plyr": "^7.0.0",
     "vue-query": "^1.22.2",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2"
@@ -53,6 +56,7 @@
     "@vue/eslint-config-typescript": "^11.0.2",
     "autoprefixer": "^10.4.12",
     "babel-loader": "^8.2.5",
+    "changelogen": "^0.3.0",
     "eslint": "^8.14.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",

@@ -5,11 +5,11 @@
     @click="$emit('click')">
     <!-- Loading -->
     <Spinner v-if="loading" animation="bricks" />
-    <div class="flex flex-col items-center justify-center text-red-500" v-if="error">
+    <div v-if="error" class="flex flex-col items-center justify-center text-red-500">
       <ExclamationCircleIcon class="w-10 h-10 " />
       <p>Es gab einen Fehler. Bitte versuche es nochmal.</p>
     </div>
-    <div class="absolute flex top-2 right-2" v-if="original">
+    <div v-if="original" class="absolute flex top-2 right-2">
       <Logo long class="!text-base">Original</Logo>
     </div>
   </div>

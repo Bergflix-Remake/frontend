@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div id="side" v-if="showSidebar()">
+    <div v-if="showSidebar()" id="side">
       <div
         id="sidebar-container"
         class="flex flex-col items-center content-center h-full"

@@ -1,5 +1,6 @@
 <template>
-    <section class="relative flex w-full h-[90vh] min-h-[95vh] mb-20 bg-center bg-no-repeat bg-cover bg-clean-dark-500"
+    <section
+class="relative flex w-full h-[90vh] min-h-[95vh] mb-20 bg-center bg-no-repeat bg-cover bg-clean-dark-500"
         :style="{ backgroundImage: `url('${featured?.image}')` }">
         <div id="gradient" class="absolute top-0 left-0 w-full h-full gradient"></div>
         <div class="z-10 flex flex-col justify-center w-full h-full p-10 lg:w-1/2">
@@ -59,7 +60,7 @@ useStrapiOne<VideoEntity>(['videos', videoId, {
             buttons: [
                 {
                     text: 'Ansehen',
-                    to: `/video/${data.id}`,
+                    to: `/watch/${data.id}`,
                     icon: PlayIcon,
                 }
             ],

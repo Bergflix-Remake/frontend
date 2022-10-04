@@ -1,22 +1,27 @@
 <template>
   <div class="relative overflow-hidden">
-    <div ref="scrollContainer" @wheel="handleWheel" @scroll="handleScroll"
-      class="flex flex-row w-full space-x-4 overflow-x-hidden rounded-lg py-14">
+    <div
+ref="scrollContainer" class="flex flex-row w-full space-x-4 overflow-x-hidden rounded-lg py-14" @wheel="handleWheel"
+      @scroll="handleScroll">
       <slot />
     </div>
-    <div id="fade-l" v-if="leftScrollButton"
+    <div
+v-if="leftScrollButton" id="fade-l"
       class="absolute top-0 left-0 z-20 w-10 h-full pointer-events-none bg-gradient-to-r from-black to-transparent">
     </div>
-    <div id="fade-r" v-if="rightScrollButton"
+    <div
+v-if="rightScrollButton" id="fade-r"
       class="absolute top-0 right-0 z-20 w-10 h-full pointer-events-none bg-gradient-to-l from-black to-transparent">
     </div>
     <Transition name="right">
-      <BadgeButton v-if="rightScrollButton" @click="() => scrollContainer!.scrollBy({ left: 300, behavior: 'smooth' })"
-        class="absolute transform -translate-y-1/2 top-1/2 right-1 lg:right-5" :icon="ArrowNarrowRightIcon" />
+      <BadgeButton
+v-if="rightScrollButton" class="absolute transform -translate-y-1/2 top-1/2 right-1 lg:right-5"
+        :icon="ArrowNarrowRightIcon" @click="() => scrollContainer!.scrollBy({ left: 300, behavior: 'smooth' })" />
     </Transition>
     <Transition name="left">
-      <BadgeButton v-if="leftScrollButton" @click="() => scrollContainer!.scrollBy({ left: -300, behavior: 'smooth' })"
-        class="absolute transform -translate-y-1/2 top-1/2 left-1 lg:left-5" :icon="ArrowNarrowLeftIcon" />
+      <BadgeButton
+v-if="leftScrollButton" class="absolute transform -translate-y-1/2 top-1/2 left-1 lg:left-5"
+        :icon="ArrowNarrowLeftIcon" @click="() => scrollContainer!.scrollBy({ left: -300, behavior: 'smooth' })" />
     </Transition>
   </div>
 </template>

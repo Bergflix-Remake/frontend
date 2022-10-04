@@ -7,14 +7,14 @@
       <p class="font-bold leading-tight text-delorean-500">
         Hi, {{ loggedIn ? username : "Guest" }}!
       </p>
-      <div class="flex flex-col justify-center space-y-2" v-if="loggedIn">
+      <div v-if="loggedIn" class="flex flex-col justify-center space-y-2">
         <Link href="/profile" :icon="UserCircleIcon">Profile</Link>
         <Link href="/settings" :icon="CogIcon">Settings</Link>
         <Link href="/help" :icon="InformationCircleIcon">Help & Feedback</Link>
         <Link href="/favorites" :icon="HeartIcon">Favorites</Link>
         <Button type="ghost" :icon="LogoutIcon">Logout</Button>
       </div>
-      <div class="flex flex-col justify-center space-y-2" v-else>
+      <div v-else class="flex flex-col justify-center space-y-2">
         <Link href="/login" :icon="LoginIcon">Login</Link>
         <Link href="/register" :icon="UserAddIcon">Register</Link>
       </div>
