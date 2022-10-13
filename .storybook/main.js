@@ -31,7 +31,8 @@ module.exports = {
     return mergeConfig(config, {
       plugins: [
         Pages({
-          extensions: ['vue']
+          resolver: 'vue',
+          extensions: ['vue'],
         })
       ],
       resolve: {
