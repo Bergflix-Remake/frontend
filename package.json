@@ -50,7 +50,7 @@
     "@storybook/testing-library": "^0.0.14-next.0",
     "@storybook/theming": "^6.5.10",
     "@storybook/vue3": "^6.5.10",
-    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.22.0",
     "@vitejs/plugin-vue": "^3.1.2",
     "@vue/eslint-config-typescript": "^11.0.2",
