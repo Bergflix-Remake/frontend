@@ -1,5 +1,6 @@
 const { mergeConfig } = require('vite');
 const path = require('path');
+const Pages = require('vite-plugin-pages').default;
 
 module.exports = {
   'stories': [
@@ -28,7 +29,12 @@ module.exports = {
   },
   async viteFinal(config, { configType }) {
     return mergeConfig(config, {
-      // TODO add vite-plugin-pages w/o breaking
+      plugins: [
+        Pages({
+          resolver: 'vue',
+          extensions: ['vue'],
+        })
+      ],
       resolve: {
         alias: {
           '@': path.resolve(__dirname, '../src'),

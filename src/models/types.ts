@@ -244,6 +244,13 @@ export type ComponentApplicationCodeblock = {
   content?: Maybe<Scalars['String']>;
 };
 
+export type ComponentApplicationImage = {
+  __typename?: 'ComponentApplicationImage';
+  id: Scalars['ID'];
+  src: Scalars['String'];
+  alt: Scalars['String'];
+};
+
 export type ComponentApplicationTweet = {
   __typename?: 'ComponentApplicationTweet';
   id: Scalars['ID'];
@@ -267,6 +274,30 @@ export type ComponentCommonButton = {
   to: Scalars['String'];
   icon?: Maybe<Scalars['String']>;
   text?: Maybe<Scalars['String']>;
+};
+
+export type ComponentCommonContributorFiltersInput = {
+  contributor?: Maybe<ContributorFiltersInput>;
+  role?: Maybe<StringFilterInput>;
+  character?: Maybe<StringFilterInput>;
+  and?: Maybe<Array<Maybe<ComponentCommonContributorFiltersInput>>>;
+  or?: Maybe<Array<Maybe<ComponentCommonContributorFiltersInput>>>;
+  not?: Maybe<ComponentCommonContributorFiltersInput>;
+};
+
+export type ComponentCommonContributorInput = {
+  id?: Maybe<Scalars['ID']>;
+  contributor?: Maybe<Scalars['ID']>;
+  role?: Maybe<Scalars['String']>;
+  character?: Maybe<Scalars['String']>;
+};
+
+export type ComponentCommonContributor = {
+  __typename?: 'ComponentCommonContributor';
+  id: Scalars['ID'];
+  contributor?: Maybe<ContributorEntityResponse>;
+  role: Scalars['String'];
+  character: Scalars['String'];
 };
 
 export type ComponentCommonTextBlock = {
@@ -962,7 +993,7 @@ export type ApplicationFieldEntityResponseCollection = {
   meta: ResponseCollectionMeta;
 };
 
-export type ApplicationQuestionItemsDynamicZone = ComponentApplicationTweet | ComponentApplicationCodeblock | Error;
+export type ApplicationQuestionItemsDynamicZone = ComponentApplicationCodeblock | ComponentApplicationImage | ComponentApplicationTweet | Error;
 
 
 export type ApplicationQuestionFiltersInput = {
@@ -1112,6 +1143,52 @@ export type ComingSoonRelationResponseCollection = {
   data: Array<ComingSoonEntity>;
 };
 
+export type ContributorFiltersInput = {
+  id?: Maybe<IdFilterInput>;
+  name?: Maybe<StringFilterInput>;
+  bio?: Maybe<StringFilterInput>;
+  href?: Maybe<StringFilterInput>;
+  createdAt?: Maybe<DateTimeFilterInput>;
+  updatedAt?: Maybe<DateTimeFilterInput>;
+  and?: Maybe<Array<Maybe<ContributorFiltersInput>>>;
+  or?: Maybe<Array<Maybe<ContributorFiltersInput>>>;
+  not?: Maybe<ContributorFiltersInput>;
+};
+
+export type ContributorInput = {
+  name?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['ID']>;
+  bio?: Maybe<Scalars['String']>;
+  href?: Maybe<Scalars['String']>;
+};
+
+export type Contributor = {
+  __typename?: 'Contributor';
+  name: Scalars['String'];
+  image: UploadFileEntityResponse;
+  bio: Scalars['String'];
+  href?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ContributorEntity = {
+  __typename?: 'ContributorEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<Contributor>;
+};
+
+export type ContributorEntityResponse = {
+  __typename?: 'ContributorEntityResponse';
+  data?: Maybe<ContributorEntity>;
+};
+
+export type ContributorEntityResponseCollection = {
+  __typename?: 'ContributorEntityResponseCollection';
+  data: Array<ContributorEntity>;
+  meta: ResponseCollectionMeta;
+};
+
 export type FeaturedInput = {
   video?: Maybe<Scalars['ID']>;
 };
@@ -1223,7 +1300,7 @@ export enum Enum_Serie_Genre {
 
 export type SerieFiltersInput = {
   id?: Maybe<IdFilterInput>;
-  Title?: Maybe<StringFilterInput>;
+  title?: Maybe<StringFilterInput>;
   rating?: Maybe<FloatFilterInput>;
   description?: Maybe<StringFilterInput>;
   videos?: Maybe<VideoFiltersInput>;
@@ -1242,7 +1319,7 @@ export type SerieFiltersInput = {
 };
 
 export type SerieInput = {
-  Title?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
   title_image?: Maybe<Scalars['ID']>;
   background_image?: Maybe<Scalars['ID']>;
   rating?: Maybe<Scalars['Float']>;
@@ -1258,7 +1335,7 @@ export type SerieInput = {
 
 export type Serie = {
   __typename?: 'Serie';
-  Title: Scalars['String'];
+  title: Scalars['String'];
   title_image?: Maybe<UploadFileEntityResponse>;
   background_image?: Maybe<UploadFileEntityResponse>;
   rating?: Maybe<Scalars['Float']>;
@@ -1370,6 +1447,7 @@ export type VideoInput = {
   genre?: Maybe<Enum_Video_Genre>;
   thumbnail?: Maybe<Scalars['ID']>;
   original?: Maybe<Scalars['Boolean']>;
+  contributors?: Maybe<Array<Maybe<ComponentCommonContributorInput>>>;
   publishedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -1388,6 +1466,7 @@ export type Video = {
   genre: Enum_Video_Genre;
   thumbnail: UploadFileEntityResponse;
   original?: Maybe<Scalars['Boolean']>;
+  contributors: Array<Maybe<ComponentCommonContributor>>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -1398,6 +1477,13 @@ export type Video = {
 
 export type VideoOn_WatchlistArgs = {
   filters?: Maybe<UsersPermissionsUserFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type VideoContributorsArgs = {
+  filters?: Maybe<ComponentCommonContributorFiltersInput>;
   pagination?: Maybe<PaginationArg>;
   sort?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
@@ -1432,7 +1518,7 @@ export type VideoRelationResponseCollection = {
   data: Array<VideoEntity>;
 };
 
-export type GenericMorph = ComponentApplicationCodeblock | ComponentApplicationTweet | ComponentCommonButton | ComponentCommonTextBlock | ComponentFeaturedFilm | ComponentFeaturedSeries | ComponentMoviePoster | UploadFile | UploadFolder | AwesomeHelpHelp | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | EzformsSubmission | EzformsRecipient | GraphsBuilderGraph | About | ApplicationField | ApplicationQuestion | ApplicationSession | ComingSoon | Featured | Homepage | Imprint | Serie | Video;
+export type GenericMorph = ComponentApplicationCodeblock | ComponentApplicationImage | ComponentApplicationTweet | ComponentCommonButton | ComponentCommonContributor | ComponentCommonTextBlock | ComponentFeaturedFilm | ComponentFeaturedSeries | ComponentMoviePoster | UploadFile | UploadFolder | AwesomeHelpHelp | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | EzformsSubmission | EzformsRecipient | GraphsBuilderGraph | About | ApplicationField | ApplicationQuestion | ApplicationSession | ComingSoon | Contributor | Featured | Homepage | Imprint | Serie | Video;
 
 export type FileInfoInput = {
   name?: Maybe<Scalars['String']>;
@@ -1532,6 +1618,8 @@ export type Query = {
   applicationSession?: Maybe<ApplicationSessionEntityResponse>;
   applicationSessions?: Maybe<ApplicationSessionEntityResponseCollection>;
   comingSoon?: Maybe<ComingSoonEntityResponse>;
+  contributor?: Maybe<ContributorEntityResponse>;
+  contributors?: Maybe<ContributorEntityResponseCollection>;
   featured?: Maybe<FeaturedEntityResponse>;
   homepage?: Maybe<HomepageEntityResponse>;
   imprint?: Maybe<ImprintEntityResponse>;
@@ -1700,6 +1788,18 @@ export type QueryComingSoonArgs = {
 };
 
 
+export type QueryContributorArgs = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryContributorsArgs = {
+  filters?: Maybe<ContributorFiltersInput>;
+  pagination?: Maybe<PaginationArg>;
+  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
 export type QueryHomepageArgs = {
   publicationState?: Maybe<PublicationState>;
   locale?: Maybe<Scalars['I18NLocaleCode']>;
@@ -1773,6 +1873,9 @@ export type Mutation = {
   deleteApplicationSession?: Maybe<ApplicationSessionEntityResponse>;
   updateComingSoon?: Maybe<ComingSoonEntityResponse>;
   deleteComingSoon?: Maybe<ComingSoonEntityResponse>;
+  createContributor?: Maybe<ContributorEntityResponse>;
+  updateContributor?: Maybe<ContributorEntityResponse>;
+  deleteContributor?: Maybe<ContributorEntityResponse>;
   updateFeatured?: Maybe<FeaturedEntityResponse>;
   deleteFeatured?: Maybe<FeaturedEntityResponse>;
   updateHomepage?: Maybe<HomepageEntityResponse>;
@@ -1981,6 +2084,22 @@ export type MutationUpdateComingSoonArgs = {
 
 export type MutationDeleteComingSoonArgs = {
   locale?: Maybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreateContributorArgs = {
+  data: ContributorInput;
+};
+
+
+export type MutationUpdateContributorArgs = {
+  id: Scalars['ID'];
+  data: ContributorInput;
+};
+
+
+export type MutationDeleteContributorArgs = {
+  id: Scalars['ID'];
 };
 
 

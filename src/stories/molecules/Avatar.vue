@@ -9,13 +9,13 @@
       <Spinner />
     </div>
     <div
-      @mouseenter="$emit('mouseenter')"
-      @mouseleave="$emit('mouseleave')"
-      @click="$emit('click')"
+      v-else-if="image"
       class="rounded-full bg-cover bg-center cursor-pointer shadow-md hover:shadow-lg"
       :class="size"
       :style="{ 'background-image': `url(${image})` }"
-      v-else-if="image"
+      @mouseenter="$emit('mouseenter')"
+      @mouseleave="$emit('mouseleave')"
+      @click="$emit('click')"
     ></div>
     <div
       v-else
