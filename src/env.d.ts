@@ -7,4 +7,4 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
-declare module '@skjnldsv/vue-plyr';
+declare module 'vue-plyr';

@@ -2,8 +2,8 @@ import { createApp, reactive, UnwrapNestedRefs } from 'vue';
 import App from "./App.vue";
 import "./assets/font.css";
 import "./index.css";
-import VuePlyr from "@skjnldsv/vue-plyr";
-import "@skjnldsv/vue-plyr/dist/vue-plyr.css";
+import VuePlyr from "vue-plyr";
+import "vue-plyr/dist/vue-plyr.css";
 import { router } from "./router";
 import { store } from "./store";
 import {
