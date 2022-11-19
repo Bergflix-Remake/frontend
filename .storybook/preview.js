@@ -9,7 +9,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
-  layout: 'fullscreen'
+  layout: 'centered'
 }
 
 import { app } from "@storybook/vue3";

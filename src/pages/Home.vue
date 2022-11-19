@@ -45,6 +45,7 @@ name: Home
           :key="movie.id!"
           :image="movie.attributes?.thumbnail.data?.attributes?.url"
           :original="movie.attributes?.original!"
+          @click="() => $router.push(`/watch/${movie.id}`)"
         />
         <Poster
           v-if="originals.isError"
@@ -65,6 +66,7 @@ name: Home
           :key="movie.id!"
           :image="movie.attributes?.thumbnail.data?.attributes?.url"
           :original="movie.attributes?.original!"
+          @click="() => $router.push(`/watch/${movie.id}`)"
         />
         <Poster
           v-if="videos.isError"

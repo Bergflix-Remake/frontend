@@ -6,6 +6,7 @@
         "https://json.schemastore.org/github-workflow.json": "file:///config/workspace/backend/bergflix/frontend/.github/workflows/build.yml"
     },
     "conventionalCommits.scopes": [
-        "Storybook"
+        "Storybook",
+        "deps"
     ]
 }
