@@ -7,8 +7,6 @@
     "preview": "vite preview",
     "types": "strapi-generate-types quickgen https://api.bergflix.de/ -p ./src/models/",
     "lint": "eslint src/**/*.{ts,js,vue} --ext .ts,.js,.vue",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "prepare": "husky install",
     "bump": "changelogen --bump",
     "release": "changelogen --release"
@@ -38,18 +36,6 @@
   "devDependencies": {
     "@babel/core": "^7.18.5",
     "@rushstack/eslint-patch": "^1.1.4",
-    "@storybook/addon-actions": "^6.5.10",
-    "@storybook/addon-essentials": "^6.5.10",
-    "@storybook/addon-interactions": "^6.5.10",
-    "@storybook/addon-links": "^6.5.10",
-    "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/addons": "^6.5.10",
-    "@storybook/builder-vite": "^0.2.2",
-    "@storybook/builder-webpack5": "^6.5.10",
-    "@storybook/manager-webpack5": "^6.5.10",
-    "@storybook/testing-library": "^0.0.14-next.0",
-    "@storybook/theming": "^6.5.10",
-    "@storybook/vue3": "^6.5.10",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
     "@vitejs/plugin-vue": "^3.1.2",
@@ -75,7 +61,7 @@
     "vite-plugin-tailwind": "^0.0.4",
     "vue-eslint-parser": "^9.0.3",
     "vue-loader": "^16.8.3",
-    "vue-tsc": "^0.28.10",
+    "vue-tsc": "^1.0.9",
     "webpack": "5"
   }
 }
