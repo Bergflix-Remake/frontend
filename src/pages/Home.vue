@@ -87,6 +87,7 @@ name: Home
           :key="serie.id!"
           :image="serie.attributes?.thumbnail.data?.attributes?.url"
           :original="serie.attributes?.original!"
+          :click="() => $router.push(`/details/${serie.id}`)"
         />
         <Poster
           v-if="series.isError"
