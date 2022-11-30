@@ -1,0 +1,1 @@
+export const url = (path: string) => `https://api.bergflix.de/${path.replace(/^\//, '')}`;
