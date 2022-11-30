@@ -144,4 +144,8 @@ const series = useStrapi<SerieEntity[]>(['series', {
 </script>
 
 <style>
+.gradient {
+    background: rgb(0, 0, 0);
+    background: radial-gradient(at top right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 70%);
+}
 </style>

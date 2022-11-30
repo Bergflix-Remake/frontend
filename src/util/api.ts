@@ -4,6 +4,7 @@ import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiUser } fro
 import { QueryKey } from 'react-query/types/core';
 import { useMutation, useQuery, UseQueryOptions, UseQueryReturnType } from 'vue-query';
 import { reactive, UnwrapNestedRefs } from 'vue';
+import { ResponseCollectionMeta } from '@/models/types';
 
 export const strapi = new Strapi({
 	store: {
@@ -77,4 +78,15 @@ export function getUser(): UnwrapNestedRefs<UseQueryReturnType<StrapiUser, TErro
 			}
 		)
 	);
+}
+
+type FlattenedStrapiResponse<T> = T & {
+	id: number;
+	meta: ResponseCollectionMeta
+}
+
+
+export const flatten = <T>(data: any): FlattenedStrapiResponse<T> => {
+	const { id, attributes } = data;
+	return { id, ...attributes };
 }
