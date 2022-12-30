@@ -19,10 +19,10 @@ v-if='movie.data?.attributes?.series?.data?.attributes?.title_image?.data'
         <Title v-else>{{ series.title }}</Title>
         <div class='flex flex-col space-y-2'>
           <PlaylistEntry
-            v-for='(video, index) in series.videos?.data'
+            v-for='video in series.videos?.data'
             :id='video.id!'
             :key='video.id!'
-            :episode='index + 1'
+            :episode='video.attributes?.episode!'
             :thumbnail='`https://api.bergflix.de${video.attributes?.thumbnail?.data?.attributes?.url}`'
             :title='video.attributes?.title!'
             :playing='Number(video.id) === id' />
@@ -43,8 +43,7 @@ v-if='movie.data?.attributes?.title_image?.data'
 
       </div>
       <div class='md:ml-auto mt-5'>
-        <!-- FIXME remove hardcode values -->
-        <InfoRow :year='2022' :age='16' genre='Action' />
+        <InfoRow :year='new Date(movie.data?.attributes?.year!).getFullYear()' :age='movie.data?.attributes?.age!' :genre='movie.data?.attributes?.genre!' :episodes="series?.videos?.data?.length" />
       </div>
     </div>
     <div class='w-full p-10 bg-clean-dark-600 rounded-lg flex flex-col'>
@@ -57,6 +56,13 @@ v-if='movie.data?.attributes?.title_image?.data'
           :image='`https://api.bergflix.de${contributor?.contributor?.data?.attributes?.image?.data?.attributes?.url}`'
           :url='contributor?.contributor?.data?.attributes?.href!' />
       </div>
+      <Subtitle>Studio</Subtitle>
+      <Contributor 
+        name="Troublecat Productions"
+        role="Studio"
+        url="https://www.youtube.com/@herrbergmann"
+        image="https://api.bergflix.de/uploads/troublecat_logo_1dac3b63c7.jpg"
+      />
     </div>
   </article>
 </template>
@@ -82,7 +88,8 @@ const movie = useStrapiOne<VideoEntity>([
   'videos',
   id,
   {
-    populate: ['contributors', 'contributors.contributor', 'contributors.contributor.image', 'series.videos', 'series.videos.thumbnail', 'series.title_image', 'title_image']
+    populate: ['contributors', 'contributors.contributor', 'contributors.contributor.image', 'series.videos', 'series.videos.thumbnail', 'series.title_image', 'title_image'],
+    sort: 'episode:asc'
   }
 ]);
 const series = computed(() => movie.data?.attributes?.series?.data?.attributes);

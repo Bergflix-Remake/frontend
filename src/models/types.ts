@@ -1,4 +1,5 @@
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -17,16 +18,10 @@ export type Scalars = {
   Date: any;
   /** The `Upload` scalar type represents a file upload. */
   Upload: any;
-  AboutPageDynamicZoneInput: any;
   ApplicationQuestionItemsDynamicZoneInput: any;
-  HomepagePageDynamicZoneInput: any;
   /** A string used to identify an i18n locale */
   I18NLocaleCode: any;
 };
-
-
-
-
 
 export type Error = {
   __typename?: 'Error';
@@ -53,187 +48,195 @@ export enum PublicationState {
 }
 
 export type IdFilterInput = {
-  and?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  or?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  not?: Maybe<IdFilterInput>;
-  eq?: Maybe<Scalars['ID']>;
-  ne?: Maybe<Scalars['ID']>;
-  startsWith?: Maybe<Scalars['ID']>;
-  endsWith?: Maybe<Scalars['ID']>;
-  contains?: Maybe<Scalars['ID']>;
-  notContains?: Maybe<Scalars['ID']>;
-  containsi?: Maybe<Scalars['ID']>;
-  notContainsi?: Maybe<Scalars['ID']>;
-  gt?: Maybe<Scalars['ID']>;
-  gte?: Maybe<Scalars['ID']>;
-  lt?: Maybe<Scalars['ID']>;
-  lte?: Maybe<Scalars['ID']>;
-  null?: Maybe<Scalars['Boolean']>;
-  notNull?: Maybe<Scalars['Boolean']>;
-  in?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  notIn?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  between?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  and?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  not?: InputMaybe<IdFilterInput>;
+  eq?: InputMaybe<Scalars['ID']>;
+  eqi?: InputMaybe<Scalars['ID']>;
+  ne?: InputMaybe<Scalars['ID']>;
+  startsWith?: InputMaybe<Scalars['ID']>;
+  endsWith?: InputMaybe<Scalars['ID']>;
+  contains?: InputMaybe<Scalars['ID']>;
+  notContains?: InputMaybe<Scalars['ID']>;
+  containsi?: InputMaybe<Scalars['ID']>;
+  notContainsi?: InputMaybe<Scalars['ID']>;
+  gt?: InputMaybe<Scalars['ID']>;
+  gte?: InputMaybe<Scalars['ID']>;
+  lt?: InputMaybe<Scalars['ID']>;
+  lte?: InputMaybe<Scalars['ID']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
 
 export type BooleanFilterInput = {
-  and?: Maybe<Array<Maybe<Scalars['Boolean']>>>;
-  or?: Maybe<Array<Maybe<Scalars['Boolean']>>>;
-  not?: Maybe<BooleanFilterInput>;
-  eq?: Maybe<Scalars['Boolean']>;
-  ne?: Maybe<Scalars['Boolean']>;
-  startsWith?: Maybe<Scalars['Boolean']>;
-  endsWith?: Maybe<Scalars['Boolean']>;
-  contains?: Maybe<Scalars['Boolean']>;
-  notContains?: Maybe<Scalars['Boolean']>;
-  containsi?: Maybe<Scalars['Boolean']>;
-  notContainsi?: Maybe<Scalars['Boolean']>;
-  gt?: Maybe<Scalars['Boolean']>;
-  gte?: Maybe<Scalars['Boolean']>;
-  lt?: Maybe<Scalars['Boolean']>;
-  lte?: Maybe<Scalars['Boolean']>;
-  null?: Maybe<Scalars['Boolean']>;
-  notNull?: Maybe<Scalars['Boolean']>;
-  in?: Maybe<Array<Maybe<Scalars['Boolean']>>>;
-  notIn?: Maybe<Array<Maybe<Scalars['Boolean']>>>;
-  between?: Maybe<Array<Maybe<Scalars['Boolean']>>>;
+  and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
+  not?: InputMaybe<BooleanFilterInput>;
+  eq?: InputMaybe<Scalars['Boolean']>;
+  eqi?: InputMaybe<Scalars['Boolean']>;
+  ne?: InputMaybe<Scalars['Boolean']>;
+  startsWith?: InputMaybe<Scalars['Boolean']>;
+  endsWith?: InputMaybe<Scalars['Boolean']>;
+  contains?: InputMaybe<Scalars['Boolean']>;
+  notContains?: InputMaybe<Scalars['Boolean']>;
+  containsi?: InputMaybe<Scalars['Boolean']>;
+  notContainsi?: InputMaybe<Scalars['Boolean']>;
+  gt?: InputMaybe<Scalars['Boolean']>;
+  gte?: InputMaybe<Scalars['Boolean']>;
+  lt?: InputMaybe<Scalars['Boolean']>;
+  lte?: InputMaybe<Scalars['Boolean']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
 };
 
 export type StringFilterInput = {
-  and?: Maybe<Array<Maybe<Scalars['String']>>>;
-  or?: Maybe<Array<Maybe<Scalars['String']>>>;
-  not?: Maybe<StringFilterInput>;
-  eq?: Maybe<Scalars['String']>;
-  ne?: Maybe<Scalars['String']>;
-  startsWith?: Maybe<Scalars['String']>;
-  endsWith?: Maybe<Scalars['String']>;
-  contains?: Maybe<Scalars['String']>;
-  notContains?: Maybe<Scalars['String']>;
-  containsi?: Maybe<Scalars['String']>;
-  notContainsi?: Maybe<Scalars['String']>;
-  gt?: Maybe<Scalars['String']>;
-  gte?: Maybe<Scalars['String']>;
-  lt?: Maybe<Scalars['String']>;
-  lte?: Maybe<Scalars['String']>;
-  null?: Maybe<Scalars['Boolean']>;
-  notNull?: Maybe<Scalars['Boolean']>;
-  in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  notIn?: Maybe<Array<Maybe<Scalars['String']>>>;
-  between?: Maybe<Array<Maybe<Scalars['String']>>>;
+  and?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  not?: InputMaybe<StringFilterInput>;
+  eq?: InputMaybe<Scalars['String']>;
+  eqi?: InputMaybe<Scalars['String']>;
+  ne?: InputMaybe<Scalars['String']>;
+  startsWith?: InputMaybe<Scalars['String']>;
+  endsWith?: InputMaybe<Scalars['String']>;
+  contains?: InputMaybe<Scalars['String']>;
+  notContains?: InputMaybe<Scalars['String']>;
+  containsi?: InputMaybe<Scalars['String']>;
+  notContainsi?: InputMaybe<Scalars['String']>;
+  gt?: InputMaybe<Scalars['String']>;
+  gte?: InputMaybe<Scalars['String']>;
+  lt?: InputMaybe<Scalars['String']>;
+  lte?: InputMaybe<Scalars['String']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type IntFilterInput = {
-  and?: Maybe<Array<Maybe<Scalars['Int']>>>;
-  or?: Maybe<Array<Maybe<Scalars['Int']>>>;
-  not?: Maybe<IntFilterInput>;
-  eq?: Maybe<Scalars['Int']>;
-  ne?: Maybe<Scalars['Int']>;
-  startsWith?: Maybe<Scalars['Int']>;
-  endsWith?: Maybe<Scalars['Int']>;
-  contains?: Maybe<Scalars['Int']>;
-  notContains?: Maybe<Scalars['Int']>;
-  containsi?: Maybe<Scalars['Int']>;
-  notContainsi?: Maybe<Scalars['Int']>;
-  gt?: Maybe<Scalars['Int']>;
-  gte?: Maybe<Scalars['Int']>;
-  lt?: Maybe<Scalars['Int']>;
-  lte?: Maybe<Scalars['Int']>;
-  null?: Maybe<Scalars['Boolean']>;
-  notNull?: Maybe<Scalars['Boolean']>;
-  in?: Maybe<Array<Maybe<Scalars['Int']>>>;
-  notIn?: Maybe<Array<Maybe<Scalars['Int']>>>;
-  between?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  and?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  not?: InputMaybe<IntFilterInput>;
+  eq?: InputMaybe<Scalars['Int']>;
+  eqi?: InputMaybe<Scalars['Int']>;
+  ne?: InputMaybe<Scalars['Int']>;
+  startsWith?: InputMaybe<Scalars['Int']>;
+  endsWith?: InputMaybe<Scalars['Int']>;
+  contains?: InputMaybe<Scalars['Int']>;
+  notContains?: InputMaybe<Scalars['Int']>;
+  containsi?: InputMaybe<Scalars['Int']>;
+  notContainsi?: InputMaybe<Scalars['Int']>;
+  gt?: InputMaybe<Scalars['Int']>;
+  gte?: InputMaybe<Scalars['Int']>;
+  lt?: InputMaybe<Scalars['Int']>;
+  lte?: InputMaybe<Scalars['Int']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>;
 };
 
 export type FloatFilterInput = {
-  and?: Maybe<Array<Maybe<Scalars['Float']>>>;
-  or?: Maybe<Array<Maybe<Scalars['Float']>>>;
-  not?: Maybe<FloatFilterInput>;
-  eq?: Maybe<Scalars['Float']>;
-  ne?: Maybe<Scalars['Float']>;
-  startsWith?: Maybe<Scalars['Float']>;
-  endsWith?: Maybe<Scalars['Float']>;
-  contains?: Maybe<Scalars['Float']>;
-  notContains?: Maybe<Scalars['Float']>;
-  containsi?: Maybe<Scalars['Float']>;
-  notContainsi?: Maybe<Scalars['Float']>;
-  gt?: Maybe<Scalars['Float']>;
-  gte?: Maybe<Scalars['Float']>;
-  lt?: Maybe<Scalars['Float']>;
-  lte?: Maybe<Scalars['Float']>;
-  null?: Maybe<Scalars['Boolean']>;
-  notNull?: Maybe<Scalars['Boolean']>;
-  in?: Maybe<Array<Maybe<Scalars['Float']>>>;
-  notIn?: Maybe<Array<Maybe<Scalars['Float']>>>;
-  between?: Maybe<Array<Maybe<Scalars['Float']>>>;
+  and?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  not?: InputMaybe<FloatFilterInput>;
+  eq?: InputMaybe<Scalars['Float']>;
+  eqi?: InputMaybe<Scalars['Float']>;
+  ne?: InputMaybe<Scalars['Float']>;
+  startsWith?: InputMaybe<Scalars['Float']>;
+  endsWith?: InputMaybe<Scalars['Float']>;
+  contains?: InputMaybe<Scalars['Float']>;
+  notContains?: InputMaybe<Scalars['Float']>;
+  containsi?: InputMaybe<Scalars['Float']>;
+  notContainsi?: InputMaybe<Scalars['Float']>;
+  gt?: InputMaybe<Scalars['Float']>;
+  gte?: InputMaybe<Scalars['Float']>;
+  lt?: InputMaybe<Scalars['Float']>;
+  lte?: InputMaybe<Scalars['Float']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
 };
 
 export type DateFilterInput = {
-  and?: Maybe<Array<Maybe<Scalars['Date']>>>;
-  or?: Maybe<Array<Maybe<Scalars['Date']>>>;
-  not?: Maybe<DateFilterInput>;
-  eq?: Maybe<Scalars['Date']>;
-  ne?: Maybe<Scalars['Date']>;
-  startsWith?: Maybe<Scalars['Date']>;
-  endsWith?: Maybe<Scalars['Date']>;
-  contains?: Maybe<Scalars['Date']>;
-  notContains?: Maybe<Scalars['Date']>;
-  containsi?: Maybe<Scalars['Date']>;
-  notContainsi?: Maybe<Scalars['Date']>;
-  gt?: Maybe<Scalars['Date']>;
-  gte?: Maybe<Scalars['Date']>;
-  lt?: Maybe<Scalars['Date']>;
-  lte?: Maybe<Scalars['Date']>;
-  null?: Maybe<Scalars['Boolean']>;
-  notNull?: Maybe<Scalars['Boolean']>;
-  in?: Maybe<Array<Maybe<Scalars['Date']>>>;
-  notIn?: Maybe<Array<Maybe<Scalars['Date']>>>;
-  between?: Maybe<Array<Maybe<Scalars['Date']>>>;
+  and?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  not?: InputMaybe<DateFilterInput>;
+  eq?: InputMaybe<Scalars['Date']>;
+  eqi?: InputMaybe<Scalars['Date']>;
+  ne?: InputMaybe<Scalars['Date']>;
+  startsWith?: InputMaybe<Scalars['Date']>;
+  endsWith?: InputMaybe<Scalars['Date']>;
+  contains?: InputMaybe<Scalars['Date']>;
+  notContains?: InputMaybe<Scalars['Date']>;
+  containsi?: InputMaybe<Scalars['Date']>;
+  notContainsi?: InputMaybe<Scalars['Date']>;
+  gt?: InputMaybe<Scalars['Date']>;
+  gte?: InputMaybe<Scalars['Date']>;
+  lt?: InputMaybe<Scalars['Date']>;
+  lte?: InputMaybe<Scalars['Date']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
 };
 
 export type DateTimeFilterInput = {
-  and?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  or?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  not?: Maybe<DateTimeFilterInput>;
-  eq?: Maybe<Scalars['DateTime']>;
-  ne?: Maybe<Scalars['DateTime']>;
-  startsWith?: Maybe<Scalars['DateTime']>;
-  endsWith?: Maybe<Scalars['DateTime']>;
-  contains?: Maybe<Scalars['DateTime']>;
-  notContains?: Maybe<Scalars['DateTime']>;
-  containsi?: Maybe<Scalars['DateTime']>;
-  notContainsi?: Maybe<Scalars['DateTime']>;
-  gt?: Maybe<Scalars['DateTime']>;
-  gte?: Maybe<Scalars['DateTime']>;
-  lt?: Maybe<Scalars['DateTime']>;
-  lte?: Maybe<Scalars['DateTime']>;
-  null?: Maybe<Scalars['Boolean']>;
-  notNull?: Maybe<Scalars['Boolean']>;
-  in?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  notIn?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  between?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
+  and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  not?: InputMaybe<DateTimeFilterInput>;
+  eq?: InputMaybe<Scalars['DateTime']>;
+  eqi?: InputMaybe<Scalars['DateTime']>;
+  ne?: InputMaybe<Scalars['DateTime']>;
+  startsWith?: InputMaybe<Scalars['DateTime']>;
+  endsWith?: InputMaybe<Scalars['DateTime']>;
+  contains?: InputMaybe<Scalars['DateTime']>;
+  notContains?: InputMaybe<Scalars['DateTime']>;
+  containsi?: InputMaybe<Scalars['DateTime']>;
+  notContainsi?: InputMaybe<Scalars['DateTime']>;
+  gt?: InputMaybe<Scalars['DateTime']>;
+  gte?: InputMaybe<Scalars['DateTime']>;
+  lt?: InputMaybe<Scalars['DateTime']>;
+  lte?: InputMaybe<Scalars['DateTime']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
 };
 
 export type JsonFilterInput = {
-  and?: Maybe<Array<Maybe<Scalars['JSON']>>>;
-  or?: Maybe<Array<Maybe<Scalars['JSON']>>>;
-  not?: Maybe<JsonFilterInput>;
-  eq?: Maybe<Scalars['JSON']>;
-  ne?: Maybe<Scalars['JSON']>;
-  startsWith?: Maybe<Scalars['JSON']>;
-  endsWith?: Maybe<Scalars['JSON']>;
-  contains?: Maybe<Scalars['JSON']>;
-  notContains?: Maybe<Scalars['JSON']>;
-  containsi?: Maybe<Scalars['JSON']>;
-  notContainsi?: Maybe<Scalars['JSON']>;
-  gt?: Maybe<Scalars['JSON']>;
-  gte?: Maybe<Scalars['JSON']>;
-  lt?: Maybe<Scalars['JSON']>;
-  lte?: Maybe<Scalars['JSON']>;
-  null?: Maybe<Scalars['Boolean']>;
-  notNull?: Maybe<Scalars['Boolean']>;
-  in?: Maybe<Array<Maybe<Scalars['JSON']>>>;
-  notIn?: Maybe<Array<Maybe<Scalars['JSON']>>>;
-  between?: Maybe<Array<Maybe<Scalars['JSON']>>>;
+  and?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
+  not?: InputMaybe<JsonFilterInput>;
+  eq?: InputMaybe<Scalars['JSON']>;
+  eqi?: InputMaybe<Scalars['JSON']>;
+  ne?: InputMaybe<Scalars['JSON']>;
+  startsWith?: InputMaybe<Scalars['JSON']>;
+  endsWith?: InputMaybe<Scalars['JSON']>;
+  contains?: InputMaybe<Scalars['JSON']>;
+  notContains?: InputMaybe<Scalars['JSON']>;
+  containsi?: InputMaybe<Scalars['JSON']>;
+  notContainsi?: InputMaybe<Scalars['JSON']>;
+  gt?: InputMaybe<Scalars['JSON']>;
+  gte?: InputMaybe<Scalars['JSON']>;
+  lt?: InputMaybe<Scalars['JSON']>;
+  lte?: InputMaybe<Scalars['JSON']>;
+  null?: InputMaybe<Scalars['Boolean']>;
+  notNull?: InputMaybe<Scalars['Boolean']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>;
 };
 
 export type ComponentApplicationCodeblock = {
@@ -277,19 +280,19 @@ export type ComponentCommonButton = {
 };
 
 export type ComponentCommonContributorFiltersInput = {
-  contributor?: Maybe<ContributorFiltersInput>;
-  role?: Maybe<StringFilterInput>;
-  character?: Maybe<StringFilterInput>;
-  and?: Maybe<Array<Maybe<ComponentCommonContributorFiltersInput>>>;
-  or?: Maybe<Array<Maybe<ComponentCommonContributorFiltersInput>>>;
-  not?: Maybe<ComponentCommonContributorFiltersInput>;
+  contributor?: InputMaybe<ContributorFiltersInput>;
+  role?: InputMaybe<StringFilterInput>;
+  character?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<ComponentCommonContributorFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<ComponentCommonContributorFiltersInput>>>;
+  not?: InputMaybe<ComponentCommonContributorFiltersInput>;
 };
 
 export type ComponentCommonContributorInput = {
-  id?: Maybe<Scalars['ID']>;
-  contributor?: Maybe<Scalars['ID']>;
-  role?: Maybe<Scalars['String']>;
-  character?: Maybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  contributor?: InputMaybe<Scalars['ID']>;
+  role?: InputMaybe<Scalars['String']>;
+  character?: InputMaybe<Scalars['String']>;
 };
 
 export type ComponentCommonContributor = {
@@ -328,48 +331,55 @@ export type ComponentMoviePoster = {
   is_series: Scalars['Boolean'];
 };
 
+export type ComponentMovieVideo = {
+  __typename?: 'ComponentMovieVideo';
+  id: Scalars['ID'];
+  video?: Maybe<VideoEntityResponse>;
+  num?: Maybe<Scalars['Int']>;
+};
+
 export type UploadFileFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  name?: Maybe<StringFilterInput>;
-  alternativeText?: Maybe<StringFilterInput>;
-  caption?: Maybe<StringFilterInput>;
-  width?: Maybe<IntFilterInput>;
-  height?: Maybe<IntFilterInput>;
-  formats?: Maybe<JsonFilterInput>;
-  hash?: Maybe<StringFilterInput>;
-  ext?: Maybe<StringFilterInput>;
-  mime?: Maybe<StringFilterInput>;
-  size?: Maybe<FloatFilterInput>;
-  url?: Maybe<StringFilterInput>;
-  previewUrl?: Maybe<StringFilterInput>;
-  provider?: Maybe<StringFilterInput>;
-  provider_metadata?: Maybe<JsonFilterInput>;
-  folder?: Maybe<UploadFolderFiltersInput>;
-  folderPath?: Maybe<StringFilterInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<UploadFileFiltersInput>>>;
-  or?: Maybe<Array<Maybe<UploadFileFiltersInput>>>;
-  not?: Maybe<UploadFileFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  alternativeText?: InputMaybe<StringFilterInput>;
+  caption?: InputMaybe<StringFilterInput>;
+  width?: InputMaybe<IntFilterInput>;
+  height?: InputMaybe<IntFilterInput>;
+  formats?: InputMaybe<JsonFilterInput>;
+  hash?: InputMaybe<StringFilterInput>;
+  ext?: InputMaybe<StringFilterInput>;
+  mime?: InputMaybe<StringFilterInput>;
+  size?: InputMaybe<FloatFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+  previewUrl?: InputMaybe<StringFilterInput>;
+  provider?: InputMaybe<StringFilterInput>;
+  provider_metadata?: InputMaybe<JsonFilterInput>;
+  folder?: InputMaybe<UploadFolderFiltersInput>;
+  folderPath?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<UploadFileFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<UploadFileFiltersInput>>>;
+  not?: InputMaybe<UploadFileFiltersInput>;
 };
 
 export type UploadFileInput = {
-  name?: Maybe<Scalars['String']>;
-  alternativeText?: Maybe<Scalars['String']>;
-  caption?: Maybe<Scalars['String']>;
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
-  formats?: Maybe<Scalars['JSON']>;
-  hash?: Maybe<Scalars['String']>;
-  ext?: Maybe<Scalars['String']>;
-  mime?: Maybe<Scalars['String']>;
-  size?: Maybe<Scalars['Float']>;
-  url?: Maybe<Scalars['String']>;
-  previewUrl?: Maybe<Scalars['String']>;
-  provider?: Maybe<Scalars['String']>;
-  provider_metadata?: Maybe<Scalars['JSON']>;
-  folder?: Maybe<Scalars['ID']>;
-  folderPath?: Maybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  alternativeText?: InputMaybe<Scalars['String']>;
+  caption?: InputMaybe<Scalars['String']>;
+  width?: InputMaybe<Scalars['Int']>;
+  height?: InputMaybe<Scalars['Int']>;
+  formats?: InputMaybe<Scalars['JSON']>;
+  hash?: InputMaybe<Scalars['String']>;
+  ext?: InputMaybe<Scalars['String']>;
+  mime?: InputMaybe<Scalars['String']>;
+  size?: InputMaybe<Scalars['Float']>;
+  url?: InputMaybe<Scalars['String']>;
+  previewUrl?: InputMaybe<Scalars['String']>;
+  provider?: InputMaybe<Scalars['String']>;
+  provider_metadata?: InputMaybe<Scalars['JSON']>;
+  folder?: InputMaybe<Scalars['ID']>;
+  folderPath?: InputMaybe<Scalars['String']>;
 };
 
 export type UploadFile = {
@@ -416,27 +426,27 @@ export type UploadFileRelationResponseCollection = {
 };
 
 export type UploadFolderFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  name?: Maybe<StringFilterInput>;
-  pathId?: Maybe<IntFilterInput>;
-  parent?: Maybe<UploadFolderFiltersInput>;
-  children?: Maybe<UploadFolderFiltersInput>;
-  files?: Maybe<UploadFileFiltersInput>;
-  path?: Maybe<StringFilterInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<UploadFolderFiltersInput>>>;
-  or?: Maybe<Array<Maybe<UploadFolderFiltersInput>>>;
-  not?: Maybe<UploadFolderFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  pathId?: InputMaybe<IntFilterInput>;
+  parent?: InputMaybe<UploadFolderFiltersInput>;
+  children?: InputMaybe<UploadFolderFiltersInput>;
+  files?: InputMaybe<UploadFileFiltersInput>;
+  path?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
+  not?: InputMaybe<UploadFolderFiltersInput>;
 };
 
 export type UploadFolderInput = {
-  name?: Maybe<Scalars['String']>;
-  pathId?: Maybe<Scalars['Int']>;
-  parent?: Maybe<Scalars['ID']>;
-  children?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  files?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  path?: Maybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  pathId?: InputMaybe<Scalars['Int']>;
+  parent?: InputMaybe<Scalars['ID']>;
+  children?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  files?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  path?: InputMaybe<Scalars['String']>;
 };
 
 export type UploadFolder = {
@@ -453,16 +463,16 @@ export type UploadFolder = {
 
 
 export type UploadFolderChildrenArgs = {
-  filters?: Maybe<UploadFolderFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<UploadFolderFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type UploadFolderFilesArgs = {
-  filters?: Maybe<UploadFileFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type UploadFolderEntity = {
@@ -488,29 +498,29 @@ export type UploadFolderRelationResponseCollection = {
 };
 
 export type AwesomeHelpHelpFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  contentType?: Maybe<StringFilterInput>;
-  path?: Maybe<StringFilterInput>;
-  helpContent?: Maybe<StringFilterInput>;
-  fieldName?: Maybe<StringFilterInput>;
-  containerType?: Maybe<StringFilterInput>;
-  zoneName?: Maybe<StringFilterInput>;
-  componentName?: Maybe<StringFilterInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<AwesomeHelpHelpFiltersInput>>>;
-  or?: Maybe<Array<Maybe<AwesomeHelpHelpFiltersInput>>>;
-  not?: Maybe<AwesomeHelpHelpFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  contentType?: InputMaybe<StringFilterInput>;
+  path?: InputMaybe<StringFilterInput>;
+  helpContent?: InputMaybe<StringFilterInput>;
+  fieldName?: InputMaybe<StringFilterInput>;
+  containerType?: InputMaybe<StringFilterInput>;
+  zoneName?: InputMaybe<StringFilterInput>;
+  componentName?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<AwesomeHelpHelpFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<AwesomeHelpHelpFiltersInput>>>;
+  not?: InputMaybe<AwesomeHelpHelpFiltersInput>;
 };
 
 export type AwesomeHelpHelpInput = {
-  contentType?: Maybe<Scalars['String']>;
-  path?: Maybe<Scalars['String']>;
-  helpContent?: Maybe<Scalars['String']>;
-  fieldName?: Maybe<Scalars['String']>;
-  containerType?: Maybe<Scalars['String']>;
-  zoneName?: Maybe<Scalars['String']>;
-  componentName?: Maybe<Scalars['String']>;
+  contentType?: InputMaybe<Scalars['String']>;
+  path?: InputMaybe<Scalars['String']>;
+  helpContent?: InputMaybe<Scalars['String']>;
+  fieldName?: InputMaybe<Scalars['String']>;
+  containerType?: InputMaybe<Scalars['String']>;
+  zoneName?: InputMaybe<Scalars['String']>;
+  componentName?: InputMaybe<Scalars['String']>;
 };
 
 export type AwesomeHelpHelp = {
@@ -544,14 +554,14 @@ export type AwesomeHelpHelpEntityResponseCollection = {
 };
 
 export type I18NLocaleFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  name?: Maybe<StringFilterInput>;
-  code?: Maybe<StringFilterInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<I18NLocaleFiltersInput>>>;
-  or?: Maybe<Array<Maybe<I18NLocaleFiltersInput>>>;
-  not?: Maybe<I18NLocaleFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  code?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<I18NLocaleFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<I18NLocaleFiltersInput>>>;
+  not?: InputMaybe<I18NLocaleFiltersInput>;
 };
 
 export type I18NLocale = {
@@ -580,14 +590,14 @@ export type I18NLocaleEntityResponseCollection = {
 };
 
 export type UsersPermissionsPermissionFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  action?: Maybe<StringFilterInput>;
-  role?: Maybe<UsersPermissionsRoleFiltersInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<UsersPermissionsPermissionFiltersInput>>>;
-  or?: Maybe<Array<Maybe<UsersPermissionsPermissionFiltersInput>>>;
-  not?: Maybe<UsersPermissionsPermissionFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  action?: InputMaybe<StringFilterInput>;
+  role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
+  not?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
 };
 
 export type UsersPermissionsPermission = {
@@ -610,25 +620,25 @@ export type UsersPermissionsPermissionRelationResponseCollection = {
 };
 
 export type UsersPermissionsRoleFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  name?: Maybe<StringFilterInput>;
-  description?: Maybe<StringFilterInput>;
-  type?: Maybe<StringFilterInput>;
-  permissions?: Maybe<UsersPermissionsPermissionFiltersInput>;
-  users?: Maybe<UsersPermissionsUserFiltersInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<UsersPermissionsRoleFiltersInput>>>;
-  or?: Maybe<Array<Maybe<UsersPermissionsRoleFiltersInput>>>;
-  not?: Maybe<UsersPermissionsRoleFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
+  permissions?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
+  users?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<UsersPermissionsRoleFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<UsersPermissionsRoleFiltersInput>>>;
+  not?: InputMaybe<UsersPermissionsRoleFiltersInput>;
 };
 
 export type UsersPermissionsRoleInput = {
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  permissions?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  users?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  name?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
+  permissions?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  users?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
 
 export type UsersPermissionsRole = {
@@ -644,16 +654,16 @@ export type UsersPermissionsRole = {
 
 
 export type UsersPermissionsRolePermissionsArgs = {
-  filters?: Maybe<UsersPermissionsPermissionFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type UsersPermissionsRoleUsersArgs = {
-  filters?: Maybe<UsersPermissionsUserFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type UsersPermissionsRoleEntity = {
@@ -674,38 +684,40 @@ export type UsersPermissionsRoleEntityResponseCollection = {
 };
 
 export type UsersPermissionsUserFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  username?: Maybe<StringFilterInput>;
-  email?: Maybe<StringFilterInput>;
-  provider?: Maybe<StringFilterInput>;
-  password?: Maybe<StringFilterInput>;
-  resetPasswordToken?: Maybe<StringFilterInput>;
-  confirmationToken?: Maybe<StringFilterInput>;
-  confirmed?: Maybe<BooleanFilterInput>;
-  blocked?: Maybe<BooleanFilterInput>;
-  role?: Maybe<UsersPermissionsRoleFiltersInput>;
-  watchlist?: Maybe<VideoFiltersInput>;
-  admin?: Maybe<BooleanFilterInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<UsersPermissionsUserFiltersInput>>>;
-  or?: Maybe<Array<Maybe<UsersPermissionsUserFiltersInput>>>;
-  not?: Maybe<UsersPermissionsUserFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  username?: InputMaybe<StringFilterInput>;
+  email?: InputMaybe<StringFilterInput>;
+  provider?: InputMaybe<StringFilterInput>;
+  password?: InputMaybe<StringFilterInput>;
+  resetPasswordToken?: InputMaybe<StringFilterInput>;
+  confirmationToken?: InputMaybe<StringFilterInput>;
+  confirmed?: InputMaybe<BooleanFilterInput>;
+  blocked?: InputMaybe<BooleanFilterInput>;
+  role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  watchlist?: InputMaybe<VideoFiltersInput>;
+  admin?: InputMaybe<BooleanFilterInput>;
+  patreon?: InputMaybe<BooleanFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
+  not?: InputMaybe<UsersPermissionsUserFiltersInput>;
 };
 
 export type UsersPermissionsUserInput = {
-  username?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['String']>;
-  provider?: Maybe<Scalars['String']>;
-  password?: Maybe<Scalars['String']>;
-  resetPasswordToken?: Maybe<Scalars['String']>;
-  confirmationToken?: Maybe<Scalars['String']>;
-  confirmed?: Maybe<Scalars['Boolean']>;
-  blocked?: Maybe<Scalars['Boolean']>;
-  role?: Maybe<Scalars['ID']>;
-  watchlist?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  admin?: Maybe<Scalars['Boolean']>;
-  image?: Maybe<Scalars['ID']>;
+  username?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']>;
+  provider?: InputMaybe<Scalars['String']>;
+  password?: InputMaybe<Scalars['String']>;
+  resetPasswordToken?: InputMaybe<Scalars['String']>;
+  confirmationToken?: InputMaybe<Scalars['String']>;
+  confirmed?: InputMaybe<Scalars['Boolean']>;
+  blocked?: InputMaybe<Scalars['Boolean']>;
+  role?: InputMaybe<Scalars['ID']>;
+  watchlist?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  admin?: InputMaybe<Scalars['Boolean']>;
+  image?: InputMaybe<Scalars['ID']>;
+  patreon?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type UsersPermissionsUser = {
@@ -719,16 +731,17 @@ export type UsersPermissionsUser = {
   watchlist?: Maybe<VideoRelationResponseCollection>;
   admin?: Maybe<Scalars['Boolean']>;
   image?: Maybe<UploadFileEntityResponse>;
+  patreon?: Maybe<Scalars['Boolean']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 
 export type UsersPermissionsUserWatchlistArgs = {
-  filters?: Maybe<VideoFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
-  publicationState?: Maybe<PublicationState>;
+  filters?: InputMaybe<VideoFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 export type UsersPermissionsUserEntity = {
@@ -754,24 +767,27 @@ export type UsersPermissionsUserRelationResponseCollection = {
 };
 
 export type EzformsSubmissionFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  score?: Maybe<StringFilterInput>;
-  data?: Maybe<JsonFilterInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<EzformsSubmissionFiltersInput>>>;
-  or?: Maybe<Array<Maybe<EzformsSubmissionFiltersInput>>>;
-  not?: Maybe<EzformsSubmissionFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  score?: InputMaybe<StringFilterInput>;
+  formName?: InputMaybe<StringFilterInput>;
+  data?: InputMaybe<JsonFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<EzformsSubmissionFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<EzformsSubmissionFiltersInput>>>;
+  not?: InputMaybe<EzformsSubmissionFiltersInput>;
 };
 
 export type EzformsSubmissionInput = {
-  score?: Maybe<Scalars['String']>;
-  data?: Maybe<Scalars['JSON']>;
+  score?: InputMaybe<Scalars['String']>;
+  formName?: InputMaybe<Scalars['String']>;
+  data?: InputMaybe<Scalars['JSON']>;
 };
 
 export type EzformsSubmission = {
   __typename?: 'EzformsSubmission';
   score?: Maybe<Scalars['String']>;
+  formName?: Maybe<Scalars['String']>;
   data?: Maybe<Scalars['JSON']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -795,21 +811,21 @@ export type EzformsSubmissionEntityResponseCollection = {
 };
 
 export type EzformsRecipientFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  name?: Maybe<StringFilterInput>;
-  email?: Maybe<StringFilterInput>;
-  number?: Maybe<StringFilterInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<EzformsRecipientFiltersInput>>>;
-  or?: Maybe<Array<Maybe<EzformsRecipientFiltersInput>>>;
-  not?: Maybe<EzformsRecipientFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  email?: InputMaybe<StringFilterInput>;
+  number?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<EzformsRecipientFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<EzformsRecipientFiltersInput>>>;
+  not?: InputMaybe<EzformsRecipientFiltersInput>;
 };
 
 export type EzformsRecipientInput = {
-  name?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['String']>;
-  number?: Maybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']>;
+  number?: InputMaybe<Scalars['String']>;
 };
 
 export type EzformsRecipient = {
@@ -846,23 +862,23 @@ export enum Enum_Graphsbuildergraph_Type {
 }
 
 export type GraphsBuilderGraphFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  title?: Maybe<StringFilterInput>;
-  type?: Maybe<StringFilterInput>;
-  collectionX?: Maybe<StringFilterInput>;
-  collectionXAttribute?: Maybe<StringFilterInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<GraphsBuilderGraphFiltersInput>>>;
-  or?: Maybe<Array<Maybe<GraphsBuilderGraphFiltersInput>>>;
-  not?: Maybe<GraphsBuilderGraphFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
+  collectionX?: InputMaybe<StringFilterInput>;
+  collectionXAttribute?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<GraphsBuilderGraphFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<GraphsBuilderGraphFiltersInput>>>;
+  not?: InputMaybe<GraphsBuilderGraphFiltersInput>;
 };
 
 export type GraphsBuilderGraphInput = {
-  title?: Maybe<Scalars['String']>;
-  type?: Maybe<Enum_Graphsbuildergraph_Type>;
-  collectionX?: Maybe<Scalars['String']>;
-  collectionXAttribute?: Maybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Enum_Graphsbuildergraph_Type>;
+  collectionX?: InputMaybe<Scalars['String']>;
+  collectionXAttribute?: InputMaybe<Scalars['String']>;
 };
 
 export type GraphsBuilderGraph = {
@@ -892,63 +908,24 @@ export type GraphsBuilderGraphEntityResponseCollection = {
   meta: ResponseCollectionMeta;
 };
 
-export type AboutPageDynamicZone = ComponentCommonTextBlock | ComponentCommonButton | Error;
-
-
-export type AboutInput = {
-  page?: Maybe<Array<Scalars['AboutPageDynamicZoneInput']>>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type About = {
-  __typename?: 'About';
-  page: Array<Maybe<AboutPageDynamicZone>>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  localizations?: Maybe<AboutRelationResponseCollection>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type AboutLocalizationsArgs = {
-  publicationState?: Maybe<PublicationState>;
-};
-
-export type AboutEntity = {
-  __typename?: 'AboutEntity';
-  id?: Maybe<Scalars['ID']>;
-  attributes?: Maybe<About>;
-};
-
-export type AboutEntityResponse = {
-  __typename?: 'AboutEntityResponse';
-  data?: Maybe<AboutEntity>;
-};
-
-export type AboutRelationResponseCollection = {
-  __typename?: 'AboutRelationResponseCollection';
-  data: Array<AboutEntity>;
-};
-
 export type ApplicationFieldFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  name?: Maybe<StringFilterInput>;
-  description?: Maybe<StringFilterInput>;
-  applications?: Maybe<ApplicationSessionFiltersInput>;
-  questions?: Maybe<ApplicationQuestionFiltersInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<ApplicationFieldFiltersInput>>>;
-  or?: Maybe<Array<Maybe<ApplicationFieldFiltersInput>>>;
-  not?: Maybe<ApplicationFieldFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  applications?: InputMaybe<ApplicationSessionFiltersInput>;
+  questions?: InputMaybe<ApplicationQuestionFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<ApplicationFieldFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<ApplicationFieldFiltersInput>>>;
+  not?: InputMaybe<ApplicationFieldFiltersInput>;
 };
 
 export type ApplicationFieldInput = {
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  applications?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  questions?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  name?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  applications?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  questions?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
 };
 
 export type ApplicationField = {
@@ -963,17 +940,17 @@ export type ApplicationField = {
 
 
 export type ApplicationFieldApplicationsArgs = {
-  filters?: Maybe<ApplicationSessionFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<ApplicationSessionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type ApplicationFieldQuestionsArgs = {
-  filters?: Maybe<ApplicationQuestionFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
-  publicationState?: Maybe<PublicationState>;
+  filters?: InputMaybe<ApplicationQuestionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 export type ApplicationFieldEntity = {
@@ -995,26 +972,25 @@ export type ApplicationFieldEntityResponseCollection = {
 
 export type ApplicationQuestionItemsDynamicZone = ComponentApplicationCodeblock | ComponentApplicationImage | ComponentApplicationTweet | Error;
 
-
 export type ApplicationQuestionFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  title?: Maybe<StringFilterInput>;
-  description?: Maybe<StringFilterInput>;
-  field?: Maybe<ApplicationFieldFiltersInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  publishedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<ApplicationQuestionFiltersInput>>>;
-  or?: Maybe<Array<Maybe<ApplicationQuestionFiltersInput>>>;
-  not?: Maybe<ApplicationQuestionFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  field?: InputMaybe<ApplicationFieldFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<ApplicationQuestionFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<ApplicationQuestionFiltersInput>>>;
+  not?: InputMaybe<ApplicationQuestionFiltersInput>;
 };
 
 export type ApplicationQuestionInput = {
-  title?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  items?: Maybe<Array<Scalars['ApplicationQuestionItemsDynamicZoneInput']>>;
-  field?: Maybe<Scalars['ID']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
+  title?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  items?: InputMaybe<Array<Scalars['ApplicationQuestionItemsDynamicZoneInput']>>;
+  field?: InputMaybe<Scalars['ID']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type ApplicationQuestion = {
@@ -1051,25 +1027,25 @@ export type ApplicationQuestionRelationResponseCollection = {
 };
 
 export type ApplicationSessionFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  identifier?: Maybe<StringFilterInput>;
-  completed?: Maybe<BooleanFilterInput>;
-  response?: Maybe<JsonFilterInput>;
-  name?: Maybe<StringFilterInput>;
-  field?: Maybe<ApplicationFieldFiltersInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<ApplicationSessionFiltersInput>>>;
-  or?: Maybe<Array<Maybe<ApplicationSessionFiltersInput>>>;
-  not?: Maybe<ApplicationSessionFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  identifier?: InputMaybe<StringFilterInput>;
+  completed?: InputMaybe<BooleanFilterInput>;
+  response?: InputMaybe<JsonFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  field?: InputMaybe<ApplicationFieldFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<ApplicationSessionFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<ApplicationSessionFiltersInput>>>;
+  not?: InputMaybe<ApplicationSessionFiltersInput>;
 };
 
 export type ApplicationSessionInput = {
-  identifier?: Maybe<Scalars['String']>;
-  completed?: Maybe<Scalars['Boolean']>;
-  response?: Maybe<Scalars['JSON']>;
-  name?: Maybe<Scalars['String']>;
-  field?: Maybe<Scalars['ID']>;
+  identifier?: InputMaybe<Scalars['String']>;
+  completed?: InputMaybe<Scalars['Boolean']>;
+  response?: InputMaybe<Scalars['JSON']>;
+  name?: InputMaybe<Scalars['String']>;
+  field?: InputMaybe<Scalars['ID']>;
 };
 
 export type ApplicationSession = {
@@ -1106,9 +1082,9 @@ export type ApplicationSessionRelationResponseCollection = {
 };
 
 export type ComingSoonInput = {
-  Title?: Maybe<Scalars['String']>;
-  Text?: Maybe<Scalars['String']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
+  Title?: InputMaybe<Scalars['String']>;
+  Text?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type ComingSoon = {
@@ -1124,7 +1100,7 @@ export type ComingSoon = {
 
 
 export type ComingSoonLocalizationsArgs = {
-  publicationState?: Maybe<PublicationState>;
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 export type ComingSoonEntity = {
@@ -1144,22 +1120,22 @@ export type ComingSoonRelationResponseCollection = {
 };
 
 export type ContributorFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  name?: Maybe<StringFilterInput>;
-  bio?: Maybe<StringFilterInput>;
-  href?: Maybe<StringFilterInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  and?: Maybe<Array<Maybe<ContributorFiltersInput>>>;
-  or?: Maybe<Array<Maybe<ContributorFiltersInput>>>;
-  not?: Maybe<ContributorFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  bio?: InputMaybe<StringFilterInput>;
+  href?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<ContributorFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<ContributorFiltersInput>>>;
+  not?: InputMaybe<ContributorFiltersInput>;
 };
 
 export type ContributorInput = {
-  name?: Maybe<Scalars['String']>;
-  image?: Maybe<Scalars['ID']>;
-  bio?: Maybe<Scalars['String']>;
-  href?: Maybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  image?: InputMaybe<Scalars['ID']>;
+  bio?: InputMaybe<Scalars['String']>;
+  href?: InputMaybe<Scalars['String']>;
 };
 
 export type Contributor = {
@@ -1190,7 +1166,7 @@ export type ContributorEntityResponseCollection = {
 };
 
 export type FeaturedInput = {
-  video?: Maybe<Scalars['ID']>;
+  video?: InputMaybe<Scalars['ID']>;
 };
 
 export type Featured = {
@@ -1211,50 +1187,11 @@ export type FeaturedEntityResponse = {
   data?: Maybe<FeaturedEntity>;
 };
 
-export type HomepagePageDynamicZone = ComponentCommonTextBlock | ComponentCommonButton | Error;
-
-
-export type HomepageInput = {
-  page?: Maybe<Array<Scalars['HomepagePageDynamicZoneInput']>>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type Homepage = {
-  __typename?: 'Homepage';
-  page?: Maybe<Array<Maybe<HomepagePageDynamicZone>>>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  localizations?: Maybe<HomepageRelationResponseCollection>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type HomepageLocalizationsArgs = {
-  publicationState?: Maybe<PublicationState>;
-};
-
-export type HomepageEntity = {
-  __typename?: 'HomepageEntity';
-  id?: Maybe<Scalars['ID']>;
-  attributes?: Maybe<Homepage>;
-};
-
-export type HomepageEntityResponse = {
-  __typename?: 'HomepageEntityResponse';
-  data?: Maybe<HomepageEntity>;
-};
-
-export type HomepageRelationResponseCollection = {
-  __typename?: 'HomepageRelationResponseCollection';
-  data: Array<HomepageEntity>;
-};
-
 export type ImprintInput = {
-  impressum?: Maybe<Scalars['String']>;
-  privacy?: Maybe<Scalars['String']>;
-  terms?: Maybe<Scalars['String']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
+  impressum?: InputMaybe<Scalars['String']>;
+  privacy?: InputMaybe<Scalars['String']>;
+  terms?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type Imprint = {
@@ -1299,38 +1236,40 @@ export enum Enum_Serie_Genre {
 }
 
 export type SerieFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  title?: Maybe<StringFilterInput>;
-  rating?: Maybe<FloatFilterInput>;
-  description?: Maybe<StringFilterInput>;
-  videos?: Maybe<VideoFiltersInput>;
-  original?: Maybe<BooleanFilterInput>;
-  year?: Maybe<DateFilterInput>;
-  genre?: Maybe<StringFilterInput>;
-  age?: Maybe<IntFilterInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  publishedAt?: Maybe<DateTimeFilterInput>;
-  localizations?: Maybe<SerieFiltersInput>;
-  locale?: Maybe<StringFilterInput>;
-  and?: Maybe<Array<Maybe<SerieFiltersInput>>>;
-  or?: Maybe<Array<Maybe<SerieFiltersInput>>>;
-  not?: Maybe<SerieFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  rating?: InputMaybe<FloatFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  videos?: InputMaybe<VideoFiltersInput>;
+  original?: InputMaybe<BooleanFilterInput>;
+  year?: InputMaybe<DateFilterInput>;
+  genre?: InputMaybe<StringFilterInput>;
+  age?: InputMaybe<IntFilterInput>;
+  contributors?: InputMaybe<ComponentCommonContributorFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  localizations?: InputMaybe<SerieFiltersInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<SerieFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<SerieFiltersInput>>>;
+  not?: InputMaybe<SerieFiltersInput>;
 };
 
 export type SerieInput = {
-  title?: Maybe<Scalars['String']>;
-  title_image?: Maybe<Scalars['ID']>;
-  background_image?: Maybe<Scalars['ID']>;
-  rating?: Maybe<Scalars['Float']>;
-  description?: Maybe<Scalars['String']>;
-  videos?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  thumbnail?: Maybe<Scalars['ID']>;
-  original?: Maybe<Scalars['Boolean']>;
-  year?: Maybe<Scalars['Date']>;
-  genre?: Maybe<Enum_Serie_Genre>;
-  age?: Maybe<Scalars['Int']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
+  title?: InputMaybe<Scalars['String']>;
+  title_image?: InputMaybe<Scalars['ID']>;
+  background_image?: InputMaybe<Scalars['ID']>;
+  rating?: InputMaybe<Scalars['Float']>;
+  description?: InputMaybe<Scalars['String']>;
+  videos?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  thumbnail?: InputMaybe<Scalars['ID']>;
+  original?: InputMaybe<Scalars['Boolean']>;
+  year?: InputMaybe<Scalars['Date']>;
+  genre?: InputMaybe<Enum_Serie_Genre>;
+  age?: InputMaybe<Scalars['Int']>;
+  contributors?: InputMaybe<Array<InputMaybe<ComponentCommonContributorInput>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type Serie = {
@@ -1346,6 +1285,7 @@ export type Serie = {
   year: Scalars['Date'];
   genre: Enum_Serie_Genre;
   age: Scalars['Int'];
+  contributors?: Maybe<Array<Maybe<ComponentCommonContributor>>>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -1355,18 +1295,25 @@ export type Serie = {
 
 
 export type SerieVideosArgs = {
-  filters?: Maybe<VideoFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
-  publicationState?: Maybe<PublicationState>;
+  filters?: InputMaybe<VideoFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+
+export type SerieContributorsArgs = {
+  filters?: InputMaybe<ComponentCommonContributorFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type SerieLocalizationsArgs = {
-  filters?: Maybe<SerieFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
-  publicationState?: Maybe<PublicationState>;
+  filters?: InputMaybe<SerieFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 export type SerieEntity = {
@@ -1412,43 +1359,46 @@ export enum Enum_Video_Genre {
 }
 
 export type VideoFiltersInput = {
-  id?: Maybe<IdFilterInput>;
-  title?: Maybe<StringFilterInput>;
-  youtube_url?: Maybe<StringFilterInput>;
-  description?: Maybe<StringFilterInput>;
-  rating?: Maybe<FloatFilterInput>;
-  series?: Maybe<SerieFiltersInput>;
-  on_watchlist?: Maybe<UsersPermissionsUserFiltersInput>;
-  year?: Maybe<DateFilterInput>;
-  age?: Maybe<IntFilterInput>;
-  genre?: Maybe<StringFilterInput>;
-  original?: Maybe<BooleanFilterInput>;
-  createdAt?: Maybe<DateTimeFilterInput>;
-  updatedAt?: Maybe<DateTimeFilterInput>;
-  publishedAt?: Maybe<DateTimeFilterInput>;
-  localizations?: Maybe<VideoFiltersInput>;
-  locale?: Maybe<StringFilterInput>;
-  and?: Maybe<Array<Maybe<VideoFiltersInput>>>;
-  or?: Maybe<Array<Maybe<VideoFiltersInput>>>;
-  not?: Maybe<VideoFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  youtube_url?: InputMaybe<StringFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  rating?: InputMaybe<FloatFilterInput>;
+  series?: InputMaybe<SerieFiltersInput>;
+  on_watchlist?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  year?: InputMaybe<DateFilterInput>;
+  age?: InputMaybe<IntFilterInput>;
+  genre?: InputMaybe<StringFilterInput>;
+  original?: InputMaybe<BooleanFilterInput>;
+  contributors?: InputMaybe<ComponentCommonContributorFiltersInput>;
+  episode?: InputMaybe<IntFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  localizations?: InputMaybe<VideoFiltersInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<VideoFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<VideoFiltersInput>>>;
+  not?: InputMaybe<VideoFiltersInput>;
 };
 
 export type VideoInput = {
-  title?: Maybe<Scalars['String']>;
-  title_image?: Maybe<Scalars['ID']>;
-  background_image?: Maybe<Scalars['ID']>;
-  youtube_url?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  rating?: Maybe<Scalars['Float']>;
-  series?: Maybe<Scalars['ID']>;
-  on_watchlist?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  year?: Maybe<Scalars['Date']>;
-  age?: Maybe<Scalars['Int']>;
-  genre?: Maybe<Enum_Video_Genre>;
-  thumbnail?: Maybe<Scalars['ID']>;
-  original?: Maybe<Scalars['Boolean']>;
-  contributors?: Maybe<Array<Maybe<ComponentCommonContributorInput>>>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
+  title?: InputMaybe<Scalars['String']>;
+  title_image?: InputMaybe<Scalars['ID']>;
+  background_image?: InputMaybe<Scalars['ID']>;
+  youtube_url?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  rating?: InputMaybe<Scalars['Float']>;
+  series?: InputMaybe<Scalars['ID']>;
+  on_watchlist?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  year?: InputMaybe<Scalars['Date']>;
+  age?: InputMaybe<Scalars['Int']>;
+  genre?: InputMaybe<Enum_Video_Genre>;
+  thumbnail?: InputMaybe<Scalars['ID']>;
+  original?: InputMaybe<Scalars['Boolean']>;
+  contributors?: InputMaybe<Array<InputMaybe<ComponentCommonContributorInput>>>;
+  episode?: InputMaybe<Scalars['Int']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type Video = {
@@ -1467,6 +1417,7 @@ export type Video = {
   thumbnail: UploadFileEntityResponse;
   original?: Maybe<Scalars['Boolean']>;
   contributors: Array<Maybe<ComponentCommonContributor>>;
+  episode?: Maybe<Scalars['Int']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -1476,24 +1427,24 @@ export type Video = {
 
 
 export type VideoOn_WatchlistArgs = {
-  filters?: Maybe<UsersPermissionsUserFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type VideoContributorsArgs = {
-  filters?: Maybe<ComponentCommonContributorFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<ComponentCommonContributorFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type VideoLocalizationsArgs = {
-  filters?: Maybe<VideoFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
-  publicationState?: Maybe<PublicationState>;
+  filters?: InputMaybe<VideoFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 export type VideoEntity = {
@@ -1518,14 +1469,13 @@ export type VideoRelationResponseCollection = {
   data: Array<VideoEntity>;
 };
 
-export type GenericMorph = ComponentApplicationCodeblock | ComponentApplicationImage | ComponentApplicationTweet | ComponentCommonButton | ComponentCommonContributor | ComponentCommonTextBlock | ComponentFeaturedFilm | ComponentFeaturedSeries | ComponentMoviePoster | UploadFile | UploadFolder | AwesomeHelpHelp | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | EzformsSubmission | EzformsRecipient | GraphsBuilderGraph | About | ApplicationField | ApplicationQuestion | ApplicationSession | ComingSoon | Contributor | Featured | Homepage | Imprint | Serie | Video;
+export type GenericMorph = ComponentApplicationCodeblock | ComponentApplicationImage | ComponentApplicationTweet | ComponentCommonButton | ComponentCommonContributor | ComponentCommonTextBlock | ComponentFeaturedFilm | ComponentFeaturedSeries | ComponentMoviePoster | ComponentMovieVideo | UploadFile | UploadFolder | AwesomeHelpHelp | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | EzformsSubmission | EzformsRecipient | GraphsBuilderGraph | ApplicationField | ApplicationQuestion | ApplicationSession | ComingSoon | Contributor | Featured | Imprint | Serie | Video;
 
 export type FileInfoInput = {
-  name?: Maybe<Scalars['String']>;
-  alternativeText?: Maybe<Scalars['String']>;
-  caption?: Maybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  alternativeText?: InputMaybe<Scalars['String']>;
+  caption?: InputMaybe<Scalars['String']>;
 };
-
 
 export type UsersPermissionsMe = {
   __typename?: 'UsersPermissionsMe';
@@ -1584,10 +1534,10 @@ export type UsersPermissionsDeleteRolePayload = {
 };
 
 export type PaginationArg = {
-  page?: Maybe<Scalars['Int']>;
-  pageSize?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
+  page?: InputMaybe<Scalars['Int']>;
+  pageSize?: InputMaybe<Scalars['Int']>;
+  start?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
 };
 
 export type Query = {
@@ -1610,7 +1560,6 @@ export type Query = {
   ezformsRecipients?: Maybe<EzformsRecipientEntityResponseCollection>;
   graphsBuilderGraph?: Maybe<GraphsBuilderGraphEntityResponse>;
   graphsBuilderGraphs?: Maybe<GraphsBuilderGraphEntityResponseCollection>;
-  about?: Maybe<AboutEntityResponse>;
   applicationField?: Maybe<ApplicationFieldEntityResponse>;
   applicationFields?: Maybe<ApplicationFieldEntityResponseCollection>;
   applicationQuestion?: Maybe<ApplicationQuestionEntityResponse>;
@@ -1621,7 +1570,6 @@ export type Query = {
   contributor?: Maybe<ContributorEntityResponse>;
   contributors?: Maybe<ContributorEntityResponseCollection>;
   featured?: Maybe<FeaturedEntityResponse>;
-  homepage?: Maybe<HomepageEntityResponse>;
   imprint?: Maybe<ImprintEntityResponse>;
   serie?: Maybe<SerieEntityResponse>;
   series?: Maybe<SerieEntityResponseCollection>;
@@ -1632,212 +1580,200 @@ export type Query = {
 
 
 export type QueryUploadFileArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryUploadFilesArgs = {
-  filters?: Maybe<UploadFileFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type QueryUploadFolderArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryUploadFoldersArgs = {
-  filters?: Maybe<UploadFolderFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<UploadFolderFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type QueryAwesomeHelpHelpArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryAwesomeHelpHelpsArgs = {
-  filters?: Maybe<AwesomeHelpHelpFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<AwesomeHelpHelpFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type QueryI18NLocaleArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryI18NLocalesArgs = {
-  filters?: Maybe<I18NLocaleFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<I18NLocaleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type QueryUsersPermissionsRoleArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryUsersPermissionsRolesArgs = {
-  filters?: Maybe<UsersPermissionsRoleFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type QueryUsersPermissionsUserArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryUsersPermissionsUsersArgs = {
-  filters?: Maybe<UsersPermissionsUserFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type QueryEzformsSubmissionArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryEzformsSubmissionsArgs = {
-  filters?: Maybe<EzformsSubmissionFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<EzformsSubmissionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type QueryEzformsRecipientArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryEzformsRecipientsArgs = {
-  filters?: Maybe<EzformsRecipientFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<EzformsRecipientFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type QueryGraphsBuilderGraphArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryGraphsBuilderGraphsArgs = {
-  filters?: Maybe<GraphsBuilderGraphFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-export type QueryAboutArgs = {
-  publicationState?: Maybe<PublicationState>;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  filters?: InputMaybe<GraphsBuilderGraphFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type QueryApplicationFieldArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryApplicationFieldsArgs = {
-  filters?: Maybe<ApplicationFieldFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<ApplicationFieldFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type QueryApplicationQuestionArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryApplicationQuestionsArgs = {
-  filters?: Maybe<ApplicationQuestionFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
-  publicationState?: Maybe<PublicationState>;
+  filters?: InputMaybe<ApplicationQuestionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 
 export type QueryApplicationSessionArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryApplicationSessionsArgs = {
-  filters?: Maybe<ApplicationSessionFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filters?: InputMaybe<ApplicationSessionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type QueryComingSoonArgs = {
-  publicationState?: Maybe<PublicationState>;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  publicationState?: InputMaybe<PublicationState>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type QueryContributorArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
 export type QueryContributorsArgs = {
-  filters?: Maybe<ContributorFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-export type QueryHomepageArgs = {
-  publicationState?: Maybe<PublicationState>;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  filters?: InputMaybe<ContributorFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type QueryImprintArgs = {
-  publicationState?: Maybe<PublicationState>;
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 
 export type QuerySerieArgs = {
-  id?: Maybe<Scalars['ID']>;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type QuerySeriesArgs = {
-  filters?: Maybe<SerieFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
-  publicationState?: Maybe<PublicationState>;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  filters?: InputMaybe<SerieFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  publicationState?: InputMaybe<PublicationState>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type QueryVideoArgs = {
-  id?: Maybe<Scalars['ID']>;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type QueryVideosArgs = {
-  filters?: Maybe<VideoFiltersInput>;
-  pagination?: Maybe<PaginationArg>;
-  sort?: Maybe<Array<Maybe<Scalars['String']>>>;
-  publicationState?: Maybe<PublicationState>;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  filters?: InputMaybe<VideoFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  publicationState?: InputMaybe<PublicationState>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 export type Mutation = {
@@ -1860,8 +1796,6 @@ export type Mutation = {
   createGraphsBuilderGraph?: Maybe<GraphsBuilderGraphEntityResponse>;
   updateGraphsBuilderGraph?: Maybe<GraphsBuilderGraphEntityResponse>;
   deleteGraphsBuilderGraph?: Maybe<GraphsBuilderGraphEntityResponse>;
-  updateAbout?: Maybe<AboutEntityResponse>;
-  deleteAbout?: Maybe<AboutEntityResponse>;
   createApplicationField?: Maybe<ApplicationFieldEntityResponse>;
   updateApplicationField?: Maybe<ApplicationFieldEntityResponse>;
   deleteApplicationField?: Maybe<ApplicationFieldEntityResponse>;
@@ -1878,8 +1812,6 @@ export type Mutation = {
   deleteContributor?: Maybe<ContributorEntityResponse>;
   updateFeatured?: Maybe<FeaturedEntityResponse>;
   deleteFeatured?: Maybe<FeaturedEntityResponse>;
-  updateHomepage?: Maybe<HomepageEntityResponse>;
-  deleteHomepage?: Maybe<HomepageEntityResponse>;
   updateImprint?: Maybe<ImprintEntityResponse>;
   deleteImprint?: Maybe<ImprintEntityResponse>;
   createSerie?: Maybe<SerieEntityResponse>;
@@ -1892,9 +1824,7 @@ export type Mutation = {
   multipleUpload: Array<Maybe<UploadFileEntityResponse>>;
   updateFileInfo: UploadFileEntityResponse;
   removeFile?: Maybe<UploadFileEntityResponse>;
-  createAboutLocalization?: Maybe<AboutEntityResponse>;
   createComingSoonLocalization?: Maybe<ComingSoonEntityResponse>;
-  createHomepageLocalization?: Maybe<HomepageEntityResponse>;
   createSerieLocalization?: Maybe<SerieEntityResponse>;
   createVideoLocalization?: Maybe<VideoEntityResponse>;
   /** Create a new role */
@@ -1916,6 +1846,8 @@ export type Mutation = {
   forgotPassword?: Maybe<UsersPermissionsPasswordPayload>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  /** Change user password. Confirm with the current password. */
+  changePassword?: Maybe<UsersPermissionsLoginPayload>;
   /** Confirm an email users email address */
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
 };
@@ -2017,17 +1949,6 @@ export type MutationDeleteGraphsBuilderGraphArgs = {
 };
 
 
-export type MutationUpdateAboutArgs = {
-  data: AboutInput;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
-};
-
-
-export type MutationDeleteAboutArgs = {
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
-};
-
-
 export type MutationCreateApplicationFieldArgs = {
   data: ApplicationFieldInput;
 };
@@ -2078,12 +1999,12 @@ export type MutationDeleteApplicationSessionArgs = {
 
 export type MutationUpdateComingSoonArgs = {
   data: ComingSoonInput;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type MutationDeleteComingSoonArgs = {
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
@@ -2108,17 +2029,6 @@ export type MutationUpdateFeaturedArgs = {
 };
 
 
-export type MutationUpdateHomepageArgs = {
-  data: HomepageInput;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
-};
-
-
-export type MutationDeleteHomepageArgs = {
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
-};
-
-
 export type MutationUpdateImprintArgs = {
   data: ImprintInput;
 };
@@ -2126,62 +2036,62 @@ export type MutationUpdateImprintArgs = {
 
 export type MutationCreateSerieArgs = {
   data: SerieInput;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type MutationUpdateSerieArgs = {
   id: Scalars['ID'];
   data: SerieInput;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type MutationDeleteSerieArgs = {
   id: Scalars['ID'];
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type MutationCreateVideoArgs = {
   data: VideoInput;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type MutationUpdateVideoArgs = {
   id: Scalars['ID'];
   data: VideoInput;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type MutationDeleteVideoArgs = {
   id: Scalars['ID'];
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type MutationUploadArgs = {
-  refId?: Maybe<Scalars['ID']>;
-  ref?: Maybe<Scalars['String']>;
-  field?: Maybe<Scalars['String']>;
-  info?: Maybe<FileInfoInput>;
+  refId?: InputMaybe<Scalars['ID']>;
+  ref?: InputMaybe<Scalars['String']>;
+  field?: InputMaybe<Scalars['String']>;
+  info?: InputMaybe<FileInfoInput>;
   file: Scalars['Upload'];
 };
 
 
 export type MutationMultipleUploadArgs = {
-  refId?: Maybe<Scalars['ID']>;
-  ref?: Maybe<Scalars['String']>;
-  field?: Maybe<Scalars['String']>;
-  files: Array<Maybe<Scalars['Upload']>>;
+  refId?: InputMaybe<Scalars['ID']>;
+  ref?: InputMaybe<Scalars['String']>;
+  field?: InputMaybe<Scalars['String']>;
+  files: Array<InputMaybe<Scalars['Upload']>>;
 };
 
 
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
-  info?: Maybe<FileInfoInput>;
+  info?: InputMaybe<FileInfoInput>;
 };
 
 
@@ -2190,38 +2100,24 @@ export type MutationRemoveFileArgs = {
 };
 
 
-export type MutationCreateAboutLocalizationArgs = {
-  id?: Maybe<Scalars['ID']>;
-  data?: Maybe<AboutInput>;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
-};
-
-
 export type MutationCreateComingSoonLocalizationArgs = {
-  id?: Maybe<Scalars['ID']>;
-  data?: Maybe<ComingSoonInput>;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
-};
-
-
-export type MutationCreateHomepageLocalizationArgs = {
-  id?: Maybe<Scalars['ID']>;
-  data?: Maybe<HomepageInput>;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  id?: InputMaybe<Scalars['ID']>;
+  data?: InputMaybe<ComingSoonInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type MutationCreateSerieLocalizationArgs = {
-  id?: Maybe<Scalars['ID']>;
-  data?: Maybe<SerieInput>;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  id?: InputMaybe<Scalars['ID']>;
+  data?: InputMaybe<SerieInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
 export type MutationCreateVideoLocalizationArgs = {
-  id?: Maybe<Scalars['ID']>;
-  data?: Maybe<VideoInput>;
-  locale?: Maybe<Scalars['I18NLocaleCode']>;
+  id?: InputMaybe<Scalars['ID']>;
+  data?: InputMaybe<VideoInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
 
@@ -2276,6 +2172,13 @@ export type MutationResetPasswordArgs = {
   password: Scalars['String'];
   passwordConfirmation: Scalars['String'];
   code: Scalars['String'];
+};
+
+
+export type MutationChangePasswordArgs = {
+  currentPassword: Scalars['String'];
+  password: Scalars['String'];
+  passwordConfirmation: Scalars['String'];
 };
 
 

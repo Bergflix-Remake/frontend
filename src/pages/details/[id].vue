@@ -17,6 +17,7 @@ const series = useStrapiOne<SerieEntity>([
   id,
   {
     populate: ['title_image', 'videos.thumbnail', 'background_image'],
+    sort: 'videos.episode:asc',
   },
 ]);
 </script>
@@ -66,7 +67,7 @@ const series = useStrapiOne<SerieEntity>([
               api(video.attributes?.thumbnail?.data?.attributes?.url!)
             "
             :title="video.attributes?.title!"
-            :episode="series.data?.attributes?.videos?.data?.indexOf(video)! + 1"
+            :episode="video.attributes?.episode!"
             class="snap-start"
           />
         </div>
