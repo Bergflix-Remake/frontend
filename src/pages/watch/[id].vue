@@ -1,5 +1,5 @@
 <template>
-  <article v-if='!invalidId' class='p-5 flex flex-col w-full min-h-screen space-y-2'>
+  <article v-if='!invalidId' class='p-5 flex flex-col w-full min-h-screen space-y-2 mt-20'>
     <div class='flex flex-col xl:flex-row xl:space-x-2'>
       <!-- Player -->
       <div class='bg-clean-dark-600 w-full aspect-video md:rounded-l-lg  overflow-hidden'>
@@ -17,7 +17,7 @@ v-if='movie.data?.attributes?.series?.data?.attributes?.title_image?.data'
              :src='`https://api.bergflix.de${movie.data?.attributes?.series?.data?.attributes?.title_image?.data?.attributes?.url}`'
              class='max-w-md mb-5'>
         <Title v-else>{{ series.title }}</Title>
-        <div class='flex flex-col space-y-2'>
+        <div class='flex flex-col space-y-2 xl:max-h-96 overflow-y-auto'>
           <PlaylistEntry
             v-for='video in series.videos?.data'
             :id='video.id!'
@@ -97,7 +97,7 @@ const series = computed(() => movie.data?.attributes?.series?.data?.attributes);
 const url = computed(() => movie.data?.attributes?.youtube_url?.match(/v=(.*)/)?.[1]);
 
 useHead({
-  title: computed(() => `${movie.data?.attributes?.title ? 'Watching ' + movie.data?.attributes?.title : 'Loading'} · Bergflix`)
+  title: computed(() => `${movie.data?.attributes?.title ? movie.data?.attributes?.title : 'Loading'} · Bergflix`)
 });
 
 const title = computed(() => movie.data?.attributes?.title);
