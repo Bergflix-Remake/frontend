@@ -53,7 +53,7 @@ const series = useStrapiOne<SerieEntity>([
         class="md:max-w-md md:m-10"
       ></Info>
     </div>
-    <div class="relative overflow-y-scroll z-20 overflow-x-visible hide-scrollbar pb-10 scroll-smooth rounded-xl" >
+    <div class="relative overflow-y-scroll z-20 overflow-x-visible hide-scrollbar pb-10 lg:bg-transparent bg-black" >
       <div
         class="absolute left-1/2 transform -translate-x-1/2 w-full lg:top-1/3 h-1/4 overflow-x-visible"
       >
@@ -73,6 +73,7 @@ const series = useStrapiOne<SerieEntity>([
         </div>
       </div>
     </div>
+    <div id="gradient" class="h-10 bg-gradient-to-t from-black to-transparent absolute bottom-0 w-full left-0 z-50"></div>
   </main>
 </template>
 
