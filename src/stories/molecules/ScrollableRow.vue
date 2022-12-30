@@ -1,63 +1,75 @@
 <template>
   <div class="relative overflow-hidden">
     <div
-ref="scrollContainer" class="flex flex-row w-full space-x-4 overflow-x-hidden rounded-lg py-14" @wheel="handleWheel"
-      @scroll="handleScroll">
+      ref="scrollContainer"
+      class="flex flex-row w-full space-x-4 overflow-x-hidden rounded-lg py-14"
+      @scroll="handleScroll"
+    >
       <slot />
     </div>
     <div
-v-if="leftScrollButton" id="fade-l"
-      class="absolute top-0 left-0 z-20 w-10 h-full pointer-events-none bg-gradient-to-r from-black to-transparent">
-    </div>
+      v-if="buttons.left"
+      id="fade-l"
+      class="absolute top-0 left-0 z-20 w-10 h-full pointer-events-none bg-gradient-to-r from-black to-transparent"
+    ></div>
     <div
-v-if="rightScrollButton" id="fade-r"
-      class="absolute top-0 right-0 z-20 w-10 h-full pointer-events-none bg-gradient-to-l from-black to-transparent">
-    </div>
+      v-if="buttons.right"
+      id="fade-r"
+      class="absolute top-0 right-0 z-20 w-10 h-full pointer-events-none bg-gradient-to-l from-black to-transparent"
+    ></div>
     <Transition name="right">
       <BadgeButton
-v-if="rightScrollButton" class="absolute transform -translate-y-1/2 top-1/2 right-1 lg:right-5"
-        :icon="ArrowNarrowRightIcon" @click="() => scrollContainer!.scrollBy({ left: 300, behavior: 'smooth' })" />
+        v-if="buttons.right"
+        class="absolute transform -translate-y-1/2 top-1/2 right-1 lg:right-5"
+        :icon="ArrowNarrowRightIcon"
+        @click="scroll('right')"
+      />
     </Transition>
     <Transition name="left">
       <BadgeButton
-v-if="leftScrollButton" class="absolute transform -translate-y-1/2 top-1/2 left-1 lg:left-5"
-        :icon="ArrowNarrowLeftIcon" @click="() => scrollContainer!.scrollBy({ left: -300, behavior: 'smooth' })" />
+        v-if="buttons.left"
+        class="absolute transform -translate-y-1/2 top-1/2 left-1 lg:left-5"
+        :icon="ArrowNarrowLeftIcon"
+        @click="scroll('left')"
+      />
     </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, Ref } from "vue";
-import BadgeButton from "@atoms/BadgeButton.vue";
-import { ArrowNarrowRightIcon, ArrowNarrowLeftIcon } from "@heroicons/vue/outline";
+import { ref, Ref, reactive, onMounted } from 'vue';
+import BadgeButton from '@atoms/BadgeButton.vue';
+import {
+  ArrowNarrowRightIcon,
+  ArrowNarrowLeftIcon,
+} from '@heroicons/vue/outline';
 
 const scrollContainer: Ref<HTMLElement | undefined> = ref();
-const leftScrollButton = ref(false);
-const rightScrollButton = ref(true);
 
-const handleWheel = (e: WheelEvent) => {
-  e.preventDefault();
-  const el = scrollContainer.value!;
-  el.scrollBy({
-    left: e.deltaY * 0.7,
-    top: 0,
-    behavior: "auto",
-  });
+const buttons = reactive({
+  left: true,
+  right: true,
+});
+
+const scroll = (dir: 'left' | 'right') => {
+  if (scrollContainer.value) {
+    scrollContainer.value.scrollBy({
+      left: dir === 'left' ? -300 : 300,
+      behavior: 'smooth',
+    });
+  }
 };
 
 const handleScroll = () => {
   const el = scrollContainer.value;
   if (el == null) return;
-  leftScrollButton.value = el.scrollLeft > 0;
-  rightScrollButton.value = el.scrollLeft + el.clientWidth < el.scrollWidth;
+  buttons.left = el.scrollLeft > 0;
+  buttons.right = el.scrollLeft + el.clientWidth < el.scrollWidth;
 };
 onMounted(() => {
   handleScroll();
   window.addEventListener('resize', handleScroll);
 });
-
-
-
 </script>
 
 <style>

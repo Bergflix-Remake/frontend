@@ -8,6 +8,7 @@
     "conventionalCommits.scopes": [
         "Storybook",
         "deps",
-        "core"
+        "core",
+        "ux"
     ]
 }
