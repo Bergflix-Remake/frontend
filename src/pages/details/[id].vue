@@ -24,7 +24,7 @@ const series = useStrapiOne<SerieEntity>([
 
 <template>
   <main
-    class="w-full h-full grid lg:grid-cols-2 grid-cols-1 lg:grid-rows-1 grid-rows-2 z-0 p-5"
+    class="w-full h-full grid lg:grid-cols-2 grid-cols-1 lg:grid-rows-1 grid-rows-2 z-0"
     :style="{
       backgroundImage: `url(${api(
         series.data?.attributes?.background_image?.data?.attributes?.url,
@@ -34,10 +34,10 @@ const series = useStrapiOne<SerieEntity>([
       backgroundPosition: 'center',
     }"
   >
-    <!-- <div
+    <div
       id="gradient"
       class="absolute top-0 left-0 w-full h-full gradient z-10"
-    ></div> -->
+    ></div>
     <div class="flex flex-col w-full h-screen justify-center z-20 relative">
       <Info
         :title="series.data?.attributes?.title!"
