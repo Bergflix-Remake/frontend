@@ -43,6 +43,7 @@ v-if='movie.data?.attributes?.title_image?.data'
 
       </div>
       <div class='md:ml-auto mt-5'>
+        <!-- FIXME remove hardcode values -->
         <InfoRow :year='2022' :age='16' genre='Action' />
       </div>
     </div>

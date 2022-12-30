@@ -1,11 +1,11 @@
 <template>
   <div class='flex flex-col justify-center w-full space-y-2 text-white items-left'>
-    <img v-if='title_image' :src="'https://api.bergflix.de' + title_image" :alt='title'>
+    <img v-if='title_image' :src="api(title_image)" :alt='title'>
     <h1 v-else class='text-5xl font-black'>{{ title }}</h1>
     <Logo :long='true'>Original</Logo>
     <InfoRow :year='year' :age='age' :episodes='episodes' :genre='genre'></InfoRow>
     <p
-      class='overflow-hidden text-clean-dark-200 max-h-20 md:max-h-max text-ellipsis whitespace-nowrap md:whitespace-normal'>
+      class='overflow-hidden text-clean-dark-200 text-ellipsis md:whitespace-normal'>
       {{ description }}
     </p>
     <div class='flex space-x-2'>
@@ -18,6 +18,7 @@
 import Logo from '@atoms/Logo.vue';
 import InfoRow from '../InfoRow/InfoRow.vue';
 import Button from '@atoms/Button.vue';
+import { api } from '@/util/paths';
 
 defineProps<{
   title: string;
