@@ -1372,6 +1372,7 @@ export type VideoFiltersInput = {
   original?: InputMaybe<BooleanFilterInput>;
   contributors?: InputMaybe<ComponentCommonContributorFiltersInput>;
   episode?: InputMaybe<IntFilterInput>;
+  outro_start?: InputMaybe<IntFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
@@ -1398,6 +1399,7 @@ export type VideoInput = {
   original?: InputMaybe<Scalars['Boolean']>;
   contributors?: InputMaybe<Array<InputMaybe<ComponentCommonContributorInput>>>;
   episode?: InputMaybe<Scalars['Int']>;
+  outro_start?: InputMaybe<Scalars['Int']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -1418,6 +1420,7 @@ export type Video = {
   original?: Maybe<Scalars['Boolean']>;
   contributors: Array<Maybe<ComponentCommonContributor>>;
   episode?: Maybe<Scalars['Int']>;
+  outro_start?: Maybe<Scalars['Int']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
