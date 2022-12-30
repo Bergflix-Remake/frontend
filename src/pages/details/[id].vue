@@ -17,13 +17,14 @@ const series = useStrapiOne<SerieEntity>([
   id,
   {
     populate: ['title_image', 'videos.thumbnail', 'background_image'],
+    sort: 'videos.episode:asc',
   },
 ]);
 </script>
 
 <template>
   <main
-    class="w-full h-full grid lg:grid-cols-2 grid-cols-1 lg:grid-rows-1 grid-rows-2 z-0 p-5"
+    class="w-full h-full grid lg:grid-cols-2 grid-cols-1 lg:grid-rows-1 grid-rows-2 z-0"
     :style="{
       backgroundImage: `url(${api(
         series.data?.attributes?.background_image?.data?.attributes?.url,
@@ -33,10 +34,10 @@ const series = useStrapiOne<SerieEntity>([
       backgroundPosition: 'center',
     }"
   >
-    <!-- <div
+    <div
       id="gradient"
       class="absolute top-0 left-0 w-full h-full gradient z-10"
-    ></div> -->
+    ></div>
     <div class="flex flex-col w-full h-screen justify-center z-20 relative">
       <Info
         :title="series.data?.attributes?.title!"
@@ -52,7 +53,7 @@ const series = useStrapiOne<SerieEntity>([
         class="md:max-w-md md:m-10"
       ></Info>
     </div>
-    <div class="relative overflow-y-scroll z-20 overflow-x-visible hide-scrollbar pb-10 scroll-smooth" >
+    <div class="relative overflow-y-scroll z-20 overflow-x-visible hide-scrollbar pb-10 lg:bg-transparent bg-black" >
       <div
         class="absolute left-1/2 transform -translate-x-1/2 w-full lg:top-1/3 h-1/4 overflow-x-visible"
       >
@@ -66,12 +67,13 @@ const series = useStrapiOne<SerieEntity>([
               api(video.attributes?.thumbnail?.data?.attributes?.url!)
             "
             :title="video.attributes?.title!"
-            :episode="series.data?.attributes?.videos?.data?.indexOf(video)! + 1"
+            :episode="video.attributes?.episode!"
             class="snap-start"
           />
         </div>
       </div>
     </div>
+    <div id="gradient" class="h-10 bg-gradient-to-t from-black to-transparent absolute bottom-0 w-full left-0 z-50"></div>
   </main>
 </template>
 
