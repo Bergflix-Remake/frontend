@@ -53,7 +53,7 @@ const series = useStrapiOne<SerieEntity>([
         class="md:max-w-md md:m-10"
       ></Info>
     </div>
-    <div class="relative overflow-y-scroll z-20 overflow-x-visible hide-scrollbar pb-10 scroll-smooth" >
+    <div class="relative overflow-y-scroll z-20 overflow-x-visible hide-scrollbar pb-10 scroll-smooth rounded-xl" >
       <div
         class="absolute left-1/2 transform -translate-x-1/2 w-full lg:top-1/3 h-1/4 overflow-x-visible"
       >
