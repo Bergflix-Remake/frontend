@@ -30,29 +30,6 @@ name: Home
     <Hero />
     <section class="p-10">
       <Title class="mb-2">
-        <Logo :long="true">
-          Originals
-        </Logo>
-      </Title>
-      <ScrollableRow>
-        <Poster
-          v-if="originals.isLoading"
-          loading
-        />
-        <Poster
-          v-for="movie in originals.data"
-          v-else-if="originals.isSuccess"
-          :key="movie.id!"
-          :image="movie.attributes?.thumbnail.data?.attributes?.url"
-          :original="movie.attributes?.original!"
-          @click="() => $router.push(`/watch/${movie.id}`)"
-        />
-        <Poster
-          v-if="originals.isError"
-          error
-        />
-      </ScrollableRow>
-      <Title class="mb-2">
         Filme
       </Title>
       <ScrollableRow>
@@ -66,7 +43,7 @@ name: Home
           :key="movie.id!"
           :image="movie.attributes?.thumbnail.data?.attributes?.url"
           :original="movie.attributes?.original!"
-          @click="() => $router.push(`/watch/${movie.id}`)"
+          @click="() => $router.push({ name: 'Watch', params: { id: movie.id } })"
         />
         <Poster
           v-if="videos.isError"
@@ -87,7 +64,7 @@ name: Home
           :key="serie.id!"
           :image="serie.attributes?.thumbnail.data?.attributes?.url"
           :original="serie.attributes?.original!"
-          @click="() => $router.push(`/details/${serie.id}`)"
+          @click="() => $router.push({ name: 'Details', params: { id: serie.id } })"
         />
         <Poster
           v-if="series.isError"
@@ -103,20 +80,9 @@ import Hero from '@organisms/Hero/Hero.vue';
 import ScrollableRow from '@molecules/ScrollableRow.vue';
 import Poster from '@molecules/Poster.vue';
 import Title from '@atoms/Title/Title.vue';
-import Logo from '@atoms/Logo.vue';
 import { useStrapi } from '@/main';
 import { SerieEntity, VideoEntity } from '@/models/types';
 import { Head } from '@vueuse/head';
-
-const originals = useStrapi<VideoEntity[]>(['videos', {
-    filters: {
-        original: true
-    },
-    populate: {
-        thumbnail: '*'
-    },
-    sort: 'year:desc'
-}]);
 
 const videos = useStrapi<VideoEntity[]>(['videos', {
     populate: {

@@ -37,6 +37,7 @@ const props = defineProps({
   image: {
     type: String,
     required: false,
+    default: 'https://cdn.bergflix.de/logo/light_bg.png'
   },
   loading: {
     type: Boolean,

@@ -5,7 +5,7 @@
       class="z-50 flex flex-col justify-center p-5 space-y-2 rounded-md shadow-lg bg-clean-dark-800/90 w-max"
     >
       <p class="font-bold leading-tight text-delorean-500">
-        Hi, {{ loggedIn ? username : "Guest" }}!
+        Hi, {{ username }}!
       </p>
       <div v-if="loggedIn" class="flex flex-col justify-center space-y-2">
         <Link href="/profile" :icon="UserCircleIcon">Profile</Link>
@@ -41,7 +41,8 @@ defineProps({
   },
   username: {
     type: String,
-    required: true,
+    required: false,
+    default: "Gast",
   },
   loggedIn: {
     type: Boolean,

@@ -1,3 +1,7 @@
+<route lang="yaml">
+name: Details
+</route>
+
 <script setup lang="ts">
 import { useStrapiOne } from '@/main';
 import { api, cdn } from '@/util/paths';

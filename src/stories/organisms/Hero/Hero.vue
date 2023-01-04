@@ -15,6 +15,7 @@ import { computed, ref } from 'vue';
 import { useStrapi, useStrapiOne } from '@/main';
 import { FeaturedEntity, VideoEntity } from '@/models/types';
 import Info from '../../molecules/Info/Info.vue';
+import { RouteLocationRaw } from 'vue-router';
 
 
 const featured = ref<{
@@ -28,7 +29,7 @@ const featured = ref<{
     description: string;
     buttons: {
         text: string,
-        to: string,
+        to: RouteLocationRaw,
         type?: "solid" | "outline" | "ghost",
         color?: string,
         icon?: any,
@@ -60,7 +61,7 @@ useStrapiOne<VideoEntity>(['videos', videoId, {
             buttons: [
                 {
                     text: 'Ansehen',
-                    to: `/watch/${data.id}`,
+                    to: { name: 'Watch', params: { id: data.id! } },
                     icon: PlayIcon,
                 }
             ],
