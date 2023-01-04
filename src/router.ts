@@ -4,7 +4,7 @@ import { strapi } from "./main";
 
 const routes = [
 	...r,
-	{ path: "/", redirect: "/home"},
+	{ path: "/", redirect: "/home" },
 ]
 
 console.debug(routes)
@@ -17,9 +17,9 @@ export const router = createRouter({
 router.beforeEach((to, from) => {
 	// Check authentication
 	if (to.meta.requiresAuth && !strapi.user) {
-	  return {
-		path: '/login',
-		query: { redirect: to.fullPath },
-	  }
+		return {
+			path: '/login',
+			query: { redirect: to.fullPath },
+		}
 	}
-  })
+})
