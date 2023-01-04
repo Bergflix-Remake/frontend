@@ -19,6 +19,7 @@ import Logo from '@atoms/Logo.vue';
 import InfoRow from '../InfoRow/InfoRow.vue';
 import Button from '@atoms/Button.vue';
 import { api } from '@/util/paths';
+import { RouteLocationRaw } from 'vue-router';
 
 defineProps<{
   title: string;
@@ -30,7 +31,7 @@ defineProps<{
   description: string;
   buttons: {
     text: string,
-    to: string,
+    to: RouteLocationRaw,
     type?: 'solid' | 'outline' | 'ghost',
     color?: string,
     icon?: any,
