@@ -1,5 +1,5 @@
 <route lang="yaml">
-name: Serien
+name: serien
 </route>
 
 <template>

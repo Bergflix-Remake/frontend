@@ -1,5 +1,5 @@
 <route lang="yaml">
-name: Filme
+name: filme
 </route>
 
 <template>

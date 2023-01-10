@@ -11,6 +11,10 @@ import {
 } from 'vue-query';
 import "./three-dots.css";
 import { createHead } from '@vueuse/head'
+import { strapi } from "./util/api";
+
+// Try login //
+await strapi.fetchUser();
 
 const app = createApp(App);
 const head = createHead();

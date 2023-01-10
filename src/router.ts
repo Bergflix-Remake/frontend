@@ -16,10 +16,13 @@ export const router = createRouter({
 
 router.beforeEach((to, from) => {
 	// Check authentication
-	if (to.meta.requiresAuth && !strapi.user) {
-		return {
-			path: '/login',
-			query: { redirect: to.fullPath },
+	if (to.meta.requiresAuth) {
+		console.debug("Route requires auth, Current user: ", strapi.user)
+		if (!strapi.user){
+			return {
+				name: "login",
+				query: { redirect: to.fullPath },
+			}
 		}
 	}
 })

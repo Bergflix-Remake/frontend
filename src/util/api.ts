@@ -1,12 +1,12 @@
 // Strapi Query Client //
 import { ErrorResponse as TError } from '../models/custom';
-import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiUser } from 'strapi-sdk-js'
+import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiBaseRequestParams, StrapiAuthenticationResponse, StrapiResponse, StrapiUser } from 'strapi-sdk-js'
 import { QueryKey } from 'react-query/types/core';
-import { useMutation, useQuery, UseQueryOptions, UseQueryReturnType } from 'vue-query';
+import { useMutation, useQuery, UseQueryOptions, UseQueryReturnType, UseMutationOptions } from 'vue-query';
 import { reactive, UnwrapNestedRefs } from 'vue';
 import { ResponseCollectionMeta } from '@/models/types';
 
-export const strapi = new Strapi({
+export const strapi = reactive(new Strapi({
 	store: {
 		key: "strapi_jwt",
 		useLocalStorage: false,
@@ -14,7 +14,7 @@ export const strapi = new Strapi({
 	},
 	url: "https://api.bergflix.de/",
 	prefix: "/api",
-});
+}));
 
 function useStrapiQuery<T>({ queryKey }: any) {
 	return strapi
@@ -36,11 +36,18 @@ export const strapiLogout = () => {
 	strapi.logout();
 };
 
-export const strapiLogin = () => {
-	return useMutation((authData: StrapiAuthenticationData) =>
-		strapi.login(authData)
+export const strapiLogin = (opts?: UseMutationOptions<StrapiAuthenticationResponse, TError, StrapiAuthenticationData, unknown>) => {
+	return useMutation(
+		(authData: StrapiAuthenticationData) => strapi.login(authData),
+		opts
 	);
 };
+
+type StrapiUpdateData<T> = { contentType: string, id: string | number, data: T, params?: StrapiBaseRequestParams }
+
+export const useStrapiUpdateMutation = <T>(opts?: UseMutationOptions<StrapiResponse<T>, TError, StrapiUpdateData<T>, unknown>) => {
+	return useMutation(async (data: StrapiUpdateData<T>) => await strapi.update<T>(data.contentType, data.id, data.data, data.params), opts);
+}
 
 export function useStrapi<T>(
 	queryKey: [string, StrapiRequestParams?],

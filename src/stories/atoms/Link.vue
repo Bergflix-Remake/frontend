@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="to ? `/${href}` : '#'"
+    :to="to"
     class="font-bold text-white ease-in-out cursor-pointer h-min border-b-primary-500 hover:border-b-2 transition-border group w-max"
   >
     <component
@@ -11,16 +11,10 @@
     <slot />
   </router-link>
 </template>
-<script setup>
-// eslint-disable-next-line no-undef
-defineProps({
-  href: {
-    type: String,
-    required: true,
-  },
-  icon: {
-    type: null,
-    required: false,
-  },
-});
+<script setup lang="ts">
+import { RouteLocationRaw } from 'vue-router';
+defineProps<{
+  to: RouteLocationRaw;
+  icon?: any;
+}>();
 </script>

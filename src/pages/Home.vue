@@ -1,5 +1,5 @@
 <route lang='yaml'>
-name: Home
+name: home
 </route>
 <template>
   <Head>
@@ -43,7 +43,7 @@ name: Home
           :key="movie.id!"
           :image="movie.attributes?.thumbnail.data?.attributes?.url"
           :original="movie.attributes?.original!"
-          @click="() => $router.push({ name: 'Watch', params: { id: movie.id } })"
+          @click="() => $router.push({ name: 'watch', params: { id: movie.id } })"
         />
         <Poster
           v-if="videos.isError"
@@ -64,7 +64,7 @@ name: Home
           :key="serie.id!"
           :image="serie.attributes?.thumbnail.data?.attributes?.url"
           :original="serie.attributes?.original!"
-          @click="() => $router.push({ name: 'Details', params: { id: serie.id } })"
+          @click="() => $router.push({ name: 'details', params: { id: serie.id } })"
         />
         <Poster
           v-if="series.isError"

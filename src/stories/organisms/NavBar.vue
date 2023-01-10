@@ -8,12 +8,15 @@
       <span class="hidden md:block">{{ item.name }}</span>
     </NavLink>
     <!-- Account -->
-    <div
-      class="hidden md:flex h-full relative items-center w-full justify-end"
-      @mouseleave="accountOpen = false"
-    >
-      <Avatar size="xl" @mouseenter="accountOpen = true" />
-      <ProfileDropdown :open="accountOpen" class="absolute top-16 right-0" />
+    <div class="hidden md:flex h-full relative items-center w-full justify-end" @mouseleave="setDropdown(false, 500)">
+      <div class="w-14 h-14">
+        <Avatar @mouseenter="setDropdown(true)" />
+      </div>
+      <ProfileDropdown
+        :open="accountOpen"
+        class="absolute top-16 right-0"
+        @mouseenter="setDropdown(true)"
+      />
     </div>
     <NavLink class="md:hidden" name="Account">
       <UserIcon class="w-8 h-8" />
@@ -26,8 +29,7 @@ import {
   HomeIcon,
   VideoCameraIcon,
   FilmIcon,
-  SearchIcon,
-  UserIcon
+  UserIcon,
 } from '@heroicons/vue/solid';
 import { ref } from 'vue';
 import Logo from '../atoms/Logo.vue';
@@ -36,6 +38,15 @@ import Avatar from '../molecules/Avatar.vue';
 import ProfileDropdown from '../molecules/ProfileDropdown.vue';
 
 const accountOpen = ref(false);
+
+let wait: number;
+
+const setDropdown = (open: boolean, delay: number = 100) => {
+  clearTimeout(wait);
+  wait = setTimeout(() => {
+    accountOpen.value = open;
+  }, delay);
+};
 
 const navItems = [
   {

@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="{ name }"
+    :to="{ name: name.toLowerCase() }"
     class="text-xl transition-all ease-in-out cursor-pointer h-min hover:text-primary-500 group w-max"
     :class="
       isActive ? 'text-primary-500 font-bold' : 'text-delorean-500 font-thin'

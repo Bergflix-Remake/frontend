@@ -30,7 +30,10 @@
       ],
       "@organisms/*": [
         "src/stories/organisms/*"
-      ]
+      ],
+      "@util/*": [
+        "src/util/*"
+    ],
     }
   },
   "include": [
