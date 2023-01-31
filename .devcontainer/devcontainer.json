@@ -5,10 +5,8 @@
     "customizations": {
     "codespaces": {
       "repositories": {
-        "AnnikenYT/strapi-sdk-js": {
-          "permissions": {
-            "issues": "write"
-          }
+        "Bergflix-remake/*": {
+          "permissions": "write-all"
         }
       }
     }
