@@ -1,0 +1,16 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+  },
+    "customizations": {
+    "codespaces": {
+      "repositories": {
+        "AnnikenYT/strapi-sdk-js": {
+          "permissions": {
+            "issues": "write"
+          }
+        }
+      }
+    }
+  }
+}
