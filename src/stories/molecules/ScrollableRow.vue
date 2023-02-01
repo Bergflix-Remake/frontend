@@ -3,24 +3,23 @@
     <div
       ref="scrollContainer"
       class="flex flex-row w-full space-x-4 overflow-x-hidden rounded-lg py-14"
-      @scroll="handleScroll"
     >
       <slot />
     </div>
-    <div
+    <!-- <div
       v-if="buttons.left"
       id="fade-l"
       class="absolute top-0 left-0 z-20 w-10 h-full pointer-events-none bg-gradient-to-r from-black to-transparent"
-    ></div>
-    <div
+    ></div> -->
+    <!-- <div
       v-if="buttons.right"
       id="fade-r"
       class="absolute top-0 right-0 z-20 w-10 h-full pointer-events-none bg-gradient-to-l from-black to-transparent"
-    ></div>
+    ></div> -->
     <Transition name="right">
       <BadgeButton
         v-if="buttons.right"
-        class="absolute transform -translate-y-1/2 top-1/2 right-1 lg:right-5"
+        class="absolute transform -translate-y-1/2 top-1/2 right-1 lg:right-5 opacity-30 hover:opacity-100"
         :icon="ArrowNarrowRightIcon"
         @click="scroll('right')"
       />
@@ -28,7 +27,7 @@
     <Transition name="left">
       <BadgeButton
         v-if="buttons.left"
-        class="absolute transform -translate-y-1/2 top-1/2 left-1 lg:left-5"
+        class="absolute transform -translate-y-1/2 top-1/2 left-1 lg:left-5 opacity-30 hover:opacity-100"
         :icon="ArrowNarrowLeftIcon"
         @click="scroll('left')"
       />
@@ -37,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, Ref, reactive, onMounted } from 'vue';
+import { ref, Ref, reactive, computed } from 'vue';
 import BadgeButton from '@atoms/BadgeButton.vue';
 import {
   ArrowNarrowRightIcon,
@@ -54,22 +53,21 @@ const buttons = reactive({
 const scroll = (dir: 'left' | 'right') => {
   if (scrollContainer.value) {
     scrollContainer.value.scrollBy({
-      left: dir === 'left' ? -300 : 300,
+      left: dir === 'left' ? -320 : 320,
       behavior: 'smooth',
     });
   }
 };
-
-const handleScroll = () => {
-  const el = scrollContainer.value;
-  if (el == null) return;
-  buttons.left = el.scrollLeft > 0;
-  buttons.right = el.scrollLeft + el.clientWidth < el.scrollWidth;
-};
-onMounted(() => {
-  handleScroll();
-  window.addEventListener('resize', handleScroll);
-});
+// const handleScroll = () => {
+//   const el = scrollContainer.value;
+//   if (el == null) return;
+//   buttons.left = el.scrollLeft > 0;
+//   buttons.right = el.scrollLeft < el.scrollWidth - el.clientWidth;
+// };
+// onMounted(() => {
+//   handleScroll();
+//   window.addEventListener('resize', handleScroll);
+// });
 </script>
 
 <style>

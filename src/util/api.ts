@@ -1,10 +1,10 @@
 // Strapi Query Client //
 import { ErrorResponse as TError } from '../models/custom';
-import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiBaseRequestParams, StrapiAuthenticationResponse, StrapiResponse, StrapiUser } from 'strapi-sdk-js'
+import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiBaseRequestParams, StrapiAuthenticationResponse, StrapiResponse } from 'strapi-sdk-js'
 import { QueryKey } from 'react-query/types/core';
 import { useMutation, useQuery, UseQueryOptions, UseQueryReturnType, UseMutationOptions } from 'vue-query';
 import { reactive, UnwrapNestedRefs } from 'vue';
-import { ResponseCollectionMeta } from '@/models/types';
+import { ResponseCollectionMeta, UsersPermissionsUser } from '@/models/types';
 
 export const strapi = reactive(new Strapi({
 	store: {
@@ -69,12 +69,12 @@ export function useStrapiOne<T>(
 	return reactive(useQuery<T, TError>(queryKey, useStrapiQueryOne, options));
 }
 
-export function getUser(): UnwrapNestedRefs<UseQueryReturnType<StrapiUser, TError>> {
+export function getUser(): UnwrapNestedRefs<UseQueryReturnType<UsersPermissionsUser, TError>> {
 	return reactive(
-		useQuery<StrapiUser, TError>(
+		useQuery<UsersPermissionsUser, TError>(
 			"user",
 			async () => {
-				const user: StrapiUser = await strapi.fetchUser();
+				const user: UsersPermissionsUser = await strapi.fetchUser() as UsersPermissionsUser;
 				if (!user) {
 					throw new Error("User not logged in");
 				}

@@ -74,8 +74,6 @@ const reset = () => {
       :value="modelValue"
       class="input"
       :class="{ disabled: !isActive }"
-      @focusin="setActive(true)"
-      @focusout="setActive(false)"
       @input="handleInput"
       @keydown="
         (e) => {
@@ -92,8 +90,8 @@ const reset = () => {
     </span>
     <PencilIcon v-if="!isActive && !disabled" class="icon" @click="setActive(true)" />
     <div v-else-if="!disabled" class="flex flex-row">
-      <CheckIcon class="icon" @click="confirm()" />
-      <XIcon class="icon" @click="reset()" />
+      <CheckIcon class="icon" @click="() => confirm()" />
+      <XIcon class="icon" @click="() => reset()" />
     </div>
   </div>
 </template>
