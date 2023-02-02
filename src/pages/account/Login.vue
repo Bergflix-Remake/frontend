@@ -34,10 +34,10 @@
       </p>
       <form class="flex flex-col items-center" @submit.prevent="login">
         <input
-          v-model="username"
+          v-model="identifier"
           class="input"
           type="text"
-          placeholder="Username"
+          placeholder="Email or Username"
           :disabled="auth.isLoading.value"
         />
         <input
@@ -69,7 +69,7 @@ const redirect = route.query.redirect as string;
 
 const router = useRouter();
 
-const username = ref('');
+const identifier = ref('');
 const password = ref('');
 
 if (strapi.user) {
@@ -92,7 +92,7 @@ const auth = strapiLogin({
 
 const login = () => {
   if (auth.isLoading.value) return;
-  auth.mutate({ identifier: username.value, password: password.value });
+  auth.mutate({ identifier: identifier.value, password: password.value });
   
 };
 </script>

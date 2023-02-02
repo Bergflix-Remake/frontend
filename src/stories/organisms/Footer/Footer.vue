@@ -50,18 +50,18 @@
                 <div class="mb-2 font-bold text-delorean">Rechtliches & Hilfe</div>
                 <ul class="leading-normal list-reset">
                     <li>
-                        <Link to="legal/privacy">
+                        <Link :to="{ name: 'legal', hash: '#privacy'}">
                         Datenschutz<span class="hidden md:inline">erklärung</span>
                         </Link>
                     </li>
                     <li>
-                        <Link to="legal/terms">
-                        Cookies & Sicherheit
+                        <Link :to="{ name: 'legal', hash: '#imprint' }">
+                        Impressum
                         </Link>
                     </li>
                     <li>
-                        <Link to="legal/impressum">
-                        Impressum
+                        <Link :to="{ name: 'legal', hash: '#terms' }">
+                        Benuzungsbedingungen
                         </Link>
                     </li>
                 </ul>

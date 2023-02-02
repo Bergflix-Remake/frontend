@@ -5,9 +5,9 @@
       class="z-50 flex flex-col justify-center p-5 space-y-2 rounded-md shadow-lg bg-clean-dark-800/90 w-max"
     >
       <p class="font-bold leading-tight text-delorean-500">
-        Hi, {{ username }}!
+        Hi, {{ strapi.user?.username || "Gast" }}!
       </p>
-      <div v-if="loggedIn" class="flex flex-col justify-center space-y-2">
+      <div v-if="strapi.user" class="flex flex-col justify-center space-y-2">
         <Link :to="{ name: 'account' }" :icon="UserCircleIcon">Account</Link>
         <Link :to="{ name: 'account', hash: '#settings'}" :icon="CogIcon">Einstellungen</Link>
         <Link to="/help" :icon="InformationCircleIcon">Hilfe & Feedback</Link>
@@ -33,8 +33,7 @@ import {
   HeartIcon,
   InformationCircleIcon,
 } from "@heroicons/vue/outline";
-import { strapi } from "@/main";
-import { ref } from "vue";
+import { getUser, strapi } from "@/main";
 import { useRouter } from "vue-router";
 
 defineProps({
@@ -46,10 +45,10 @@ defineProps({
 
 const router = useRouter();
 
-const loggedIn = ref(strapi.user !== null);
-const username = ref(strapi.user?.username as string || "Guest");
+const user = getUser();
 const logout = () => {
   strapi.logout();
+  user.refetch();
   router.push({ name: "home" });
 };
 </script>
