@@ -14,7 +14,9 @@
 					"permissions": "write-all"
 				},
 				"AnnikenYT/strapi-sdk-js": {
-					"permissions": "write-all"
+					"permissions": {
+						"contents": "write"
+					}
 				}
 			}
 		},
