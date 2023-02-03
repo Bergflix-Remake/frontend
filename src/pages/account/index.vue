@@ -43,7 +43,7 @@ import { reactive } from 'vue';
 import WindowLayout from '@/layouts/WindowLayout.vue';
 import Window from '@/stories/atoms/Window/Window.vue';
 import { useRouter } from 'vue-router';
-import { StrapiUser } from 'strapi-sdk-js';
+import { StrapiUser } from '@anniken/strapi-sdk-js';
 import Title from '@/stories/atoms/Title/Title.vue';
 import Subtitle from '@/stories/atoms/Subtitle/Subtitle.vue';
 import ChangePasswordForm from '@/stories/organisms/ChangePassword/ChangePasswordForm.vue';
