@@ -3,10 +3,34 @@
 @tailwind utilities;
 
 :root {
-    --plyr-color-main: #f40f3a;
+  --plyr-color-main: #f40f3a;
 }
 
 ::selection {
-    background: var(--plyr-color-main);
-    color: #fff;
+  background: var(--plyr-color-main);
+  color: #fff;
+}
+
+.input {
+  @apply bg-clean-dark-700 p-2 text-center m-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-delorean-800 rounded-md;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--plyr-color-main);
 }

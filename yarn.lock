@@ -10,6 +10,18 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
+"@anniken/strapi-sdk-js@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@anniken/strapi-sdk-js/-/strapi-sdk-js-2.4.0.tgz#0ec5a160b12fc35fa720c54fb09cd9363c5e07b2"
+  integrity sha512-uAZd6hYqIRf0jvOAzcU9ptd3+bDv+vZzCvXpc7E5jgUhuPT9eWwRsK417k/0FA6A2uhirsmbZCILYj0Ou90S+g==
+  dependencies:
+    "@types/js-cookie" "^3.0.0"
+    "@types/qs" "^6.9.6"
+    axios "^0.24.0"
+    defu "^5.0.0"
+    js-cookie "^3.0.0"
+    qs "^6.10.1"
+
 "@ardatan/relay-compiler@12.0.0":
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/@ardatan/relay-compiler/-/relay-compiler-12.0.0.tgz#2e4cca43088e807adc63450e8cab037020e91106"
@@ -5332,18 +5344,6 @@ strapi-generate-types@^1.0.0:
     enquirer "2.3.6"
     fs-extra "10.0.0"
     graphql "16.6.0"
-
-strapi-sdk-js@^2.1.5:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/strapi-sdk-js/-/strapi-sdk-js-2.2.0.tgz#e7fe878954d9b3ea6fb4bb2d9b05cdf63888ccf1"
-  integrity sha512-0cUy2zHPcBN9yY2jCO5Y7ZH7IqSNrdW8Ywh/s0keqP3RiQJlGsu4PcEPF/l/m99bAgFqfwUITZ/wJ8ciVgwT+g==
-  dependencies:
-    "@types/js-cookie" "^3.0.0"
-    "@types/qs" "^6.9.6"
-    axios "^0.24.0"
-    defu "^5.0.0"
-    js-cookie "^3.0.0"
-    qs "^6.10.1"
 
 streamsearch@^1.1.0:
   version "1.1.0"

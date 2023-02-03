@@ -1,73 +1,37 @@
 <template>
-  <div id="avatar">
-    <div
-      v-if="loading"
-      class="bg-clean-dark-500 rounded-full flex items-center justify-center overflow-hidden shadow-md"
-      :class="size"
-      title="Loading..."
-    >
-      <Spinner />
-    </div>
-    <div
-      v-else-if="image"
-      class="rounded-full bg-cover bg-center cursor-pointer shadow-md hover:shadow-lg"
-      :class="size"
-      :style="{ 'background-image': `url(${image})` }"
-      @mouseenter="$emit('mouseenter')"
-      @mouseleave="$emit('mouseleave')"
-      @click="$emit('click')"
-    ></div>
-    <div
-      v-else
-      :class="size"
-      class="bg-clean-dark-500 rounded-full flex items-center justify-center overflow-hidden shadow-md text-red-500"
-      title="An error occured"
-    >
-      <ExclamationCircleIcon class="w-6 h-6" />
-    </div>
+  <div
+    id="avatar"
+    class="rounded-full bg-cover bg-center cursor-pointer shadow-md hover:shadow-lg w-full h-full aspect-square transition-all flex items-center justify-center"
+    :style="{ 'background-image': `url(${image})` }"
+    @mouseenter="() => $emit('mouseenter')"
+    @mouseleave="() => $emit('mouseleave')"
+    @click="() => $emit('click')"
+  >
+    <Spinner v-if="loading" />
+    <ExclamationCircleIcon v-else-if="error" class="w-6 h-6 text-red-500" />
   </div>
 </template>
 <script setup lang="ts">
-import Spinner from "../atoms/Spinner.vue";
-import { PropType } from "vue";
-import { ExclamationCircleIcon } from "@heroicons/vue/outline";
+import Spinner from '../atoms/Spinner.vue';
+import { ExclamationCircleIcon } from '@heroicons/vue/outline';
 
 // eslint-disable-next-line no-undef
 const props = defineProps({
   image: {
     type: String,
     required: false,
-    default: 'https://cdn.bergflix.de/logo/light_bg.png'
+    default: 'https://cdn.bergflix.de/logo/light_bg.png',
   },
   loading: {
     type: Boolean,
     default: false,
   },
-  size: {
-    type: String as PropType<"sm" | "md" | "lg" | "xl">,
-    default: "lg",
+  error: {
+    type: Boolean,
+    default: false,
   },
 });
 
 // eslint-disable-next-line no-undef
-defineEmits(["mouseenter", "mouseleave", "click"]);
-
-let size = "";
-switch (props.size) {
-  case "sm":
-    size = "w-6 h-6";
-    break;
-  case "md":
-    size = "w-8 h-8";
-    break;
-  case "lg":
-    size = "w-10 h-10";
-    break;
-  case "xl":
-    size = "w-12 h-12";
-    break;
-  default:
-    size = "w-8 h-8";
-    break;
-}
+defineEmits(['mouseenter', 'mouseleave', 'click']);
 </script>

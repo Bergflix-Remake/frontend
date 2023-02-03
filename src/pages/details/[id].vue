@@ -1,5 +1,5 @@
 <route lang="yaml">
-name: Details
+name: details
 </route>
 
 <script setup lang="ts">

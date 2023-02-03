@@ -5,18 +5,18 @@
       class="z-50 flex flex-col justify-center p-5 space-y-2 rounded-md shadow-lg bg-clean-dark-800/90 w-max"
     >
       <p class="font-bold leading-tight text-delorean-500">
-        Hi, {{ username }}!
+        Hi, {{ strapi.user?.username || "Gast" }}!
       </p>
-      <div v-if="loggedIn" class="flex flex-col justify-center space-y-2">
-        <Link href="/profile" :icon="UserCircleIcon">Profile</Link>
-        <Link href="/settings" :icon="CogIcon">Settings</Link>
-        <Link href="/help" :icon="InformationCircleIcon">Help & Feedback</Link>
-        <Link href="/favorites" :icon="HeartIcon">Favorites</Link>
-        <Button type="ghost" :icon="LogoutIcon">Logout</Button>
+      <div v-if="strapi.user" class="flex flex-col justify-center space-y-2">
+        <Link :to="{ name: 'account' }" :icon="UserCircleIcon">Account</Link>
+        <Link :to="{ name: 'account', hash: '#settings'}" :icon="CogIcon">Einstellungen</Link>
+        <Link to="/help" :icon="InformationCircleIcon">Hilfe & Feedback</Link>
+        <Link :to="{ name: 'account', hash: '#favorites'}" :icon="HeartIcon">Favoriten</Link>
+        <Button type="ghost" :icon="LogoutIcon" @click="logout()">Logout</Button>
       </div>
       <div v-else class="flex flex-col justify-center space-y-2">
-        <Link href="/login" :icon="LoginIcon">Login</Link>
-        <Link href="/register" :icon="UserAddIcon">Register</Link>
+        <Link :to="{ name: 'login' }" :icon="LoginIcon">Login</Link>
+        <Link :to="{ name: 'register' }" :icon="UserAddIcon">Register</Link>
       </div>
     </div>
   </transition>
@@ -33,22 +33,24 @@ import {
   HeartIcon,
   InformationCircleIcon,
 } from "@heroicons/vue/outline";
-// eslint-disable-next-line no-undef
+import { getUser, strapi } from "@/main";
+import { useRouter } from "vue-router";
+
 defineProps({
   open: {
     type: Boolean,
     default: false,
-  },
-  username: {
-    type: String,
-    required: false,
-    default: "Gast",
-  },
-  loggedIn: {
-    type: Boolean,
-    default: false,
-  },
+  }
 });
+
+const router = useRouter();
+
+const user = getUser();
+const logout = () => {
+  strapi.logout();
+  user.refetch();
+  router.push({ name: "home" });
+};
 </script>
 <style>
 .slide-enter-from,

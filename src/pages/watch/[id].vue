@@ -1,5 +1,5 @@
 <route lang="yaml">
-name: Watch
+name: watch
 </route>
 
 <template>
@@ -41,9 +41,9 @@ name: Watch
               :image="
                 recommendation?.attributes?.thumbnail?.data?.attributes?.url
               "
-              @click="router.push({ name: 'Watch', params: { id: recommendation?.id } })"
+              @click="router.push({ name: 'watch', params: { id: recommendation?.id } })"
             />
-            <Button class="m-2" @click="router.push({ name: 'Home' })">Home</Button>
+            <Button class="m-2" @click="router.push({ name: 'home' })">Home</Button>
           </div>
           <Loader v-else />
         </div>
@@ -233,7 +233,7 @@ const playNext = () => {
         'Playing next episode',
         next.id
       );
-      router.push({ name: 'Watch', params: { id: next.id } });
+      router.push({ name: 'watch', params: { id: next.id } });
     }
   }
 };

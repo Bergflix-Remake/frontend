@@ -2,7 +2,7 @@
   <div
     class="bg-clean-dark-800 flex w-full h-24 rounded-md shadow-lg overflow-clip hover:-translate-x-1 transition-all flex-shrink-0 text-center cursor-pointer"
     :class="{ 'shadow-primary-500/5': playing }"
-    @click="router.push({ name: 'Watch' })"
+    @click="router.push({ name: 'watch', params: { id } })"
   >
     <div
       class="h-full aspect-video bg-cover bg-center"
