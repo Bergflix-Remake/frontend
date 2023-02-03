@@ -12,6 +12,7 @@
     "release": "changelogen --release"
   },
   "dependencies": {
+    "@anniken/strapi-sdk-js": "^2.4.0",
     "@headlessui/vue": "^1.5.0",
     "@heroicons/vue": "^1.0.6",
     "@tailwindcss/aspect-ratio": "^0.4.0",
@@ -23,7 +24,6 @@
     "eslint-plugin-snakecasejs": "^2.2.0",
     "markdown-it": "^12.3.2",
     "strapi-generate-types": "^1.0.0",
-    "strapi-sdk-js": "^2.1.5",
     "three-dots": "^0.2.3",
     "typescript": "^4.4.4",
     "vite-plugin-rewrite-all": "^0.1.2",

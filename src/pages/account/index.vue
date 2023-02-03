@@ -64,6 +64,9 @@ const mutation = useStrapiUpdateMutation<StrapiUser>({
   onSuccess: () => {
     console.debug('Updated!');
   },
+  onError: (error) => {
+    console.error(error);
+  },
 });
 
 const update = () => {
