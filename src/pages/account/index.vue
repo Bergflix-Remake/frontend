@@ -12,6 +12,7 @@
   <WindowLayout>
     <!-- Items -->
     <Window full-width>
+      <Title>Dein Profil</Title>
       <div class="w-56 h-56">
         <Avatar :image="user.avatar" />
       </div>
@@ -24,26 +25,12 @@
       <CInput v-model="user.email" type="email" @confirm="update()" />
     </Window>
     <Window full-width>
-      <Title>Security</Title>
-      <Subtitle>Change Password</Subtitle>
-      <p v-if="passwordChangeMutation.isSuccess" class="text-green-500">Perfekt! Dein Password wurde erfolgreich geändert!</p>
-      <p v-if="passwordChangeMutation.isError" class="text-red-500">Etwas ist schiefgelaufen! Bitte versuche es nochmal!</p>
-      <input
-        v-modal="changePasswordData.currentPassword"
-        class="input"
-        placeholder="Old Password"
-      />
-      <input
-        v-modal="changePasswordData.password"
-        class="input"
-        placeholder="New Password"
-      />
-      <input
-        v-modal="changePasswordData.passwordConfirmation"
-        class="input"
-        placeholder="Confirm New Password"
-      />
-      <Button>Change Password</Button>
+      <Title>Sicherheit</Title>
+      <Subtitle>Passwort Ändern</Subtitle>
+      <ChangePasswordForm />
+      <p class="text-delorean-500 italic mt-20 text-center">
+        Um deinen Account zu löschen, bitte sende eine E-Mail mit dem Betreff <span class="font-mono">"Account Deletion Request"</span>, deinem Benutzernamen und deiner E-Mail an <a class="text-white font-bold" :href="`mailto:support@bergflix.de?cc=anniken@bergflix.de&subject=Account%20Deletion%20Request&body=I%2C%20${user.username}%2C%20hereby%20request%20that%20my%20account%20with%20the%20email%20address%20${user.email}%20is%20deleted.%0D%0A%0D%0A`">support@bergflix.de</a>.
+      </p>
     </Window>
   </WindowLayout>
 </template>
@@ -56,11 +43,10 @@ import { reactive } from 'vue';
 import WindowLayout from '@/layouts/WindowLayout.vue';
 import Window from '@/stories/atoms/Window/Window.vue';
 import { useRouter } from 'vue-router';
-import { StrapiUser, StrapiChangePasswordData } from 'strapi-sdk-js';
+import { StrapiUser } from 'strapi-sdk-js';
 import Title from '@/stories/atoms/Title/Title.vue';
 import Subtitle from '@/stories/atoms/Subtitle/Subtitle.vue';
-import { useMutation } from 'vue-query';
-import Button from '@/stories/atoms/Button.vue';
+import ChangePasswordForm from '@/stories/organisms/ChangePassword/ChangePasswordForm.vue';
 
 const router = useRouter();
 
@@ -73,20 +59,6 @@ const user = reactive({
   email: strapi.user!.email as string,
   avatar: strapi.user!.avatar as string,
 });
-
-const changePasswordData: StrapiChangePasswordData = reactive({
-  currentPassword: '',
-  password: '',
-  passwordConfirmation: '',
-});
-
-const passwordChangeMutation = useMutation(
-  async (data: StrapiChangePasswordData) => await strapi.changePassword(data)
-);
-const changePassword = () => {
-  console.debug('Changing password...');
-  passwordChangeMutation.mutate(changePasswordData);
-};
 
 const mutation = useStrapiUpdateMutation<StrapiUser>({
   onSuccess: () => {

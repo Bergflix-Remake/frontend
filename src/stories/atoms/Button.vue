@@ -1,7 +1,8 @@
 <template>
   <button
-    class="inline-flex items-center transition-all ease-in-out transform rounded cursor-pointer h-min group w-max"
+    class="inline-flex items-center transition-all ease-in-out transform rounded cursor-pointer h-min group w-max disabled:opacity-50 disabled:cursor-not-allowed"
     :class="classString"
+    :disabled="disabled"
     @click="$emit('click')"
   >
     <component :is="icon" v-if="icon" class="inline w-6 h-6 mr-1" />
@@ -23,6 +24,10 @@ const props = defineProps({
   icon: {
     type: null,
     required: false,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 });
 
