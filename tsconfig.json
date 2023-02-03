@@ -33,10 +33,7 @@
       ],
       "@util/*": [
         "src/util/*"
-    ],
-    "strapi-sdk-js": [
-      "@anniken/strapi-sdk-js"
-    ] 
+    ], 
     }
   },
   "include": [

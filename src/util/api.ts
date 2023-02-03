@@ -1,6 +1,6 @@
 // Strapi Query Client //
 import { ErrorResponse as TError } from '../models/custom';
-import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiBaseRequestParams, StrapiAuthenticationResponse, StrapiResponse } from 'strapi-sdk-js'
+import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiBaseRequestParams, StrapiAuthenticationResponse, StrapiResponse } from '@anniken/strapi-sdk-js'
 import { QueryKey } from 'react-query/types/core';
 import { useMutation, useQuery, UseQueryOptions, UseQueryReturnType, UseMutationOptions } from 'vue-query';
 import { reactive, UnwrapNestedRefs } from 'vue';

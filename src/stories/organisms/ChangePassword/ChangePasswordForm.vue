@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { strapi } from '@/main';
 import Button from '@/stories/atoms/Button.vue';
-import { StrapiAuthenticationResponse, StrapiChangePasswordData, StrapiError } from 'strapi-sdk-js';
+import { StrapiAuthenticationResponse, StrapiChangePasswordData, StrapiError } from '@anniken/strapi-sdk-js';
 import { ref, computed, watchEffect } from 'vue';
 import { useMutation } from 'vue-query';
 import { useRouter } from 'vue-router';
