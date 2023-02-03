@@ -58,7 +58,9 @@ module.exports = {
         gray: colors.neutral
       },
       fontFamily: {
-        'sans': ['Plus Jakarta Sans']
+        'sans': ['Plus Jakarta Sans'],
+        'inception': ['Inception'],
+        'upheaval': ['Upheaval Pro'],
       },
       transitionProperty: {
         'border': 'border-width, border-bottom-width, border-left-width, border-right-width, border-top-width',

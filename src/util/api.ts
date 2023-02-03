@@ -1,6 +1,6 @@
 // Strapi Query Client //
 import { ErrorResponse as TError } from '../models/custom';
-import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiBaseRequestParams, StrapiAuthenticationResponse, StrapiResponse } from '@anniken/strapi-sdk-js'
+import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiBaseRequestParams, StrapiAuthenticationResponse, StrapiResponse, StrapiRegistrationData } from '@anniken/strapi-sdk-js'
 import { QueryKey } from 'react-query/types/core';
 import { useMutation, useQuery, UseQueryOptions, UseQueryReturnType, UseMutationOptions } from 'vue-query';
 import { reactive, UnwrapNestedRefs } from 'vue';
@@ -39,6 +39,12 @@ export const strapiLogout = () => {
 export const strapiLogin = (opts?: UseMutationOptions<StrapiAuthenticationResponse, TError, StrapiAuthenticationData, unknown>) => {
 	return useMutation(
 		(authData: StrapiAuthenticationData) => strapi.login(authData),
+		opts
+	);
+};
+export const strapiRegister = (opts?: UseMutationOptions<StrapiAuthenticationResponse, TError, StrapiRegistrationData, unknown>) => {
+	return useMutation(
+		(authData: StrapiRegistrationData) => strapi.register(authData),
 		opts
 	);
 };

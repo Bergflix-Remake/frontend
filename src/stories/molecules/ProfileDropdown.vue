@@ -16,7 +16,7 @@
       </div>
       <div v-else class="flex flex-col justify-center space-y-2">
         <Link :to="{ name: 'login' }" :icon="LoginIcon">Login</Link>
-        <Link :to="{ name: 'home' }" :icon="UserAddIcon">Register</Link>
+        <Link :to="{ name: 'register' }" :icon="UserAddIcon">Register</Link>
       </div>
     </div>
   </transition>

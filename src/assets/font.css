@@ -250,3 +250,31 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Inception';
+    src:url('font/Inception.ttf.woff') format('woff'),
+        url('font/Inception.ttf.svg#Inception') format('svg'),
+        url('font/Inception.ttf.eot'),
+        url('font/Inception.ttf.eot?#iefix') format('embedded-opentype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Upheaval Pro';
+    src: url('font/UpheavalPro-Regular.woff2') format('woff2'),
+        url('font/UpheavalPro-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Upheaval Pro';
+    src: url('font/UpheavalPro-Regular.woff2') format('woff2'),
+        url('font/UpheavalPro-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
