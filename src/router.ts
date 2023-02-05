@@ -16,12 +16,11 @@ export const router = createRouter({
 
 router.beforeEach((to, from) => {
 	// Check authentication
-	if (to.meta.requiresAuth) {
-		console.debug("Route requires auth, Current user: ", strapi.user)
-		if (!strapi.user){
+	if (to.name !== "login") {
+		if (!strapi.user?.admin){
 			return {
 				name: "login",
-				query: { redirect: to.fullPath },
+				query: { redirect: to.fullPath, message: "Bitte Melde dich mit deinem Patreon- oder Administratoraccount an, um diese Seite anzusehen." },
 			}
 		}
 	}

@@ -18,6 +18,9 @@
         </span>
         weitergeleitet.
       </p>
+      <p v-if="message" class="text-gray-500 max-w-md">
+        {{ message }}
+      </p>
       <p v-if="auth.isError.value" class="text-red-500">
         Es ist ein Fehler aufgetreten:
         {{ auth.error.value?.error.message }}
@@ -59,13 +62,14 @@ import WindowLayout from '@/layouts/WindowLayout.vue';
 import Window from '@atoms/Window/Window.vue';
 import Title from '@atoms/Title/Title.vue';
 import Button from '@/stories/atoms/Button.vue';
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 import { strapi, strapiLogin } from '@/main';
 import Spinner from '@/stories/atoms/Spinner.vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
 const redirect = route.query.redirect as string;
+const message = route.query.message as string;
 
 const router = useRouter();
 
