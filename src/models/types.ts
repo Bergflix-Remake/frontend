@@ -19,7 +19,7 @@ export type Scalars = {
   /** The `Upload` scalar type represents a file upload. */
   Upload: any;
   ApplicationQuestionItemsDynamicZoneInput: any;
-  CollektionEntriesDynamicZoneInput: any;
+  CollectionEntriesDynamicZoneInput: any;
   /** A string used to identify an i18n locale */
   I18NLocaleCode: any;
 };
@@ -1096,50 +1096,50 @@ export type ApplicationSessionRelationResponseCollection = {
   data: Array<ApplicationSessionEntity>;
 };
 
-export type CollektionEntriesDynamicZone = ComponentCollectionSerie | ComponentCollectionVideo | Error;
+export type CollectionEntriesDynamicZone = ComponentCollectionSerie | ComponentCollectionVideo | Error;
 
-export type CollektionFiltersInput = {
+export type CollectionFiltersInput = {
   id?: InputMaybe<IdFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
-  and?: InputMaybe<Array<InputMaybe<CollektionFiltersInput>>>;
-  or?: InputMaybe<Array<InputMaybe<CollektionFiltersInput>>>;
-  not?: InputMaybe<CollektionFiltersInput>;
+  and?: InputMaybe<Array<InputMaybe<CollectionFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<CollectionFiltersInput>>>;
+  not?: InputMaybe<CollectionFiltersInput>;
 };
 
-export type CollektionInput = {
+export type CollectionInput = {
   title?: InputMaybe<Scalars['String']>;
   title_image?: InputMaybe<Scalars['ID']>;
-  entries?: InputMaybe<Array<Scalars['CollektionEntriesDynamicZoneInput']>>;
+  entries?: InputMaybe<Array<Scalars['CollectionEntriesDynamicZoneInput']>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
-export type Collektion = {
-  __typename?: 'Collektion';
+export type Collection = {
+  __typename?: 'Collection';
   title: Scalars['String'];
   title_image?: Maybe<UploadFileEntityResponse>;
-  entries: Array<Maybe<CollektionEntriesDynamicZone>>;
+  entries: Array<Maybe<CollectionEntriesDynamicZone>>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
 };
 
-export type CollektionEntity = {
-  __typename?: 'CollektionEntity';
+export type CollectionEntity = {
+  __typename?: 'CollectionEntity';
   id?: Maybe<Scalars['ID']>;
-  attributes?: Maybe<Collektion>;
+  attributes?: Maybe<Collection>;
 };
 
-export type CollektionEntityResponse = {
-  __typename?: 'CollektionEntityResponse';
-  data?: Maybe<CollektionEntity>;
+export type CollectionEntityResponse = {
+  __typename?: 'CollectionEntityResponse';
+  data?: Maybe<CollectionEntity>;
 };
 
-export type CollektionEntityResponseCollection = {
-  __typename?: 'CollektionEntityResponseCollection';
-  data: Array<CollektionEntity>;
+export type CollectionEntityResponseCollection = {
+  __typename?: 'CollectionEntityResponseCollection';
+  data: Array<CollectionEntity>;
   meta: ResponseCollectionMeta;
 };
 
@@ -1537,7 +1537,7 @@ export type VideoRelationResponseCollection = {
   data: Array<VideoEntity>;
 };
 
-export type GenericMorph = ComponentApplicationCodeblock | ComponentApplicationImage | ComponentApplicationTweet | ComponentCollectionSerie | ComponentCollectionVideo | ComponentCommonButton | ComponentCommonContributor | ComponentCommonTextBlock | ComponentFeaturedFilm | ComponentFeaturedSeries | ComponentMoviePoster | ComponentMovieVideo | UploadFile | UploadFolder | AwesomeHelpHelp | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | EzformsSubmission | EzformsRecipient | GraphsBuilderGraph | ApplicationField | ApplicationQuestion | ApplicationSession | Collektion | ComingSoon | Contributor | Featured | Imprint | Serie | Video;
+export type GenericMorph = ComponentApplicationCodeblock | ComponentApplicationImage | ComponentApplicationTweet | ComponentCollectionSerie | ComponentCollectionVideo | ComponentCommonButton | ComponentCommonContributor | ComponentCommonTextBlock | ComponentFeaturedFilm | ComponentFeaturedSeries | ComponentMoviePoster | ComponentMovieVideo | UploadFile | UploadFolder | AwesomeHelpHelp | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | EzformsSubmission | EzformsRecipient | GraphsBuilderGraph | ApplicationField | ApplicationQuestion | ApplicationSession | Collection | ComingSoon | Contributor | Featured | Imprint | Serie | Video;
 
 export type FileInfoInput = {
   name?: InputMaybe<Scalars['String']>;
@@ -1634,8 +1634,8 @@ export type Query = {
   applicationQuestions?: Maybe<ApplicationQuestionEntityResponseCollection>;
   applicationSession?: Maybe<ApplicationSessionEntityResponse>;
   applicationSessions?: Maybe<ApplicationSessionEntityResponseCollection>;
-  collektion?: Maybe<CollektionEntityResponse>;
-  collektions?: Maybe<CollektionEntityResponseCollection>;
+  collection?: Maybe<CollectionEntityResponse>;
+  collections?: Maybe<CollectionEntityResponseCollection>;
   comingSoon?: Maybe<ComingSoonEntityResponse>;
   contributor?: Maybe<ContributorEntityResponse>;
   contributors?: Maybe<ContributorEntityResponseCollection>;
@@ -1794,13 +1794,13 @@ export type QueryApplicationSessionsArgs = {
 };
 
 
-export type QueryCollektionArgs = {
+export type QueryCollectionArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
 
-export type QueryCollektionsArgs = {
-  filters?: InputMaybe<CollektionFiltersInput>;
+export type QueryCollectionsArgs = {
+  filters?: InputMaybe<CollectionFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   publicationState?: InputMaybe<PublicationState>;
@@ -1888,9 +1888,9 @@ export type Mutation = {
   createApplicationSession?: Maybe<ApplicationSessionEntityResponse>;
   updateApplicationSession?: Maybe<ApplicationSessionEntityResponse>;
   deleteApplicationSession?: Maybe<ApplicationSessionEntityResponse>;
-  createCollektion?: Maybe<CollektionEntityResponse>;
-  updateCollektion?: Maybe<CollektionEntityResponse>;
-  deleteCollektion?: Maybe<CollektionEntityResponse>;
+  createCollection?: Maybe<CollectionEntityResponse>;
+  updateCollection?: Maybe<CollectionEntityResponse>;
+  deleteCollection?: Maybe<CollectionEntityResponse>;
   updateComingSoon?: Maybe<ComingSoonEntityResponse>;
   deleteComingSoon?: Maybe<ComingSoonEntityResponse>;
   createContributor?: Maybe<ContributorEntityResponse>;
@@ -2083,18 +2083,18 @@ export type MutationDeleteApplicationSessionArgs = {
 };
 
 
-export type MutationCreateCollektionArgs = {
-  data: CollektionInput;
+export type MutationCreateCollectionArgs = {
+  data: CollectionInput;
 };
 
 
-export type MutationUpdateCollektionArgs = {
+export type MutationUpdateCollectionArgs = {
   id: Scalars['ID'];
-  data: CollektionInput;
+  data: CollectionInput;
 };
 
 
-export type MutationDeleteCollektionArgs = {
+export type MutationDeleteCollectionArgs = {
   id: Scalars['ID'];
 };
 

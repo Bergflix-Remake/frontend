@@ -72,6 +72,41 @@ name: home
         />
       </ScrollableRow>
     </section>
+    <section v-for="collection in collections.data" :key="collection.id!" class="px-10">
+      <Title
+class="mb-2"
+      :image="api(collection.attributes?.title_image?.data?.attributes?.url)"
+      >
+        {{ collection.attributes?.title }}
+      </Title>
+      <ScrollableRow>
+        <Poster
+          v-if="collections.isLoading"
+          loading
+        />
+          <!-- Poster for movies -->
+          <Poster
+            v-for="movie in collection.attributes?.entries.filter((entry) => entry!.__component === 'collection.video') as ComponentCollectionVideo[]"
+            
+            :key="movie.id!"
+            :image="movie.video?.data?.attributes?.thumbnail.data?.attributes?.url"
+            :original="movie.video?.data?.attributes?.original!"
+            @click="() => $router.push({ name: 'watch', params: { id: movie.video?.data?.id! } })"
+          />
+          <!-- Poster for series -->
+          <Poster
+            v-for="serie in collection.attributes?.entries.filter((entry) => entry!.__component === 'collection.serie') as ComponentCollectionSerie[]"
+            :key="serie.id!"
+            :image="serie.serie?.data?.attributes?.thumbnail.data?.attributes?.url"
+            :original="serie.serie?.data?.attributes?.original!"
+            @click="() => $router.push({ name: 'details', params: { id: serie.serie?.data?.id! } })"
+          />
+        <Poster
+          v-if="collections.isError"
+          error
+        />
+      </ScrollableRow>
+    </section>
   </div>
 </template>
 
@@ -81,8 +116,9 @@ import ScrollableRow from '@molecules/ScrollableRow.vue';
 import Poster from '@molecules/Poster.vue';
 import Title from '@atoms/Title/Title.vue';
 import { useStrapi } from '@/main';
-import { SerieEntity, VideoEntity } from '@/models/types';
+import { CollectionEntity, ComponentCollectionSerie, ComponentCollectionVideo, SerieEntity, VideoEntity } from '@/models/types';
 import { Head } from '@vueuse/head';
+import { api } from '@/util/paths';
 
 const videos = useStrapi<VideoEntity[]>(['videos', {
     populate: {
@@ -105,6 +141,10 @@ const series = useStrapi<SerieEntity[]>(['series', {
         thumbnail: '*'
     },
     sort: 'year:desc'
+}]);
+
+const collections = useStrapi<CollectionEntity[]>(['collections', {
+    populate: ['entries.video', 'entries.serie', 'entries.video.thumbnail', 'entries.serie.thumbnail', 'title_image'],
 }]);
 
 </script>
