@@ -26,6 +26,7 @@ export type Scalars = {
 
 export type Error = {
   __typename?: 'Error';
+  __component?: Scalars['String'];
   code: Scalars['String'];
   message?: Maybe<Scalars['String']>;
 };
@@ -267,6 +268,7 @@ export type ComponentApplicationTweet = {
 
 export type ComponentCollectionSerie = {
   __typename?: 'ComponentCollectionSerie';
+  __component: 'collection.serie'
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
   serie?: Maybe<SerieEntityResponse>;
@@ -274,6 +276,7 @@ export type ComponentCollectionSerie = {
 
 export type ComponentCollectionVideo = {
   __typename?: 'ComponentCollectionVideo';
+  __component: 'collection.video'
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
   video?: Maybe<VideoEntityResponse>;
