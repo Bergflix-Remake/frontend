@@ -15,7 +15,7 @@ export const router = createRouter({
 });
 
 // Change this variable to lock/unlock the site for users without admin or patreon status.
-const lockdown = false
+const lockdown = true
 
 router.beforeEach((to, from) => {
 	// Check requiresAuth
