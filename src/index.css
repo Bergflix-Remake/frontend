@@ -12,7 +12,7 @@
 }
 
 .input {
-  @apply bg-clean-dark-700 p-2 text-center m-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent;
+  @apply bg-clean-dark-700 p-2 text-center m-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent inline-flex items-center;
 }
 
 /* width */

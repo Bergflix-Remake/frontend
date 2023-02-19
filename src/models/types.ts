@@ -19,6 +19,7 @@ export type Scalars = {
   /** The `Upload` scalar type represents a file upload. */
   Upload: any;
   ApplicationQuestionItemsDynamicZoneInput: any;
+  CollektionEntriesDynamicZoneInput: any;
   /** A string used to identify an i18n locale */
   I18NLocaleCode: any;
 };
@@ -262,6 +263,20 @@ export type ComponentApplicationTweet = {
   handle: Scalars['String'];
   replies?: Maybe<Scalars['String']>;
   avatar?: Maybe<Scalars['String']>;
+};
+
+export type ComponentCollectionSerie = {
+  __typename?: 'ComponentCollectionSerie';
+  id: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+  serie?: Maybe<SerieEntityResponse>;
+};
+
+export type ComponentCollectionVideo = {
+  __typename?: 'ComponentCollectionVideo';
+  id: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+  video?: Maybe<VideoEntityResponse>;
 };
 
 export enum Enum_Componentcommonbutton_Type {
@@ -1081,6 +1096,53 @@ export type ApplicationSessionRelationResponseCollection = {
   data: Array<ApplicationSessionEntity>;
 };
 
+export type CollektionEntriesDynamicZone = ComponentCollectionSerie | ComponentCollectionVideo | Error;
+
+export type CollektionFiltersInput = {
+  id?: InputMaybe<IdFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<CollektionFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<CollektionFiltersInput>>>;
+  not?: InputMaybe<CollektionFiltersInput>;
+};
+
+export type CollektionInput = {
+  title?: InputMaybe<Scalars['String']>;
+  title_image?: InputMaybe<Scalars['ID']>;
+  entries?: InputMaybe<Array<Scalars['CollektionEntriesDynamicZoneInput']>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type Collektion = {
+  __typename?: 'Collektion';
+  title: Scalars['String'];
+  title_image?: Maybe<UploadFileEntityResponse>;
+  entries: Array<Maybe<CollektionEntriesDynamicZone>>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type CollektionEntity = {
+  __typename?: 'CollektionEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<Collektion>;
+};
+
+export type CollektionEntityResponse = {
+  __typename?: 'CollektionEntityResponse';
+  data?: Maybe<CollektionEntity>;
+};
+
+export type CollektionEntityResponseCollection = {
+  __typename?: 'CollektionEntityResponseCollection';
+  data: Array<CollektionEntity>;
+  meta: ResponseCollectionMeta;
+};
+
 export type ComingSoonInput = {
   Title?: InputMaybe<Scalars['String']>;
   Text?: InputMaybe<Scalars['String']>;
@@ -1373,6 +1435,7 @@ export type VideoFiltersInput = {
   contributors?: InputMaybe<ComponentCommonContributorFiltersInput>;
   episode?: InputMaybe<IntFilterInput>;
   outro_start?: InputMaybe<IntFilterInput>;
+  transcript?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
@@ -1400,6 +1463,7 @@ export type VideoInput = {
   contributors?: InputMaybe<Array<InputMaybe<ComponentCommonContributorInput>>>;
   episode?: InputMaybe<Scalars['Int']>;
   outro_start?: InputMaybe<Scalars['Int']>;
+  transcript?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -1421,6 +1485,7 @@ export type Video = {
   contributors: Array<Maybe<ComponentCommonContributor>>;
   episode?: Maybe<Scalars['Int']>;
   outro_start?: Maybe<Scalars['Int']>;
+  transcript?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -1472,7 +1537,7 @@ export type VideoRelationResponseCollection = {
   data: Array<VideoEntity>;
 };
 
-export type GenericMorph = ComponentApplicationCodeblock | ComponentApplicationImage | ComponentApplicationTweet | ComponentCommonButton | ComponentCommonContributor | ComponentCommonTextBlock | ComponentFeaturedFilm | ComponentFeaturedSeries | ComponentMoviePoster | ComponentMovieVideo | UploadFile | UploadFolder | AwesomeHelpHelp | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | EzformsSubmission | EzformsRecipient | GraphsBuilderGraph | ApplicationField | ApplicationQuestion | ApplicationSession | ComingSoon | Contributor | Featured | Imprint | Serie | Video;
+export type GenericMorph = ComponentApplicationCodeblock | ComponentApplicationImage | ComponentApplicationTweet | ComponentCollectionSerie | ComponentCollectionVideo | ComponentCommonButton | ComponentCommonContributor | ComponentCommonTextBlock | ComponentFeaturedFilm | ComponentFeaturedSeries | ComponentMoviePoster | ComponentMovieVideo | UploadFile | UploadFolder | AwesomeHelpHelp | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | EzformsSubmission | EzformsRecipient | GraphsBuilderGraph | ApplicationField | ApplicationQuestion | ApplicationSession | Collektion | ComingSoon | Contributor | Featured | Imprint | Serie | Video;
 
 export type FileInfoInput = {
   name?: InputMaybe<Scalars['String']>;
@@ -1569,6 +1634,8 @@ export type Query = {
   applicationQuestions?: Maybe<ApplicationQuestionEntityResponseCollection>;
   applicationSession?: Maybe<ApplicationSessionEntityResponse>;
   applicationSessions?: Maybe<ApplicationSessionEntityResponseCollection>;
+  collektion?: Maybe<CollektionEntityResponse>;
+  collektions?: Maybe<CollektionEntityResponseCollection>;
   comingSoon?: Maybe<ComingSoonEntityResponse>;
   contributor?: Maybe<ContributorEntityResponse>;
   contributors?: Maybe<ContributorEntityResponseCollection>;
@@ -1727,6 +1794,19 @@ export type QueryApplicationSessionsArgs = {
 };
 
 
+export type QueryCollektionArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryCollektionsArgs = {
+  filters?: InputMaybe<CollektionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+
 export type QueryComingSoonArgs = {
   publicationState?: InputMaybe<PublicationState>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
@@ -1808,6 +1888,9 @@ export type Mutation = {
   createApplicationSession?: Maybe<ApplicationSessionEntityResponse>;
   updateApplicationSession?: Maybe<ApplicationSessionEntityResponse>;
   deleteApplicationSession?: Maybe<ApplicationSessionEntityResponse>;
+  createCollektion?: Maybe<CollektionEntityResponse>;
+  updateCollektion?: Maybe<CollektionEntityResponse>;
+  deleteCollektion?: Maybe<CollektionEntityResponse>;
   updateComingSoon?: Maybe<ComingSoonEntityResponse>;
   deleteComingSoon?: Maybe<ComingSoonEntityResponse>;
   createContributor?: Maybe<ContributorEntityResponse>;
@@ -1996,6 +2079,22 @@ export type MutationUpdateApplicationSessionArgs = {
 
 
 export type MutationDeleteApplicationSessionArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationCreateCollektionArgs = {
+  data: CollektionInput;
+};
+
+
+export type MutationUpdateCollektionArgs = {
+  id: Scalars['ID'];
+  data: CollektionInput;
+};
+
+
+export type MutationDeleteCollektionArgs = {
   id: Scalars['ID'];
 };
 

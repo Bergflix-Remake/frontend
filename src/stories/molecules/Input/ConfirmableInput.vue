@@ -20,6 +20,10 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  icon: {
+    type: null,
+    default: null,
+  },
   modelValue: {
     type: String,
     required: true,
@@ -87,6 +91,9 @@ const reset = () => {
       "
     >
       {{ modelValue }}
+    <span class="ml-2">
+      <slot />
+    </span>
     </span>
     <PencilIcon v-if="!isActive && !disabled" class="icon" @click="setActive(true)" />
     <div v-else-if="!disabled" class="flex flex-row">

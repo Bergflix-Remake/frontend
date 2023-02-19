@@ -1,6 +1,6 @@
 // Strapi Query Client //
 import { ErrorResponse as TError } from '../models/custom';
-import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiBaseRequestParams, StrapiAuthenticationResponse, StrapiResponse, StrapiRegistrationData } from '@anniken/strapi-sdk-js'
+import Strapi, { StrapiAuthenticationData, StrapiRequestParams, StrapiBaseRequestParams, StrapiAuthenticationResponse, StrapiResponse, StrapiRegistrationData, StrapiEmailConfirmationData } from '@anniken/strapi-sdk-js'
 import { QueryKey } from 'react-query/types/core';
 import { useMutation, useQuery, UseQueryOptions, UseQueryReturnType, UseMutationOptions } from 'vue-query';
 import { reactive, UnwrapNestedRefs } from 'vue';
@@ -51,9 +51,11 @@ export const strapiRegister = (opts?: UseMutationOptions<StrapiAuthenticationRes
 
 type StrapiUpdateData<T> = { contentType: string, id: string | number, data: T, params?: StrapiBaseRequestParams }
 
-export const useStrapiUpdateMutation = <T>(opts?: UseMutationOptions<StrapiResponse<T>, TError, StrapiUpdateData<T>, unknown>) => {
-	return useMutation(async (data: StrapiUpdateData<T>) => await strapi.update<T>(data.contentType, data.id, data.data, data.params), opts);
+export const useStrapiUpdateMutation = <TData, TVariables = Partial<TData>, TContext = Partial<TData>>(opts?: UseMutationOptions<StrapiResponse<TData>, TError, StrapiUpdateData<TVariables>, TContext>) => {
+	return useMutation(async (data: StrapiUpdateData<TVariables>) => await strapi.update<TData>(data.contentType, data.id, data.data, data.params), opts);
 }
+
+export const useResendEmailMutation = () => useMutation<void, TError, StrapiEmailConfirmationData, unknown>(async (data: StrapiEmailConfirmationData) => await strapi.sendEmailConfirmation(data))
 
 export function useStrapi<T>(
 	queryKey: [string, StrapiRequestParams?],
@@ -63,6 +65,14 @@ export function useStrapi<T>(
 	>
 ): UnwrapNestedRefs<UseQueryReturnType<T, TError>> {
 	return reactive(useQuery<T, TError>(queryKey, useStrapiQuery, options));
+}
+
+export function useStrapiSendEmailConfirmation(
+	queryKey: [StrapiEmailConfirmationData],
+	options?: Omit<UseQueryOptions<void, TError, void,
+		[StrapiEmailConfirmationData]>, "queryKey" | "queryFn">
+): UnwrapNestedRefs<UseQueryReturnType<void, TError>> {
+	return reactive(useQuery(queryKey, async ({ queryKey }) => await strapi.sendEmailConfirmation(queryKey[0]), options));
 }
 
 export function useStrapiOne<T>(
@@ -75,7 +85,7 @@ export function useStrapiOne<T>(
 	return reactive(useQuery<T, TError>(queryKey, useStrapiQueryOne, options));
 }
 
-export function getUser(): UnwrapNestedRefs<UseQueryReturnType<UsersPermissionsUser, TError>> {
+export function getUser(opts?: Omit<UseQueryOptions<UsersPermissionsUser, TError, UsersPermissionsUser, QueryKey>, "queryFn" | "queryKey">): UnwrapNestedRefs<UseQueryReturnType<UsersPermissionsUser, TError>> {
 	return reactive(
 		useQuery<UsersPermissionsUser, TError>(
 			"user",
@@ -88,6 +98,7 @@ export function getUser(): UnwrapNestedRefs<UseQueryReturnType<UsersPermissionsU
 			},
 			{
 				retry: false,
+				...opts,
 			}
 		)
 	);

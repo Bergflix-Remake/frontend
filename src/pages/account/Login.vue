@@ -21,10 +21,7 @@
       <p v-if="message" class="text-gray-500 max-w-md">
         {{ message }}
       </p>
-      <p v-if="auth.isError.value" class="text-red-500">
-        Es ist ein Fehler aufgetreten:
-        {{ auth.error.value?.error.message }}
-      </p>
+      <Error :error="auth.error.value" />
       <p v-if="auth.isSuccess.value" class="text-green-500">
         Erfolgreich eingeloggt.
         <span v-if="redirect"
@@ -51,6 +48,10 @@
           :disabled="auth.isLoading.value"
         />
         <Button @click="login">Login</Button>
+        <p>
+          Noch keinen Account?
+          <Link :to="{ name: 'register', params: { redirect } }">Hier registrieren.</Link>
+        </p>
       </form>
       <Spinner v-if="auth.isLoading.value" />
     </Window>
@@ -63,9 +64,11 @@ import Window from '@atoms/Window/Window.vue';
 import Title from '@atoms/Title/Title.vue';
 import Button from '@/stories/atoms/Button.vue';
 import { ref } from 'vue';
-import { strapi, strapiLogin } from '@/main';
+import { getUser, strapiLogin } from '@/main';
 import Spinner from '@/stories/atoms/Spinner.vue';
 import { useRoute, useRouter } from 'vue-router';
+import Link from '@/stories/atoms/Link.vue';
+import Error from '@/stories/atoms/State/Error.vue';
 
 const route = useRoute();
 const redirect = route.query.redirect as string;
@@ -76,22 +79,22 @@ const router = useRouter();
 const identifier = ref('');
 const password = ref('');
 
-if (strapi.user) {
+const executeRedirect = () => {
   if (redirect) {
-    router.push({ path: redirect });
+    router.push({ path: redirect })
   } else {
     router.push({ name: 'account' });
   }
-}
+};
 
+// If user is already logged in
+const user = getUser({
+  onSuccess: executeRedirect,
+});
+
+// Login logic
 const auth = strapiLogin({
-  onSuccess: () => {
-    if (redirect) {
-      router.push({ path: redirect })
-    } else {
-      router.push({ name: 'account' });
-    }
-  },
+  onSuccess: executeRedirect
 });
 
 const login = () => {

@@ -14,14 +14,26 @@ export const router = createRouter({
 	routes,
 });
 
+// Change this variable to lock/unlock the site for users without admin or patreon status.
+const lockdown = false
+
 router.beforeEach((to, from) => {
-	// Check authentication
-	if (to.name !== "login") {
-		if (!strapi.user?.admin){
+	// Check requiresAuth
+	if (to.meta.requiresAuth) {
+		console.debug("Route requiresAuth, checking authentication:", strapi.user)
+		if (!strapi.user){
+			return {
+				name: "login",
+				query: { redirect: to.fullPath, message: "Bitte melde dich an um diese Seite anzusehen." },
+			}
+		}
+	}
+	if (lockdown) {
+		if (!strapi.user?.admin && !strapi.user?.patreon) {	
 			return {
 				name: "login",
 				query: { redirect: to.fullPath, message: "Bitte Melde dich mit deinem Patreon- oder Administratoraccount an, um diese Seite anzusehen." },
 			}
 		}
-	}
+	} 
 })

@@ -1,5 +1,5 @@
 <template>
-    <form class="flex flex-col items-center lg:w-1/4 sm:w-1/2 w-full" @submit.prevent="changePassword">
+    <form class="flex flex-col items-center sm:w-1/2 w-full" @submit.prevent="changePassword">
         <input id="currentPassword" v-model="currentPassword" type="password" name="currentPassword" placeholder="Aktuelles Passwort" class="input w-full">
         <input id="password" v-model="password" type="password" name="password" placeholder="Neues Passwort" class="input w-full">
         <input id="passwordConfirmation" v-model="passwordConfirmation" type="password" name="passwordConfirmation" placeholder="Neues Passwort bestätigen" class="input w-full" >
