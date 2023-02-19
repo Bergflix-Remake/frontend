@@ -27,10 +27,10 @@ name: watch
           >
             <h2 class="text-2xl font-bold">Danke fürs Ansehen!</h2>
             <p
-              v-if="series?.videos?.data.length"
+              v-if="series?.videos?.data.length && !isLastEpisode"
               class="text-delorean-500 font-thin"
             >
-              Die nächste Folge wird in ein paar momenten Abgespielt...
+              Die nächste Folge wird in ein paar Momenten abgespielt...
             </p>
             <p v-else class="text-delorean-500 font-thin">
               Das könnte dich auch interessieren:
@@ -171,6 +171,14 @@ const url = computed(
   () => movie.data?.attributes?.youtube_url?.match(/v=(.*)/)?.[1]
 );
 
+const isLastEpisode = computed(() => series.value?.videos?.data[series.value?.videos?.data.length - 1]?.id !== id.value.toString())
+
+console.debug(
+  '%c%s',
+  consoleStyles,
+  `Video ID: ${id.value} | Series: ${series.value?.title} | Episode: ${movie.data?.attributes?.episode} | Last Episode: ${isLastEpisode.value}`
+);
+
 // When playback has finished and the video is not part of a series, get a random video from the same genre
 const recommendations = useStrapi<VideoEntity[]>(
   [
@@ -189,9 +197,9 @@ const recommendations = useStrapi<VideoEntity[]>(
       },
     },
   ],
-  {
-    enabled: playbackFinished.value && !series.value?.videos?.data?.length,
-  }
+  // {
+  //   enabled: playbackFinished.value && !series.value?.videos?.data?.length,
+  // }
 );
 
 const recommendation = computed(
