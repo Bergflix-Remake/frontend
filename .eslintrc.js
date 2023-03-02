@@ -10,7 +10,6 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'standard',
     'prettier',
-    'plugin:storybook/recommended',
     '@vue/eslint-config-typescript',
   ],
   parser: 'vue-eslint-parser',

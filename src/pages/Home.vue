@@ -2,30 +2,6 @@
 name: home
 </route>
 <template>
-  <Head>
-    <title>Bergflix. Home</title>
-    <meta
-      content="Bergflix. Home"
-      property="og:title"
-    >
-    <meta
-      content="Site Description"
-      property="og:description"
-    >
-    <meta
-      content="/home"
-      property="og:url"
-    >
-    <meta
-      content="https://cdn.bergflix.de/logo/light.png"
-      property="og:image"
-    >
-    <meta
-      content="#ff0230"
-      data-react-helmet="true"
-      name="theme-color"
-    >
-  </Head>
   <div class="flex flex-col bg-black">
     <Hero />
     <section class="p-10">
@@ -117,7 +93,6 @@ import Poster from '@molecules/Poster.vue';
 import Title from '@atoms/Title/Title.vue';
 import { useStrapi } from '@/main';
 import { CollectionEntity, ComponentCollectionSerie, ComponentCollectionVideo, SerieEntity, VideoEntity } from '@/models/types';
-import { Head } from '@vueuse/head';
 import { api } from '@/util/paths';
 
 const videos = useStrapi<VideoEntity[]>(['videos', {

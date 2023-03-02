@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import r from '~pages'
-import { strapi } from "./main";
+import { strapi, useResendEmailMutation } from "./main";
 
 const routes = [
 	...r,
@@ -14,11 +14,7 @@ export const router = createRouter({
 	routes,
 });
 
-// Change this variable to lock/unlock the site for users without admin or patreon status.
-const lockdown = true
-
 router.beforeEach((to, from) => {
-	// Check requiresAuth
 	if (to.meta.requiresAuth) {
 		console.debug("Route requiresAuth, checking authentication:", strapi.user)
 		if (!strapi.user){
@@ -28,12 +24,5 @@ router.beforeEach((to, from) => {
 			}
 		}
 	}
-	if (lockdown) {
-		if (!strapi.user?.admin && !strapi.user?.patreon) {	
-			return {
-				name: "login",
-				query: { redirect: to.fullPath, message: "Bitte Melde dich mit deinem Patreon- oder Administratoraccount an, um diese Seite anzusehen." },
-			}
-		}
-	} 
+	if (!strapi.user?.admin && to.name !== "login") return { name: "login" }
 })

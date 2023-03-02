@@ -10,13 +10,10 @@ import {
 	VueQueryPlugin,
 } from 'vue-query';
 import "./three-dots.css";
-import { createHead } from '@vueuse/head'
 
 const app = createApp(App);
-const head = createHead();
 
 // Vue Plugins //
-app.use(head);
 app.use(VuePlyr, {
 	plyr: {},
 });

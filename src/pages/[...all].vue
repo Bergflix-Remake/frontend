@@ -48,21 +48,10 @@ import WindowLayout from '@/layouts/WindowLayout.vue';
 import { useRoute } from 'vue-router';
 import { isValidUrl } from '@/utils';
 import { watch, ref } from 'vue';
-import { useHead } from '@vueuse/head';
 import Link from '@atoms/Link.vue'
 import Window from '@/stories/atoms/Window/Window.vue';
 import { AnnotationIcon } from '@heroicons/vue/outline';
 import Logo from '@/stories/atoms/Logo.vue';
-
-const head = useHead({
-    title: '404 - Bergflix',
-    meta: [
-        {
-        name: 'description',
-        content: '404 - Bergflix',
-        },
-    ],
-});
 
 const knownLinks: {[key: string]: string}  = {
     "discord": "https://discord.bergflix.de/",

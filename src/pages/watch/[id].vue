@@ -134,7 +134,6 @@ import { VideoEntity } from '@/models/types';
 import { useRoute, useRouter } from 'vue-router';
 import Loader from '@/components/Loader.vue';
 import { computed, ref, watch } from 'vue';
-import { useHead } from '@vueuse/head';
 import Player from '@molecules/Player.vue';
 import Button from '@/stories/atoms/Button.vue';
 import Poster from '@/stories/molecules/Poster.vue';
@@ -208,17 +207,6 @@ const recommendation = computed(
       Math.floor(Math.random() * recommendations.data?.length)
     ]
 );
-
-useHead({
-  title: computed(
-    () =>
-      `${
-        movie.data?.attributes?.title
-          ? movie.data?.attributes?.title
-          : 'Loading'
-      } · Bergflix`
-  ),
-});
 
 const title = computed(() => movie.data?.attributes?.title);
 const description = computed(() => movie.data?.attributes?.description);
