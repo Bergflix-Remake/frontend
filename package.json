@@ -24,7 +24,7 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-typescript": "^11.0.2",
     "autoprefixer": "^10.4.12",
-    "changelogen": "^0.4.1",
+    "changelogen": "^0.5.1",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-config-standard": "^17.0.0",
