@@ -24,5 +24,4 @@ router.beforeEach((to, from) => {
 			}
 		}
 	}
-	if (!strapi.user?.admin && to.name !== "login") return { name: "login" }
 })
