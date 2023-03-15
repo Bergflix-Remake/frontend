@@ -1,4 +1,13 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-yarn lint
+# Check if pnpm is installed, if yes run lint
+# else run lint with yarn if it is installed
+# else run lint with npm
+if command -v pnpm >/dev/null 2>&1; then
+  pnpm run lint
+elif command -v yarn >/dev/null 2>&1; then
+  yarn run lint
+else
+  npm run lint
+fi
