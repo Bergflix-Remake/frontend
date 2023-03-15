@@ -82,7 +82,7 @@ const mutation = useStrapiUpdateMutation<UsersPermissionsUser>({
   onMutate: () => {
     return {...strapi.user as Partial<UsersPermissionsUser> };
   },
-  onSuccess: (data, variables) => {
+  onSuccess: () => {
     console.debug('Updated!');
   },
   onError: (error, variables, context) => {

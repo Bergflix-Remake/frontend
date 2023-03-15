@@ -8,7 +8,7 @@ import { api, cdn } from '@/util/paths';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Serie, SerieEntity, UploadFile } from '@/models/types';
 import Info from '@/stories/molecules/Info/Info.vue';
-import { computed } from '@vue/reactivity';
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import PlaylistEntry from '@/stories/molecules/PlaylistEntry.vue';
 
