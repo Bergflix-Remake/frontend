@@ -5,7 +5,7 @@ name: watch
 <template>
   <article
     v-if="!invalidId"
-    class="p-5 flex flex-col w-full min-h-screen space-y-2 mt-20"
+    class="p-5 flex flex-col w-full min-h-screen space-y-2"
   >
     <div class="flex flex-col xl:flex-row xl:space-x-2">
       <!-- Player -->
