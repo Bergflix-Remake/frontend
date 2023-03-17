@@ -2,7 +2,7 @@
   <div class="relative overflow-hidden" @mouseenter="handleScroll()">
     <div
       ref="scrollContainer"
-      class="flex flex-row w-full space-x-4 overflow-x-hidden rounded-lg py-14"
+      class="flex flex-row w-full space-x-4 overflow-x-hidden rounded-lg py-10"
     >
       <slot />
     </div>
@@ -52,7 +52,10 @@ const buttons = reactive({
 
 const scroll = (dir: 'left' | 'right') => {
   if (scrollContainer.value) {
-    scrollContainer.value.scrollLeft += dir === 'left' ? -335 : 335;
+    scrollContainer.value.scrollBy({
+      left: dir === 'left' ? -335 : 335,
+      behavior: 'smooth',
+    });
     handleScroll();
   }
 };
@@ -64,7 +67,6 @@ const handleScroll = () => {
   console.debug(scrollContainer.value?.scrollLeft)
 };
 onMounted(() => {
-  handleScroll();
   window.addEventListener('resize', handleScroll);
 });
 </script>

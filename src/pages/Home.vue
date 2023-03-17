@@ -2,9 +2,9 @@
 name: home
 </route>
 <template>
-  <div class="flex flex-col bg-black">
-    <Hero />
-    <section class="p-10">
+  <Hero />
+  <div class="home-container flex flex-col w-full h-full">
+    <section class="px-10">
       <Title class="mb-2">
         Filme
       </Title>
@@ -26,6 +26,8 @@ name: home
           error
         />
       </ScrollableRow>
+    </section>
+    <section class="px-10">
       <Title class="mb-2">
         Serien
       </Title>
@@ -124,9 +126,14 @@ const collections = useStrapi<CollectionEntity[]>(['collections', {
 
 </script>
 
-<style>
+<style scoped>
 .gradient {
     background: rgb(0, 0, 0);
     background: radial-gradient(at top right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 70%);
 }
+
+.home-container {
+  margin-top: 80vh;
+}
+
 </style>
