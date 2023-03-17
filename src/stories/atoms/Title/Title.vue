@@ -6,7 +6,6 @@
       class="h-40 mr-2"
       />
       <slot v-else />
-      <p>      {{ id }} {{ image }}</p>
       <a :id="id.replace(' ', '-')" />
   </h1>
 </template>
