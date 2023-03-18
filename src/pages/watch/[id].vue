@@ -86,9 +86,7 @@ name: watch
           :alt="movie.data?.attributes?.title"
         />
         <Title v-else>{{ title }}</Title>
-        <p class="text-gray-500 font-light">
-          {{ description }}
-        </p>
+        <p class="text-gray-500 font-light" v-html="description" />
       </div>
       <div class="md:ml-auto mt-5">
         <InfoRow
