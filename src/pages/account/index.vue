@@ -21,7 +21,9 @@
         type="text"
         class="text-3xl font-bold"
         @confirm="update()"
-      />
+      >
+      <img v-if="userQuery.isSuccess && userQuery.data.badge?.length! > 0" class="w-5 h-5" :src="api(userQuery.data.badge?.find((value => parseInt(value?.id!) === userQuery.data?.selected_badge))?.badge?.icon.url || userQuery.data?.badge![0]?.badge?.icon.url)" />
+    </CInput>
         <CInput v-model="user.email" type="email" @confirm="update()">
           <BadgeCheckIcon v-if="user.confirmed" class="w-5 h-5 text-green-500" />
           <ExclamationCircleIcon v-else class="w-5 h-5 text-red-500" />
@@ -33,14 +35,30 @@
 <Window>
   <Title>Erfolge & Statistiken</Title>
   <Subtitle>Auszeichnungen</Subtitle>
+  <p class="text-delorean-500 mb-3">
+    Auszeichnungen werden durch das Bergflix Team vergeben. Sie werden neben deinem Benutzernamen in den Kommentaren <sup title="Beta Features werden an zufällige Bergflix. Benutzer vergeben." class="px-1 bg-yellow-500/50 rounded-sm text-white cursor-help">BETA</sup>  angezeigt.
+    Es kann eine weile dauern bis Auszeichnungen überall angezeigt werden.
+  </p>
   <Spinner v-if="userQuery.isLoading" />
-  <div v-else-if="userQuery.isSuccess" class="flex flex-row items-center justify-center w-full">
-    <article v-for="badge in userQuery.data?.badge" :key="badge?.id" class="flex flex-col justify-center w-52 bg-clean-dark-700 p-2 rounded-lg shadow-lg hover:shadow-primary-500/20 transition-all relative">
-      <img :src="api(badge?.badge?.icon.url)" class="h-32" :alt="badge?.badge?.icon.alternativeText || badge?.badge?.name">
+  <div v-else-if="userQuery.isSuccess" class="flex flex-row items-center w-full flex-nowrap overflow-x-auto space-x-2 h-96">
+    <article v-for="badge in userQuery.data?.badge" :key="badge?.id" class="p-4 flex flex-col justify-center w-52 flex-shrink-0 bg-clean-dark-700 rounded-lg shadow-lg hover:shadow-primary-500/20 transition-all relative h-full">
+      <img :src="api(badge?.badge?.icon.url)" class="h-32 mb-auto" :alt="badge?.badge?.icon.alternativeText || badge?.badge?.name">
       <h3 class="font-extrabold">{{ badge?.badge?.name }}</h3>
+      <h5 class="absolute top-3 left-4 font-mono text-delorean-500">{{ badge?.id }}</h5>
+      <p class="text-xs text-delorean-500">Erhalten am {{ new Date(badge?.awarded).toLocaleDateString("de-DE")  }}</p>
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <p v-html="badge?.badge?.description" />
+      <Button
+      :data-button="badge?.id"
+      class="mt-auto"
+width="full"  :disabled="badge?.id == user.selected_badge" type="outline" @click="{
+        user.selected_badge = parseInt(badge?.id!);
+        update();
+      }">{{ badge?.id == user.selected_badge ? 'Ausgewählt' : 'Auswählen' }}</Button>
     </article>
+    <img v-if="userQuery.data.badge?.length! <= 0" src="/no_badges.png" class="w-52 rounded-lg shadow-lg hover:shadow-primary-500/20 transition-all h-full"/>
   </div>
+
       </Window>
     <Window>
       <Title>Sicherheit</Title>
@@ -55,7 +73,7 @@
       <Button :icon="LogoutIcon" type="ghost">Logout</Button>
 
       <Subtitle>User Data <TagIcon class="w-5 h-5 inline"/></Subtitle>
-      <p>Diese option ist haubsächlich für Entwickler gedacht. Hier findest du alle daten, die wir über dich speichern.</p>
+      <p class="text-delorean-500 mb-3">Diese option ist haubsächlich für Entwickler gedacht. Hier findest du alle daten, die wir über dich speichern.</p>
       <pre
         v-if="userQuery.isSuccess"
         class="bg-gray-800 text-white p-2 rounded-md overflow-x-auto text-left w-full"
@@ -87,6 +105,7 @@ import Href from '@/stories/atoms/Href.vue';
 import { api } from '@/util/paths';
 import Spinner from '@/stories/atoms/Spinner.vue';
 
+
 const router = useRouter();
 
 const userQuery = getUser({
@@ -98,12 +117,7 @@ if (!strapi.user) {
   router.push({ name: 'login' });
 }
 
-const user: Partial<UsersPermissionsUser> = reactive({
-  username: strapi.user!.username as string,
-  email: strapi.user!.email as string,
-  image: strapi.user!.image as UploadFileEntityResponse,
-  confirmed: strapi.user!.confirmed as boolean,
-});
+let user: Partial<UsersPermissionsUser> = reactive(strapi.user as Partial<UsersPermissionsUser>);
 
 const mutation = useStrapiUpdateMutation<UsersPermissionsUser>({
   onMutate: () => {
@@ -115,23 +129,22 @@ const mutation = useStrapiUpdateMutation<UsersPermissionsUser>({
   onError: (error, variables, context) => {
     console.error(error);
     console.debug(`Rolling back optimistic update...`);
-    user.username = context!.username as string;
-    user.email    = context!.email as string;
+    user = context!;
     console.debug(context, user);   
   },
 });
 
 const update = () => {
   if (!strapi.user) return;
-  console.debug('Updating user...', user.username, user.email);
-  if (strapi.user?.username === user.username && strapi.user?.email === user.email) {
+  console.debug('Updating user...', user, strapi.user);
+  if (strapi.user! === user) {
     console.debug('No changes detected. Not updating.');
     return;
   }
   mutation.mutate({
-    contentType: 'users',
+    contentType: 'users', 
     id: 'me',
-    data: { email: user.email, username: user.username },
+    data: { ...user },
   });
   userQuery.refetch();
 };

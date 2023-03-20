@@ -733,6 +733,7 @@ export type UsersPermissionsUserFiltersInput = {
   watchlist?: InputMaybe<VideoFiltersInput>;
   admin?: InputMaybe<BooleanFilterInput>;
   badge?: InputMaybe<ComponentUserBadgeFiltersInput>;
+  selected_badge?: InputMaybe<IntFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
@@ -754,6 +755,7 @@ export type UsersPermissionsUserInput = {
   admin?: InputMaybe<Scalars['Boolean']>;
   image?: InputMaybe<Scalars['ID']>;
   badge?: InputMaybe<Array<InputMaybe<ComponentUserBadgeInput>>>;
+  selected_badge?: InputMaybe<Scalars['Int']>;
 };
 
 export type UsersPermissionsUser = {
@@ -768,6 +770,7 @@ export type UsersPermissionsUser = {
   admin?: Maybe<Scalars['Boolean']>;
   image?: Maybe<UploadFileEntityResponse>;
   badge?: Maybe<Array<Maybe<ComponentUserBadge>>>;
+  selected_badge?: Maybe<Scalars['Int']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
