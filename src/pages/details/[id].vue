@@ -50,7 +50,7 @@ const series = useStrapiOne<SerieEntity>([
         :description="series.data?.attributes?.description!"
         :genre="series.data?.attributes?.genre!"
         :episodes="series.data?.attributes?.videos?.data.length!"
-        :title_image="
+        :title-image="
           series.data?.attributes?.title_image?.data?.attributes?.url
         "
         :buttons="[]"
