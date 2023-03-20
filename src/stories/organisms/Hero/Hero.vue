@@ -1,6 +1,6 @@
 <template>
     <section
-    v-if="featured"
+    v-if="featured && !isInvisible"
     ref="hero"
 class="fixed flex w-full h-[90vh] min-h-[95vh] mb-20 bg-center bg-no-repeat bg-cover bg-clean-dark-500 top-20 left-0"
         :style="{ backgroundImage: `url('${api(featured?.background_image?.data?.attributes?.url)}')`, opacity: opacity / 100, filter: `blur(${5 - opacity / 20}px)` }">
@@ -65,7 +65,6 @@ onMounted(() =>
         const scroll = window.scrollY;
         
         opacity.value = 100 - (scroll / scrollHeight) * 20;
-        console.debug('scroll', scrollHeight, scroll, opacity.value);
     }
 
     window.addEventListener('scroll', onScroll);

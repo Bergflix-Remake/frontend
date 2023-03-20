@@ -88,13 +88,14 @@ export function useStrapiOne<T>(
 export function getUser(props?: StrapiRequestParams,opts?: Omit<UseQueryOptions<UsersPermissionsUser, TError, UsersPermissionsUser, QueryKey>, "queryFn" | "queryKey">): UnwrapNestedRefs<UseQueryReturnType<UsersPermissionsUser, TError>> {
 	return reactive(
 		useQuery<UsersPermissionsUser, TError>(
-			"user",
+			["user", props],
 			async () => {
-				
-				const user = await strapi.fetchUser() as UsersPermissionsUser;
+				await strapi.fetchUser();
+				const user = await strapi.request<UsersPermissionsUser>("GET", "/users/me", { params: props });
 				if (!user) {
 					throw new Error("User not logged in");
 				}
+				console.debug("User", user);
 				return user;
 			},
 			{

@@ -29,6 +29,18 @@
         <p v-if="!user.confirmed" class="text-red-500">Deine E-Mail ist nicht bestätigt. Bitte überprüfe dein Postfach.</p>
         <p class="text-delorean-500">Wenn du diese Daten änderst, musst du potentiell deine E-Mail Adresse erneut bestätigen, oder dich neu Anmelden.</p>
         <Error :error="mutation.error.value" />
+</Window>
+<Window>
+  <Title>Erfolge & Statistiken</Title>
+  <Subtitle>Auszeichnungen</Subtitle>
+  <Spinner v-if="userQuery.isLoading" />
+  <div v-else-if="userQuery.isSuccess" class="flex flex-row items-center justify-center w-full">
+    <article v-for="badge in userQuery.data?.badge" :key="badge?.id" class="flex flex-col justify-center w-52 bg-clean-dark-700 p-2 rounded-lg shadow-lg hover:shadow-primary-500/20 transition-all relative">
+      <img :src="api(badge?.badge?.icon.url)" class="h-32" :alt="badge?.badge?.icon.alternativeText || badge?.badge?.name">
+      <h3 class="font-extrabold">{{ badge?.badge?.name }}</h3>
+      <p v-html="badge?.badge?.description" />
+    </article>
+  </div>
       </Window>
     <Window>
       <Title>Sicherheit</Title>
@@ -42,6 +54,16 @@
         <Title id="settings">Einstellungen</Title>
       <Button :icon="LogoutIcon" type="ghost">Logout</Button>
 
+      <Subtitle>User Data <TagIcon class="w-5 h-5 inline"/></Subtitle>
+      <p>Diese option ist haubsächlich für Entwickler gedacht. Hier findest du alle daten, die wir über dich speichern.</p>
+      <pre
+        v-if="userQuery.isSuccess"
+        class="bg-gray-800 text-white p-2 rounded-md overflow-x-auto text-left w-full"
+      >
+{{ userQuery.data }}
+
+      </pre>
+
       </Window>
   </WindowLayout>
 </template>
@@ -50,7 +72,7 @@
 import { getUser, strapi, useStrapiUpdateMutation } from '@/util/api';
 import Avatar from '@molecules/Avatar.vue';
 import CInput from '@/stories/molecules/Input/ConfirmableInput.vue';
-import { reactive } from 'vue';
+import { computed, reactive } from 'vue';
 import WindowLayout from '@/layouts/WindowLayout.vue';
 import Window from '@/stories/atoms/Window/Window.vue';
 import { useRouter } from 'vue-router';
@@ -58,14 +80,19 @@ import Title from '@/stories/atoms/Title/Title.vue';
 import Subtitle from '@/stories/atoms/Subtitle/Subtitle.vue';
 import ChangePasswordForm from '@/stories/organisms/ChangePassword/ChangePasswordForm.vue';
 import Button from '@/stories/atoms/Button.vue';
-import { BadgeCheckIcon, LogoutIcon, ExclamationCircleIcon } from '@heroicons/vue/outline';
+import { BadgeCheckIcon, LogoutIcon, ExclamationCircleIcon, TagIcon } from '@heroicons/vue/outline';
 import { UploadFileEntityResponse, UsersPermissionsUser } from '@/models/types';
 import Error from '@/stories/atoms/State/Error.vue';
 import Href from '@/stories/atoms/Href.vue';
+import { api } from '@/util/paths';
+import Spinner from '@/stories/atoms/Spinner.vue';
 
 const router = useRouter();
 
-const userQuery = getUser();
+const userQuery = getUser({
+  populate: ['image', 'badge', 'badge.badge', 'badge.badge.icon']
+});
+
 
 if (!strapi.user) {
   router.push({ name: 'login' });
