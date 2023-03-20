@@ -90,7 +90,7 @@ width="full"  :disabled="badge?.id == user.selected_badge" type="outline" @click
 import { getUser, strapi, useStrapiUpdateMutation } from '@/util/api';
 import Avatar from '@molecules/Avatar.vue';
 import CInput from '@/stories/molecules/Input/ConfirmableInput.vue';
-import { computed, reactive } from 'vue';
+import { reactive } from 'vue';
 import WindowLayout from '@/layouts/WindowLayout.vue';
 import Window from '@/stories/atoms/Window/Window.vue';
 import { useRouter } from 'vue-router';
@@ -99,7 +99,7 @@ import Subtitle from '@/stories/atoms/Subtitle/Subtitle.vue';
 import ChangePasswordForm from '@/stories/organisms/ChangePassword/ChangePasswordForm.vue';
 import Button from '@/stories/atoms/Button.vue';
 import { BadgeCheckIcon, LogoutIcon, ExclamationCircleIcon, TagIcon } from '@heroicons/vue/outline';
-import { UploadFileEntityResponse, UsersPermissionsUser } from '@/models/types';
+import { UsersPermissionsUser } from '@/models/types';
 import Error from '@/stories/atoms/State/Error.vue';
 import Href from '@/stories/atoms/Href.vue';
 import { api } from '@/util/paths';
