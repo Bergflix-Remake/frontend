@@ -1,80 +1,58 @@
 <template>
     <section
-    v-if="!isInvisible"
+    v-if="featured"
     ref="hero"
 class="fixed flex w-full h-[90vh] min-h-[95vh] mb-20 bg-center bg-no-repeat bg-cover bg-clean-dark-500 top-20 left-0"
-        :style="{ backgroundImage: `url('${featured?.image}')`, opacity: opacity / 100, filter: `blur(${5 - opacity / 20}px)` }">
+        :style="{ backgroundImage: `url('${api(featured?.background_image?.data?.attributes?.url)}')`, opacity: opacity / 100, filter: `blur(${5 - opacity / 20}px)` }">
         <div id="gradient" class="absolute top-0 left-0 w-full h-full gradient"></div>
         <div class="z-10 flex flex-col justify-center w-full h-full p-10 lg:w-1/2">
-            <Info v-if="item.isSuccess && featured" v-bind="featured" class="max-w-md" />
+            <Info
+            :title="featured?.title!"
+            :title_image="featured?.title_image?.data?.attributes?.url"
+            :year="new Date(featured?.year).getFullYear()"
+            :age="featured?.age!"
+            :episodes="featured?.series?.data?.attributes?.videos?.data.length || 1"
+            :genre="featured?.genre!"
+            :description="featured?.description!"
+            :buttons="[{
+                text: 'Watch Now',
+                to: '/watch/' + item.data?.id,
+                icon: PlayIcon
+            }]"
+            class="max-w-md" />
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
-import { PlayIcon } from '@heroicons/vue/outline';
-import { computed, onMounted, ref } from 'vue';
-import { useStrapi, useStrapiOne } from '@/main';
-import { FeaturedEntity, VideoEntity } from '@/models/types';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { useStrapi } from '@/main';
+import { FeaturedEntity } from '@/models/types';
 import Info from '../../molecules/Info/Info.vue';
-import { RouteLocationRaw } from 'vue-router';
+import { PlayIcon } from '@heroicons/vue/outline';
+import { api } from '@/util/paths';
 
-
-const featured = ref<{
-    title: string;
-    year: number;
-    age: number;
-    episodes: number;
-    genre: string;
-    title_image?: string;
-    image: string;
-    description: string;
-    buttons: {
-        text: string,
-        to: RouteLocationRaw,
-        type?: "solid" | "outline" | "ghost",
-        color?: string,
-        icon?: any,
-    }[];
-}>();
 
 const opacity = ref(100);
+console.debug('opacity', opacity.value);
+
 const isInvisible = computed(() => opacity.value <= 0);
 
 
 const item = useStrapi<FeaturedEntity>(['featured', {
-    populate: 'video'
-}])
-
-const videoId = computed(() => item.data?.attributes?.video?.data?.id);
-const enabled = computed(() => !!item.data?.attributes?.video?.data?.id);
-
-useStrapiOne<VideoEntity>(['videos', videoId, {
-    populate: '*'
+    populate: {
+        video: {
+            populate: "*"
+        }
+    }
 }], {
     onSuccess: (data) => {
-        const video = data?.attributes
-        featured.value = {
-            title: video?.title!,
-            year: new Date(video?.year).getFullYear(),
-            age: video?.age!,
-            episodes: video?.series?.data?.attributes?.videos?.data?.length || 1,
-            genre: video?.genre as string,
-            title_image: video?.title_image?.data?.attributes?.url,
-            image: "https://api.bergflix.de" + video?.thumbnail?.data?.attributes?.url,
-            description: video?.description!,
-            buttons: [
-                {
-                    text: 'Ansehen',
-                    to: { name: 'watch', params: { id: data.id! } },
-                    icon: PlayIcon,
-                }
-            ],
-        }
-
-    },
-    enabled
+        console.debug('featured', data);
+        console.debug('image', item.data?.attributes?.video?.data?.attributes?.background_image?.data?.attributes?.url)
+    }
 })
+
+const featured = computed(() => item.data?.attributes?.video?.data?.attributes);
 
 const hero = ref<HTMLElement>();
 
@@ -82,11 +60,11 @@ const hero = ref<HTMLElement>();
 // On scroll, increase or decrease the opacity variable so that at 50% of the height of the hero, the opacity is 0
 onMounted(() => 
 {
-    const scrollHeight = hero.value?.offsetHeight || 0;
+    const scrollHeight = hero.value?.offsetHeight || 100;
     const onScroll = () => {
         const scroll = window.scrollY;
         
-        opacity.value = 100 - (scroll / scrollHeight) * 200;
+        opacity.value = 100 - (scroll / scrollHeight) * 20;
         console.debug('scroll', scrollHeight, scroll, opacity.value);
     }
 
@@ -94,8 +72,9 @@ onMounted(() =>
     onScroll();
 })
 
-
-
+onUnmounted(() => {
+    window.removeEventListener('scroll', () => {});
+})
 </script>
 
 <style scoped>
