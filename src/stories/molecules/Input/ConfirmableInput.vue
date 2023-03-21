@@ -4,32 +4,13 @@ import { ref, watchEffect } from 'vue';
 
 const emit = defineEmits(['update:modelValue', 'confirm', 'reset']);
 
-const props = defineProps({
-  type: {
-    type: String,
-    required: false,
-    default: 'text',
-  },
-  placeholder: {
-    type: String,
-    required: false,
-    default: '',
-  },
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: false,
-  },
-  icon: {
-    type: null,
-    default: null,
-  },
-  modelValue: {
-    type: String,
-    required: true,
-    default: '',
-  },
-});
+const props = defineProps<{
+  type?: string; 
+  placeholder?: string;
+  disabled?: boolean;
+  icon?: null;
+  modelValue?: string;
+}>();
 
 const backupValue = ref(props.modelValue);
 const isActive = ref(false);
@@ -79,7 +60,7 @@ const reset = () => {
       class="input"
       :class="{ disabled: !isActive }"
       @input="handleInput"
-      @keydown="{
+      @keydown="($event: KeyboardEvent) => {
           if (!isActive) return;
           if ($event.key === 'Enter') {
             confirm();
