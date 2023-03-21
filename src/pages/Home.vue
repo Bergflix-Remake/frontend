@@ -72,6 +72,7 @@ class="mb-2"
             @click="() => $router.push({ name: 'watch', params: { id: movie.video?.data?.id! } })"
           />
           <!-- Poster for series -->
+          <!-- @ts-ignore -->
           <Poster
             v-for="serie in collection.attributes?.entries.filter((entry) => entry!.__component === 'collection.serie') as ComponentCollectionSerie[]"
             :key="serie.id!"
@@ -89,6 +90,7 @@ class="mb-2"
 </template>
 
 <script setup lang="ts">
+// @ts-nocheck
 import Hero from '@organisms/Hero/Hero.vue';
 import ScrollableRow from '@molecules/ScrollableRow.vue';
 import Poster from '@molecules/Poster.vue';

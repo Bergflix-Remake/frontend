@@ -79,12 +79,11 @@ const reset = () => {
       class="input"
       :class="{ disabled: !isActive }"
       @input="handleInput"
-      @keydown="
-        (e) => {
+      @keydown="{
           if (!isActive) return;
-          if (e.key === 'Enter') {
+          if ($event.key === 'Enter') {
             confirm();
-          } else if (e.key === 'Escape') {
+          } else if ($event.key === 'Escape') {
             reset();
           }
         }

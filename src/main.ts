@@ -10,6 +10,7 @@ import {
 	VueQueryPlugin,
 } from 'vue-query';
 import "./three-dots.css";
+import InstantSearch from 'vue-instantsearch/vue3/es';
 
 const app = createApp(App);
 
@@ -19,6 +20,7 @@ app.use(VuePlyr, {
 });
 app.use(router);
 app.use(store);
+app.use(InstantSearch);
 app.use(VueQueryPlugin);
 
 // Strapi Query Export //
