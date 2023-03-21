@@ -8,17 +8,17 @@
                 <div class="mb-2 font-bold text-delorean">Social Media</div>
                 <ul class="leading-normal list-reset">
                     <li>
-                        <Link :icon="ExternalLinkIcon" to="patreon">
-                        Patreon
+                        <Link :icon="ExternalLinkIcon" to="https://bflx.de/instagram">
+                        Instagram
                         </Link>
                     </li>
                     <li>
-                        <Link :icon="ExternalLinkIcon" to="discord">
+                        <Link :icon="ExternalLinkIcon" to="https://bflx.de/discord">
                         Discord
                         </Link>
                     </li>
                     <li>
-                        <Link :icon="ExternalLinkIcon" to="twitter">
+                        <Link :icon="ExternalLinkIcon" to="https://bflx.de/twitter">
                         Twitter
                         </Link>
                     </li>
@@ -35,7 +35,7 @@
                         </Link>
                     </li>
                     <li>
-                        <Link to="apply">
+                        <Link to="https://bflx.de/discord">
                         Mithelfen
                         </Link>
                     </li>
