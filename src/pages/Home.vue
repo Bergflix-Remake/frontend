@@ -64,7 +64,7 @@ class="mb-2"
         />
           <!-- Poster for movies -->
           <Poster
-            v-for="movie in collection.attributes?.entries.filter((entry) => entry!.__component === 'collection.video') as ComponentCollectionVideo[]"
+            v-for="movie in collection.attributes?.entries.filter((entry) => entry!.__typename === 'ComponentCollectionVideo') as ComponentCollectionVideo[]"
             
             :key="movie.id!"
             :image="movie.video?.data?.attributes?.thumbnail.data?.attributes?.url"
@@ -74,7 +74,7 @@ class="mb-2"
           <!-- Poster for series -->
           <!-- @ts-ignore -->
           <Poster
-            v-for="serie in collection.attributes?.entries.filter((entry) => entry!.__component === 'collection.serie') as ComponentCollectionSerie[]"
+            v-for="serie in collection.attributes?.entries.filter((entry) => entry!.__typename === 'ComponentCollectionSerie') as ComponentCollectionSerie[]"
             :key="serie.id!"
             :image="serie.serie?.data?.attributes?.thumbnail.data?.attributes?.url"
             :original="serie.serie?.data?.attributes?.original!"
