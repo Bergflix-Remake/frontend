@@ -27,8 +27,7 @@
 <script setup lang="ts">
 import {
   HomeIcon,
-  VideoCameraIcon,
-  FilmIcon,
+  SearchIcon,
   UserIcon,
 } from '@heroicons/vue/solid';
 import { ref } from 'vue';
@@ -45,7 +44,7 @@ const setDropdown = (open: boolean, delay: number = 100) => {
   clearTimeout(wait);
   wait = setTimeout(() => {
     accountOpen.value = open;
-  }, delay);
+  }, delay) as unknown as number;
 };
 
 const navItems = [
@@ -53,5 +52,9 @@ const navItems = [
     name: 'Home',
     icon: HomeIcon,
   },
+  {
+    name: 'Search',
+    icon: SearchIcon,
+  }
 ];
 </script>
