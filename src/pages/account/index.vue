@@ -82,6 +82,7 @@ width="full"  :disabled="badge?.id == user.selected_badge" type="outline" @click
 
       </pre>
 
+        <SearchOverlay />
       </Window>
   </WindowLayout>
 </template>
@@ -104,6 +105,7 @@ import Error from '@/stories/atoms/State/Error.vue';
 import Href from '@/stories/atoms/Href.vue';
 import { api } from '@/util/paths';
 import Spinner from '@/stories/atoms/Spinner.vue';
+import SearchOverlay from '@/stories/organisms/Search/SearchOverlay.vue';
 
 
 const router = useRouter();

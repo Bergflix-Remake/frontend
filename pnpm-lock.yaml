@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@anniken/strapi-sdk-js': ^2.4.0
-  '@heroicons/vue': ^2.0.16
+  '@heroicons/vue': ^1.0.5
   '@meilisearch/instant-meilisearch': ^0.11.1
   '@rushstack/eslint-patch': ^1.2.0
   '@tailwindcss/aspect-ratio': ^0.4.2
@@ -42,7 +42,7 @@ specifiers:
 
 devDependencies:
   '@anniken/strapi-sdk-js': 2.4.0
-  '@heroicons/vue': 2.0.16_vue@3.2.47
+  '@heroicons/vue': 1.0.6_vue@3.2.47
   '@meilisearch/instant-meilisearch': 0.11.1
   '@rushstack/eslint-patch': 1.2.0
   '@tailwindcss/aspect-ratio': 0.4.2_tailwindcss@3.2.7
@@ -1414,8 +1414,8 @@ packages:
       graphql: 16.6.0
     dev: true
 
-  /@heroicons/vue/2.0.16_vue@3.2.47:
-    resolution: {integrity: sha512-saVAExLlGu6epqmS543qeWd/UOJUxpTJyK9aXeFGqS3VIW8X7yyJQmUGT40A38gBEAxMOdTdH9jFSh8sjPFM7A==}
+  /@heroicons/vue/1.0.6_vue@3.2.47:
+    resolution: {integrity: sha512-ng2YcCQrdoQWEFpw+ipFl2rZo8mZ56v0T5+MyfQQvNqfKChwgP6DMloZLW+rl17GEcHkE3H82UTAMKBKZr4+WA==}
     peerDependencies:
       vue: '>= 3'
     dependencies:
