@@ -9,12 +9,12 @@
     <div
       v-if="buttons.left"
       id="fade-l"
-      class="absolute top-0 left-0 z-20 w-10 h-full pointer-events-none bg-gradient-to-r from-black to-transparent"
+      class="absolute top-0 left-0 w-10 h-full pointer-events-none bg-gradient-to-r from-black to-transparent"
     ></div>
     <div
       v-if="buttons.right"
       id="fade-r"
-      class="absolute top-0 right-0 z-20 w-10 h-full pointer-events-none bg-gradient-to-l from-black to-transparent"
+      class="absolute top-0 right-0 w-10 h-full pointer-events-none bg-gradient-to-l from-black to-transparent"
     ></div>
     <Transition name="right">
       <BadgeButton
