@@ -2,7 +2,7 @@
     <section
     v-if="featured && !isInvisible"
     ref="hero"
-class="fixed flex w-full h-[90vh] min-h-[95vh] mb-20 bg-center bg-no-repeat bg-cover bg-clean-dark-500 top-20 left-0"
+class="fixed flex w-full h-[90vh] min-h-[95vh] mb-20 bg-center bg-no-repeat bg-cover bg-clean-dark-500 top-0 left-0"
         :style="{ backgroundImage: `url('${api(featured?.background_image?.data?.attributes?.url)}')`, opacity: opacity / 100, filter: `blur(${5 - opacity / 20}px)` }">
         <div id="gradient" class="absolute top-0 left-0 w-full h-full gradient"></div>
         <div class="z-10 flex flex-col justify-center w-full h-full p-10 lg:w-1/2">

@@ -9,7 +9,7 @@ const route = useRoute();
 <template>
   <div>
     <Navbar />
-    <div class="flex flex-col min-h-screen bg-black text-clean-white w-full bg-center bg-cover lg:pt-20" :style="{'background-image': `url(${route.meta.backgroundImage})`}">
+    <div class="flex flex-col min-h-screen bg-black text-clean-white w-full bg-center bg-cover" :style="{'background-image': `url(${route.meta.backgroundImage})`}">
       <router-view></router-view>
     </div>
     <Footer />
