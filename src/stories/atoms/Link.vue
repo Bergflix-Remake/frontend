@@ -1,8 +1,13 @@
 <template>
-  <component :is="isExternal ? 'a' : 'router-link'" :to="to" class="link" :href="to" :rel="isExternal && 'noopener noreferrer'" :target="isExternal && '_blank'">
-    <component :is="icon" v-if="icon" class="icon" />
+  <a v-if="isExternal" :href="to.toString()" class="link">
+    <component :is="icon" class="icon" />
     <slot />
-  </component>
+  </a>
+
+  <router-link v-else :to="to" class="link">
+    <component :is="icon" class="icon" />
+    <slot />
+  </router-link>
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
