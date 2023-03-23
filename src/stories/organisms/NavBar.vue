@@ -7,7 +7,7 @@
       <component :is="item.icon" v-if="item.visibleOn.includes('mobile')" class="w-8 h-8 md:hidden" />
       <span v-if="item.visibleOn.includes('desktop')" class="hidden md:block">{{ item.name }}</span>
     </NavLink>
-    <SearchOverlay class="ml-auto" />
+    <SearchOverlay class="ml-auto hidden md:block" />
     <!-- Account -->
     <div class="hidden md:flex h-full relative items-center w-full justify-end" @mouseleave="setDropdown(false, 500)">
       <div class="w-14 h-14">
