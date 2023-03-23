@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import r from '~pages'
 import { strapi } from "./main";
+import { isReleased } from "./util/locked";
 
 const routes = [
 	...r,
-	{ path: "/", redirect: "/home" },
 ]
 
 console.debug(routes)
@@ -28,4 +28,9 @@ router.beforeEach((to) => {
 			}
 		}
 	}
+	// if (!isReleased && !['/', '/legal'].includes(to.fullPath)) {
+	// 	return {
+	// 		path: "/",
+	// 	}
+	// }
 })
