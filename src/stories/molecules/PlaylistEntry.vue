@@ -4,10 +4,10 @@
     :class="{ 'shadow-primary-500/5': playing }"
     @click="emit('click'); router.push({ name: to || 'watch', params: { id } })"
   >
-    <div
+    <LazyLoadedImg
       class="h-full aspect-video bg-cover bg-center"
-      :style="`background-image: url(${thumbnail});`"
-    ></div>
+      :src="thumbnail"
+    ></LazyLoadedImg>
     <div class="w-full flex flex-col justify-center items-center space-y-2 relative">
       <h3>
         {{ title }}
@@ -29,6 +29,7 @@ import { getWatchTime } from '@/util/watchTime';
 import { PlayIcon } from '@heroicons/vue/solid';
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
+import LazyLoadedImg from './LazyLoadedImg.vue';
 
 const router = useRouter();
 
