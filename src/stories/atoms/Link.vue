@@ -1,23 +1,20 @@
 <template>
-  <router-link
-    :to="to"
-    class="link"
-  >
-    <component
-      :is="icon"
-      v-if="icon"
-      class="icon"
-    />
+  <component :is="isExternal ? 'a' : 'router-link'" :to="to" class="link" :href="to" :rel="isExternal && 'noopener noreferrer'" :target="isExternal && '_blank'">
+    <component :is="icon" v-if="icon" class="icon" />
     <slot />
-  </router-link>
+  </component>
 </template>
 <script setup lang="ts">
+import { computed } from 'vue';
 import { RouteLocationRaw } from 'vue-router';
-defineProps<{
+const props = defineProps<{
   to: RouteLocationRaw;
   icon?: any;
 }>();
 
+const isExternal = computed(() => {
+  return typeof props.to === 'string' && props.to.startsWith('http');
+});
 </script>
 
 <style>
