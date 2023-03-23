@@ -1,7 +1,8 @@
 <template>
   <Transition name="modal">
     <Window :transparent="transparent" class="relative">
-      <Title>Suchen</Title>
+      <Title>Suchen <BetaBadge /></Title>
+      <p class="text-delorean-500">Es kann eine weile dauern, bis die Suche geladen ist.</p>
         <ais-instant-search
         class="w-full h-full flex flex-col justify-center"
         :search-client="searchClient"
@@ -59,6 +60,7 @@ import Spinner from '@/stories/atoms/Spinner.vue';
 import Button from '@/stories/atoms/Button.vue';
 import Title from '@/stories/atoms/Title/Title.vue';
 import Subtitle from '@/stories/atoms/Subtitle/Subtitle.vue';
+import BetaBadge from '@/stories/atoms/BetaBadge.vue';
 const searchClient = instantMeiliSearch('https://search.bergflix.de', '', {
   finitePagination: true,
 });

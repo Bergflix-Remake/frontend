@@ -5,10 +5,7 @@ name: home
   <Hero />
   <div class="home-container flex flex-col w-full h-full">
     <section class="px-10">
-      <Title class="mb-2">
-        Filme
-      </Title>
-      <ScrollableRow>
+      <ScrollableRow title="Filme">
         <Poster
           v-if="videos.isLoading"
           loading
@@ -17,7 +14,8 @@ name: home
           v-for="movie in videos.data"
           v-else-if="videos.isSuccess"
           :key="movie.id!"
-          :image="movie.attributes?.thumbnail.data?.attributes?.url"
+          :src="movie.attributes?.thumbnail.data?.attributes?.url"
+          :alt="movie.attributes?.title"
           :original="movie.attributes?.original!"
           @click="() => $router.push({ name: 'watch', params: { id: movie.id } })"
         />
@@ -28,10 +26,7 @@ name: home
       </ScrollableRow>
     </section>
     <section class="px-10">
-      <Title class="mb-2">
-        Serien
-      </Title>
-      <ScrollableRow>
+      <ScrollableRow title="Serien">
         <Poster
           v-if="series.isLoading"
           loading
@@ -40,7 +35,8 @@ name: home
           v-for="serie in series.data"
           v-else-if="videos.isSuccess"
           :key="serie.id!"
-          :image="serie.attributes?.thumbnail.data?.attributes?.url"
+          :src="serie.attributes?.thumbnail.data?.attributes?.url"
+          :alt="serie.attributes?.title"
           :original="serie.attributes?.original!"
           @click="() => $router.push({ name: 'details', params: { id: serie.id } })"
         />
@@ -51,13 +47,7 @@ name: home
       </ScrollableRow>
     </section>
     <section v-for="collection in collections.data" :key="collection.id!" class="px-10">
-      <Title
-class="mb-2"
-      :image="api(collection.attributes?.title_image?.data?.attributes?.url)"
-      >
-        {{ collection.attributes?.title }}
-      </Title>
-      <ScrollableRow>
+      <ScrollableRow :title-image="api(collection.attributes?.title_image?.data?.attributes?.url)" :title="collection.attributes?.title">
         <Poster
           v-if="collections.isLoading"
           loading
@@ -65,9 +55,9 @@ class="mb-2"
           <!-- Poster for movies -->
           <Poster
             v-for="movie in collection.attributes?.entries.filter((entry) => entry!.__component === 'collection.video') as ComponentCollectionVideo[]"
-            
             :key="movie.id!"
-            :image="movie.video?.data?.attributes?.thumbnail.data?.attributes?.url"
+            :src="movie.video?.data?.attributes?.thumbnail.data?.attributes?.url"
+            :alt="movie.video?.data?.attributes?.title"
             :original="movie.video?.data?.attributes?.original!"
             @click="() => $router.push({ name: 'watch', params: { id: movie.video?.data?.id! } })"
           />
@@ -76,7 +66,8 @@ class="mb-2"
           <Poster
             v-for="serie in collection.attributes?.entries.filter((entry) => entry!.__component === 'collection.serie') as ComponentCollectionSerie[]"
             :key="serie.id!"
-            :image="serie.serie?.data?.attributes?.thumbnail.data?.attributes?.url"
+            :src="serie.serie?.data?.attributes?.thumbnail.data?.attributes?.url"
+            :alt="serie.serie?.data?.attributes?.title"
             :original="serie.serie?.data?.attributes?.original!"
             @click="() => $router.push({ name: 'details', params: { id: serie.serie?.data?.id! } })"
           />

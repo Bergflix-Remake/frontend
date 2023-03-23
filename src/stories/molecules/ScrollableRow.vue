@@ -1,4 +1,5 @@
 <template>
+  <Title class="mb-2" :image="titleImage">{{ title }}</Title>
   <div class="relative overflow-hidden" @mouseenter="handleScroll()">
     <div
       ref="scrollContainer"
@@ -42,6 +43,12 @@ import {
   ArrowNarrowRightIcon,
   ArrowNarrowLeftIcon,
 } from '@heroicons/vue/outline';
+import Title from '../atoms/Title/Title.vue';
+
+const props = defineProps<{
+  title?: string;
+  titleImage?: string;
+}>()
 
 const scrollContainer: Ref<HTMLElement | undefined> = ref();
 
