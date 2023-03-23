@@ -45,7 +45,7 @@ import {
 } from '@heroicons/vue/outline';
 import Title from '../atoms/Title/Title.vue';
 
-const props = defineProps<{
+defineProps<{
   title?: string;
   titleImage?: string;
 }>()

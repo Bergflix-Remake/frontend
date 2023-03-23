@@ -21,7 +21,7 @@ import { getWatchTime, setWatchTime, removeWatchTime } from '@/util/watchTime';
 const props = defineProps<{
   vid: string;
   pageId: number;
-  outro_time?: number;
+  outroTime?: number;
 }>();
 
 const emit = defineEmits(['finished']);
@@ -51,7 +51,7 @@ const consoleStyles =
         player.value.player.ended
       );
       setWatchTime(props.pageId, player.value.player.currentTime, player.value.player.duration)
-      nextButton.value = props.outro_time && (player.value.player.currentTime >= props.outro_time) || false
+      nextButton.value = props.outroTime && (player.value.player.currentTime >= props.outroTime) || false
     });
     player.value.player.on('ended', finishPlayback);
   }

@@ -85,7 +85,6 @@ name: home
 import Hero from '@organisms/Hero/Hero.vue';
 import ScrollableRow from '@molecules/ScrollableRow.vue';
 import Poster from '@molecules/Poster.vue';
-import Title from '@atoms/Title/Title.vue';
 import { useStrapi } from '@/main';
 import { CollectionEntity, ComponentCollectionSerie, ComponentCollectionVideo, SerieEntity, VideoEntity } from '@/models/types';
 import { api } from '@/util/paths';

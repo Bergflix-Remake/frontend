@@ -12,13 +12,13 @@ console.debug(routes)
 export const router = createRouter({
 	history: createWebHistory(),
 	routes,
-	scrollBehavior(to, from, savedPosition) {
+	scrollBehavior() {
 		// always scroll to top
 		return { top: 0 }
 	},
 });
 
-router.beforeEach((to, from) => {
+router.beforeEach((to) => {
 	if (to.meta.requiresAuth) {
 		console.debug("Route requiresAuth, checking authentication:", strapi.user)
 		if (!strapi.user) {

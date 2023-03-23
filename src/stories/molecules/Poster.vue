@@ -19,7 +19,7 @@
 import Spinner from "../atoms/Spinner.vue";
 import { ExclamationCircleIcon } from "@heroicons/vue/outline";
 import Logo from "../atoms/Logo.vue";
-import { ImgHTMLAttributes, reactive, ref, toRefs } from "vue";
+import { toRefs } from "vue";
 import LazyLoadedImg from "./LazyLoadedImg.vue";
 import { api } from "@/util/paths";
 
@@ -33,7 +33,7 @@ interface IProps {
 
 const props = defineProps<IProps>();
 
-const { loading, error, original, src, ...rest } = toRefs(props);
+const { src } = toRefs(props);
 
 defineEmits(['click']);
 

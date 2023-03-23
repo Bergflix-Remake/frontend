@@ -161,7 +161,6 @@ import Error from '@/stories/atoms/State/Error.vue';
 import Href from '@/stories/atoms/Href.vue';
 import { api } from '@/util/paths';
 import Spinner from '@/stories/atoms/Spinner.vue';
-import SearchOverlay from '@/stories/organisms/Search/SearchOverlay.vue';
 import BetaBadge from '@/stories/atoms/BetaBadge.vue';
 
 const router = useRouter();

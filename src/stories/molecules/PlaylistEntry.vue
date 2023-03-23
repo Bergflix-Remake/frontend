@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { getWatchTime } from '@/util/watchTime';
 import { PlayIcon } from '@heroicons/vue/solid';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();

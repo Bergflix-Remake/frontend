@@ -16,7 +16,7 @@ import Spinner from '../atoms/Spinner.vue';
 import { ExclamationCircleIcon } from '@heroicons/vue/outline';
 
 // eslint-disable-next-line no-undef
-const props = defineProps({
+defineProps({
   image: {
     type: String,
     required: false,

@@ -17,7 +17,7 @@ name: watch
           :key="url!"
           :vid="url!"
           :page-id="id"
-          :outro_time="movie.data.attributes?.outro_start || undefined"
+          :outro-time="movie.data.attributes?.outro_start || undefined"
           @finished="playNext()"
         />
         <div v-else class="w-full h-full justify-center items-center flex">
