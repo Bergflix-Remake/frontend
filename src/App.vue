@@ -8,7 +8,7 @@ const route = useRoute();
 
 <template>
   <div>
-    <Navbar />
+    <Navbar v-if="!route.meta.hideNavigation" />
     <div class="flex flex-col min-h-screen bg-black text-clean-white w-full bg-center bg-cover" :style="{'background-image': `url(${route.meta.backgroundImage})`}">
       <router-view></router-view>
     </div>

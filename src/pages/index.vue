@@ -1,3 +1,9 @@
+<route lang="yaml">
+  name: countdown
+  meta:
+    hideNavigation: true
+</route>
+
 <template>
   <WindowLayout>
     <Window>
