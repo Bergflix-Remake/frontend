@@ -2,21 +2,21 @@
   <Transition name="modal">
     <Window :transparent="transparent" class="relative">
       <Title>Suchen <BetaBadge /></Title>
-      <p class="text-delorean-500">Es kann eine weile dauern, bis die Suche geladen ist.</p>
-        <ais-instant-search
+      <p class="text-delorean-500">
+        Es kann eine weile dauern, bis die Suche geladen ist.
+      </p>
+      <ais-instant-search
         class="w-full h-full flex flex-col justify-center"
         :search-client="searchClient"
         index-name="video"
-        >
+      >
         <ais-search-box />
         <ais-current-refinements />
 
         <ais-stats />
-        <ais-state-results class="w-full flex justify-center items-center">
+        <ais-state-results class="w-full flex justify-center items-center my-2">
           <template #default="{ status }">
-            <Spinner
-              v-show="status === 'loading' || status === 'stalled'"
-            />
+            <Spinner v-show="status === 'loading' || status === 'stalled'" />
           </template>
         </ais-state-results>
         <ais-configure
@@ -36,7 +36,14 @@
           </template>
         </ais-hits>
         <ais-pagination :padding="1" />
-        <Button v-if="isOverlay" @click="$emit('close'); $router.push({ name: 'search' })">Erweiterte Optionen</Button>
+        <Button
+          v-if="isOverlay"
+          @click="
+            $emit('close');
+            $router.push({ name: 'search' });
+          "
+          >Erweiterte Optionen</Button
+        >
         <div v-else>
           <Subtitle>Erweiterte Optionen</Subtitle>
           <div class="refinements flex flex-col gap-2 py-2 px-7">
@@ -73,7 +80,6 @@ defineProps<{
 </script>
 
 <style>
-
 /* SearchBox */
 
 .ais-SearchBox form {
