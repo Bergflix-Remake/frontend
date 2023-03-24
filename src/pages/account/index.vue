@@ -63,7 +63,7 @@
         <article
           v-for="badge in (userQuery.data?.badge as BadgeComponent[])"
           :key="badge?.id"
-          class="p-4 flex flex-col justify-center w-52 flex-shrink-0 bg-clean-dark-700 rounded-lg shadow-lg hover:shadow-primary-500/20 transition-all relative h-full"
+          class="p-4 flex flex-col justify-center w-52 flex-shrink-0 bg-clean-dark-700 rounded-lg shadow-lg hover:shadow-primary-500/20 transition-all relative h-full ring-1 ring-delorean-800"
         >
           <img
             :src="api(badge?.badge?.icon.url)"

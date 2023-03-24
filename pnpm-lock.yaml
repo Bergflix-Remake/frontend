@@ -32,6 +32,7 @@ specifiers:
   vite-plugin-pages: ^0.29.0
   vite-plugin-rewrite-all: ^1.0.1
   vue: ^3.2.47
+  vue-confetti: ^2.3.0
   vue-eslint-parser: ^9.1.0
   vue-instantsearch: ^4.8.8
   vue-plyr: ^7.0.0
@@ -40,6 +41,9 @@ specifiers:
   vue-tsc: ^1.2.0
   vue3-lazyload: ^0.3.6
   vuex: ^4.1.0
+
+dependencies:
+  vue-confetti: 2.3.0
 
 devDependencies:
   '@anniken/strapi-sdk-js': 2.4.0
@@ -5310,6 +5314,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /vue-confetti/2.3.0:
+    resolution: {integrity: sha512-zmPniVzBKv0ie/BEXBR6Isi08hYSd6lS18b8VduG5BzZ2tv6bO/rlwISg+IpGY2XsqAFTXFdTC28YR+UPocnAw==}
+    dev: false
 
   /vue-demi/0.10.1_vue@3.2.47:
     resolution: {integrity: sha512-L6Oi+BvmMv6YXvqv5rJNCFHEKSVu7llpWWJczqmAQYOdmPPw5PNYoz1KKS//Fxhi+4QP64dsPjtmvnYGo1jemA==}

@@ -10,3 +10,4 @@ declare module '*.vue' {
 declare module 'vue-plyr';
 declare module '@heroicons/*';
 declare module 'vue-instantsearch/*'
+declare module 'vue-confetti';

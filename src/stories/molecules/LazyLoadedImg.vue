@@ -2,6 +2,7 @@
   <div class="flex justify-center items-center relative">
     <img
       ref="lazyRef"
+      class="w-full h-full object-cover"
       :class="state === 'loading' && 'blur-sm'"
       v-bind="rest"
     />

@@ -29,14 +29,15 @@
       />
     </div>
     <NavLink class="md:hidden" name="Account">
-      <UserIcon class="w-8 h-8" />
+      <CogIcon class="w-8 h-8" />
     </NavLink>
   </nav>
 </template>
 
 <script setup lang="ts">
-import { HomeIcon, SearchIcon, UserIcon } from '@heroicons/vue/solid';
+import { HomeIcon, SearchIcon, CogIcon, UserGroupIcon } from '@heroicons/vue/solid';
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 import Logo from '../atoms/Logo.vue';
 import NavLink from '../atoms/NavLink.vue';
 import Avatar from '../molecules/Avatar.vue';
@@ -65,5 +66,10 @@ const navItems = [
     icon: SearchIcon,
     visibleOn: ['mobile'],
   },
+  {
+    name: 'Party',
+    icon: UserGroupIcon,
+    visibleOn: ['mobile', 'desktop'],
+  }
 ];
 </script>

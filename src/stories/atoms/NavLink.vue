@@ -23,6 +23,6 @@ const props = defineProps({
 
 const isActive = computed(() => {
   if (!route) return false;
-  return route.name === props.name;
+  return route.name === props.name.toLowerCase();
 });
 </script>
