@@ -9,9 +9,7 @@
       </p>
       <div v-if="strapi.user" class="flex flex-col justify-center space-y-2">
         <Link :to="{ name: 'account' }" :icon="UserCircleIcon">Account</Link>
-        <Link :to="{ name: 'account', hash: '#settings'}" :icon="CogIcon">Einstellungen</Link>
-        <Link to="/help" :icon="InformationCircleIcon">Hilfe & Feedback</Link>
-        <Link :to="{ name: 'account', hash: '#favorites'}" :icon="HeartIcon">Favoriten</Link>
+        <Link to="https://bflx.de/discord" :icon="InformationCircleIcon">Hilfe & Feedback</Link>
         <Button type="ghost" :icon="LogoutIcon" @click="logout()">Logout</Button>
       </div>
       <div v-else class="flex flex-col justify-center space-y-2">
@@ -26,11 +24,9 @@ import Link from "@atoms/Link.vue";
 import Button from "@atoms/Button.vue";
 import {
   UserCircleIcon,
-  CogIcon,
   LogoutIcon,
   LoginIcon,
   UserAddIcon,
-  HeartIcon,
   InformationCircleIcon,
 } from "@heroicons/vue/outline";
 import { getUser, strapi } from "@/main";

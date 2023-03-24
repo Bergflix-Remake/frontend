@@ -81,7 +81,7 @@ const password = ref('');
 
 const executeRedirect = () => {
   if (redirect) {
-    router.push({ path: redirect })
+    router.push(redirect)
   } else {
     router.push({ name: 'account' });
   }

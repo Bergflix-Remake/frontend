@@ -48,7 +48,7 @@
       <Error :error="mutation.error.value" />
     </Window>
     <Window>
-      <Title>Erfolge & Statistiken</Title>
+      <Title id="badges">Erfolge & Statistiken</Title>
       <Subtitle>Auszeichnungen</Subtitle>
       <p class="text-delorean-500 mb-3">
         Auszeichnungen werden durch das Bergflix Team vergeben. Sie werden neben
@@ -64,6 +64,9 @@
           v-for="badge in (userQuery.data?.badge as BadgeComponent[])"
           :key="badge?.id"
           class="p-4 flex flex-col justify-center w-52 flex-shrink-0 bg-clean-dark-700 rounded-lg shadow-lg hover:shadow-primary-500/20 transition-all relative h-full ring-1 ring-delorean-800"
+          :class="{
+            grayscale: parseInt(badge?.id) != user.selected_badge,
+          }"
         >
           <img
             :src="api(badge?.badge?.icon.url)"
@@ -243,4 +246,5 @@ const update = () => {
     data: { ...user },
   });
 };
+
 </script>
