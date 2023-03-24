@@ -53,7 +53,7 @@
       <p class="text-delorean-500 mb-3">
         Auszeichnungen werden durch das Bergflix Team vergeben. Sie werden neben
         deinem Benutzernamen in den Kommentaren <BetaBadge /> angezeigt. Es kann
-        eine weile dauern bis Auszeichnungen überall angezeigt werden.
+        eine Weile dauern bis Auszeichnungen überall angezeigt werden.
       </p>
       <Spinner v-if="userQuery.isLoading" />
       <div
@@ -129,10 +129,8 @@
       <details class="w-full">
         <summary>
           <p class="text-delorean-500 mb-3 cursor-pointer">
-            Diese option ist haubsächlich für Entwickler gedacht. Hier findest
-            du alle daten, die wir über dich speichern. Dein Passwort wird nicht
-            angezeigt. Es weder von dir noch vom Team eingesehen werden, da wir
-            es Verschlüsselt speichern.
+            Diese Option ist hauptsächlich für Entwickler interessant. Hier findest du alle Daten,
+            die wir über dich speichern. Dein Passwort wird nicht angezeigt. Dieses kann weder von dir, noch von unserem Team eingesehen werden, da es verschlüsselt gespeichert wird.
           </p>
         </summary>
         <pre
