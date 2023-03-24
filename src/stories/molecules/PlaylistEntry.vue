@@ -9,6 +9,9 @@
       :src="thumbnail"
     ></LazyLoadedImg>
     <div class="w-full flex flex-col justify-center items-center space-y-2 relative">
+      <h4 v-if="series" class="text-primary-500 font-bold text-sm">
+        {{ series }}
+      </h4>
       <h3>
         {{ title }}
         <span v-if="episode" class="text-delorean-500">#{{ episode }}</span>
@@ -40,6 +43,7 @@ const props = defineProps<{
   to?: string;
   thumbnail: string;
   title: string;
+  series?: string;
   episode?: number;
   progress?: number;
   playing?: boolean;

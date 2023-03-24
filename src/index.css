@@ -45,3 +45,13 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+.fastfade-enter-active,
+.fastfade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fastfade-enter-from,
+.fastfade-leave-to {
+  opacity: 0;
+}

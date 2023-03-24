@@ -371,7 +371,7 @@ export type ComponentUserBadge = {
   __typename?: 'ComponentUserBadge';
   id: Scalars['ID'];
   awarded: Scalars['Date'];
-  badge?: Maybe<Badge>;
+  badge?: Maybe<BadgeEntityResponse>;
 };
 
 export type UploadFileFiltersInput = {
@@ -1150,7 +1150,7 @@ export type Badge = {
   __typename?: 'Badge';
   name: Scalars['String'];
   description: Scalars['String'];
-  icon: UploadFile;
+  icon: UploadFileEntityResponse;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   localizations?: Maybe<BadgeRelationResponseCollection>;
@@ -1495,6 +1495,8 @@ export type StudioFiltersInput = {
   name?: InputMaybe<StringFilterInput>;
   info?: InputMaybe<StringFilterInput>;
   videos?: InputMaybe<VideoFiltersInput>;
+  url?: InputMaybe<StringFilterInput>;
+  role?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   localizations?: InputMaybe<StudioFiltersInput>;
@@ -1509,6 +1511,8 @@ export type StudioInput = {
   info?: InputMaybe<Scalars['String']>;
   logo?: InputMaybe<Scalars['ID']>;
   videos?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  url?: InputMaybe<Scalars['String']>;
+  role?: InputMaybe<Scalars['String']>;
 };
 
 export type Studio = {
@@ -1517,6 +1521,8 @@ export type Studio = {
   info?: Maybe<Scalars['String']>;
   logo: UploadFileEntityResponse;
   videos?: Maybe<VideoRelationResponseCollection>;
+  url?: Maybe<Scalars['String']>;
+  role: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   localizations?: Maybe<StudioRelationResponseCollection>;

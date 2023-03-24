@@ -1,5 +1,5 @@
 <template>
-  <a v-if="isExternal" :href="to.toString()" class="link">
+  <a v-if="isExternal" :href="to.toString()" class="link" target="_blank" rel="noopener noreferrer">
     <component :is="icon" class="icon" />
     <slot />
   </a>

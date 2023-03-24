@@ -10,7 +10,7 @@
         :search-client="searchClient"
         index-name="video"
       >
-        <ais-search-box />
+        <ais-search-box/>
         <ais-current-refinements />
 
         <ais-stats />
@@ -30,6 +30,7 @@
               :id="item.id"
               :thumbnail="api(item.thumbnail?.url!)"
               :title="item.title"
+              :series="item.series"
               :episode="item.episode"
               @click="emit('close')"
             />
@@ -68,6 +69,7 @@ import Button from '@/stories/atoms/Button.vue';
 import Title from '@/stories/atoms/Title/Title.vue';
 import Subtitle from '@/stories/atoms/Subtitle/Subtitle.vue';
 import BetaBadge from '@/stories/atoms/BetaBadge.vue';
+import { onMounted, ref } from 'vue';
 const searchClient = instantMeiliSearch('https://search.bergflix.de', '', {
   finitePagination: true,
 });
@@ -77,6 +79,17 @@ defineProps<{
   transparent?: boolean;
   isOverlay?: boolean;
 }>();
+
+onMounted(() => {
+  const interval = setInterval(() => {
+    const input = document.querySelector<HTMLInputElement>('.ais-SearchBox-input');
+    if (input) {
+      input.focus();
+      clearInterval(interval);
+    }
+  }, 100);
+})
+
 </script>
 
 <style>

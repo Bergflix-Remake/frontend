@@ -9,7 +9,7 @@ const route = useRoute();
 <template>
   <div>
     <Navbar v-if="!route.meta.hideNavigation" />
-    <div class="flex flex-col min-h-screen bg-black text-clean-white w-full bg-center bg-cover" :style="{'background-image': `url(${route.meta.backgroundImage})`}" :class="!route.meta.noTopPadding && 'pt-20'">
+    <div class="flex flex-col min-h-screen bg-black text-clean-white w-full bg-center bg-cover" :style="{'background-image': `url(${route.meta.backgroundImage})`}" :class="route.meta.showPadding && 'md:pt-20'">
       <router-view v-slot="{ Component }">
         <Transition name="fade">
           <component :is="Component" />

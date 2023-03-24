@@ -20,15 +20,21 @@
         v-model="user.username"
         type="text"
         class="text-3xl font-bold"
+        :max-length="20"
         @confirm="update()"
       >
         <img
           v-if="userQuery.isSuccess && userQuery.data.badge?.length! > 0"
           class="w-5 h-5"
-          :src="api(userQuery.data.badge?.find((value => parseInt(value?.id!) === userQuery.data?.selected_badge))?.badge?.icon.url || userQuery.data?.badge![0]?.badge?.icon.url)"
+          :src="api((userQuery.data.badge?.find((value => parseInt(value?.id!) === userQuery.data?.selected_badge))?.badge as Badge).icon.url || (userQuery.data?.badge![0]?.badge as Badge).icon.url)"
         />
       </CInput>
-      <CInput v-model="user.email" type="email" @confirm="update()">
+      <CInput
+        v-model="user.email"
+        type="email"
+        :validator="checkEmail"
+        @confirm="update()"
+      >
         <BadgeCheckIcon v-if="user.confirmed" class="w-5 h-5 text-green-500" />
         <ExclamationCircleIcon v-else class="w-5 h-5 text-red-500" />
       </CInput>
@@ -55,7 +61,7 @@
         class="flex flex-row items-center w-full flex-nowrap overflow-x-auto space-x-2 h-96"
       >
         <article
-          v-for="badge in userQuery.data?.badge"
+          v-for="badge in (userQuery.data?.badge as BadgeComponent[])"
           :key="badge?.id"
           class="p-4 flex flex-col justify-center w-52 flex-shrink-0 bg-clean-dark-700 rounded-lg shadow-lg hover:shadow-primary-500/20 transition-all relative h-full"
         >
@@ -78,7 +84,7 @@
             :data-button="badge?.id"
             class="mt-auto"
             width="full"
-            :disabled="badge?.id == user.selected_badge"
+            :disabled="parseInt(badge?.id) == user.selected_badge"
             type="outline"
             @click="
               {
@@ -87,7 +93,9 @@
               }
             "
             >{{
-              badge?.id == user.selected_badge ? 'Ausgewählt' : 'Auswählen'
+              parseInt(badge?.id) == user.selected_badge
+                ? 'Ausgewählt'
+                : 'Auswählen'
             }}</Button
           >
         </article>
@@ -156,12 +164,38 @@ import {
   ExclamationCircleIcon,
   TagIcon,
 } from '@heroicons/vue/outline';
-import { UsersPermissionsUser } from '@/models/types';
+import {
+  Maybe,
+  Scalars,
+  UploadFile,
+  UsersPermissionsUser,
+} from '@/models/types';
 import Error from '@/stories/atoms/State/Error.vue';
 import Href from '@/stories/atoms/Href.vue';
 import { api } from '@/util/paths';
 import Spinner from '@/stories/atoms/Spinner.vue';
 import BetaBadge from '@/stories/atoms/BetaBadge.vue';
+
+export type Badge = {
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  description: Scalars['String'];
+  icon: UploadFile;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type BadgeComponent = {
+  awarded: Maybe<Scalars['DateTime']>;
+  badge: Maybe<Badge>;
+  id: Scalars['ID'];
+};
+
+const checkEmail = (email: string) => {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+};
 
 const router = useRouter();
 
@@ -190,6 +224,10 @@ const mutation = useStrapiUpdateMutation<UsersPermissionsUser>({
     user = context!;
     console.debug(context, user);
   },
+  onSettled: () => {
+    console.debug('Settled!');
+    userQuery.refetch();
+  },
 });
 
 const update = () => {
@@ -204,6 +242,5 @@ const update = () => {
     id: 'me',
     data: { ...user },
   });
-  userQuery.refetch();
 };
 </script>

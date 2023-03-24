@@ -13,12 +13,12 @@
         item.name
       }}</span>
     </NavLink>
-    <SearchOverlay class="ml-auto hidden md:block" />
     <!-- Account -->
     <div
       class="hidden md:flex h-full relative items-center w-full justify-end"
       @mouseleave="setDropdown(false, 500)"
     >
+      <SearchOverlay class="mr-2"/>
       <div class="w-14 h-14">
         <Avatar @mouseenter="setDropdown(true)" />
       </div>
