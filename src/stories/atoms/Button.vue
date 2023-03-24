@@ -1,7 +1,7 @@
 <template>
   <button
-    class="inline-flex items-center transition-all ease-in-out transform rounded cursor-pointer h-min group w-max disabled:opacity-50 disabled:cursor-not-allowed"
-    :class="classString"
+    class="inline-flex items-center justify-center transition-all ease-in-out transform rounded cursor-pointer h-min group disabled:opacity-50 disabled:cursor-not-allowed"
+    :class="classString + (width === 'full' ? ' w-full' : ' w-max')"
     :disabled="disabled"
     @click="$emit('click')"
   >
@@ -17,6 +17,10 @@ const props = defineProps({
     type: String,
     default: "primary",
   },
+  width: {
+    type: String,
+    default: String as () => "max" | "full",
+  },
   type: {
     type: String as () => "solid" | "outline" | "ghost",
     default: "solid",
@@ -24,6 +28,7 @@ const props = defineProps({
   icon: {
     type: null,
     required: false,
+    default: null,
   },
   disabled: {
     type: Boolean,

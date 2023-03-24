@@ -5,11 +5,11 @@
 ## Bergflix is back!
 
 ⌛ After being discontinued on the 28th July 2021, Bergflix is back with a new website and a new API. We are currently just two people instead of the 8 that worked on the original project, but oh well. \
-We decided to start completely from scratch, with a brand new techstack and design.
+We decided to start completely from scratch, with a brand new tech stack and design.
 
-## Live and Developement version
+## Live and Development version
 
-🌱 The project is currently in a very early stage in developement, but you can still find a hostes version [here](https://dev.bergflix.de/). You can still download the latest build artifacts from the [Actions page](https://github.com/Bergflix-Remake/frontend/actions).
+🌱 The project is currently in a very early stage in development, but you can still find a hosted version [here](https://dev.bergflix.de/). You can still download the latest build artifacts from the [Actions page](https://github.com/Bergflix-Remake/frontend/actions).
 
 ## Developement
 

@@ -26,7 +26,6 @@ export type Scalars = {
 
 export type Error = {
   __typename?: 'Error';
-  __component?: Scalars['String'];
   code: Scalars['String'];
   message?: Maybe<Scalars['String']>;
 };
@@ -268,7 +267,6 @@ export type ComponentApplicationTweet = {
 
 export type ComponentCollectionSerie = {
   __typename?: 'ComponentCollectionSerie';
-  __component: 'collection.serie'
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
   serie?: Maybe<SerieEntityResponse>;
@@ -276,7 +274,6 @@ export type ComponentCollectionSerie = {
 
 export type ComponentCollectionVideo = {
   __typename?: 'ComponentCollectionVideo';
-  __component: 'collection.video'
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
   video?: Maybe<VideoEntityResponse>;
@@ -354,6 +351,27 @@ export type ComponentMovieVideo = {
   id: Scalars['ID'];
   video?: Maybe<VideoEntityResponse>;
   num?: Maybe<Scalars['Int']>;
+};
+
+export type ComponentUserBadgeFiltersInput = {
+  awarded?: InputMaybe<DateFilterInput>;
+  badge?: InputMaybe<BadgeFiltersInput>;
+  and?: InputMaybe<Array<InputMaybe<ComponentUserBadgeFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<ComponentUserBadgeFiltersInput>>>;
+  not?: InputMaybe<ComponentUserBadgeFiltersInput>;
+};
+
+export type ComponentUserBadgeInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  awarded?: InputMaybe<Scalars['Date']>;
+  badge?: InputMaybe<Scalars['ID']>;
+};
+
+export type ComponentUserBadge = {
+  __typename?: 'ComponentUserBadge';
+  id: Scalars['ID'];
+  awarded: Scalars['Date'];
+  badge?: Maybe<BadgeEntityResponse>;
 };
 
 export type UploadFileFiltersInput = {
@@ -714,7 +732,8 @@ export type UsersPermissionsUserFiltersInput = {
   role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
   watchlist?: InputMaybe<VideoFiltersInput>;
   admin?: InputMaybe<BooleanFilterInput>;
-  patreon?: InputMaybe<BooleanFilterInput>;
+  badge?: InputMaybe<ComponentUserBadgeFiltersInput>;
+  selected_badge?: InputMaybe<IntFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
@@ -735,7 +754,8 @@ export type UsersPermissionsUserInput = {
   watchlist?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   admin?: InputMaybe<Scalars['Boolean']>;
   image?: InputMaybe<Scalars['ID']>;
-  patreon?: InputMaybe<Scalars['Boolean']>;
+  badge?: InputMaybe<Array<InputMaybe<ComponentUserBadgeInput>>>;
+  selected_badge?: InputMaybe<Scalars['Int']>;
 };
 
 export type UsersPermissionsUser = {
@@ -749,7 +769,8 @@ export type UsersPermissionsUser = {
   watchlist?: Maybe<VideoRelationResponseCollection>;
   admin?: Maybe<Scalars['Boolean']>;
   image?: Maybe<UploadFileEntityResponse>;
-  patreon?: Maybe<Scalars['Boolean']>;
+  badge?: Maybe<Array<Maybe<ComponentUserBadge>>>;
+  selected_badge?: Maybe<Scalars['Int']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -760,6 +781,13 @@ export type UsersPermissionsUserWatchlistArgs = {
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   publicationState?: InputMaybe<PublicationState>;
+};
+
+
+export type UsersPermissionsUserBadgeArgs = {
+  filters?: InputMaybe<ComponentUserBadgeFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 export type UsersPermissionsUserEntity = {
@@ -1099,6 +1127,65 @@ export type ApplicationSessionRelationResponseCollection = {
   data: Array<ApplicationSessionEntity>;
 };
 
+export type BadgeFiltersInput = {
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  localizations?: InputMaybe<BadgeFiltersInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<BadgeFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<BadgeFiltersInput>>>;
+  not?: InputMaybe<BadgeFiltersInput>;
+};
+
+export type BadgeInput = {
+  name?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  icon?: InputMaybe<Scalars['ID']>;
+};
+
+export type Badge = {
+  __typename?: 'Badge';
+  name: Scalars['String'];
+  description: Scalars['String'];
+  icon: UploadFileEntityResponse;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  localizations?: Maybe<BadgeRelationResponseCollection>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type BadgeLocalizationsArgs = {
+  filters?: InputMaybe<BadgeFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type BadgeEntity = {
+  __typename?: 'BadgeEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<Badge>;
+};
+
+export type BadgeEntityResponse = {
+  __typename?: 'BadgeEntityResponse';
+  data?: Maybe<BadgeEntity>;
+};
+
+export type BadgeEntityResponseCollection = {
+  __typename?: 'BadgeEntityResponseCollection';
+  data: Array<BadgeEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type BadgeRelationResponseCollection = {
+  __typename?: 'BadgeRelationResponseCollection';
+  data: Array<BadgeEntity>;
+};
+
 export type CollectionEntriesDynamicZone = ComponentCollectionSerie | ComponentCollectionVideo | Error;
 
 export type CollectionFiltersInput = {
@@ -1304,13 +1391,13 @@ export type SerieFiltersInput = {
   id?: InputMaybe<IdFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   rating?: InputMaybe<FloatFilterInput>;
-  description?: InputMaybe<StringFilterInput>;
   videos?: InputMaybe<VideoFiltersInput>;
   original?: InputMaybe<BooleanFilterInput>;
   year?: InputMaybe<DateFilterInput>;
   genre?: InputMaybe<StringFilterInput>;
   age?: InputMaybe<IntFilterInput>;
   contributors?: InputMaybe<ComponentCommonContributorFiltersInput>;
+  description?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
@@ -1326,7 +1413,6 @@ export type SerieInput = {
   title_image?: InputMaybe<Scalars['ID']>;
   background_image?: InputMaybe<Scalars['ID']>;
   rating?: InputMaybe<Scalars['Float']>;
-  description?: InputMaybe<Scalars['String']>;
   videos?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   thumbnail?: InputMaybe<Scalars['ID']>;
   original?: InputMaybe<Scalars['Boolean']>;
@@ -1334,6 +1420,7 @@ export type SerieInput = {
   genre?: InputMaybe<Enum_Serie_Genre>;
   age?: InputMaybe<Scalars['Int']>;
   contributors?: InputMaybe<Array<InputMaybe<ComponentCommonContributorInput>>>;
+  description?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -1343,7 +1430,6 @@ export type Serie = {
   title_image?: Maybe<UploadFileEntityResponse>;
   background_image?: Maybe<UploadFileEntityResponse>;
   rating?: Maybe<Scalars['Float']>;
-  description: Scalars['String'];
   videos?: Maybe<VideoRelationResponseCollection>;
   thumbnail: UploadFileEntityResponse;
   original?: Maybe<Scalars['Boolean']>;
@@ -1351,6 +1437,7 @@ export type Serie = {
   genre: Enum_Serie_Genre;
   age: Scalars['Int'];
   contributors?: Maybe<Array<Maybe<ComponentCommonContributor>>>;
+  description?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -1403,6 +1490,82 @@ export type SerieRelationResponseCollection = {
   data: Array<SerieEntity>;
 };
 
+export type StudioFiltersInput = {
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  info?: InputMaybe<StringFilterInput>;
+  videos?: InputMaybe<VideoFiltersInput>;
+  url?: InputMaybe<StringFilterInput>;
+  role?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  localizations?: InputMaybe<StudioFiltersInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<StudioFiltersInput>>>;
+  or?: InputMaybe<Array<InputMaybe<StudioFiltersInput>>>;
+  not?: InputMaybe<StudioFiltersInput>;
+};
+
+export type StudioInput = {
+  name?: InputMaybe<Scalars['String']>;
+  info?: InputMaybe<Scalars['String']>;
+  logo?: InputMaybe<Scalars['ID']>;
+  videos?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  url?: InputMaybe<Scalars['String']>;
+  role?: InputMaybe<Scalars['String']>;
+};
+
+export type Studio = {
+  __typename?: 'Studio';
+  name: Scalars['String'];
+  info?: Maybe<Scalars['String']>;
+  logo: UploadFileEntityResponse;
+  videos?: Maybe<VideoRelationResponseCollection>;
+  url?: Maybe<Scalars['String']>;
+  role: Scalars['String'];
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  localizations?: Maybe<StudioRelationResponseCollection>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type StudioVideosArgs = {
+  filters?: InputMaybe<VideoFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+
+export type StudioLocalizationsArgs = {
+  filters?: InputMaybe<StudioFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type StudioEntity = {
+  __typename?: 'StudioEntity';
+  id?: Maybe<Scalars['ID']>;
+  attributes?: Maybe<Studio>;
+};
+
+export type StudioEntityResponse = {
+  __typename?: 'StudioEntityResponse';
+  data?: Maybe<StudioEntity>;
+};
+
+export type StudioEntityResponseCollection = {
+  __typename?: 'StudioEntityResponseCollection';
+  data: Array<StudioEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type StudioRelationResponseCollection = {
+  __typename?: 'StudioRelationResponseCollection';
+  data: Array<StudioEntity>;
+};
+
 export enum Enum_Video_Genre {
   Action = 'Action',
   Adventure = 'Adventure',
@@ -1427,10 +1590,8 @@ export type VideoFiltersInput = {
   id?: InputMaybe<IdFilterInput>;
   title?: InputMaybe<StringFilterInput>;
   youtube_url?: InputMaybe<StringFilterInput>;
-  description?: InputMaybe<StringFilterInput>;
   rating?: InputMaybe<FloatFilterInput>;
   series?: InputMaybe<SerieFiltersInput>;
-  on_watchlist?: InputMaybe<UsersPermissionsUserFiltersInput>;
   year?: InputMaybe<DateFilterInput>;
   age?: InputMaybe<IntFilterInput>;
   genre?: InputMaybe<StringFilterInput>;
@@ -1439,6 +1600,8 @@ export type VideoFiltersInput = {
   episode?: InputMaybe<IntFilterInput>;
   outro_start?: InputMaybe<IntFilterInput>;
   transcript?: InputMaybe<StringFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  studios?: InputMaybe<StudioFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
@@ -1454,10 +1617,8 @@ export type VideoInput = {
   title_image?: InputMaybe<Scalars['ID']>;
   background_image?: InputMaybe<Scalars['ID']>;
   youtube_url?: InputMaybe<Scalars['String']>;
-  description?: InputMaybe<Scalars['String']>;
   rating?: InputMaybe<Scalars['Float']>;
   series?: InputMaybe<Scalars['ID']>;
-  on_watchlist?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   year?: InputMaybe<Scalars['Date']>;
   age?: InputMaybe<Scalars['Int']>;
   genre?: InputMaybe<Enum_Video_Genre>;
@@ -1467,6 +1628,8 @@ export type VideoInput = {
   episode?: InputMaybe<Scalars['Int']>;
   outro_start?: InputMaybe<Scalars['Int']>;
   transcript?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  studios?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -1476,10 +1639,8 @@ export type Video = {
   title_image?: Maybe<UploadFileEntityResponse>;
   background_image?: Maybe<UploadFileEntityResponse>;
   youtube_url: Scalars['String'];
-  description: Scalars['String'];
   rating?: Maybe<Scalars['Float']>;
   series?: Maybe<SerieEntityResponse>;
-  on_watchlist?: Maybe<UsersPermissionsUserRelationResponseCollection>;
   year?: Maybe<Scalars['Date']>;
   age: Scalars['Int'];
   genre: Enum_Video_Genre;
@@ -1489,6 +1650,8 @@ export type Video = {
   episode?: Maybe<Scalars['Int']>;
   outro_start?: Maybe<Scalars['Int']>;
   transcript?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  studios?: Maybe<StudioRelationResponseCollection>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -1497,15 +1660,15 @@ export type Video = {
 };
 
 
-export type VideoOn_WatchlistArgs = {
-  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+export type VideoContributorsArgs = {
+  filters?: InputMaybe<ComponentCommonContributorFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
-export type VideoContributorsArgs = {
-  filters?: InputMaybe<ComponentCommonContributorFiltersInput>;
+export type VideoStudiosArgs = {
+  filters?: InputMaybe<StudioFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -1540,7 +1703,7 @@ export type VideoRelationResponseCollection = {
   data: Array<VideoEntity>;
 };
 
-export type GenericMorph = ComponentApplicationCodeblock | ComponentApplicationImage | ComponentApplicationTweet | ComponentCollectionSerie | ComponentCollectionVideo | ComponentCommonButton | ComponentCommonContributor | ComponentCommonTextBlock | ComponentFeaturedFilm | ComponentFeaturedSeries | ComponentMoviePoster | ComponentMovieVideo | UploadFile | UploadFolder | AwesomeHelpHelp | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | EzformsSubmission | EzformsRecipient | GraphsBuilderGraph | ApplicationField | ApplicationQuestion | ApplicationSession | Collection | ComingSoon | Contributor | Featured | Imprint | Serie | Video;
+export type GenericMorph = ComponentApplicationCodeblock | ComponentApplicationImage | ComponentApplicationTweet | ComponentCollectionSerie | ComponentCollectionVideo | ComponentCommonButton | ComponentCommonContributor | ComponentCommonTextBlock | ComponentFeaturedFilm | ComponentFeaturedSeries | ComponentMoviePoster | ComponentMovieVideo | ComponentUserBadge | UploadFile | UploadFolder | AwesomeHelpHelp | I18NLocale | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser | EzformsSubmission | EzformsRecipient | GraphsBuilderGraph | ApplicationField | ApplicationQuestion | ApplicationSession | Badge | Collection | ComingSoon | Contributor | Featured | Imprint | Serie | Studio | Video;
 
 export type FileInfoInput = {
   name?: InputMaybe<Scalars['String']>;
@@ -1637,6 +1800,8 @@ export type Query = {
   applicationQuestions?: Maybe<ApplicationQuestionEntityResponseCollection>;
   applicationSession?: Maybe<ApplicationSessionEntityResponse>;
   applicationSessions?: Maybe<ApplicationSessionEntityResponseCollection>;
+  badge?: Maybe<BadgeEntityResponse>;
+  badges?: Maybe<BadgeEntityResponseCollection>;
   collection?: Maybe<CollectionEntityResponse>;
   collections?: Maybe<CollectionEntityResponseCollection>;
   comingSoon?: Maybe<ComingSoonEntityResponse>;
@@ -1646,6 +1811,8 @@ export type Query = {
   imprint?: Maybe<ImprintEntityResponse>;
   serie?: Maybe<SerieEntityResponse>;
   series?: Maybe<SerieEntityResponseCollection>;
+  studio?: Maybe<StudioEntityResponse>;
+  studios?: Maybe<StudioEntityResponseCollection>;
   video?: Maybe<VideoEntityResponse>;
   videos?: Maybe<VideoEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
@@ -1797,6 +1964,20 @@ export type QueryApplicationSessionsArgs = {
 };
 
 
+export type QueryBadgeArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryBadgesArgs = {
+  filters?: InputMaybe<BadgeFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
 export type QueryCollectionArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -1848,6 +2029,20 @@ export type QuerySeriesArgs = {
 };
 
 
+export type QueryStudioArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type QueryStudiosArgs = {
+  filters?: InputMaybe<StudioFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
 export type QueryVideoArgs = {
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
@@ -1891,6 +2086,9 @@ export type Mutation = {
   createApplicationSession?: Maybe<ApplicationSessionEntityResponse>;
   updateApplicationSession?: Maybe<ApplicationSessionEntityResponse>;
   deleteApplicationSession?: Maybe<ApplicationSessionEntityResponse>;
+  createBadge?: Maybe<BadgeEntityResponse>;
+  updateBadge?: Maybe<BadgeEntityResponse>;
+  deleteBadge?: Maybe<BadgeEntityResponse>;
   createCollection?: Maybe<CollectionEntityResponse>;
   updateCollection?: Maybe<CollectionEntityResponse>;
   deleteCollection?: Maybe<CollectionEntityResponse>;
@@ -1906,6 +2104,9 @@ export type Mutation = {
   createSerie?: Maybe<SerieEntityResponse>;
   updateSerie?: Maybe<SerieEntityResponse>;
   deleteSerie?: Maybe<SerieEntityResponse>;
+  createStudio?: Maybe<StudioEntityResponse>;
+  updateStudio?: Maybe<StudioEntityResponse>;
+  deleteStudio?: Maybe<StudioEntityResponse>;
   createVideo?: Maybe<VideoEntityResponse>;
   updateVideo?: Maybe<VideoEntityResponse>;
   deleteVideo?: Maybe<VideoEntityResponse>;
@@ -1913,8 +2114,10 @@ export type Mutation = {
   multipleUpload: Array<Maybe<UploadFileEntityResponse>>;
   updateFileInfo: UploadFileEntityResponse;
   removeFile?: Maybe<UploadFileEntityResponse>;
+  createBadgeLocalization?: Maybe<BadgeEntityResponse>;
   createComingSoonLocalization?: Maybe<ComingSoonEntityResponse>;
   createSerieLocalization?: Maybe<SerieEntityResponse>;
+  createStudioLocalization?: Maybe<StudioEntityResponse>;
   createVideoLocalization?: Maybe<VideoEntityResponse>;
   /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
@@ -2086,6 +2289,25 @@ export type MutationDeleteApplicationSessionArgs = {
 };
 
 
+export type MutationCreateBadgeArgs = {
+  data: BadgeInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationUpdateBadgeArgs = {
+  id: Scalars['ID'];
+  data: BadgeInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeleteBadgeArgs = {
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
 export type MutationCreateCollectionArgs = {
   data: CollectionInput;
 };
@@ -2158,6 +2380,25 @@ export type MutationDeleteSerieArgs = {
 };
 
 
+export type MutationCreateStudioArgs = {
+  data: StudioInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationUpdateStudioArgs = {
+  id: Scalars['ID'];
+  data: StudioInput;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationDeleteStudioArgs = {
+  id: Scalars['ID'];
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
 export type MutationCreateVideoArgs = {
   data: VideoInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
@@ -2205,6 +2446,13 @@ export type MutationRemoveFileArgs = {
 };
 
 
+export type MutationCreateBadgeLocalizationArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+  data?: InputMaybe<BadgeInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
 export type MutationCreateComingSoonLocalizationArgs = {
   id?: InputMaybe<Scalars['ID']>;
   data?: InputMaybe<ComingSoonInput>;
@@ -2215,6 +2463,13 @@ export type MutationCreateComingSoonLocalizationArgs = {
 export type MutationCreateSerieLocalizationArgs = {
   id?: InputMaybe<Scalars['ID']>;
   data?: InputMaybe<SerieInput>;
+  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
+};
+
+
+export type MutationCreateStudioLocalizationArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+  data?: InputMaybe<StudioInput>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 

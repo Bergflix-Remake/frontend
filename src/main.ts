@@ -10,6 +10,9 @@ import {
 	VueQueryPlugin,
 } from 'vue-query';
 import "./three-dots.css";
+import VueLazyLoad from 'vue3-lazyload'
+import InstantSearch from 'vue-instantsearch/vue3/es';
+import vueConfetti from 'vue-confetti'
 
 const app = createApp(App);
 
@@ -19,7 +22,12 @@ app.use(VuePlyr, {
 });
 app.use(router);
 app.use(store);
+app.use(InstantSearch);
 app.use(VueQueryPlugin);
+app.use(vueConfetti)
+app.use(VueLazyLoad, {
+	// options...
+})
 
 // Strapi Query Export //
 export * from './util/api';

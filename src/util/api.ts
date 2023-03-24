@@ -16,17 +16,17 @@ export const strapi = reactive(new Strapi({
 	prefix: "/api",
 }));
 
-function useStrapiQuery<T>({ queryKey }: any) {
+function useStrapiQuery<T>({ queryKey: [ contentType, params ] }: any) {
 	return strapi
-		.find<T>(queryKey[0], queryKey[1] ? queryKey[1] : {})
+		.find<T>(contentType, params)
 		.then((res) => {
 			return res.data as T;
 		});
 }
 
-function useStrapiQueryOne<T>({ queryKey }: any) {
+function useStrapiQueryOne<T>({ queryKey: [ contentType, id, params ] }: any) {
 	return strapi
-		.findOne<T>(queryKey[0], queryKey[1], queryKey[2] ? queryKey[2] : {})
+		.findOne<T>(contentType, id, params || {})
 		.then((res) => {
 			return res.data;
 		});
@@ -85,15 +85,17 @@ export function useStrapiOne<T>(
 	return reactive(useQuery<T, TError>(queryKey, useStrapiQueryOne, options));
 }
 
-export function getUser(opts?: Omit<UseQueryOptions<UsersPermissionsUser, TError, UsersPermissionsUser, QueryKey>, "queryFn" | "queryKey">): UnwrapNestedRefs<UseQueryReturnType<UsersPermissionsUser, TError>> {
+export function getUser(props?: StrapiRequestParams,opts?: Omit<UseQueryOptions<UsersPermissionsUser, TError, UsersPermissionsUser, QueryKey>, "queryFn" | "queryKey">): UnwrapNestedRefs<UseQueryReturnType<UsersPermissionsUser, TError>> {
 	return reactive(
 		useQuery<UsersPermissionsUser, TError>(
-			"user",
+			["user", props],
 			async () => {
-				const user: UsersPermissionsUser = await strapi.fetchUser() as UsersPermissionsUser;
+				await strapi.fetchUser();
+				const user = await strapi.request<UsersPermissionsUser>("GET", "/users/me", { params: props });
 				if (!user) {
 					throw new Error("User not logged in");
 				}
+				console.debug("User", user);
 				return user;
 			},
 			{

@@ -1,5 +1,7 @@
 <template>
-  <div :class="`dot-${animation}`" />
+  <div class="relative">
+    <div :class="`dot-${animation}`" />
+  </div>
 </template>
 <script setup lang="ts">
 import { PropType } from "vue";

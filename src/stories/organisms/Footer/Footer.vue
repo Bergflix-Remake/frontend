@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full p-8 shadow-inner bg-darkest-dark text-white">
+    <footer class="w-full p-8 shadow-inner bg-darkest-dark text-white pb-20 md:pb-8">
         <div class="mb-4 sm:flex">
             <div class="h-auto text-3xl text-center sm:w-1/12 sm:text-sm md:text-base lg:text-lg xl:text-2xl">
                 <Logo :long="true"></Logo>
@@ -8,17 +8,17 @@
                 <div class="mb-2 font-bold text-delorean">Social Media</div>
                 <ul class="leading-normal list-reset">
                     <li>
-                        <Link :icon="ExternalLinkIcon" to="patreon">
-                        Patreon
+                        <Link :icon="ExternalLinkIcon" to="https://bflx.de/instagram">
+                        Instagram
                         </Link>
                     </li>
                     <li>
-                        <Link :icon="ExternalLinkIcon" to="discord">
+                        <Link :icon="ExternalLinkIcon" to="https://bflx.de/discord">
                         Discord
                         </Link>
                     </li>
                     <li>
-                        <Link :icon="ExternalLinkIcon" to="twitter">
+                        <Link :icon="ExternalLinkIcon" to="https://bflx.de/twitter">
                         Twitter
                         </Link>
                     </li>
@@ -35,13 +35,13 @@
                         </Link>
                     </li>
                     <li>
-                        <Link to="apply">
+                        <Link to="https://bflx.de/discord">
                         Mithelfen
                         </Link>
                     </li>
                     <li>
-                        <Link :icon="ExternalLinkIcon" to="github">
-                        Bergflix Open Source
+                        <Link :icon="ExclamationIcon" to="https://bflx.de/bug-report">
+                        Fehler Melden
                         </Link>
                     </li>
                 </ul>
@@ -71,7 +71,7 @@
                 <ul class="leading-normal list-reset">
                     <li>
                         <Link :icon="ExternalLinkIcon" to="https://discord.gg/fromthefuture">
-                        Joine der “FTF”-Redaktion
+                        Trete der “FTF”-Redaktion bei
                         </Link>
                     </li>
                     <li>
@@ -83,13 +83,13 @@
             </div>
 
         </div>
-    </div>
+    </footer>
 </template>
 
 <script setup lang="ts">
 import Link from '../../atoms/Link.vue'
 import Logo from '../../atoms/Logo.vue';
-import { ExternalLinkIcon } from '@heroicons/vue/outline';
+import { ExclamationIcon, ExternalLinkIcon } from '@heroicons/vue/outline';
 </script>
 
 <style>

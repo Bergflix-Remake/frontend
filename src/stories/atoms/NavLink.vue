@@ -10,7 +10,7 @@
   </router-link>
 </template>
 <script setup>
-import { computed } from '@vue/reactivity';
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
@@ -23,6 +23,6 @@ const props = defineProps({
 
 const isActive = computed(() => {
   if (!route) return false;
-  return route.name === props.name;
+  return route.name === props.name.toLowerCase();
 });
 </script>

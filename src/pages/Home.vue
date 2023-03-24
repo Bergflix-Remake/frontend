@@ -2,13 +2,10 @@
 name: home
 </route>
 <template>
-  <div class="flex flex-col bg-black">
-    <Hero />
-    <section class="p-10">
-      <Title class="mb-2">
-        Filme
-      </Title>
-      <ScrollableRow>
+  <Hero />
+  <div class="home-container flex flex-col w-full h-full">
+    <section class="px-10">
+      <ScrollableRow title="Filme">
         <Poster
           v-if="videos.isLoading"
           loading
@@ -17,7 +14,8 @@ name: home
           v-for="movie in videos.data"
           v-else-if="videos.isSuccess"
           :key="movie.id!"
-          :image="movie.attributes?.thumbnail.data?.attributes?.url"
+          :src="movie.attributes?.thumbnail.data?.attributes?.url"
+          :alt="movie.attributes?.title"
           :original="movie.attributes?.original!"
           @click="() => $router.push({ name: 'watch', params: { id: movie.id } })"
         />
@@ -26,10 +24,9 @@ name: home
           error
         />
       </ScrollableRow>
-      <Title class="mb-2">
-        Serien
-      </Title>
-      <ScrollableRow>
+    </section>
+    <section class="px-10">
+      <ScrollableRow title="Serien">
         <Poster
           v-if="series.isLoading"
           loading
@@ -38,7 +35,8 @@ name: home
           v-for="serie in series.data"
           v-else-if="videos.isSuccess"
           :key="serie.id!"
-          :image="serie.attributes?.thumbnail.data?.attributes?.url"
+          :src="serie.attributes?.thumbnail.data?.attributes?.url"
+          :alt="serie.attributes?.title"
           :original="serie.attributes?.original!"
           @click="() => $router.push({ name: 'details', params: { id: serie.id } })"
         />
@@ -49,13 +47,7 @@ name: home
       </ScrollableRow>
     </section>
     <section v-for="collection in collections.data" :key="collection.id!" class="px-10">
-      <Title
-class="mb-2"
-      :image="api(collection.attributes?.title_image?.data?.attributes?.url)"
-      >
-        {{ collection.attributes?.title }}
-      </Title>
-      <ScrollableRow>
+      <ScrollableRow :title-image="api(collection.attributes?.title_image?.data?.attributes?.url)" :title="collection.attributes?.title">
         <Poster
           v-if="collections.isLoading"
           loading
@@ -63,17 +55,19 @@ class="mb-2"
           <!-- Poster for movies -->
           <Poster
             v-for="movie in collection.attributes?.entries.filter((entry) => entry!.__component === 'collection.video') as ComponentCollectionVideo[]"
-            
             :key="movie.id!"
-            :image="movie.video?.data?.attributes?.thumbnail.data?.attributes?.url"
+            :src="movie.video?.data?.attributes?.thumbnail.data?.attributes?.url"
+            :alt="movie.video?.data?.attributes?.title"
             :original="movie.video?.data?.attributes?.original!"
             @click="() => $router.push({ name: 'watch', params: { id: movie.video?.data?.id! } })"
           />
           <!-- Poster for series -->
+          <!-- @ts-ignore -->
           <Poster
             v-for="serie in collection.attributes?.entries.filter((entry) => entry!.__component === 'collection.serie') as ComponentCollectionSerie[]"
             :key="serie.id!"
-            :image="serie.serie?.data?.attributes?.thumbnail.data?.attributes?.url"
+            :src="serie.serie?.data?.attributes?.thumbnail.data?.attributes?.url"
+            :alt="serie.serie?.data?.attributes?.title"
             :original="serie.serie?.data?.attributes?.original!"
             @click="() => $router.push({ name: 'details', params: { id: serie.serie?.data?.id! } })"
           />
@@ -87,10 +81,10 @@ class="mb-2"
 </template>
 
 <script setup lang="ts">
+// @ts-nocheck
 import Hero from '@organisms/Hero/Hero.vue';
 import ScrollableRow from '@molecules/ScrollableRow.vue';
 import Poster from '@molecules/Poster.vue';
-import Title from '@atoms/Title/Title.vue';
 import { useStrapi } from '@/main';
 import { CollectionEntity, ComponentCollectionSerie, ComponentCollectionVideo, SerieEntity, VideoEntity } from '@/models/types';
 import { api } from '@/util/paths';
@@ -124,9 +118,14 @@ const collections = useStrapi<CollectionEntity[]>(['collections', {
 
 </script>
 
-<style>
+<style scoped>
 .gradient {
     background: rgb(0, 0, 0);
     background: radial-gradient(at top right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 70%);
 }
+
+.home-container {
+  margin-top: 80vh;
+}
+
 </style>

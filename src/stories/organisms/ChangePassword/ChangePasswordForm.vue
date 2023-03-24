@@ -14,7 +14,6 @@ import Button from '@/stories/atoms/Button.vue';
 import { StrapiAuthenticationResponse, StrapiChangePasswordData, StrapiError } from '@anniken/strapi-sdk-js';
 import { ref, computed, watchEffect } from 'vue';
 import { useMutation } from 'vue-query';
-import { useRouter } from 'vue-router';
 
 const currentPassword = ref('');
 const password = ref('');
@@ -33,8 +32,6 @@ watchEffect(() => {
         message.value = '';
     }
 })
-
-const router = useRouter();
 
 const mutation = useMutation<StrapiAuthenticationResponse, StrapiError, StrapiChangePasswordData, unknown>(
     (payload: StrapiChangePasswordData) => strapi.changePassword(payload),

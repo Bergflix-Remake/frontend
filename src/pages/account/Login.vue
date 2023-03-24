@@ -88,7 +88,7 @@ const executeRedirect = () => {
 };
 
 // If user is already logged in
-const user = getUser({
+getUser({}, {
   onSuccess: executeRedirect,
 });
 

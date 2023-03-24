@@ -34,3 +34,37 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--plyr-color-main);
 }
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fastfade-enter-active,
+.fastfade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fastfade-enter-from,
+.fastfade-leave-to {
+  opacity: 0;
+}
+
+.partymode > * {
+  animation: rainbow .5s linear infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}

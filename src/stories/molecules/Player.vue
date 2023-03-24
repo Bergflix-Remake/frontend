@@ -16,11 +16,12 @@
 <script setup lang="ts">
 import { defineProps, ref, watchEffect } from 'vue';
 import { PlayIcon } from '@heroicons/vue/solid';
+import { getWatchTime, setWatchTime, removeWatchTime } from '@/util/watchTime';
 
 const props = defineProps<{
   vid: string;
   pageId: number;
-  outro_time?: number;
+  outroTime?: number;
 }>();
 
 const emit = defineEmits(['finished']);
@@ -28,17 +29,15 @@ const nextButton = ref(false);
 const player = ref();
 const consoleStyles =
   'background-color: blue; color: white; padding: 2px 4px; border-radius: 4px; font-weight: bold; font-family: sans-serif; margin: 10px 0;';
-watchEffect(() => {
+
+  const watchTime = getWatchTime(props.pageId);
+
+  watchEffect(() => {
   if (player.value) {
     player.value.player.on('ready', () => {
-      // Check if there is a watchtime saved in localStorage
-      const watchTime = localStorage.getItem(`${props.pageId}-watchTime`);
-      if (watchTime) {
-        // If there is, set the video to that time
-        player.value.player.currentTime = Number(watchTime);
-        // And remove the watchtime from localStorage
-        localStorage.removeItem('watchTime');
-      }
+      console.debug('%cPlayer', consoleStyles, 'Ready');
+      // Set the current time to the saved time
+      player.value.player.currentTime = watchTime?.watchTime || 0;
     });
     player.value.player.on('timeupdate', () => {
       console.debug(
@@ -51,12 +50,8 @@ watchEffect(() => {
         'Ended:',
         player.value.player.ended
       );
-      // Save the current time to localStorage
-      localStorage.setItem(
-        `${props.pageId}-watchTime`,
-        player.value.player.currentTime
-      );
-      nextButton.value = props.outro_time && (player.value.player.currentTime >= props.outro_time) || false
+      setWatchTime(props.pageId, player.value.player.currentTime, player.value.player.duration)
+      nextButton.value = props.outroTime && (player.value.player.currentTime >= props.outroTime) || false
     });
     player.value.player.on('ended', finishPlayback);
   }
@@ -67,8 +62,7 @@ watchEffect(() => {
 
 const finishPlayback = () => {
   console.debug('%cPlayer', consoleStyles, 'Playback Finished');
-  // Remove the watchtime from localStorage
-  localStorage.removeItem(`${props.pageId}-watchTime`);
+  removeWatchTime(props.pageId);
   // Emit the finished event
   emit('finished');
 };

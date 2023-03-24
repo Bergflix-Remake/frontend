@@ -25,7 +25,6 @@
 
 <script setup lang="ts">
 import { ErrorResponse } from '@/models/custom';
-import Button from '@/components/atoms/Button.vue';
 import { ClipboardCopyIcon, ExclamationCircleIcon } from '@heroicons/vue/outline';
 import { useRoute } from 'vue-router';
 import Href from '../Href.vue';

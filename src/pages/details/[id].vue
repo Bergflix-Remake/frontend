@@ -8,7 +8,7 @@ import { api, cdn } from '@/util/paths';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Serie, SerieEntity, UploadFile } from '@/models/types';
 import Info from '@/stories/molecules/Info/Info.vue';
-import { computed } from '@vue/reactivity';
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import PlaylistEntry from '@/stories/molecules/PlaylistEntry.vue';
 
@@ -50,7 +50,7 @@ const series = useStrapiOne<SerieEntity>([
         :description="series.data?.attributes?.description!"
         :genre="series.data?.attributes?.genre!"
         :episodes="series.data?.attributes?.videos?.data.length!"
-        :title_image="
+        :title-image="
           series.data?.attributes?.title_image?.data?.attributes?.url
         "
         :buttons="[]"

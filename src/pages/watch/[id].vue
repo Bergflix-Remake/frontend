@@ -1,11 +1,13 @@
 <route lang="yaml">
 name: watch
+meta:
+  showPadding: true
 </route>
 
 <template>
   <article
     v-if="!invalidId"
-    class="p-5 flex flex-col w-full min-h-screen space-y-2 mt-20"
+    class="p-5 flex flex-col w-full min-h-screen space-y-2"
   >
     <div class="flex flex-col xl:flex-row xl:space-x-2">
       <!-- Player -->
@@ -17,7 +19,7 @@ name: watch
           :key="url!"
           :vid="url!"
           :page-id="id"
-          :outro_time="movie.data.attributes?.outro_start || undefined"
+          :outro-time="movie.data.attributes?.outro_start || undefined"
           @finished="playNext()"
         />
         <div v-else class="w-full h-full justify-center items-center flex">
@@ -38,7 +40,7 @@ name: watch
             <Poster v-if="recommendations.isLoading" loading />
             <Poster
               v-else-if="recommendations.isSuccess"
-              :image="
+              :src="
                 recommendation?.attributes?.thumbnail?.data?.attributes?.url
               "
               @click="router.push({ name: 'watch', params: { id: recommendation?.id } })"
@@ -79,16 +81,14 @@ name: watch
       class="w-full p-10 bg-clean-dark-600 rounded-lg flex md:flex-row flex-col"
     >
       <div class="md:w-1/2 w-full">
-        <img
+        <LazyLoadedImg
           v-if="movie.data?.attributes?.title_image?.data"
           :src="`https://api.bergflix.de${movie.data?.attributes?.title_image?.data?.attributes?.url}`"
           class="max-h-24"
           :alt="movie.data?.attributes?.title"
         />
         <Title v-else>{{ title }}</Title>
-        <p class="text-gray-500 font-light">
-          {{ description }}
-        </p>
+        <p class="text-gray-500 font-light" v-html="description" />
       </div>
       <div class="md:ml-auto mt-5">
         <InfoRow
@@ -112,13 +112,24 @@ name: watch
           :url="contributor?.contributor?.data?.attributes?.href!"
         />
       </div>
-      <Subtitle>Studio</Subtitle>
-      <Contributor
+      <Subtitle>Unterstützende</Subtitle>
+      <div class="flex flex-wrap">
+        <Contributor
+        v-for="studio in movie.data?.attributes?.studios?.data"
+          :key="studio?.id!"
+          :name="studio?.attributes?.name!"
+          :role="studio?.attributes?.role!"
+          :url="studio.attributes?.url || ''"
+          :image="api(studio.attributes?.logo.data?.attributes?.url!)"
+        />
+        <Contributor
+        v-if="movie.data?.attributes?.studios?.data?.length === 0"
         name="Troublecat Productions"
         role="Studio"
         url="https://www.youtube.com/@herrbergmann"
         image="https://api.bergflix.de/uploads/troublecat_logo_1dac3b63c7.jpg"
       />
+      </div>
     </div>
   </article>
 </template>
@@ -137,6 +148,8 @@ import { computed, ref, watch } from 'vue';
 import Player from '@molecules/Player.vue';
 import Button from '@/stories/atoms/Button.vue';
 import Poster from '@/stories/molecules/Poster.vue';
+import LazyLoadedImg from '@/stories/molecules/LazyLoadedImg.vue';
+import { api } from '@/util/paths';
 
 const playbackFinished = ref(false);
 
@@ -151,16 +164,38 @@ const id = computed(() => Number(route.params.id));
 const movie = useStrapiOne<VideoEntity>([
   'videos',
   id,
+      // [
+    //   'contributors',
+    //   'contributors.contributor',
+    //   'contributors.contributor.image',
+    //   'series.videos',
+    //   'series.videos.thumbnail',
+    //   'series.title_image',
+    //   'title_image',
+    //   'studios'
+    // ],
   {
-    populate: [
-      'contributors',
-      'contributors.contributor',
-      'contributors.contributor.image',
-      'series.videos',
-      'series.videos.thumbnail',
-      'series.title_image',
-      'title_image',
-    ],
+    populate: {
+      contributors: {
+        populate: {
+          contributor: {
+            populate: ['image'],
+          },
+        },
+       },
+      series: {
+        populate: {
+          videos: {
+            populate: ['thumbnail'],
+          },
+          title_image: true,
+        },
+      },
+      title_image: true,
+      studios: {
+        populate: ['logo'],
+      },
+    },
     sort: 'episode:asc',
   },
 ]);

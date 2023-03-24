@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 
-const props = defineProps({
+defineProps({
   type: {
     type: String,
     required: false,
