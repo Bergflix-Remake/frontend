@@ -3,6 +3,7 @@
     id="avatar"
     class="rounded-full bg-cover bg-center cursor-pointer shadow-md hover:shadow-lg w-full h-full aspect-square transition-all flex items-center justify-center"
     :style="{ 'background-image': `url(${image})` }"
+    :class="{ 'animate-pulse blur-sm': loading }"
     @mouseenter="() => $emit('mouseenter')"
     @mouseleave="() => $emit('mouseleave')"
     @click="() => $emit('click')"

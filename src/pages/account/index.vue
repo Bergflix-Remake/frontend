@@ -14,7 +14,7 @@
     <Window>
       <Title>Dein Profil</Title>
       <div class="w-56 h-56">
-        <Avatar :image="user.image?.data?.attributes?.url" />
+        <Avatar :image="user.image?.data?.attributes?.url" :loading="mutation.isLoading.value || false" />
       </div>
       <CInput
         v-model="user.username"
@@ -58,15 +58,12 @@
       <Spinner v-if="userQuery.isLoading" />
       <div
         v-else-if="userQuery.isSuccess"
-        class="flex flex-row items-center w-full flex-nowrap overflow-x-auto space-x-2 h-96"
+        class="flex flex-row items-center w-full flex-nowrap overflow-x-auto space-x-2 h-96 p-6"
       >
         <article
           v-for="badge in (userQuery.data?.badge as BadgeComponent[])"
           :key="badge?.id"
           class="p-4 flex flex-col justify-center w-52 flex-shrink-0 bg-clean-dark-700 rounded-lg shadow-lg hover:shadow-primary-500/20 transition-all relative h-full ring-1 ring-delorean-800"
-          :class="{
-            grayscale: parseInt(badge?.id) != user.selected_badge,
-          }"
         >
           <img
             :src="api(badge?.badge?.icon.url)"
