@@ -30,11 +30,6 @@
                 </div>
                 <ul class="leading-normal list-reset">
                     <li>
-                        <Link to="branding">
-                        Bergflix. Branding
-                        </Link>
-                    </li>
-                    <li>
                         <Link to="https://bflx.de/discord">
                         Mithelfen
                         </Link>
