@@ -28,14 +28,14 @@ router.beforeEach((to) => {
 			}
 		}
 	}
-	// if (!isReleased && !['/', '/legal'].includes(to.fullPath)) {
-	// 	return {
-	// 		path: "/",
-	// 	}
-	// }
-	// if (to.path === "/" && isReleased) {
-	// 	return {
-	// 		path: "/home",
-	// 	}
-	// }
+	if (!isReleased && !['/', '/legal'].includes(to.fullPath)) {
+		return {
+			path: "/",
+		}
+	}
+	if (to.path === "/" && isReleased) {
+		return {
+			path: "/home",
+		}
+	}
 })
