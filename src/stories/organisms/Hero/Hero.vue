@@ -16,7 +16,7 @@
             :description="featured?.description!"
             :buttons="[{
                 text: 'Watch Now',
-                to: '/watch/' + item.data?.id,
+                to: '/watch/' + item.data?.attributes?.video?.data?.id,
                 icon: PlayIcon
             }]"
             class="max-w-md" />

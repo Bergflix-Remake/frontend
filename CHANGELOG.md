@@ -1,5 +1,29 @@
 # Changelog
 
+## v1.1.0
+
+[compare changes](https:///frontend/compare/v1.0.0-release...v1.1.0)
+
+
+### 🚀 Enhancements
+
+  - 🚸  loader for user mutation (33560d7)
+
+### 🩹 Fixes
+
+  - Remove unused links in dropdown (c15c9da)
+  - Remove unused footer link (742f227)
+  - 💬  Spelling mistake corrected (831141c)
+  - 💬  Spelling mistake corrected (#151)
+  - Redirect in hero component (0d29137)
+  - **gh:** Fix github issue #152 [BUG] Fix padding for email confirmation resend button Fixes #152 (#152)
+
+### ❤️  Contributors
+
+- AnnikenYT ([@mooonshine-net](http://github.com/mooonshine-net))
+- Anniken 
+- Mondmarmelade
+
 ## v1.0.0
 
 ### 🚀 Enhancements
