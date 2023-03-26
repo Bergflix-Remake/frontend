@@ -15,7 +15,11 @@
         Es ist ein Fehler aufgetreten:
         {{ auth.error.value?.error.message }}
       </p>
-      <form v-if="!auth.isSuccess.value && route.query.state != 'success'" class="flex flex-col items-center" @submit.prevent="register">
+      <form
+        v-if="!auth.isSuccess.value && route.query.state != 'success'"
+        class="flex flex-col items-center"
+        @submit.prevent="register"
+      >
         <input
           v-model="username"
           class="input"
@@ -50,20 +54,27 @@
         <Button :disabled="!matching" @click="register">Registrieren</Button>
         <p>
           Bereits registriert?
-          <Link :to="{ name: 'login', params: { redirect } }">Hier einloggen.</Link>
+          <Link :to="{ name: 'login', params: { redirect } }"
+            >Hier einloggen.</Link
+          >
         </p>
       </form>
-      <div v-if="auth.isSuccess.value || $route.query.state == 'success'">
+      <div v-if="auth.isSuccess.value || $route.query.state == 'success'" class="flex flex-col justify-center items-center">
         <Subtitle>Registrierung erfolgreich</Subtitle>
         <p>
-          Bitte überprüfe dein E-Mail Postfach und bestätige deine E-Mail Adresse.
+          Bitte überprüfe dein E-Mail Postfach und bestätige deine E-Mail
+          Adresse.
         </p>
-        <p>
-          Keine E-Mail erhalten?
-        </p>
-        <Button :disabled="resendEmailMutation.isLoading.value == true" @click="resendEmailMutation.mutate({ email })">Erneut senden</Button>
-        <Error
-:error="resendEmailMutation.error.value"/>
+        <p>Keine E-Mail erhalten?</p>
+        <Button
+          :disabled="resendEmailMutation.isLoading.value == true"
+          class="mt-5"
+          @click="resendEmailMutation.mutate({ email })"
+          >Erneut senden</Button
+        >
+
+        <Link :to="{ name: 'login' }" :icon="LoginIcon" class="mt-2">Zum Login</Link>
+        <Error :error="resendEmailMutation.error.value" />
         <!-- Success -->
       </div>
       <Spinner v-if="auth.isLoading.value" />
@@ -83,6 +94,7 @@ import { useRoute, useRouter } from 'vue-router';
 import Subtitle from '@/stories/atoms/Subtitle/Subtitle.vue';
 import Link from '@/stories/atoms/Link.vue';
 import Error from '@/stories/atoms/State/Error.vue';
+import { LoginIcon } from '@heroicons/vue/outline';
 
 const route = useRoute();
 const redirect = route.query.redirect as string;
@@ -93,7 +105,6 @@ const username = ref('');
 const email = ref('');
 const password = ref('');
 const passwordConfirmation = ref('');
-
 
 const matching = computed(() => password.value === passwordConfirmation.value);
 
@@ -111,7 +122,7 @@ const auth = strapiRegister({
   },
 });
 
-const resendEmailMutation = useResendEmailMutation()
+const resendEmailMutation = useResendEmailMutation();
 
 const register = () => {
   if (auth.isLoading.value) return;
