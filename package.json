@@ -33,7 +33,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-vue": "^9.9.0",
+    "eslint-plugin-vue": "^9.10.0",
     "husky": "^8.0.3",
     "postcss": "^8.4.21",
     "react-query": "^3.39.3",
