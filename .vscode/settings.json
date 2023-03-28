@@ -10,5 +10,13 @@
         "deps",
         "core",
         "ux"
+    ],
+    "cSpell.words": [
+        "delorean",
+        "outro",
+        "Strapi",
+        "Troublecat",
+        "Watchpage",
+        "youtube"
     ]
 }

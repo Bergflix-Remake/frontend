@@ -2,9 +2,16 @@
   <div class="flex justify-center items-center relative">
     <img
       ref="lazyRef"
-      class="w-full h-full object-cover"
-      :class="state === 'loading' && 'blur-sm'"
-      v-bind="rest"
+      class="w-full object-center"
+      :class="{
+        'object-cover': fit === 'cover'  || !fit,
+        'object-contain': fit === 'contain',
+        'object-fill': fit === 'fill',
+        'object-none': fit === 'none',
+        'object-scale-down': fit === 'scale-down',
+        'blur-sm': state === 'loading',
+      }"
+      :alt="alt"
     />
     <div
       v-if="state === 'loading'"
@@ -32,11 +39,12 @@ import Spinner from '../atoms/Spinner.vue';
 interface IProps {
   src: string;
   alt?: string;
+  fit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
 }
 
-const props = defineProps<IProps>();
 
-const { src, ...rest } = toRefs(props);
+const props = defineProps<IProps>();
+const { src } = toRefs(props); 
 
 type State = 'ready' | 'loading' | 'error';
 
