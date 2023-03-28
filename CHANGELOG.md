@@ -21,7 +21,6 @@
 ### ❤️  Contributors
 
 - AnnikenYT ([@mooonshine-net](http://github.com/mooonshine-net))
-- Anniken 
 - Mondmarmelade
 
 ## v1.0.0

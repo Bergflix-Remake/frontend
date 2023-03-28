@@ -12,7 +12,8 @@ meta:
     <div class="flex flex-col xl:flex-row xl:space-x-2">
       <!-- Player -->
       <div
-        class="bg-clean-dark-600 w-full aspect-video md:rounded-l-lg overflow-hidden"
+        class="bg-clean-dark-600 w-full aspect-video md:rounded-l-lg overflow-hidden ring-1 ring-delorean-800"
+        :class="{'md:rounded-lg': !series}"
       >
         <Player
           v-if="movie.isSuccess && !playbackFinished"
@@ -53,16 +54,9 @@ meta:
       <!-- Playlist -->
       <div
         v-if="series"
-        class="w-full xl:w-1/3 bg-clean-dark-600 xl:rounded-bl-none xl:rounded-r-lg rounded-b-lg p-5 flex flex-col"
+        class="w-full xl:w-1/3 ring-1 ring-delorean-800 bg-clean-dark-600 xl:rounded-bl-none xl:rounded-r-lg rounded-b-lg p-5 flex flex-col"
       >
-        <img
-          v-if="
-            movie.data?.attributes?.series?.data?.attributes?.title_image?.data
-          "
-          :src="`https://api.bergflix.de${movie.data?.attributes?.series?.data?.attributes?.title_image?.data?.attributes?.url}`"
-          class="max-w-md mb-5"
-        />
-        <Title v-else>{{ series.title }}</Title>
+        <Title :image="api(movie.data?.attributes?.series?.data?.attributes?.title_image?.data?.attributes?.url)">{{ series.title }}</Title>
         <div class="flex flex-col space-y-2 xl:max-h-96 overflow-y-auto">
           <PlaylistEntry
             v-for="video in series.videos?.data"
@@ -78,16 +72,10 @@ meta:
     </div>
     <!-- Info -->
     <div
-      class="w-full p-10 bg-clean-dark-600 rounded-lg flex md:flex-row flex-col"
+      class="w-full p-10 bg-clean-dark-600 rounded-lg flex md:flex-row flex-col ring-1 ring-delorean-800"
     >
       <div class="md:w-1/2 w-full">
-        <LazyLoadedImg
-          v-if="movie.data?.attributes?.title_image?.data"
-          :src="`https://api.bergflix.de${movie.data?.attributes?.title_image?.data?.attributes?.url}`"
-          class="max-h-24"
-          :alt="movie.data?.attributes?.title"
-        />
-        <Title v-else>{{ title }}</Title>
+        <Title :image="api(movie.data?.attributes?.title_image?.data?.attributes?.url)">{{ title }}</Title>
         <p class="text-gray-500 font-light" v-html="description" />
       </div>
       <div class="md:ml-auto mt-5">
@@ -99,7 +87,7 @@ meta:
         />
       </div>
     </div>
-    <div class="w-full p-10 bg-clean-dark-600 rounded-lg flex flex-col">
+    <div class="w-full p-10 bg-clean-dark-600 rounded-lg flex flex-col ring-1 ring-delorean-800">
       <Subtitle>Mitwirkende</Subtitle>
       <div class="flex flex-wrap">
         <Contributor
