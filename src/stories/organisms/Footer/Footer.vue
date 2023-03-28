@@ -56,7 +56,7 @@
                     </li>
                     <li>
                         <Link :to="{ name: 'legal', hash: '#terms' }">
-                        Benuzungsbedingungen
+                        Benutzungsbedingungen
                         </Link>
                     </li>
                 </ul>
