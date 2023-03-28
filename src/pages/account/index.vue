@@ -14,7 +14,7 @@
     <Window>
       <Title>Dein Profil</Title>
       <div class="w-56 h-56">
-        <Avatar :image="user.image?.data?.attributes?.url" :loading="mutation.isLoading.value || false" />
+        <Avatar :email="user.email!" :loading="mutation.isLoading.value || false" />
       </div>
       <CInput
         v-model="user.username"

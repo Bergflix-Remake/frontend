@@ -20,7 +20,7 @@
     >
       <SearchOverlay class="mr-2"/>
       <div class="w-14 h-14">
-        <Avatar @mouseenter="setDropdown(true)" />
+        <Avatar :email="email as string" @mouseenter="setDropdown(true)" />
       </div>
       <ProfileDropdown
         :open="accountOpen"
@@ -35,8 +35,10 @@
 </template>
 
 <script setup lang="ts">
+import { strapi } from '@/main';
+import { gravatar } from '@/util/paths';
 import { HomeIcon, SearchIcon, CogIcon, UserGroupIcon } from '@heroicons/vue/solid';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Logo from '../atoms/Logo.vue';
 import NavLink from '../atoms/NavLink.vue';
@@ -72,4 +74,6 @@ const navItems = [
     visibleOn: ['mobile', 'desktop'],
   }
 ];
+
+const email = computed(() => strapi.user?.email);
 </script>
