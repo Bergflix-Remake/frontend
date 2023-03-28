@@ -11,7 +11,6 @@ import LazyLoadedImgVue from '@/stories/molecules/LazyLoadedImg.vue';
 import { useSlots } from 'vue';
 
 const slot = useSlots();
-
 defineProps({
   id: {
     type: String,
