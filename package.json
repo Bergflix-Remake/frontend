@@ -38,7 +38,7 @@
     "postcss": "^8.4.21",
     "react-query": "^3.39.3",
     "strapi-generate-types": "^1.0.0",
-    "tailwindcss": "^3.2.7",
+    "tailwindcss": "^3.3.1",
     "typescript": "^5.0.2",
     "vite": "^4.2.1",
     "vite-plugin-pages": "^0.29.0",
