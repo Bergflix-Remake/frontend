@@ -5,8 +5,11 @@
     <a href="https://cdn.upload.systems/uploads/f9kaTj1Q.png"
       ><span
         v-if="canHaveSlogan"
-        class="absolute -right-4 -bottom-4 font-inception text-base text-indigo-500 -rotate-12 p-1"
-        >Jawohl!</span
+        class="absolute -right-4 -bottom-4 font-inception text-base text-indigo-500 p-1"
+        ><img
+          src="https://cdn.discordapp.com/emojis/1102957082019364936.webp?size=96&quality=lossless"
+          class="Jawohl"
+          style="width:30px; height:30px"/></span
       ></a
     >
   </span>
