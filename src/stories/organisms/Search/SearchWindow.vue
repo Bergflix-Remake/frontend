@@ -70,7 +70,7 @@ import Title from '@/stories/atoms/Title/Title.vue';
 import Subtitle from '@/stories/atoms/Subtitle/Subtitle.vue';
 import BetaBadge from '@/stories/atoms/BetaBadge.vue';
 import { onMounted, ref } from 'vue';
-const searchClient = instantMeiliSearch('https://search.bergflix.de', '', {
+const searchClient = instantMeiliSearch('https://search.bergflix.de', '623425c4ff203794010003bd8beed1ce7641404be4115991db283cb954314524', {
   finitePagination: true,
 });
 const emit = defineEmits(['close']);
