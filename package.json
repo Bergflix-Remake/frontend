@@ -15,7 +15,7 @@
   "repository": "github:bergflix-remake/frontend",
   "devDependencies": {
     "@anniken/strapi-sdk-js": "^2.4.0",
-    "@heroicons/vue": "^2.1.4",
+    "@heroicons/vue": "1",
     "@meilisearch/instant-meilisearch": "^0.18.1",
     "@rushstack/eslint-patch": "^1.10.3",
     "@tailwindcss/aspect-ratio": "^0.4.2",
