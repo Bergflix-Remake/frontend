@@ -9,7 +9,7 @@
       class='overflow-hidden text-clean-dark-200 text-ellipsis md:whitespace-normal'
       v-html="description" />
     <div class='flex space-x-2'>
-      <Button v-for='button in buttons' v-bind='button' :key='button.text' @click='()=> $router.push(button.to)'>{{ button.text }}</Button>
+      <Button v-for='button in buttons' v-bind='button' :key='button.text' @click='()=> isExternalLink(button.to) ? openExternalLink(button.to) :  $router.push(button.to) '>{{ button.text }}</Button>
     </div>
   </div>
 </template>
@@ -35,7 +35,14 @@ defineProps<{
   }[];
 }>();
 
+// write a function that checks if a given link is an external link
+const isExternalLink = (link: string) => {
+  return link.startsWith('http');
+};
 
+const openExternalLink = (link: string) => {
+  window.open(link, '_blank');
+};
 </script>
 
 <style>
