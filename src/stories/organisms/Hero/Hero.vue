@@ -24,15 +24,15 @@
             <!-- Quick and dirty, hardcode Rotkäppchen -->
              <Info
             title="Rotkäppchen"
-            year="2024"
-            age="12"
-            episodes="1"
+            :year="2024"
+            :age="12"
+            :episodes="1"
             genre="Fantasy"
             description="Danny kann es nicht glauben, das Rotkäppchen wird vom Wolf gefressen? Mit einer selbstgebauten Zeitmaschine reist er in den Märchenwald, um Rotkäppchen zu beschützen."
             :buttons="[{
                 text: 'Auf ZDF ansehen',
                 to: 'https://www.zdf.de/filme/spielfilme/herr-bergmanns-rotkaeppchen-100.html',
-                icon: Film
+                icon: FilmIcon
             }]"
             class="max-w-md" />
 
