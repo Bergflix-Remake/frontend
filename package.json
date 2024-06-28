@@ -6,7 +6,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "types": "strapi-generate-types quickgen https://api.bergflix.de/ -p ./src/models/",
-    "lint": "eslint src/**/*.{ts,js,vue} --ext .ts,.js,.vue",
+    "lint": "eslint src/**/*.{ts,js,vue}",
     "prepare": "husky install",
     "bump": "changelogen --bump",
     "release": "changelogen --release"
@@ -28,7 +28,7 @@
     "algoliasearch": "^4.24.0",
     "autoprefixer": "^10.4.19",
     "changelogen": "^0.5.5",
-    "eslint": "^9.5.0",
+    "eslint": "8",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
