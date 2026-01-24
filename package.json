@@ -28,7 +28,7 @@
     "algoliasearch": "^4.24.0",
     "autoprefixer": "^10.4.19",
     "changelogen": "^0.5.5",
-    "eslint": "8",
+    "eslint": "9",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
