@@ -45,7 +45,7 @@
     "vite-plugin-pages": "^0.32.3",
     "vite-plugin-rewrite-all": "^1.0.2",
     "vue": "^3.4.31",
-    "vue-eslint-parser": "^9.4.3",
+    "vue-eslint-parser": "^10.0.0",
     "vue-instantsearch": "^4.17.5",
     "vue-plyr": "^7.0.0",
     "vue-query": "^1.26.0",
