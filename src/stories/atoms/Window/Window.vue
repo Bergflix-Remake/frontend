@@ -8,7 +8,7 @@
         : ' mx-auto max-w-2xl ' +
           (transparent
             ? ' bg-transparent '
-            : ' bg-cleandark-500 ring-1 ring-delorean-800')
+            : ' bg-clean-dark-500 ring-1 ring-delorean-800')
     "
   >
     <slot />

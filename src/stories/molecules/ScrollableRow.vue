@@ -29,6 +29,7 @@
       <BadgeButton
         v-if="buttons.left"
         class="absolute transform -translate-y-1/2 top-1/2 left-1 lg:left-5 opacity-30 hover:opacity-100"
+        color="fuchsia"
         :icon="ArrowNarrowLeftIcon"
         @click="scroll('left')"
       />

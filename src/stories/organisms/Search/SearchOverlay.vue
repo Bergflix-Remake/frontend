@@ -75,7 +75,7 @@ onUnmounted(() => {
 }
 
 kbd {
-  @apply bg-cleandark-500 ring-1 ring-delorean-800 text-white rounded-sm px-1;
+  @apply bg-clean-dark-500 ring-1 ring-delorean-800 text-white rounded-sm px-1;
 }
 
 @keyframes slide-reveal {

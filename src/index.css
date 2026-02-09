@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source inline("{bg,border,text}-{primary,clean-dark,clean-white,darkest-dark,delorean,concrete}-{100..900}");
 
 @theme {
   --color-primary-100: #ffccd6;
@@ -14,15 +15,15 @@
   --color-clean-white: #ffffff;
   --color-darkest-dark: #000000;
 
-  --color-cleandark-100: #cfcfcf;
-  --color-cleandark-200: #a0a0a0;
-  --color-cleandark-300: #707070;
-  --color-cleandark-400: #414141;
-  --color-cleandark-500: #111111;
-  --color-cleandark-600: #0e0e0e;
-  --color-cleandark-700: #0a0a0a;
-  --color-cleandark-800: #070707;
-  --color-cleandark-900: #030303;
+  --color-clean-dark-100: #cfcfcf;
+  --color-clean-dark-200: #a0a0a0;
+  --color-clean-dark-300: #707070;
+  --color-clean-dark-400: #414141;
+  --color-clean-dark-500: #111111;
+  --color-clean-dark-600: #0e0e0e;
+  --color-clean-dark-700: #0a0a0a;
+  --color-clean-dark-800: #070707;
+  --color-clean-dark-900: #030303;
 
   --color-delorean-100: #e1e1e1;
   --color-delorean-200: #c4c4c4;
@@ -75,7 +76,7 @@
 }
 
 .input {
-  @apply bg-cleandark-700 p-2 text-center m-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent inline-flex items-center;
+  @apply bg-clean-dark-700 p-2 text-center m-2 rounded-md px-4 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent inline-flex items-center;
 }
 
 /* width */

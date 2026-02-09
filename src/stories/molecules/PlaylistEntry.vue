@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-cleandark-800 text-white flex w-full h-24 rounded-md shadow-lg overflow-clip hover:-translate-x-1 transition-all shrink-0 text-center cursor-pointer"
+    class="bg-clean-dark-800 text-white flex w-full h-24 rounded-md shadow-lg overflow-clip hover:-translate-x-1 transition-all shrink-0 text-center cursor-pointer"
     :class="{ 'shadow-primary-500/5': playing }"
     @click="
       emit('click');

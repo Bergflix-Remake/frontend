@@ -13,7 +13,7 @@
       :genre="genre"
     ></InfoRow>
     <div
-      class="overflow-hidden text-cleandark-200 text-ellipsis md:whitespace-normal"
+      class="overflow-hidden text-clean-dark-200 text-ellipsis md:whitespace-normal"
       v-html="description"
     />
     <div class="flex space-x-2">

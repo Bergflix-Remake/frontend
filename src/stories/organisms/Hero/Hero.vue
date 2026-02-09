@@ -2,7 +2,7 @@
   <section
     v-if="featured && !isInvisible"
     ref="hero"
-    class="fixed flex w-full h-[90vh] min-h-[95vh] mb-20 bg-center bg-no-repeat bg-cover bg-cleandark-500 top-0 left-0"
+    class="fixed flex w-full h-[90vh] min-h-[95vh] mb-20 bg-center bg-no-repeat bg-cover bg-clean-dark-500 top-0 left-0"
     :style="{
       backgroundImage: `url('https://epg-image.zdf.de/fotobase-webdelivery/images/58d19dab-d2e0-4309-8c50-359715709ac2?layout=1280x720')`,
       opacity: opacity / 100,

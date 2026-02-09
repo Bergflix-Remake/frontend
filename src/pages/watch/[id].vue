@@ -12,7 +12,7 @@ meta:
     <div class="flex flex-col xl:flex-row xl:space-x-2">
       <!-- Player -->
       <div
-        class="bg-cleandark-600 w-full aspect-video md:rounded-l-lg overflow-hidden ring-1 ring-delorean-800"
+        class="bg-clean-dark-600 w-full aspect-video md:rounded-l-lg overflow-hidden ring-1 ring-delorean-800"
         :class="{ 'md:rounded-lg': !series }"
       >
         <Player
@@ -61,7 +61,7 @@ meta:
       <!-- Playlist -->
       <div
         v-if="series"
-        class="w-full xl:w-1/3 ring-1 ring-delorean-800 bg-cleandark-600 xl:rounded-bl-none xl:rounded-r-lg rounded-b-lg p-5 flex flex-col"
+        class="w-full xl:w-1/3 ring-1 ring-delorean-800 bg-clean-dark-600 xl:rounded-bl-none xl:rounded-r-lg rounded-b-lg p-5 flex flex-col"
       >
         <Title
           :image="
@@ -87,7 +87,7 @@ meta:
     </div>
     <!-- Info -->
     <div
-      class="w-full p-10 bg-cleandark-600 rounded-lg flex md:flex-row flex-col ring-1 ring-delorean-800"
+      class="w-full p-10 bg-clean-dark-600 rounded-lg flex md:flex-row flex-col ring-1 ring-delorean-800"
     >
       <div class="md:w-1/2 w-full">
         <Title
@@ -108,7 +108,7 @@ meta:
       </div>
     </div>
     <div
-      class="w-full p-10 bg-cleandark-600 rounded-lg flex flex-col ring-1 ring-delorean-800"
+      class="w-full p-10 bg-clean-dark-600 rounded-lg flex flex-col ring-1 ring-delorean-800"
     >
       <Subtitle>Mitwirkende</Subtitle>
       <div class="flex flex-wrap">
@@ -158,7 +158,6 @@ import { computed, ref, watch } from 'vue';
 import Player from '@molecules/Player.vue';
 import Button from '@/stories/atoms/Button.vue';
 import Poster from '@/stories/molecules/Poster.vue';
-import LazyLoadedImg from '@/stories/molecules/LazyLoadedImg.vue';
 import { api } from '@/util/paths';
 
 const playbackFinished = ref(false);
@@ -174,16 +173,6 @@ const id = computed(() => Number(route.params.id));
 const movie = useStrapiOne<VideoEntity>([
   'videos',
   id,
-  // [
-  //   'contributors',
-  //   'contributors.contributor',
-  //   'contributors.contributor.image',
-  //   'series.videos',
-  //   'series.videos.thumbnail',
-  //   'series.title_image',
-  //   'title_image',
-  //   'studios'
-  // ],
   {
     populate: {
       contributors: {

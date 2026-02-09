@@ -107,7 +107,7 @@ onMounted(() => {
 }
 
 .ais-SearchBox-input {
-  @apply p-4 rounded-l-md bg-cleandark-700 w-full ring-1 ring-delorean-800;
+  @apply p-4 rounded-l-md bg-clean-dark-700 w-full ring-1 ring-delorean-800;
 }
 
 .ais-SearchBox-submit {
@@ -141,7 +141,7 @@ onMounted(() => {
 }
 
 .ais-Pagination-link {
-  @apply bg-cleandark-700 text-white px-2 rounded-md;
+  @apply bg-clean-dark-700 text-white px-2 rounded-md;
 }
 
 .ais-Pagination-item--selected > .ais-Pagination-link {
@@ -150,7 +150,7 @@ onMounted(() => {
 
 /* MenuSelect */
 .ais-MenuSelect-select {
-  @apply bg-cleandark-700 text-white rounded-md p-2 w-full;
+  @apply bg-clean-dark-700 text-white rounded-md p-2 w-full;
 }
 
 .ais-MenuSelect-option:hover {
@@ -163,7 +163,7 @@ onMounted(() => {
 }
 
 .ais-CurrentRefinements-item {
-  @apply bg-cleandark-700 text-white rounded-md p-2 w-max;
+  @apply bg-clean-dark-700 text-white rounded-md p-2 w-max;
 }
 
 .ais-CurrentRefinements-delete {
