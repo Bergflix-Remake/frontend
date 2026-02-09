@@ -1,6 +1,4 @@
 <script setup lang="ts">
-
-
 defineProps({
   type: {
     type: String,
@@ -23,12 +21,10 @@ defineProps({
     default: '',
   },
 });
-
 </script>
-
 
 <template>
   <div class="flex flex-row w-full">
-    <input type="text">
+    <input type="text" />
   </div>
 </template>

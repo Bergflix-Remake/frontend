@@ -15,17 +15,16 @@
 <script setup lang="ts">
 import Spinner from '../atoms/Spinner.vue';
 import { ExclamationCircleIcon } from '@heroicons/vue/outline';
-import { gravatar } from "@/util/paths"
+import { gravatar } from '@/util/paths';
 import { computed } from 'vue';
-// eslint-disable-next-line no-undef
+
 const props = defineProps<{
-  email: string,
-  loading?: boolean,
-  error?: boolean,
+  email: string;
+  loading?: boolean;
+  error?: boolean;
 }>();
 
 const image = computed(() => gravatar(props.email));
 
-// eslint-disable-next-line no-undef
 defineEmits(['mouseenter', 'mouseleave', 'click']);
 </script>

@@ -1,7 +1,7 @@
 <route lang="yaml">
-  name: countdown
-  meta:
-    hideNavigation: true
+name: countdown
+meta:
+  hideNavigation: true
 </route>
 
 <template>

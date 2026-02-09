@@ -11,19 +11,19 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits } from 'vue';
 const props = defineProps({
   color: {
     type: String,
-    default: "primary",
+    default: 'primary',
   },
   width: {
     type: String,
-    default: String as () => "max" | "full",
+    default: String as () => 'max' | 'full',
   },
   type: {
-    type: String as () => "solid" | "outline" | "ghost",
-    default: "solid",
+    type: String as () => 'solid' | 'outline' | 'ghost',
+    default: 'solid',
   },
   icon: {
     type: null,
@@ -36,18 +36,18 @@ const props = defineProps({
   },
 });
 
-defineEmits(["click"]);
+defineEmits(['click']);
 
-let classString = "";
+let classString = '';
 
 switch (props.type) {
-  case "solid":
+  case 'solid':
     classString = `text-white bg-${props.color}-500 hover:bg-${props.color}-400 shadow-md hover:shadow-lg p-2`;
     break;
-  case "outline":
+  case 'outline':
     classString = `text-white border-${props.color}-500 hover:border-${props.color}-400 hover:bg-${props.color}-400 border-2 p-2`;
     break;
-  case "ghost":
+  case 'ghost':
     classString = `text-${props.color}-500 hover:text-${props.color}-400`;
     break;
 }

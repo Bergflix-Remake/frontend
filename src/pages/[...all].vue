@@ -17,28 +17,29 @@ meta:
     </h2>
 
     <transition name="fade">
-        <span v-if="showWindow" class="space-y-2">
-
-            <Window>
-                <h3 class="text-center font-upheaval text-xl">
-                    Die Seite, die du suchst, existiert nicht.
-                </h3>
-                <p class="text-center">
-                    Du kannst aber zur
-                    <Link :to="{ name: 'home' }">Startseite</Link>
-                    zurückkehren.
-                </p>
-            </Window>
-            <Window>
-                
-                <h3 class="text-center font-upheaval text-xl"><AnnotationIcon class="w-5 h-5 text-primary-500 inline" />
-                    Moment, aber hier sollte etwas sein!
-                </h3>
-                <p class="text-center">
-                    Wir arbeiten noch an <Logo long class="inline"/> Wenn du eine Seite gefunden hast, die nicht funktioniert, dann melde sie gerne auf unserem <Link to="/discord">Discord</Link>.
-                </p>            
-            </Window>
-        </span>
+      <span v-if="showWindow" class="space-y-2">
+        <Window>
+          <h3 class="text-center font-upheaval text-xl">
+            Die Seite, die du suchst, existiert nicht.
+          </h3>
+          <p class="text-center">
+            Du kannst aber zur
+            <Link :to="{ name: 'home' }">Startseite</Link>
+            zurückkehren.
+          </p>
+        </Window>
+        <Window>
+          <h3 class="text-center font-upheaval text-xl">
+            <AnnotationIcon class="w-5 h-5 text-primary-500 inline" />
+            Moment, aber hier sollte etwas sein!
+          </h3>
+          <p class="text-center">
+            Wir arbeiten noch an <Logo long class="inline" /> Wenn du eine Seite
+            gefunden hast, die nicht funktioniert, dann melde sie gerne auf
+            unserem <Link to="/discord">Discord</Link>.
+          </p>
+        </Window>
+      </span>
     </transition>
   </WindowLayout>
 </template>
@@ -48,30 +49,29 @@ import WindowLayout from '@/layouts/WindowLayout.vue';
 import { useRoute } from 'vue-router';
 import { isValidUrl } from '@/utils';
 import { watch, ref } from 'vue';
-import Link from '@atoms/Link.vue'
+import Link from '@atoms/Link.vue';
 import Window from '@/stories/atoms/Window/Window.vue';
 import { AnnotationIcon } from '@heroicons/vue/outline';
 import Logo from '@/stories/atoms/Logo.vue';
 
-const knownLinks: {[key: string]: string}  = {
-    "discord": "https://discord.bergflix.de/",
-    "twitter": "https://twitter.com/@bergflixtogo"
-}
+const knownLinks: { [key: string]: string } = {
+  discord: 'https://discord.bergflix.de/',
+  twitter: 'https://twitter.com/@bergflixtogo',
+};
 
 const showWindow = ref(false);
-
 
 const route = useRoute();
 
 watch(route, () => {
-    console.debug('Route changed');
+  console.debug('Route changed');
   let path = route.fullPath;
 
   // Remove the first slash
   path = path.substring(1);
 
   if (path in knownLinks) {
-    const link = knownLinks[path]
+    const link = knownLinks[path];
     console.debug('Redirecting to', link);
     window.location.href = link;
   }
@@ -84,13 +84,16 @@ watch(route, () => {
 });
 
 setTimeout(() => {
-    showWindow.value = true;
+  showWindow.value = true;
 }, 3000);
 </script>
 
 <style scoped>
 .glow {
-  text-shadow: 0 0 10px #ff0230, 0 0 20px #ff3559, 0 0 30px #ff6783,
+  text-shadow:
+    0 0 10px #ff0230,
+    0 0 20px #ff3559,
+    0 0 30px #ff6783,
     0 0 40px #ff9aac;
 }
 

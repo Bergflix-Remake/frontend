@@ -36,11 +36,7 @@ name: party
       <Title>
         <Logo long>Partymode</Logo>
       </Title>
-      <InfoRow
-      :year="2023"
-      :age="16"
-      genre="Drama"
-      />
+      <InfoRow :year="2023" :age="16" genre="Drama" />
       <figure>
         <vue-plyr class="rounded-md">
           <video
@@ -87,9 +83,9 @@ name: party
           Verfügung stellen. Wir schalten keine Werbung (Ausgenommen von der,
           die YouTube schaltet, von denen alle Einnahmen an die jeweiligen
           Videoinhaber gehen), und wir verkaufen keine Daten. Im aktuellen
-          Zustand ist <Logo long /> günstig zu betreiben. Der Partymode
-          würde das ändern. Auch hier wollen wir erstmal sehen, wie viel
-          Interesse an dem Projekt besteht.
+          Zustand ist <Logo long /> günstig zu betreiben. Der Partymode würde
+          das ändern. Auch hier wollen wir erstmal sehen, wie viel Interesse an
+          dem Projekt besteht.
         </li>
       </ul>
 
@@ -101,7 +97,8 @@ name: party
             toggleParty();
           }
         "
-        >Partymodus<BetaBadge/>  {{ partyEnabled ? 'Deaktivieren' : 'Aktivieren' }}</Button
+        >Partymodus<BetaBadge />
+        {{ partyEnabled ? 'Deaktivieren' : 'Aktivieren' }}</Button
       >
       <p>
         <ExclamationIcon class="text-orange-500 w-5 h-5 inline" />

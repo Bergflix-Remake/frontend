@@ -18,7 +18,7 @@ const data = useStrapi<ImprintEntity>(['imprint']);
 <template>
   <div class="pt-24">
     <Title class="pl-6">Rechtliches</Title>
-    <Subtitle class="pl-6" id="imprint">Impressum</Subtitle>
+    <Subtitle id="imprint" class="pl-6">Impressum</Subtitle>
     <!-- eslint-disable-next-line vue/no-v-html -->
     <section
       v-if="data.isSuccess"

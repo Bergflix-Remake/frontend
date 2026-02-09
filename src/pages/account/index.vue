@@ -14,7 +14,10 @@
     <Window>
       <Title>Dein Profil</Title>
       <div class="w-56 h-56">
-        <Avatar :email="user.email!" :loading="mutation.isLoading.value || false" />
+        <Avatar
+          :email="user.email!"
+          :loading="mutation.isLoading.value || false"
+        />
       </div>
       <CInput
         v-model="user.username"
@@ -26,7 +29,17 @@
         <img
           v-if="userQuery.isSuccess && userQuery.data.badge?.length! > 0"
           class="w-5 h-5"
-          :src="api((userQuery.data.badge?.find((value => parseInt(value?.id!) === userQuery.data?.selected_badge))?.badge as Badge).icon.url || (userQuery.data?.badge![0]?.badge as Badge).icon.url)"
+          :src="
+            api(
+              (
+                userQuery.data.badge?.find(
+                  (value) =>
+                    parseInt(value?.id!) === userQuery.data?.selected_badge,
+                )?.badge as Badge
+              ).icon.url ||
+                (userQuery.data?.badge![0]?.badge as Badge).icon.url,
+            )
+          "
         />
       </CInput>
       <CInput
@@ -61,7 +74,7 @@
         class="flex flex-row items-center w-full flex-nowrap overflow-x-auto space-x-2 h-96 p-6"
       >
         <article
-          v-for="badge in (userQuery.data?.badge as BadgeComponent[])"
+          v-for="badge in userQuery.data?.badge as BadgeComponent[]"
           :key="badge?.id"
           class="p-4 flex flex-col justify-center w-52 shrink-0 bg-cleandark-700 rounded-lg shadow-lg hover:shadow-primary-500/20 transition-all relative h-full ring-1 ring-delorean-800"
         >
@@ -129,8 +142,10 @@
       <details class="w-full">
         <summary>
           <p class="text-delorean-500 mb-3 cursor-pointer">
-            Diese Option ist hauptsächlich für Entwickler interessant. Hier findest du alle Daten,
-            die wir über dich speichern. Dein Passwort wird nicht angezeigt. Dieses kann weder von dir, noch von unserem Team eingesehen werden, da es verschlüsselt gespeichert wird.
+            Diese Option ist hauptsächlich für Entwickler interessant. Hier
+            findest du alle Daten, die wir über dich speichern. Dein Passwort
+            wird nicht angezeigt. Dieses kann weder von dir, noch von unserem
+            Team eingesehen werden, da es verschlüsselt gespeichert wird.
           </p>
         </summary>
         <pre
@@ -206,7 +221,7 @@ if (!strapi.user) {
 }
 
 let user: Partial<UsersPermissionsUser> = reactive(
-  strapi.user as Partial<UsersPermissionsUser>
+  strapi.user as Partial<UsersPermissionsUser>,
 );
 
 const mutation = useStrapiUpdateMutation<UsersPermissionsUser>({
@@ -241,5 +256,4 @@ const update = () => {
     data: { ...user },
   });
 };
-
 </script>

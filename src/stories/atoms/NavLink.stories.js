@@ -1,20 +1,20 @@
-import LinkVue from "./NavLink.vue"
+import LinkVue from './NavLink.vue';
 export default {
-    title: '⚛️ Atoms/NavLink',
-    component: LinkVue
-}
+  title: '⚛️ Atoms/NavLink',
+  component: LinkVue,
+};
 const Template = (args) => ({
-    components: { LinkVue },
-    setup() {
-        return {
-            ...args
-        }
-    },
-    template: `<LinkVue :href="href" :icon="icon">{{ text }}</LinkVue>`
-})
+  components: { LinkVue },
+  setup() {
+    return {
+      ...args,
+    };
+  },
+  template: `<LinkVue :href="href" :icon="icon">{{ text }}</LinkVue>`,
+});
 
-export const NavLink = Template.bind({})
+export const NavLink = Template.bind({});
 NavLink.args = {
-    href: "#",
-    text: "Link"
-}
+  href: '#',
+  text: 'Link',
+};

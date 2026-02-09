@@ -30,9 +30,9 @@ const player = ref();
 const consoleStyles =
   'background-color: blue; color: white; padding: 2px 4px; border-radius: 4px; font-weight: bold; font-family: sans-serif; margin: 10px 0;';
 
-  const watchTime = getWatchTime(props.pageId);
+const watchTime = getWatchTime(props.pageId);
 
-  watchEffect(() => {
+watchEffect(() => {
   if (player.value) {
     player.value.player.on('ready', () => {
       console.debug('%cPlayer', consoleStyles, 'Ready');
@@ -44,14 +44,22 @@ const consoleStyles =
         '%cPlayer',
         consoleStyles,
         'Time Update:',
-        Math.round((player.value.player.currentTime + Number.EPSILON) * 100) / 100,
+        Math.round((player.value.player.currentTime + Number.EPSILON) * 100) /
+          100,
         'Duration:',
         player.value.player.duration,
         'Ended:',
-        player.value.player.ended
+        player.value.player.ended,
       );
-      setWatchTime(props.pageId, player.value.player.currentTime, player.value.player.duration)
-      nextButton.value = props.outroTime && (player.value.player.currentTime >= props.outroTime) || false
+      setWatchTime(
+        props.pageId,
+        player.value.player.currentTime,
+        player.value.player.duration,
+      );
+      nextButton.value =
+        (props.outroTime &&
+          player.value.player.currentTime >= props.outroTime) ||
+        false;
     });
     player.value.player.on('ended', finishPlayback);
   }
@@ -68,13 +76,12 @@ const finishPlayback = () => {
 };
 </script>
 
-
 <style scoped>
 @reference "@/index.css";
 
 /* .next-button fills up with color from left to right on hover */
 .next-button {
-  @apply bg-linear-to-l from-primary-500 via-black to-black ;
+  @apply bg-linear-to-l from-primary-500 via-black to-black;
   background-size: 200% 100%;
   background-position: left bottom;
   transition: all 0.5s;

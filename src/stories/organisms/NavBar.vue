@@ -18,7 +18,7 @@
       class="hidden md:flex h-full relative items-center w-full justify-end"
       @mouseleave="setDropdown(false, 500)"
     >
-      <SearchOverlay class="mr-2"/>
+      <SearchOverlay class="mr-2" />
       <div class="w-14 h-14">
         <Avatar :email="email as string" @mouseenter="setDropdown(true)" />
       </div>
@@ -37,7 +37,12 @@
 <script setup lang="ts">
 import { strapi } from '@/main';
 import { gravatar } from '@/util/paths';
-import { HomeIcon, SearchIcon, CogIcon, UserGroupIcon } from '@heroicons/vue/solid';
+import {
+  HomeIcon,
+  SearchIcon,
+  CogIcon,
+  UserGroupIcon,
+} from '@heroicons/vue/solid';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Logo from '../atoms/Logo.vue';
@@ -72,7 +77,7 @@ const navItems = [
     name: 'Party',
     icon: UserGroupIcon,
     visibleOn: ['mobile', 'desktop'],
-  }
+  },
 ];
 
 const email = computed(() => strapi.user?.email);

@@ -1,9 +1,5 @@
 <template>
-
-<div class="dot-windmill"/>
-
+  <div class="dot-windmill" />
 </template>
-<script setup>
-</script>
-<style>
-</style>
+<script setup></script>
+<style></style>

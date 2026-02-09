@@ -5,13 +5,11 @@
       @click="open = true"
     >
       <p
-        class="absolute left-2 top-1/2 transform -translate-y-1/2  whitespace-nowrap"
+        class="absolute left-2 top-1/2 transform -translate-y-1/2 whitespace-nowrap"
       >
         <kbd>Ctrl</kbd> + <kbd>K</kbd>
       </p>
-      <SearchIcon
-        class="aspect-square h-full p-2 bg-black z-10"
-      />
+      <SearchIcon class="aspect-square h-full p-2 bg-black z-10" />
     </div>
     <Teleport to="body">
       <Transition name="modal">

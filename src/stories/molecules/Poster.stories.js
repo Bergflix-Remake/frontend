@@ -19,5 +19,5 @@ MoviePoster.args = {
   loading: false,
   image:
     'https://api.bergflix.de/uploads/Jaeger_der_verlorenen_Handys_MINECRAFT_KURZFILM_89dac457f5.jpeg',
-    icon: PlayIcon,
+  icon: PlayIcon,
 };

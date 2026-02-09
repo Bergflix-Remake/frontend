@@ -48,7 +48,7 @@ import Title from '../atoms/Title/Title.vue';
 defineProps<{
   title?: string;
   titleImage?: string;
-}>()
+}>();
 
 const scrollContainer: Ref<HTMLElement | undefined> = ref();
 
@@ -71,7 +71,7 @@ const handleScroll = () => {
   if (el == null) return;
   buttons.left = el.scrollLeft > 0;
   buttons.right = el.scrollLeft < el.scrollWidth - el.clientWidth;
-  console.debug(scrollContainer.value?.scrollLeft)
+  console.debug(scrollContainer.value?.scrollLeft);
 };
 onMounted(() => {
   window.addEventListener('resize', handleScroll);
@@ -89,7 +89,9 @@ onMounted(() => {
 .right-leave-active,
 .left-enter-active,
 .left-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .left-enter-from,
