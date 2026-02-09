@@ -52,7 +52,7 @@ Series.args = {
       text: 'Folgen',
       to: '/series/captain_pineapple',
       icon: ChevronDoubleRightIcon,
-      color: "clean-dark"
+      color: "cleandark"
     }
   ]
 };

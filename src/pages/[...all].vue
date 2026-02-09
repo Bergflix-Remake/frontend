@@ -8,7 +8,7 @@ meta:
 <template>
   <WindowLayout>
     <h1
-      class="text-[15.5vw] font-inception text-primary-500 font-medium glow leading-[10rem]"
+      class="text-[15.5vw] font-inception text-primary-500 font-medium glow leading-40"
     >
       404
     </h1>

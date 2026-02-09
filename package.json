@@ -17,13 +17,8 @@
   "devDependencies": {
     "@anniken/strapi-sdk-js": "^2.4.0",
     "@eslint/eslintrc": "^3.1.0",
-    "@heroicons/vue": "^2.2.0",
     "@meilisearch/instant-meilisearch": "^0.30.0",
     "@rushstack/eslint-patch": "^1.15.0",
-    "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/forms": "^0.5.11",
-    "@tailwindcss/vite": "^4.1.18",
-    "@tailwindcss/typography": "^0.5.19",
     "@typescript-eslint/eslint-plugin": "^8.55.0",
     "@typescript-eslint/parser": "^8.55.0",
     "@vitejs/plugin-vue": "^6.0.4",
@@ -58,6 +53,8 @@
     "vuex": "^4.1.0"
   },
   "dependencies": {
+    "@heroicons/vue": "v1",
+    "@tailwindcss/vite": "^4.1.18",
     "@types/crypto-js": "^4.2.2",
     "crypto-js": "^4.2.0",
     "vue-confetti": "^2.3.0"

@@ -4,7 +4,7 @@
         <h2 class="px-2 font-medium border-2 rounded-md text-primary-500">{{ age }}+</h2>
         <!-- TODO add condition for Episode -->
         <h2>{{ episodes > 1 ? episodes + ' Episoden' : 'Film' }}</h2>
-        <span class="w-[1px] self-stretch bg-white"></span>
+        <span class="w-px self-stretch bg-white"></span>
         <h2>{{ genre }}</h2>
     </div>
 </template>

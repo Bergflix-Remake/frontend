@@ -12,7 +12,7 @@ meta:
     <div class="flex flex-col xl:flex-row xl:space-x-2">
       <!-- Player -->
       <div
-        class="bg-clean-dark-600 w-full aspect-video md:rounded-l-lg overflow-hidden ring-1 ring-delorean-800"
+        class="bg-cleandark-600 w-full aspect-video md:rounded-l-lg overflow-hidden ring-1 ring-delorean-800"
         :class="{'md:rounded-lg': !series}"
       >
         <Player
@@ -54,7 +54,7 @@ meta:
       <!-- Playlist -->
       <div
         v-if="series"
-        class="w-full xl:w-1/3 ring-1 ring-delorean-800 bg-clean-dark-600 xl:rounded-bl-none xl:rounded-r-lg rounded-b-lg p-5 flex flex-col"
+        class="w-full xl:w-1/3 ring-1 ring-delorean-800 bg-cleandark-600 xl:rounded-bl-none xl:rounded-r-lg rounded-b-lg p-5 flex flex-col"
       >
         <Title :image="api(movie.data?.attributes?.series?.data?.attributes?.title_image?.data?.attributes?.url)">{{ series.title }}</Title>
         <div class="flex flex-col space-y-2 xl:max-h-96 overflow-y-auto">
@@ -72,7 +72,7 @@ meta:
     </div>
     <!-- Info -->
     <div
-      class="w-full p-10 bg-clean-dark-600 rounded-lg flex md:flex-row flex-col ring-1 ring-delorean-800"
+      class="w-full p-10 bg-cleandark-600 rounded-lg flex md:flex-row flex-col ring-1 ring-delorean-800"
     >
       <div class="md:w-1/2 w-full">
         <Title :image="api(movie.data?.attributes?.title_image?.data?.attributes?.url)">{{ title }}</Title>
@@ -87,7 +87,7 @@ meta:
         />
       </div>
     </div>
-    <div class="w-full p-10 bg-clean-dark-600 rounded-lg flex flex-col ring-1 ring-delorean-800">
+    <div class="w-full p-10 bg-cleandark-600 rounded-lg flex flex-col ring-1 ring-delorean-800">
       <Subtitle>Mitwirkende</Subtitle>
       <div class="flex flex-wrap">
         <Contributor

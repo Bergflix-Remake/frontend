@@ -77,7 +77,7 @@ const series = useStrapiOne<SerieEntity>([
         </div>
       </div>
     </div>
-    <div id="gradient" class="h-10 bg-gradient-to-t from-black to-transparent absolute bottom-0 w-full left-0 z-50"></div>
+    <div id="gradient" class="h-10 bg-linear-to-t from-black to-transparent absolute bottom-0 w-full left-0 z-50"></div>
   </main>
 </template>
 

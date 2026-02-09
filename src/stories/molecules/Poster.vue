@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative flex flex-col items-center justify-center flex-shrink-0 overflow-hidden text-center text-white transition-all duration-200 bg-center bg-cover rounded-md shadow-md cursor-pointer hover:-translate-y-1 group aspect-video bg-clean-dark-800 w-80 hover:shadow-2xl hover:shadow-primary-500/10"
+    class="relative flex flex-col items-center justify-center shrink-0 overflow-hidden text-center text-white transition-all duration-200 bg-center bg-cover rounded-md shadow-md cursor-pointer hover:-translate-y-1 group aspect-video bg-cleandark-800 w-80 hover:shadow-2xl hover:shadow-primary-500/10"
     @click="$emit('click')">
     <LazyLoadedImg :src="url" :alt="alt" />
     <!-- Loading -->
@@ -10,7 +10,7 @@
       <p>Es gab einen Fehler. Bitte versuche es nochmal.</p>
     </div>
     <div v-if="original" class="absolute flex top-2 right-2">
-      <Logo long class="!text-base">Original</Logo>
+      <Logo long class="text-base!">Original</Logo>
     </div>
   </div>
 </template>

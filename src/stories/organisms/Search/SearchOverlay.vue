@@ -22,7 +22,7 @@
           @click="open = false"
         >
           <XIcon
-            class="absolute top-20 right-20 w-6 h-6 text-white cursor-pointer z-[100]"
+            class="absolute top-20 right-20 w-6 h-6 text-white cursor-pointer z-100"
             @click="open = false"
           />
           <SearchWindow transparent is-overlay @close="open = false" />
@@ -60,7 +60,7 @@ onUnmounted(() => {
 </script>
 
 <style>
-@reference "tailwindcss";
+@reference "@/index.css";
 
 .modal-enter-from {
   opacity: 0;
@@ -77,7 +77,7 @@ onUnmounted(() => {
 }
 
 kbd {
-  @apply bg-clean-dark-500 ring-1 ring-delorean-800 text-white rounded-sm px-1;
+  @apply bg-cleandark-500 ring-1 ring-delorean-800 text-white rounded-sm px-1;
 }
 
 @keyframes slide-reveal {

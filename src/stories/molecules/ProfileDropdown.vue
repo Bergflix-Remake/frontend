@@ -2,7 +2,7 @@
   <transition name="slide">
     <div
       v-if="open"
-      class="z-50 flex flex-col justify-center p-5 space-y-2 rounded-md shadow-lg bg-clean-dark-800 w-max ring-1 ring-delorean-800"
+      class="z-50 flex flex-col justify-center p-5 space-y-2 rounded-md shadow-lg bg-cleandark-800 w-max ring-1 ring-delorean-800"
     >
       <p class="font-bold leading-tight text-delorean-500">
         Hi, {{ strapi.user?.username || "Gast" }}!

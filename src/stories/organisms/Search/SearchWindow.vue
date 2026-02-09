@@ -93,7 +93,7 @@ onMounted(() => {
 </script>
 
 <style>
-@reference "tailwindcss";
+@reference "@/index.css";
 
 /* SearchBox */
 
@@ -102,15 +102,15 @@ onMounted(() => {
 }
 
 .ais-SearchBox-input {
-  @apply p-4 rounded-l-md bg-clean-dark-700 w-full ring-1 ring-delorean-800;
+  @apply p-4 rounded-l-md bg-cleandark-700 w-full ring-1 ring-delorean-800;
 }
 
 .ais-SearchBox-submit {
-  @apply p-4 !bg-primary-500 rounded-r-md hover:bg-primary-400;
+  @apply p-4 bg-primary-500! rounded-r-md hover:bg-primary-400;
 }
 
 .ais-SearchBox-reset {
-  @apply p-4 !bg-primary-500 rounded-md hover:bg-primary-400 mx-2;
+  @apply p-4 bg-primary-500! rounded-md hover:bg-primary-400 mx-2;
 }
 
 .ais-SearchBox-submitIcon {
@@ -136,7 +136,7 @@ onMounted(() => {
 }
 
 .ais-Pagination-link {
-  @apply bg-clean-dark-700 text-white px-2 rounded-md;
+  @apply bg-cleandark-700 text-white px-2 rounded-md;
 }
 
 .ais-Pagination-item--selected > .ais-Pagination-link {
@@ -145,7 +145,7 @@ onMounted(() => {
 
 /* MenuSelect */
 .ais-MenuSelect-select {
-  @apply bg-clean-dark-700 text-white rounded-md p-2 w-full;
+  @apply bg-cleandark-700 text-white rounded-md p-2 w-full;
 }
 
 .ais-MenuSelect-option:hover {
@@ -158,7 +158,7 @@ onMounted(() => {
 }
 
 .ais-CurrentRefinements-item {
-  @apply bg-clean-dark-700 text-white rounded-md p-2 w-max;
+  @apply bg-cleandark-700 text-white rounded-md p-2 w-max;
 }
 
 .ais-CurrentRefinements-delete {

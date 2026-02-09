@@ -6,7 +6,7 @@
     <Logo :long='true'>Original</Logo>
     <InfoRow :year='year' :age='age' :episodes='episodes' :genre='genre'></InfoRow>
     <div
-      class='overflow-hidden text-clean-dark-200 text-ellipsis md:whitespace-normal'
+      class='overflow-hidden text-cleandark-200 text-ellipsis md:whitespace-normal'
       v-html="description" />
     <div class='flex space-x-2'>
       <Button v-for='button in buttons' v-bind='button' :key='button.text' @click='()=> isExternalLink(button.to) ? openExternalLink(button.to) :  $router.push(button.to) '>{{ button.text }}</Button>

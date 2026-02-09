@@ -26,7 +26,7 @@
             </div>
             <div class="h-auto mt-8 sm:w-1/4 sm:mt-0">
                 <div class="mb-2 font-bold text-delorean">
-                    <Logo :long="true" class="!text-sm">Brand</Logo>
+                    <Logo :long="true" class="text-sm!">Brand</Logo>
                 </div>
                 <ul class="leading-normal list-reset">
                     <li>

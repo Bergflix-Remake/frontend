@@ -32,7 +32,7 @@ Secondary.args = {
     text: 'Secondary',
     to: '/',
     type: 'solid',
-    color: "clean-dark"
+    color: "cleandark"
 }
 
 export const Solid = Template.bind({})

@@ -112,7 +112,7 @@ name: party
 </template>
 
 <style scoped>
-@reference "tailwindcss";
+@reference "@/index.css";
 
 h2 {
   @apply font-bold text-xl;
