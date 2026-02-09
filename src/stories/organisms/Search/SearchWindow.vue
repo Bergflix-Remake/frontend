@@ -93,6 +93,8 @@ onMounted(() => {
 </script>
 
 <style>
+@reference "tailwindcss";
+
 /* SearchBox */
 
 .ais-SearchBox form {

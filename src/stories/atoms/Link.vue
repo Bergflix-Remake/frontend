@@ -23,6 +23,8 @@ const isExternal = computed(() => {
 </script>
 
 <style>
+@reference "tailwindcss";
+
 .link {
   @apply font-bold text-white ease-in-out cursor-pointer h-min border-b-primary-500 hover:border-b-2 transition-border w-max;
 }

@@ -70,6 +70,8 @@ const finishPlayback = () => {
 
 
 <style scoped>
+@reference "tailwindcss";
+
 /* .next-button fills up with color from left to right on hover */
 .next-button {
   @apply bg-gradient-to-l from-primary-500 via-black to-black ;

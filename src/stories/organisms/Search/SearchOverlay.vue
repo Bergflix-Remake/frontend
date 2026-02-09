@@ -60,6 +60,8 @@ onUnmounted(() => {
 </script>
 
 <style>
+@reference "tailwindcss";
+
 .modal-enter-from {
   opacity: 0;
 }
@@ -80,16 +82,16 @@ kbd {
 
 @keyframes slide-reveal {
   0% {
-    @apply w-10;
+    width: 2.5rem;
   }
   25% {
-    @apply w-32;
+    width: 8rem;
   }
   75% {
-    @apply w-32;
+    width: 8rem;
   }
   100% {
-    @apply w-10;
+    width: 2.5rem;
   }
 }
 

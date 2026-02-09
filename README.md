@@ -22,13 +22,13 @@ git clone https://github.com/Bergflix-Remake/frontend.git
 🔽 Download and install the dependencies
 
 ```bash
-npm install
+bun install
 ```
 
 💹 Start local developement server
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 *When starting the server, or reloading the page without cache, it will take a while to load. This is normal and expected. Loading times will be faster on the live production version.*
@@ -36,8 +36,8 @@ npm run dev
 🔨 Build the project before submitting a PR
 
 ```bash
-npm run build
-# npm run serve to see the live version.
+bun run build
+# bun run preview to see the live version.
 ```
 
 ## Contributing

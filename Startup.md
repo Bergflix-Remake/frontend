@@ -1,6 +1,6 @@
 # Bergflix Startup
 
--   [x] `npm init vite@latest`
+-   [x] `bunx create-vite@latest`
 -   [x] Headlessui
 -   [x] heroicons
 -   [x] vite-rewrite-all

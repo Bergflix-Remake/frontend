@@ -123,6 +123,8 @@ const confirm = () => {
 </template>
 
 <style scoped>
+@reference "tailwindcss";
+
 .disabled {
   @apply !bg-transparent cursor-text;
 }
