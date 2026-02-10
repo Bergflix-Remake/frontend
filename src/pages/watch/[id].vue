@@ -23,7 +23,13 @@ meta:
           :outro-time="movie.data.attributes?.outro_start || undefined"
           @finished="playNext()"
         />
-        <div v-else class="w-full h-full justify-center items-center flex">
+        <div
+          v-else
+          class="w-full h-full justify-center items-center flex bg-center bg-no-repeat bg-cover"
+          style="
+            background-image: url('https://cdn.bergflix.de/Background/1.png');
+          "
+        >
           <div
             v-if="playbackFinished"
             class="flex flex-col justify-center items-center"
@@ -66,7 +72,7 @@ meta:
             <Link
               :to="movie.data?.attributes?.youtube_url || '#'"
               :icon="ExternalLinkIcon"
-              class="font-mono"
+              class="font-mono text-primary-100!"
               >{{ movie.data?.attributes?.youtube_url }}</Link
             >
           </div>
@@ -133,7 +139,13 @@ meta:
           :name="contributor?.contributor?.data?.attributes?.name!"
           :role="contributor?.role!"
           :character="contributor?.character"
-          :image="`https://api.bergflix.de${contributor?.contributor?.data?.attributes?.image?.data?.attributes?.url}`"
+          :image="
+            api(
+              contributor?.contributor?.data?.attributes?.image?.data
+                ?.attributes?.url!,
+              'https://cdn.bergflix.de/logo/light.png',
+            )
+          "
           :url="contributor?.contributor?.data?.attributes?.href!"
         />
       </div>
