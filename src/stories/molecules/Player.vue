@@ -14,7 +14,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { defineProps, ref, watchEffect } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { PlayIcon } from '@heroicons/vue/solid';
 import { getWatchTime, setWatchTime, removeWatchTime } from '@/util/watchTime';
 
