@@ -69,7 +69,7 @@ export default [
   prettier,
   {
     rules: {
-      'prettier/prettier': ['warn', { singleQuote: true }],
+      'prettier/prettier': ['warn', { singleQuote: true, endOfLine: 'auto' }],
     },
   },
 ];

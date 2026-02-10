@@ -2,7 +2,7 @@
   <a
     v-if="isExternal"
     :href="to.toString()"
-    class="link"
+    :class="['link', props.class]"
     target="_blank"
     rel="noopener noreferrer"
   >
@@ -10,7 +10,7 @@
     <slot />
   </a>
 
-  <router-link v-else :to="to" class="link">
+  <router-link v-else :to="to" :class="['link', props.class]">
     <component :is="icon" class="icon" />
     <slot />
   </router-link>
@@ -21,6 +21,7 @@ import { RouteLocationRaw } from 'vue-router';
 const props = defineProps<{
   to: RouteLocationRaw;
   icon?: any;
+  class?: string;
 }>();
 
 const isExternal = computed(() => {
@@ -32,10 +33,10 @@ const isExternal = computed(() => {
 @reference "@/index.css";
 
 .link {
-  @apply font-bold text-white ease-in-out cursor-pointer h-min border-b-primary-500 hover:border-b-2 transition-[border] w-max;
+  @apply font-bold text-white ease-in-out cursor-pointer h-min border-b-primary-500 hover:border-b-2 transition-[border,color] w-max;
 }
 .link > .icon {
-  @apply inline w-6 h-6 mb-1 mr-1;
+  @apply inline w-6 h-6 mb-1 mr-1 transition-colors duration-500;
 }
 
 .link:hover > .icon {

@@ -16,7 +16,7 @@ meta:
         :class="{ 'md:rounded-lg': !series }"
       >
         <Player
-          v-if="movie.isSuccess && !playbackFinished"
+          v-if="movie.isSuccess && !playbackFinished && !isExternal"
           :key="url!"
           :vid="url!"
           :page-id="id"
@@ -53,6 +53,21 @@ meta:
             />
             <Button class="m-2" @click="router.push({ name: 'home' })"
               >Home</Button
+            >
+          </div>
+          <div v-else-if="isExternal" class="text-center max-w-md space-y-2">
+            <Subtitle>Externer Inhalt</Subtitle>
+            <p>
+              Dieses Video ist nicht auf YouTube verfügbar, oder der
+              veröffentlichende Kanal hat das Einbetten deaktiviert.
+              <br />
+              Der Inhalt ist unter der folgenden URL verfügbar:
+            </p>
+            <Link
+              :to="movie.data?.attributes?.youtube_url || '#'"
+              :icon="ExternalLinkIcon"
+              class="font-mono"
+              >{{ movie.data?.attributes?.youtube_url }}</Link
             >
           </div>
           <Loader v-else />
@@ -159,6 +174,8 @@ import Player from '@molecules/Player.vue';
 import Button from '@/stories/atoms/Button.vue';
 import Poster from '@/stories/molecules/Poster.vue';
 import { api } from '@/util/paths';
+import Link from '@/stories/atoms/Link.vue';
+import { ExternalLinkIcon } from '@heroicons/vue/outline';
 
 const playbackFinished = ref(false);
 
@@ -198,6 +215,7 @@ const movie = useStrapiOne<VideoEntity>([
     sort: 'episode:asc',
   },
 ]);
+const isExternal = computed(() => !!movie.data?.attributes?.is_external);
 const series = computed(() => movie.data?.attributes?.series?.data?.attributes);
 // Get youtube video id from movie.data?.attributes?.youtube_url using regex
 const url = computed(
