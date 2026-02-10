@@ -36,7 +36,6 @@
 
 <script setup lang="ts">
 import { strapi } from '@/main';
-import { gravatar } from '@/util/paths';
 import {
   HomeIcon,
   SearchIcon,
@@ -44,7 +43,6 @@ import {
   UserGroupIcon,
 } from '@heroicons/vue/solid';
 import { computed, ref } from 'vue';
-import { useRoute } from 'vue-router';
 import Logo from '../atoms/Logo.vue';
 import NavLink from '../atoms/NavLink.vue';
 import Avatar from '../molecules/Avatar.vue';

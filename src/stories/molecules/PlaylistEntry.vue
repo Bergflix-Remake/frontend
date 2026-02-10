@@ -58,7 +58,9 @@ const watchTime = computed(() => getWatchTime(Number(props.id)));
 const prg = computed(
   () =>
     props.progress ||
-    (watchTime.value?.watchTime! / watchTime.value?.duration!) * 100 ||
+    (watchTime.value &&
+      watchTime.value.duration &&
+      (watchTime.value.watchTime / watchTime.value.duration) * 100) ||
     0,
 );
 

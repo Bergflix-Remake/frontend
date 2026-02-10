@@ -22,6 +22,7 @@ export default [
     rules: {
       'no-unused-vars': 'off',
       'no-undef': 'off',
+      'no-useless-assignment': 'off',
     },
   },
   // ts

@@ -4,7 +4,6 @@ import Window from '@/stories/atoms/Window/Window.vue';
 import Subtitle from '@/stories/atoms/Subtitle/Subtitle.vue';
 import Logo from '@/stories/atoms/Logo.vue';
 import Title from '@/stories/atoms/Title/Title.vue';
-import Link from '@/stories/atoms/Link.vue';
 import Button from '@/stories/atoms/Button.vue';
 import { ExclamationIcon } from '@heroicons/vue/outline';
 import { getCurrentInstance, ref } from 'vue';

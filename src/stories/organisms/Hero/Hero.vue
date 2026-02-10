@@ -55,8 +55,7 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useStrapi } from '@/main';
 import { FeaturedEntity } from '@/models/types';
 import Info from '../../molecules/Info/Info.vue';
-import { PlayIcon, FilmIcon } from '@heroicons/vue/outline';
-import { api } from '@/util/paths';
+import { FilmIcon } from '@heroicons/vue/outline';
 
 const opacity = ref(100);
 console.debug('opacity', opacity.value);

@@ -256,9 +256,11 @@ watch(id, () => {
 const playNext = () => {
   playbackFinished.value = true;
   if (series.value?.videos?.data?.length) {
+    const currentEpisode = movie.data?.attributes?.episode;
     const next = series.value.videos.data.find(
       (video) =>
-        video.attributes?.episode === movie.data?.attributes?.episode! + 1,
+        currentEpisode != null &&
+        video.attributes?.episode === currentEpisode + 1,
     );
     if (next) {
       console.debug(
