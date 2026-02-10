@@ -1,7 +1,7 @@
 <route lang="yaml">
-  name: countdown
-  meta:
-    hideNavigation: true
+name: countdown
+meta:
+  hideNavigation: true
 </route>
 
 <template>
@@ -25,11 +25,8 @@ import { releaseTime } from '@/util/locked';
 import Window from '@/stories/atoms/Window/Window.vue';
 import Logo from '@/stories/atoms/Logo.vue';
 import Subtitle from '@/stories/atoms/Subtitle/Subtitle.vue';
-import { useRouter } from 'vue-router';
 
 const countdownString = ref('0d 0h 0m 0s');
-
-const router = useRouter();
 
 const countdown = () => {
   const now = new Date();

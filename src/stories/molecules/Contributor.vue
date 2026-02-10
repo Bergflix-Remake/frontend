@@ -1,6 +1,6 @@
 <template>
   <div
-    class="cursor-pointer bg-clean-dark-800 flex flex-row flex-shrink-0 rounded-lg m-2 shadow-lg h-24 min-w-52 w-max overflow-hidden hover:-translate-y-1 hover:shadow-primary-500/5 hover:shadow-xl transition-all"
+    class="cursor-pointer bg-clean-dark-800 flex flex-row shrink-0 rounded-lg m-2 shadow-lg h-24 min-w-52 w-max overflow-hidden hover:-translate-y-1 hover:shadow-primary-500/5 hover:shadow-xl transition-all"
     @click="open"
   >
     <LazyLoadedImg

@@ -4,27 +4,27 @@
   </div>
 </template>
 <script setup lang="ts">
-import { PropType } from "vue";
-// eslint-disable-next-line no-undef
+import { PropType } from 'vue';
+
 defineProps({
   animation: {
     type: String as PropType<
-      | "elastic"
-      | "pulse"
-      | "flashing"
-      | "collision"
-      | "revolution"
-      | "carousel"
-      | "typing"
-      | "windmill"
-      | "bricks"
-      | "floating"
-      | "fire"
-      | "spin"
-      | "falling"
-      | "stretching"
+      | 'elastic'
+      | 'pulse'
+      | 'flashing'
+      | 'collision'
+      | 'revolution'
+      | 'carousel'
+      | 'typing'
+      | 'windmill'
+      | 'bricks'
+      | 'floating'
+      | 'fire'
+      | 'spin'
+      | 'falling'
+      | 'stretching'
     >,
-    default: "windmill",
+    default: 'windmill',
   },
 });
 </script>

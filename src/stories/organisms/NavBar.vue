@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="w-full h-20 fixed bg-gradient-to-t md:bg-gradient-to-b via-black/50 from-black to-transparent z-50 md:top-0 md:bottom-0-auto bottom-0 top-auto flex flex-row items-center md:justify-start justify-around md:space-x-2 p-2"
+    class="w-full h-20 fixed bg-linear-to-t md:bg-linear-to-b via-black/50 from-black to-transparent z-50 md:top-0 md:bottom-0-auto bottom-0 top-auto flex flex-row items-center md:justify-start justify-around md:space-x-2 p-2"
   >
     <Logo long class="hidden md:block text-3xl" />
     <NavLink v-for="item in navItems" :key="item.name" :name="item.name">
@@ -18,7 +18,7 @@
       class="hidden md:flex h-full relative items-center w-full justify-end"
       @mouseleave="setDropdown(false, 500)"
     >
-      <SearchOverlay class="mr-2"/>
+      <SearchOverlay class="mr-2" />
       <div class="w-14 h-14">
         <Avatar :email="email as string" @mouseenter="setDropdown(true)" />
       </div>
@@ -36,10 +36,13 @@
 
 <script setup lang="ts">
 import { strapi } from '@/main';
-import { gravatar } from '@/util/paths';
-import { HomeIcon, SearchIcon, CogIcon, UserGroupIcon } from '@heroicons/vue/solid';
+import {
+  HomeIcon,
+  SearchIcon,
+  CogIcon,
+  UserGroupIcon,
+} from '@heroicons/vue/solid';
 import { computed, ref } from 'vue';
-import { useRoute } from 'vue-router';
 import Logo from '../atoms/Logo.vue';
 import NavLink from '../atoms/NavLink.vue';
 import Avatar from '../molecules/Avatar.vue';
@@ -72,7 +75,7 @@ const navItems = [
     name: 'Party',
     icon: UserGroupIcon,
     visibleOn: ['mobile', 'desktop'],
-  }
+  },
 ];
 
 const email = computed(() => strapi.user?.email);

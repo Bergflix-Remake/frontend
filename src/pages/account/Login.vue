@@ -50,7 +50,9 @@
         <Button @click="login">Login</Button>
         <p>
           Noch keinen Account?
-          <Link :to="{ name: 'register', params: { redirect } }">Hier registrieren.</Link>
+          <Link :to="{ name: 'register', params: { redirect } }"
+            >Hier registrieren.</Link
+          >
         </p>
       </form>
       <Spinner v-if="auth.isLoading.value" />
@@ -81,25 +83,27 @@ const password = ref('');
 
 const executeRedirect = () => {
   if (redirect) {
-    router.push(redirect)
+    router.push(redirect);
   } else {
     router.push({ name: 'account' });
   }
 };
 
 // If user is already logged in
-getUser({}, {
-  onSuccess: executeRedirect,
-});
+getUser(
+  {},
+  {
+    onSuccess: executeRedirect,
+  },
+);
 
 // Login logic
 const auth = strapiLogin({
-  onSuccess: executeRedirect
+  onSuccess: executeRedirect,
 });
 
 const login = () => {
   if (auth.isLoading.value) return;
   auth.mutate({ identifier: identifier.value, password: password.value });
-  
 };
 </script>

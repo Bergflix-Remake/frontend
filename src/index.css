@@ -1,6 +1,70 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@source inline("{bg,border,text}-{primary,clean-dark,clean-white,darkest-dark,delorean,concrete}-{100..900}");
+
+@theme {
+  --color-primary-100: #ffccd6;
+  --color-primary-200: #ff9aac;
+  --color-primary-300: #ff6783;
+  --color-primary-400: #ff3559;
+  --color-primary-500: #ff0230;
+  --color-primary-600: #cc0226;
+  --color-primary-700: #99011d;
+  --color-primary-800: #660113;
+  --color-primary-900: #33000a;
+
+  --color-clean-white: #ffffff;
+  --color-darkest-dark: #000000;
+
+  --color-clean-dark-100: #cfcfcf;
+  --color-clean-dark-200: #a0a0a0;
+  --color-clean-dark-300: #707070;
+  --color-clean-dark-400: #414141;
+  --color-clean-dark-500: #111111;
+  --color-clean-dark-600: #0e0e0e;
+  --color-clean-dark-700: #0a0a0a;
+  --color-clean-dark-800: #070707;
+  --color-clean-dark-900: #030303;
+
+  --color-delorean-100: #e1e1e1;
+  --color-delorean-200: #c4c4c4;
+  --color-delorean-300: #a6a6a6;
+  --color-delorean-400: #898989;
+  --color-delorean-500: #6b6b6b;
+  --color-delorean-600: #565656;
+  --color-delorean-700: #404040;
+  --color-delorean-800: #2b2b2b;
+  --color-delorean-900: #151515;
+
+  --color-concrete-100: #eaeaea;
+  --color-concrete-200: #d6d6d6;
+  --color-concrete-300: #c1c1c1;
+  --color-concrete-400: #adadad;
+  --color-concrete-500: #989898;
+  --color-concrete-600: #7a7a7a;
+  --color-concrete-700: #5b5b5b;
+  --color-concrete-800: #3d3d3d;
+  --color-concrete-900: #1e1e1e;
+
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  --font-inception: "Inception", sans-serif;
+  --font-upheaval: "Upheaval Pro", sans-serif;
+}
+
+@theme inline {
+  --color-gray-50: var(--color-neutral-50);
+  --color-gray-100: var(--color-neutral-100);
+  --color-gray-200: var(--color-neutral-200);
+  --color-gray-300: var(--color-neutral-300);
+  --color-gray-400: var(--color-neutral-400);
+  --color-gray-500: var(--color-neutral-500);
+  --color-gray-600: var(--color-neutral-600);
+  --color-gray-700: var(--color-neutral-700);
+  --color-gray-800: var(--color-neutral-800);
+  --color-gray-900: var(--color-neutral-900);
+  --color-gray-950: var(--color-neutral-950);
+}
 
 :root {
   --plyr-color-main: #f40f3a;

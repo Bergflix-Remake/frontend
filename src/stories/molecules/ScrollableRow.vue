@@ -10,12 +10,12 @@
     <div
       v-if="buttons.left"
       id="fade-l"
-      class="absolute top-0 left-0 w-10 h-full pointer-events-none bg-gradient-to-r from-black to-transparent"
+      class="absolute top-0 left-0 w-10 h-full pointer-events-none bg-linear-to-r from-black to-transparent"
     ></div>
     <div
       v-if="buttons.right"
       id="fade-r"
-      class="absolute top-0 right-0 w-10 h-full pointer-events-none bg-gradient-to-l from-black to-transparent"
+      class="absolute top-0 right-0 w-10 h-full pointer-events-none bg-linear-to-l from-black to-transparent"
     ></div>
     <Transition name="right">
       <BadgeButton
@@ -29,6 +29,7 @@
       <BadgeButton
         v-if="buttons.left"
         class="absolute transform -translate-y-1/2 top-1/2 left-1 lg:left-5 opacity-30 hover:opacity-100"
+        color="fuchsia"
         :icon="ArrowNarrowLeftIcon"
         @click="scroll('left')"
       />
@@ -48,7 +49,7 @@ import Title from '../atoms/Title/Title.vue';
 defineProps<{
   title?: string;
   titleImage?: string;
-}>()
+}>();
 
 const scrollContainer: Ref<HTMLElement | undefined> = ref();
 
@@ -71,7 +72,7 @@ const handleScroll = () => {
   if (el == null) return;
   buttons.left = el.scrollLeft > 0;
   buttons.right = el.scrollLeft < el.scrollWidth - el.clientWidth;
-  console.debug(scrollContainer.value?.scrollLeft)
+  console.debug(scrollContainer.value?.scrollLeft);
 };
 onMounted(() => {
   window.addEventListener('resize', handleScroll);
@@ -89,7 +90,9 @@ onMounted(() => {
 .right-leave-active,
 .left-enter-active,
 .left-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .left-enter-from,

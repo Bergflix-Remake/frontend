@@ -38,5 +38,5 @@ const Template = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-    animation: 'windmill',
-}
+  animation: 'windmill',
+};

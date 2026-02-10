@@ -69,7 +69,7 @@ const confirm = () => {
   // make sure the value is not too long
   if (props.maxLength && (props.modelValue?.length || 0) > props.maxLength) {
     console.debug(
-      `Value ${props.modelValue} is longer than ${props.maxLength} characters`
+      `Value ${props.modelValue} is longer than ${props.maxLength} characters`,
     );
     // Reset to backup value
     reset();
@@ -91,10 +91,14 @@ const confirm = () => {
       v-bind="props"
       :value="modelValue"
       class="input max-w-full overflow-hidden"
-      :class="{ disabled: !isActive, 'border-red-500 animate-pulse': inputError }"
+      :class="{
+        disabled: !isActive,
+        'border-red-500 animate-pulse': inputError,
+      }"
       :maxlength="props.maxLength"
       @input="handleInput"
-      @keydown="($event: KeyboardEvent) => {
+      @keydown="
+        ($event: KeyboardEvent) => {
           if (!isActive) return;
 
           if ($event.key === 'Enter') {
@@ -123,8 +127,10 @@ const confirm = () => {
 </template>
 
 <style scoped>
+@reference "@/index.css";
+
 .disabled {
-  @apply !bg-transparent cursor-text;
+  @apply bg-transparent! cursor-text;
 }
 
 .icon {

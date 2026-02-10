@@ -41,5 +41,5 @@ Loading.args = {
 export const Errored = Template.bind({});
 Errored.args = {
   loading: false,
-  size: "lg",
-}
+  size: 'lg',
+};

@@ -10,7 +10,7 @@
         :search-client="searchClient"
         index-name="video"
       >
-        <ais-search-box/>
+        <ais-search-box />
         <ais-current-refinements />
 
         <ais-stats />
@@ -69,10 +69,14 @@ import Button from '@/stories/atoms/Button.vue';
 import Title from '@/stories/atoms/Title/Title.vue';
 import Subtitle from '@/stories/atoms/Subtitle/Subtitle.vue';
 import BetaBadge from '@/stories/atoms/BetaBadge.vue';
-import { onMounted, ref } from 'vue';
-const searchClient = instantMeiliSearch('https://search.bergflix.de', '623425c4ff203794010003bd8beed1ce7641404be4115991db283cb954314524', {
-  finitePagination: true,
-});
+import { onMounted } from 'vue';
+const searchClient = instantMeiliSearch(
+  'https://search.bergflix.de',
+  '623425c4ff203794010003bd8beed1ce7641404be4115991db283cb954314524',
+  {
+    finitePagination: true,
+  },
+);
 const emit = defineEmits(['close']);
 
 defineProps<{
@@ -82,17 +86,20 @@ defineProps<{
 
 onMounted(() => {
   const interval = setInterval(() => {
-    const input = document.querySelector<HTMLInputElement>('.ais-SearchBox-input');
+    const input = document.querySelector<HTMLInputElement>(
+      '.ais-SearchBox-input',
+    );
     if (input) {
       input.focus();
       clearInterval(interval);
     }
   }, 100);
-})
-
+});
 </script>
 
 <style>
+@reference "@/index.css";
+
 /* SearchBox */
 
 .ais-SearchBox form {
@@ -104,11 +111,11 @@ onMounted(() => {
 }
 
 .ais-SearchBox-submit {
-  @apply p-4 !bg-primary-500 rounded-r-md hover:bg-primary-400;
+  @apply p-4 bg-primary-500! rounded-r-md hover:bg-primary-400;
 }
 
 .ais-SearchBox-reset {
-  @apply p-4 !bg-primary-500 rounded-md hover:bg-primary-400 mx-2;
+  @apply p-4 bg-primary-500! rounded-md hover:bg-primary-400 mx-2;
 }
 
 .ais-SearchBox-submitIcon {

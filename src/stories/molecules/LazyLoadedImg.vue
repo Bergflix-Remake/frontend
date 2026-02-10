@@ -4,7 +4,7 @@
       ref="lazyRef"
       class="w-full object-center"
       :class="{
-        'object-cover': fit === 'cover'  || !fit,
+        'object-cover': fit === 'cover' || !fit,
         'object-contain': fit === 'contain',
         'object-fill': fit === 'fill',
         'object-none': fit === 'none',
@@ -42,9 +42,8 @@ interface IProps {
   fit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
 }
 
-
 const props = defineProps<IProps>();
-const { src } = toRefs(props); 
+const { src } = toRefs(props);
 
 type State = 'ready' | 'loading' | 'error';
 

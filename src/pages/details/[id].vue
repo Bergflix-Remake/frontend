@@ -32,7 +32,7 @@ const series = useStrapiOne<SerieEntity>([
     :style="{
       backgroundImage: `url(${api(
         series.data?.attributes?.background_image?.data?.attributes?.url,
-        cdn('/imgs/Background/3.png')
+        cdn('/imgs/Background/3.png'),
       )})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -57,13 +57,14 @@ const series = useStrapiOne<SerieEntity>([
         class="md:max-w-md md:m-10"
       ></Info>
     </div>
-    <div class="relative overflow-y-scroll z-20 overflow-x-visible hide-scrollbar py-5 mx-10" >
+    <div
+      class="relative overflow-y-scroll z-20 overflow-x-visible hide-scrollbar py-5 mx-10"
+    >
       <div
         class="absolute left-1/2 transform -translate-x-1/2 w-full lg:top-1/3 h-1/4 overflow-x-visible"
       >
         <div class="flex flex-col space-y-4 w-full overflow-x-visible">
           <PlaylistEntry
-
             v-for="video in series.data?.attributes?.videos?.data!"
             :id="video.id?.toString()!"
             :key="video.id!"
@@ -77,7 +78,10 @@ const series = useStrapiOne<SerieEntity>([
         </div>
       </div>
     </div>
-    <div id="gradient" class="h-10 bg-gradient-to-t from-black to-transparent absolute bottom-0 w-full left-0 z-50"></div>
+    <div
+      id="gradient"
+      class="h-10 bg-linear-to-t from-black to-transparent absolute bottom-0 w-full left-0 z-50"
+    ></div>
   </main>
 </template>
 
@@ -90,7 +94,11 @@ const series = useStrapiOne<SerieEntity>([
   scrollbar-width: none;
 }
 .gradient {
-    background: rgb(0, 0, 0);
-    background: radial-gradient(at top right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 70%);
+  background: rgb(0, 0, 0);
+  background: radial-gradient(
+    at top right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 70%
+  );
 }
 </style>

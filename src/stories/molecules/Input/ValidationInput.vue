@@ -1,6 +1,4 @@
 <script setup lang="ts">
-
-
 defineProps({
   type: {
     type: String,
@@ -19,16 +17,14 @@ defineProps({
   },
   modelValue: {
     type: String,
-    required: true,
+    required: false,
     default: '',
   },
 });
-
 </script>
-
 
 <template>
   <div class="flex flex-row w-full">
-    <input type="text">
+    <input type="text" />
   </div>
 </template>

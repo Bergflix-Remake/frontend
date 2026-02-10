@@ -5,13 +5,11 @@
       @click="open = true"
     >
       <p
-        class="absolute left-2 top-1/2 transform -translate-y-1/2  whitespace-nowrap"
+        class="absolute left-2 top-1/2 transform -translate-y-1/2 whitespace-nowrap"
       >
         <kbd>Ctrl</kbd> + <kbd>K</kbd>
       </p>
-      <SearchIcon
-        class="aspect-square h-full p-2 bg-black z-10"
-      />
+      <SearchIcon class="aspect-square h-full p-2 bg-black z-10" />
     </div>
     <Teleport to="body">
       <Transition name="modal">
@@ -22,7 +20,7 @@
           @click="open = false"
         >
           <XIcon
-            class="absolute top-20 right-20 w-6 h-6 text-white cursor-pointer z-[100]"
+            class="absolute top-20 right-20 w-6 h-6 text-white cursor-pointer z-100"
             @click="open = false"
           />
           <SearchWindow transparent is-overlay @close="open = false" />
@@ -60,6 +58,8 @@ onUnmounted(() => {
 </script>
 
 <style>
+@reference "@/index.css";
+
 .modal-enter-from {
   opacity: 0;
 }
@@ -80,16 +80,16 @@ kbd {
 
 @keyframes slide-reveal {
   0% {
-    @apply w-10;
+    width: 2.5rem;
   }
   25% {
-    @apply w-32;
+    width: 8rem;
   }
   75% {
-    @apply w-32;
+    width: 8rem;
   }
   100% {
-    @apply w-10;
+    width: 2.5rem;
   }
 }
 

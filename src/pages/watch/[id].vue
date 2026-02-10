@@ -13,7 +13,7 @@ meta:
       <!-- Player -->
       <div
         class="bg-clean-dark-600 w-full aspect-video md:rounded-l-lg overflow-hidden ring-1 ring-delorean-800"
-        :class="{'md:rounded-lg': !series}"
+        :class="{ 'md:rounded-lg': !series }"
       >
         <Player
           v-if="movie.isSuccess && !playbackFinished"
@@ -44,9 +44,16 @@ meta:
               :src="
                 recommendation?.attributes?.thumbnail?.data?.attributes?.url
               "
-              @click="router.push({ name: 'watch', params: { id: recommendation?.id } })"
+              @click="
+                router.push({
+                  name: 'watch',
+                  params: { id: recommendation?.id },
+                })
+              "
             />
-            <Button class="m-2" @click="router.push({ name: 'home' })">Home</Button>
+            <Button class="m-2" @click="router.push({ name: 'home' })"
+              >Home</Button
+            >
           </div>
           <Loader v-else />
         </div>
@@ -56,7 +63,15 @@ meta:
         v-if="series"
         class="w-full xl:w-1/3 ring-1 ring-delorean-800 bg-clean-dark-600 xl:rounded-bl-none xl:rounded-r-lg rounded-b-lg p-5 flex flex-col"
       >
-        <Title :image="api(movie.data?.attributes?.series?.data?.attributes?.title_image?.data?.attributes?.url)">{{ series.title }}</Title>
+        <Title
+          :image="
+            api(
+              movie.data?.attributes?.series?.data?.attributes?.title_image
+                ?.data?.attributes?.url,
+            )
+          "
+          >{{ series.title }}</Title
+        >
         <div class="flex flex-col space-y-2 xl:max-h-96 overflow-y-auto">
           <PlaylistEntry
             v-for="video in series.videos?.data"
@@ -75,7 +90,12 @@ meta:
       class="w-full p-10 bg-clean-dark-600 rounded-lg flex md:flex-row flex-col ring-1 ring-delorean-800"
     >
       <div class="md:w-1/2 w-full">
-        <Title :image="api(movie.data?.attributes?.title_image?.data?.attributes?.url)">{{ title }}</Title>
+        <Title
+          :image="
+            api(movie.data?.attributes?.title_image?.data?.attributes?.url)
+          "
+          >{{ title }}</Title
+        >
         <p class="text-gray-500 font-light" v-html="description" />
       </div>
       <div class="md:ml-auto mt-5">
@@ -87,7 +107,9 @@ meta:
         />
       </div>
     </div>
-    <div class="w-full p-10 bg-clean-dark-600 rounded-lg flex flex-col ring-1 ring-delorean-800">
+    <div
+      class="w-full p-10 bg-clean-dark-600 rounded-lg flex flex-col ring-1 ring-delorean-800"
+    >
       <Subtitle>Mitwirkende</Subtitle>
       <div class="flex flex-wrap">
         <Contributor
@@ -103,7 +125,7 @@ meta:
       <Subtitle>Unterstützende</Subtitle>
       <div class="flex flex-wrap">
         <Contributor
-        v-for="studio in movie.data?.attributes?.studios?.data"
+          v-for="studio in movie.data?.attributes?.studios?.data"
           :key="studio?.id!"
           :name="studio?.attributes?.name!"
           :role="studio?.attributes?.role!"
@@ -111,12 +133,12 @@ meta:
           :image="api(studio.attributes?.logo.data?.attributes?.url!)"
         />
         <Contributor
-        v-if="movie.data?.attributes?.studios?.data?.length === 0"
-        name="Troublecat Productions"
-        role="Studio"
-        url="https://www.youtube.com/@herrbergmann"
-        image="https://api.bergflix.de/uploads/troublecat_logo_1dac3b63c7.jpg"
-      />
+          v-if="movie.data?.attributes?.studios?.data?.length === 0"
+          name="Troublecat Productions"
+          role="Studio"
+          url="https://www.youtube.com/@herrbergmann"
+          image="https://api.bergflix.de/uploads/troublecat_logo_1dac3b63c7.jpg"
+        />
       </div>
     </div>
   </article>
@@ -136,7 +158,6 @@ import { computed, ref, watch } from 'vue';
 import Player from '@molecules/Player.vue';
 import Button from '@/stories/atoms/Button.vue';
 import Poster from '@/stories/molecules/Poster.vue';
-import LazyLoadedImg from '@/stories/molecules/LazyLoadedImg.vue';
 import { api } from '@/util/paths';
 
 const playbackFinished = ref(false);
@@ -146,22 +167,12 @@ const consoleStyles =
 const route = useRoute();
 const router = useRouter();
 const invalidId = computed(
-  () => !route.params.id || isNaN(Number(route.params.id))
+  () => !route.params.id || isNaN(Number(route.params.id)),
 );
 const id = computed(() => Number(route.params.id));
 const movie = useStrapiOne<VideoEntity>([
   'videos',
   id,
-      // [
-    //   'contributors',
-    //   'contributors.contributor',
-    //   'contributors.contributor.image',
-    //   'series.videos',
-    //   'series.videos.thumbnail',
-    //   'series.title_image',
-    //   'title_image',
-    //   'studios'
-    // ],
   {
     populate: {
       contributors: {
@@ -170,7 +181,7 @@ const movie = useStrapiOne<VideoEntity>([
             populate: ['image'],
           },
         },
-       },
+      },
       series: {
         populate: {
           videos: {
@@ -190,15 +201,19 @@ const movie = useStrapiOne<VideoEntity>([
 const series = computed(() => movie.data?.attributes?.series?.data?.attributes);
 // Get youtube video id from movie.data?.attributes?.youtube_url using regex
 const url = computed(
-  () => movie.data?.attributes?.youtube_url?.match(/v=(.*)/)?.[1]
+  () => movie.data?.attributes?.youtube_url?.match(/v=(.*)/)?.[1],
 );
 
-const isLastEpisode = computed(() => series.value?.videos?.data[series.value?.videos?.data.length - 1]?.id !== id.value.toString())
+const isLastEpisode = computed(
+  () =>
+    series.value?.videos?.data[series.value?.videos?.data.length - 1]?.id !==
+    id.value.toString(),
+);
 
 console.debug(
   '%c%s',
   consoleStyles,
-  `Video ID: ${id.value} | Series: ${series.value?.title} | Episode: ${movie.data?.attributes?.episode} | Last Episode: ${isLastEpisode.value}`
+  `Video ID: ${id.value} | Series: ${series.value?.title} | Episode: ${movie.data?.attributes?.episode} | Last Episode: ${isLastEpisode.value}`,
 );
 
 // When playback has finished and the video is not part of a series, get a random video from the same genre
@@ -228,7 +243,7 @@ const recommendation = computed(
   () =>
     recommendations.data?.[
       Math.floor(Math.random() * recommendations.data?.length)
-    ]
+    ],
 );
 
 const title = computed(() => movie.data?.attributes?.title);
@@ -241,16 +256,18 @@ watch(id, () => {
 const playNext = () => {
   playbackFinished.value = true;
   if (series.value?.videos?.data?.length) {
+    const currentEpisode = movie.data?.attributes?.episode;
     const next = series.value.videos.data.find(
       (video) =>
-        video.attributes?.episode === movie.data?.attributes?.episode! + 1
+        currentEpisode != null &&
+        video.attributes?.episode === currentEpisode + 1,
     );
     if (next) {
       console.debug(
         '%cWatchpage',
         consoleStyles,
         'Playing next episode',
-        next.id
+        next.id,
       );
       router.push({ name: 'watch', params: { id: next.id } });
     }

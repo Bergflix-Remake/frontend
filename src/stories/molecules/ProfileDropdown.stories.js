@@ -1,21 +1,21 @@
-import ProfileDropdownComponent from "./ProfileDropdown.vue"
+import ProfileDropdownComponent from './ProfileDropdown.vue';
 
 export default {
-    title: '🧬 Molecules / Profile Dropdown',
-    component: ProfileDropdownComponent,
-}
+  title: '🧬 Molecules / Profile Dropdown',
+  component: ProfileDropdownComponent,
+};
 
 const Template = (args) => ({
-    components: { ProfileDropdownComponent },
-    setup() {
-        return { args }
-    },
-    template: `<ProfileDropdownComponent v-bind="args"/>`,
+  components: { ProfileDropdownComponent },
+  setup() {
+    return { args };
+  },
+  template: `<ProfileDropdownComponent v-bind="args"/>`,
 });
 
 export const ProfileDropdown = Template.bind({});
 ProfileDropdown.args = {
-    username: 'AnnikenYT',
-    loggedIn: true,
-    open: true,
-}
+  username: 'AnnikenYT',
+  loggedIn: true,
+  open: true,
+};

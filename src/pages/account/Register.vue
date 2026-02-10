@@ -59,7 +59,10 @@
           >
         </p>
       </form>
-      <div v-if="auth.isSuccess.value || $route.query.state == 'success'" class="flex flex-col justify-center items-center">
+      <div
+        v-if="auth.isSuccess.value || $route.query.state == 'success'"
+        class="flex flex-col justify-center items-center"
+      >
         <Subtitle>Registrierung erfolgreich</Subtitle>
         <p>
           Bitte überprüfe dein E-Mail Postfach und bestätige deine E-Mail
@@ -73,7 +76,9 @@
           >Erneut senden</Button
         >
 
-        <Link :to="{ name: 'login' }" :icon="LoginIcon" class="mt-2">Zum Login</Link>
+        <Link :to="{ name: 'login' }" :icon="LoginIcon" class="mt-2"
+          >Zum Login</Link
+        >
         <Error :error="resendEmailMutation.error.value" />
         <!-- Success -->
       </div>
