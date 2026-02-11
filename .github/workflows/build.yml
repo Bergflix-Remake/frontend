@@ -35,6 +35,6 @@ jobs:
           bun run build
 
       - name: Store artifacts 📦
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           path: dist
