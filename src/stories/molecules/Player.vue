@@ -14,7 +14,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 import { PlayIcon } from '@heroicons/vue/solid';
 import { getWatchTime, setWatchTime, removeWatchTime } from '@/util/watchTime';
 
@@ -30,14 +30,14 @@ const player = ref();
 const consoleStyles =
   'background-color: blue; color: white; padding: 2px 4px; border-radius: 4px; font-weight: bold; font-family: sans-serif; margin: 10px 0;';
 
-const watchTime = getWatchTime(props.pageId);
+const watchTime = computed(() => getWatchTime(props.pageId));
 
 watchEffect(() => {
   if (player.value) {
     player.value.player.on('ready', () => {
       console.debug('%cPlayer', consoleStyles, 'Ready');
       // Set the current time to the saved time
-      player.value.player.currentTime = watchTime?.watchTime || 0;
+      player.value.player.currentTime = watchTime.value?.watchTime || 0;
     });
     player.value.player.on('timeupdate', () => {
       console.debug(

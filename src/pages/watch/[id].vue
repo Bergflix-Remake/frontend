@@ -19,7 +19,7 @@ meta:
           v-if="movie.isSuccess && !playbackFinished && !isExternal"
           :key="url || ''"
           :vid="url || ''"
-          :page-id="id"
+          :page-id="movie.data?.id || id"
           :outro-time="movie.data?.outro_start || undefined"
           @finished="playNext()"
         />
