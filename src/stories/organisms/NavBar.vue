@@ -20,7 +20,7 @@
     >
       <SearchOverlay class="mr-2" />
       <div class="w-14 h-14">
-        <Avatar :email="email as string" @mouseenter="setDropdown(true)" />
+        <Avatar :email="email || ''" @mouseenter="setDropdown(true)" />
       </div>
       <ProfileDropdown
         :open="accountOpen"

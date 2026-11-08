@@ -404,7 +404,7 @@ export function useStrapiOne<T>(
 export function getUser(props?: StrapiRequestParams, opts?: any) {
   return reactive(
     useQuery<UsersPermissionsUser, TError>(
-      ['user', props] as any,
+      ['user', props, strapi.token] as any,
       (async () => {
         const user = await strapi.fetchUser(props);
         if (!user) throw new Error('User not logged in');
