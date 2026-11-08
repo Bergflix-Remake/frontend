@@ -5,7 +5,8 @@ dist-ssr
 *.local
 config.yml
 *.lock
-.ideatest-results
+.idea
+test-results
 playwright-report
 e2e-results.json
 .env.local
