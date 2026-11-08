@@ -2,7 +2,7 @@
 FROM node:22.20.0-bookworm AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN HUSKY=0 npm ci --ignore-scripts --no-audit --no-fund --legacy-peer-deps && npm rebuild esbuild
+RUN HUSKY=0 npm ci --ignore-scripts --no-audit --no-fund && npm rebuild esbuild
 COPY . .
 ARG VITE_API_URL=http://localhost:8080
 ARG VITE_MEDIA_URL=http://localhost:8080

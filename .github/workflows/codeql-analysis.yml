@@ -63,7 +63,7 @@ jobs:
     # If this step fails, then you should remove it and run the build manually (see below)
     - name: Install and Build
       run: |
-        npm ci --legacy-peer-deps
+        npm ci
         npm run build
 
     # ℹ️ Command-line programs to run using the OS shell.

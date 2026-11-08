@@ -22,7 +22,7 @@ git clone https://github.com/Bergflix-Remake/frontend.git
 🔽 Download and install the dependencies (Node 22+)
 
 ```bash
-npm ci --legacy-peer-deps
+npm ci
 ```
 
 💹 Start local development server

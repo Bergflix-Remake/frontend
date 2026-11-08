@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
-import pluginRewriteAll from 'vite-plugin-rewrite-all';
 import path from 'path';
 import Pages from 'vite-plugin-pages';
 
@@ -10,7 +9,6 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     vue(),
-    pluginRewriteAll(),
     Pages({
       extensions: ['vue'],
     }),
