@@ -3,22 +3,21 @@
   "version": "1.1.0",
   "scripts": {
     "dev": "vite --host",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "npm run typecheck && vite build",
     "preview": "vite preview",
-    "types": "strapi-generate-types quickgen https://api.bergflix.de/ -p ./src/models/",
+    "types": "node -e \"console.log('Types are maintained by hand in src/models/types.ts for Strapi 5')\"",
     "lint": "eslint src/**/*.{ts,js,vue}",
     "prepare": "husky",
     "bump": "changelogen --bump",
-    "release": "changelogen --release"
+    "release": "changelogen --release",
+    "typecheck": "vue-tsc --noEmit",
+    "test:e2e": "playwright test",
+    "test:e2e:report": "playwright show-report"
   },
   "type": "module",
-  "packageManager": "bun@1.3.9",
   "repository": "github:bergflix-remake/frontend",
   "devDependencies": {
-    "@anniken/strapi-sdk-js": "^2.4.0",
-    "@eslint/eslintrc": "^3.1.0",
     "@meilisearch/instant-meilisearch": "^0.30.0",
-    "@rushstack/eslint-patch": "^1.15.0",
     "@typescript-eslint/eslint-plugin": "^8.55.0",
     "@typescript-eslint/parser": "^8.55.0",
     "@vitejs/plugin-vue": "^6.0.4",
@@ -28,22 +27,13 @@
     "autoprefixer": "^10.4.24",
     "changelogen": "^0.6.2",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-n": "^17.23.2",
-    "eslint-plugin-promise": "^7.2.1",
     "husky": "^9.1.7",
-    "install": "^0.13.0",
     "postcss": "^8.5.6",
     "prettier": "^3.8.1",
-    "prettier-eslint": "^16.4.2",
-    "react-query": "^3.39.3",
-    "strapi-generate-types": "^1.0.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vite-plugin-pages": "^0.33.3",
-    "vite-plugin-rewrite-all": "^1.0.2",
     "vue": "^3.5.28",
     "vue-eslint-parser": "^10.2.0",
     "vue-instantsearch": "^4.23.1",
@@ -52,7 +42,12 @@
     "vue-router": "^5.0.2",
     "vue-tsc": "^3.2.4",
     "vue3-lazyload": "^0.3.8",
-    "vuex": "^4.1.0"
+    "vuex": "^4.1.0",
+    "typescript-eslint": "^8.55.0",
+    "eslint-plugin-vue": "^10.6.2",
+    "globals": "^16.5.0",
+    "@playwright/test": "^1.56.1",
+    "eslint-plugin-prettier": "^5.5.7"
   },
   "dependencies": {
     "@eslint/js": "^10.0.1",
@@ -62,5 +57,8 @@
     "crypto-js": "^4.2.0",
     "eslint": "^10.0.0",
     "vue-confetti": "^2.3.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   }
 }

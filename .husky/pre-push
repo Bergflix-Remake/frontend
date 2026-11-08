@@ -1,1 +1,1 @@
-bun lint
+npm run lint

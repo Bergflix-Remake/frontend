@@ -47,11 +47,6 @@
 <script setup lang="ts">
 import { strapi } from '@/main';
 import Button from '@/stories/atoms/Button.vue';
-import {
-  StrapiAuthenticationResponse,
-  StrapiChangePasswordData,
-  StrapiError,
-} from '@anniken/strapi-sdk-js';
 import { ref, computed, watchEffect } from 'vue';
 import { useMutation } from 'vue-query';
 
@@ -73,25 +68,30 @@ watchEffect(() => {
   }
 });
 
-const mutation = useMutation<
-  StrapiAuthenticationResponse,
-  StrapiError,
-  StrapiChangePasswordData,
-  unknown
->((payload: StrapiChangePasswordData) => strapi.changePassword(payload), {
-  onSuccess: () => {
-    isError.value = false;
-    message.value = 'Passwort erfolgreich geändert!';
-    currentPassword.value = '';
-    password.value = '';
-    passwordConfirmation.value = '';
+type ChangePasswordData = {
+  currentPassword: string;
+  password: string;
+  passwordConfirmation: string;
+};
+
+const mutation = useMutation(
+  (payload: ChangePasswordData) => strapi.changePassword(payload),
+  {
+    onSuccess: () => {
+      isError.value = false;
+      message.value = 'Passwort erfolgreich geändert!';
+      currentPassword.value = '';
+      password.value = '';
+      passwordConfirmation.value = '';
+    },
+    onError: (err: any) => {
+      message.value =
+        'Oops! Es ist ein Fehler aufgetreten: ' +
+        (err.error?.message || 'Unbekannter Fehler');
+      isError.value = true;
+    },
   },
-  onError: (err) => {
-    message.value =
-      'Oops! Es ist ein Fehler aufgetreten: ' + err.error!.message;
-    isError.value = true;
-  },
-});
+);
 
 const changePassword = async () => {
   mutation.mutate({

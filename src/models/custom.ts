@@ -1,14 +1,12 @@
-import { Scalars, Maybe } from './types';
-export type ErrorResponse = {
-  __typename?: 'ErrorResponse';
+export interface ErrorResponse {
   data: null;
-  error: Error;
-};
-
-export type Error = {
-  __typename?: 'Error';
-  status: Scalars['String'];
-  message?: Maybe<Scalars['String']>;
-  name: Scalars['String'];
-  details?: any;
-};
+  error: {
+    status: number | string;
+    name: string;
+    message?: string;
+    details?: {
+      errors?: Array<{ message?: string }>;
+      [key: string]: unknown;
+    } | null;
+  };
+}

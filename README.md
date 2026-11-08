@@ -19,25 +19,47 @@ We decided to start completely from scratch, with a brand new tech stack and des
 git clone https://github.com/Bergflix-Remake/frontend.git
 ```
 
-🔽 Download and install the dependencies
+🔽 Download and install the dependencies (Node 22+)
 
 ```bash
-bun install
+npm ci
 ```
 
-💹 Start local developement server
+💹 Start local development server
 
 ```bash
-bun run dev
+cp .env.example .env.local   # point at your local Strapi 5 instance
+npm run dev
 ```
+
+### Strapi 5 configuration
+
+The frontend talks to native Strapi 5 responses (flattened documents,
+`documentId`, absolute media URLs). Configure the public build-time values in
+`.env.local`:
+
+```bash
+VITE_API_URL=http://127.0.0.1:1337
+VITE_MEDIA_URL=http://127.0.0.1:1337
+VITE_CDN_URL=https://cdn.bergflix.de
+VITE_MEILISEARCH_HOST=http://127.0.0.1:7700
+VITE_MEILISEARCH_API_KEY=<search-only key>
+VITE_MEILISEARCH_INDEX=video
+```
+
+Old `/watch/<numericId>` and `/details/<numericId>` links keep working: the page
+resolves the numeric id through the REST filter and replaces the URL with the
+canonical `documentId` route.
 
 *When starting the server, or reloading the page without cache, it will take a while to load. This is normal and expected. Loading times will be faster on the live production version.*
 
-🔨 Build the project before submitting a PR
+🔨 Check, test and build the project before submitting a PR
 
 ```bash
-bun run build
-# bun run preview to see the live version.
+npm run lint
+npm run typecheck
+npm run build
+npm run test:e2e     # needs a running frontend + CMS + Meilisearch
 ```
 
 ## Contributing

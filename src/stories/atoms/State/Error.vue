@@ -13,7 +13,7 @@
       v-if="error.error.details && error.error.details.errors"
       class="text-xs"
     >
-      <span v-for="e in error.error.details.errors" :key="e">
+      <span v-for="e in error.error.details.errors" :key="e.message">
         {{ e.message }}
       </span>
     </span>

@@ -10,12 +10,16 @@ name: home
         <Poster
           v-for="movie in videos.data"
           v-else-if="videos.isSuccess"
-          :key="movie.id!"
-          :src="movie.attributes?.thumbnail.data?.attributes?.url"
-          :alt="movie.attributes?.title"
-          :original="movie.attributes?.original!"
+          :key="movie.id"
+          :src="movie.thumbnail?.url"
+          :alt="movie.title"
+          :original="movie.original || false"
           @click="
-            () => $router.push({ name: 'watch', params: { id: movie.id } })
+            () =>
+              $router.push({
+                name: 'watch',
+                params: { id: movie.documentId },
+              })
           "
         />
         <Poster v-if="videos.isError" error />
@@ -26,13 +30,17 @@ name: home
         <Poster v-if="series.isLoading" loading />
         <Poster
           v-for="serie in series.data"
-          v-else-if="videos.isSuccess"
-          :key="serie.id!"
-          :src="serie.attributes?.thumbnail.data?.attributes?.url"
-          :alt="serie.attributes?.title"
-          :original="serie.attributes?.original!"
+          v-else-if="series.isSuccess"
+          :key="serie.id"
+          :src="serie.thumbnail?.url"
+          :alt="serie.title"
+          :original="serie.original || false"
           @click="
-            () => $router.push({ name: 'details', params: { id: serie.id } })
+            () =>
+              $router.push({
+                name: 'details',
+                params: { id: serie.documentId },
+              })
           "
         />
         <Poster v-if="series.isError" error />
@@ -40,48 +48,39 @@ name: home
     </section>
     <section
       v-for="collection in collections.data"
-      :key="collection.id!"
+      :key="collection.id"
       class="px-10"
     >
       <ScrollableRow
-        :title-image="
-          api(collection.attributes?.title_image?.data?.attributes?.url)
-        "
-        :title="collection.attributes?.title"
+        :title-image="api(collection.title_image?.url)"
+        :title="collection.title"
       >
         <Poster v-if="collections.isLoading" loading />
-        <!-- Poster for movies -->
         <Poster
-          v-for="movie in collection.attributes?.entries.filter(
-            (entry) => entry!.__component === 'collection.video',
-          ) as ComponentCollectionVideo[]"
-          :key="movie.id!"
-          :src="movie.video?.data?.attributes?.thumbnail.data?.attributes?.url"
-          :alt="movie.video?.data?.attributes?.title"
-          :original="movie.video?.data?.attributes?.original!"
+          v-for="movie in movieEntries(collection)"
+          :key="movie.id"
+          :src="movie.video?.thumbnail?.url"
+          :alt="movie.video?.title"
+          :original="movie.video?.original || false"
           @click="
             () =>
               $router.push({
                 name: 'watch',
-                params: { id: movie.video?.data?.id! },
+                params: { id: movie.video?.documentId },
               })
           "
         />
-        <!-- Poster for series -->
-        <!-- @ts-ignore -->
         <Poster
-          v-for="serie in collection.attributes?.entries.filter(
-            (entry) => entry!.__component === 'collection.serie',
-          ) as ComponentCollectionSerie[]"
-          :key="serie.id!"
-          :src="serie.serie?.data?.attributes?.thumbnail.data?.attributes?.url"
-          :alt="serie.serie?.data?.attributes?.title"
-          :original="serie.serie?.data?.attributes?.original!"
+          v-for="serie in serieEntries(collection)"
+          :key="serie.id"
+          :src="serie.serie?.thumbnail?.url"
+          :alt="serie.serie?.title"
+          :original="serie.serie?.original || false"
           @click="
             () =>
               $router.push({
                 name: 'details',
-                params: { id: serie.serie?.data?.id! },
+                params: { id: serie.serie?.documentId },
               })
           "
         />
@@ -92,26 +91,26 @@ name: home
 </template>
 
 <script setup lang="ts">
-// @ts-nocheck
 import Hero from '@organisms/Hero/Hero.vue';
 import ScrollableRow from '@molecules/ScrollableRow.vue';
 import Poster from '@molecules/Poster.vue';
 import { useStrapi } from '@/main';
 import {
-  CollectionEntity,
+  Collection,
+  CollectionEntry,
   ComponentCollectionSerie,
   ComponentCollectionVideo,
-  SerieEntity,
-  VideoEntity,
+  Serie,
+  Video,
 } from '@/models/types';
 import { api } from '@/util/paths';
 
-const videos = useStrapi<VideoEntity[]>([
+const videos = useStrapi<Video[]>([
   'videos',
   {
     populate: {
-      thumbnail: '*',
-      series: '*',
+      thumbnail: true,
+      series: true,
     },
     sort: 'year:desc',
     filters: {
@@ -124,28 +123,54 @@ const videos = useStrapi<VideoEntity[]>([
   },
 ]);
 
-const series = useStrapi<SerieEntity[]>([
+const series = useStrapi<Serie[]>([
   'series',
   {
     populate: {
-      thumbnail: '*',
+      thumbnail: true,
     },
     sort: 'year:desc',
   },
 ]);
 
-const collections = useStrapi<CollectionEntity[]>([
+const collections = useStrapi<Collection[]>([
   'collections',
   {
-    populate: [
-      'entries.video',
-      'entries.serie',
-      'entries.video.thumbnail',
-      'entries.serie.thumbnail',
-      'title_image',
-    ],
+    populate: {
+      entries: {
+        on: {
+          'collection.video': {
+            populate: {
+              video: {
+                populate: { thumbnail: true, series: true },
+              },
+            },
+          },
+          'collection.serie': {
+            populate: {
+              serie: {
+                populate: { thumbnail: true },
+              },
+            },
+          },
+        },
+      },
+      title_image: true,
+    },
   },
 ]);
+
+const movieEntries = (collection: Collection): ComponentCollectionVideo[] =>
+  (collection.entries || []).filter(
+    (entry: CollectionEntry): entry is ComponentCollectionVideo =>
+      entry.__component === 'collection.video',
+  );
+
+const serieEntries = (collection: Collection): ComponentCollectionSerie[] =>
+  (collection.entries || []).filter(
+    (entry: CollectionEntry): entry is ComponentCollectionSerie =>
+      entry.__component === 'collection.serie',
+  );
 </script>
 
 <style scoped>
