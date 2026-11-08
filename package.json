@@ -64,5 +64,8 @@
     "crypto-js": "^4.2.0",
     "eslint": "^10.0.0",
     "vue-confetti": "^2.3.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   }
 }

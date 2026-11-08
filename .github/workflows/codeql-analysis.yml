@@ -40,10 +40,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Setup Bun
-      uses: oven-sh/setup-bun@v1
+    - name: Setup Node
+      uses: actions/setup-node@v4
       with:
-        bun-version: "1.3.9"
+        node-version: 22
+        cache: npm
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -62,8 +63,8 @@ jobs:
     # If this step fails, then you should remove it and run the build manually (see below)
     - name: Install and Build
       run: |
-        bun install --frozen-lockfile
-        bun run build
+        npm ci --legacy-peer-deps
+        npm run build
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun

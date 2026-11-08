@@ -3,7 +3,7 @@
 {
 	"name": "Node.js",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
+	"image": "mcr.microsoft.com/devcontainers/javascript-node:22",
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {}
 	},
@@ -45,7 +45,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "yarn install",
+	// "postCreateCommand": "npm ci --legacy-peer-deps",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
