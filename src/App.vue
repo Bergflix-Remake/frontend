@@ -12,7 +12,7 @@ const route = useRoute();
     <div
       class="flex flex-col min-h-screen bg-black text-clean-white w-full bg-center bg-cover"
       :style="{ 'background-image': `url(${route.meta.backgroundImage})` }"
-      :class="route.meta.showPadding && 'md:pt-20'"
+      :class="{ 'md:pt-20': !!route.meta.showPadding }"
     >
       <router-view v-slot="{ Component }">
         <Transition name="fade">

@@ -17,10 +17,10 @@ meta:
       >
         <Player
           v-if="movie.isSuccess && !playbackFinished && !isExternal"
-          :key="url!"
-          :vid="url!"
+          :key="url || ''"
+          :vid="url || ''"
           :page-id="id"
-          :outro-time="movie.data.attributes?.outro_start || undefined"
+          :outro-time="movie.data?.outro_start || undefined"
           @finished="playNext()"
         />
         <div
@@ -36,7 +36,7 @@ meta:
           >
             <h2 class="text-2xl font-bold">Danke fürs Ansehen!</h2>
             <p
-              v-if="series?.videos?.data.length && !isLastEpisode"
+              v-if="series?.videos?.length && !isLastEpisode"
               class="text-delorean-500 font-thin"
             >
               Die nächste Folge wird in ein paar Momenten abgespielt...
@@ -46,14 +46,12 @@ meta:
             </p>
             <Poster v-if="recommendations.isLoading" loading />
             <Poster
-              v-else-if="recommendations.isSuccess"
-              :src="
-                recommendation?.attributes?.thumbnail?.data?.attributes?.url
-              "
+              v-else-if="recommendations.isSuccess && recommendation"
+              :src="recommendation.thumbnail?.url"
               @click="
                 router.push({
                   name: 'watch',
-                  params: { id: recommendation?.id },
+                  params: { id: recommendation.documentId },
                 })
               "
             />
@@ -70,10 +68,10 @@ meta:
               Der Inhalt ist unter der folgenden URL verfügbar:
             </p>
             <Link
-              :to="movie.data?.attributes?.youtube_url || '#'"
+              :to="movie.data?.youtube_url || '#'"
               :icon="ExternalLinkIcon"
               class="font-mono text-primary-100!"
-              >{{ movie.data?.attributes?.youtube_url }}</Link
+              >{{ movie.data?.youtube_url }}</Link
             >
           </div>
           <Loader v-else />
@@ -84,24 +82,18 @@ meta:
         v-if="series"
         class="w-full xl:w-1/3 ring-1 ring-delorean-800 bg-clean-dark-600 xl:rounded-bl-none xl:rounded-r-lg rounded-b-lg p-5 flex flex-col"
       >
-        <Title
-          :image="
-            api(
-              movie.data?.attributes?.series?.data?.attributes?.title_image
-                ?.data?.attributes?.url,
-            )
-          "
-          >{{ series.title }}</Title
-        >
+        <Title :image="api(movie.data?.series?.title_image?.url)">
+          {{ series.title }}
+        </Title>
         <div class="flex flex-col space-y-2 xl:max-h-96 overflow-y-auto">
           <PlaylistEntry
-            v-for="video in series.videos?.data"
-            :id="video.id!"
-            :key="video.id!"
-            :episode="video.attributes?.episode!"
-            :thumbnail="`https://api.bergflix.de${video.attributes?.thumbnail?.data?.attributes?.url}`"
-            :title="video.attributes?.title!"
-            :playing="Number(video.id) === id"
+            v-for="video in series.videos || []"
+            :id="video.documentId"
+            :key="video.id"
+            :episode="video.episode || undefined"
+            :thumbnail="api(video.thumbnail?.url)"
+            :title="video.title"
+            :playing="video.id === movie.data?.id"
           />
         </div>
       </div>
@@ -111,20 +103,17 @@ meta:
       class="w-full p-10 bg-clean-dark-600 rounded-lg flex md:flex-row flex-col ring-1 ring-delorean-800"
     >
       <div class="md:w-1/2 w-full">
-        <Title
-          :image="
-            api(movie.data?.attributes?.title_image?.data?.attributes?.url)
-          "
-          >{{ title }}</Title
-        >
+        <Title :image="api(movie.data?.title_image?.url)">
+          {{ title }}
+        </Title>
         <p class="text-gray-500 font-light" v-html="description" />
       </div>
       <div class="md:ml-auto mt-5">
         <InfoRow
-          :year="new Date(movie.data?.attributes?.year!).getFullYear()"
-          :age="movie.data?.attributes?.age!"
-          :genre="movie.data?.attributes?.genre!"
-          :episodes="series?.videos?.data?.length"
+          :year="new Date(movie.data?.year || Date.now()).getFullYear()"
+          :age="movie.data?.age || 0"
+          :genre="movie.data?.genre || ''"
+          :episodes="series?.videos?.length"
         />
       </div>
     </div>
@@ -134,37 +123,36 @@ meta:
       <Subtitle>Mitwirkende</Subtitle>
       <div class="flex flex-wrap">
         <Contributor
-          v-for="contributor in movie.data?.attributes?.contributors"
-          :key="contributor?.id"
-          :name="contributor?.contributor?.data?.attributes?.name!"
-          :role="contributor?.role!"
-          :character="contributor?.character"
+          v-for="contributor in movie.data?.contributors || []"
+          :key="contributor.id"
+          :name="contributor.contributor?.name || ''"
+          :role="contributor.role"
+          :character="contributor.character || ''"
           :image="
             api(
-              contributor?.contributor?.data?.attributes?.image?.data
-                ?.attributes?.url!,
+              contributor.contributor?.image?.url,
               'https://cdn.bergflix.de/logo/light.png',
             )
           "
-          :url="contributor?.contributor?.data?.attributes?.href!"
+          :url="contributor.contributor?.href || ''"
         />
       </div>
       <Subtitle>Unterstützende</Subtitle>
       <div class="flex flex-wrap">
         <Contributor
-          v-for="studio in movie.data?.attributes?.studios?.data"
-          :key="studio?.id!"
-          :name="studio?.attributes?.name!"
-          :role="studio?.attributes?.role!"
-          :url="studio.attributes?.url || ''"
-          :image="api(studio.attributes?.logo.data?.attributes?.url!)"
+          v-for="studio in movie.data?.studios || []"
+          :key="studio.id"
+          :name="studio.name"
+          :role="studio.role || ''"
+          :url="studio.url || ''"
+          :image="api(studio.logo?.url)"
         />
         <Contributor
-          v-if="movie.data?.attributes?.studios?.data?.length === 0"
+          v-if="movie.data?.studios?.length === 0"
           name="Troublecat Productions"
           role="Studio"
           url="https://www.youtube.com/@herrbergmann"
-          image="https://api.bergflix.de/uploads/troublecat_logo_1dac3b63c7.jpg"
+          :image="api('/uploads/troublecat_logo_1dac3b63c7.jpg')"
         />
       </div>
     </div>
@@ -178,7 +166,7 @@ import Subtitle from '@atoms/Subtitle/Subtitle.vue';
 import Contributor from '@molecules/Contributor.vue';
 import PlaylistEntry from '@molecules/PlaylistEntry.vue';
 import { useStrapi, useStrapiOne } from '@/main';
-import { VideoEntity } from '@/models/types';
+import { Video } from '@/models/types';
 import { useRoute, useRouter } from 'vue-router';
 import Loader from '@/components/Loader.vue';
 import { computed, ref, watch } from 'vue';
@@ -195,65 +183,78 @@ const consoleStyles =
   'background-color: lime; color: white; padding: 2px 4px; border-radius: 4px; font-weight: bold; font-family: sans-serif; margin: 10px 0;';
 const route = useRoute();
 const router = useRouter();
+const routeId = computed(() => String(route.params.id));
 const invalidId = computed(
-  () => !route.params.id || isNaN(Number(route.params.id)),
+  () => !route.params.id || !/^[A-Za-z0-9_-]+$/.test(routeId.value),
 );
-const id = computed(() => Number(route.params.id));
-const movie = useStrapiOne<VideoEntity>([
+const isNumericId = computed(() => /^\d+$/.test(routeId.value));
+const id = computed(() => Number(route.params.id) || 0);
+
+const movie = useStrapiOne<Video>([
   'videos',
-  id,
+  routeId,
   {
     populate: {
       contributors: {
         populate: {
           contributor: {
-            populate: ['image'],
+            populate: { image: true },
           },
         },
       },
       series: {
         populate: {
           videos: {
-            populate: ['thumbnail'],
+            populate: { thumbnail: true },
           },
           title_image: true,
         },
       },
       title_image: true,
       studios: {
-        populate: ['logo'],
+        populate: { logo: true },
       },
     },
-    sort: 'episode:asc',
   },
 ]);
-const isExternal = computed(() => !!movie.data?.attributes?.is_external);
-const series = computed(() => movie.data?.attributes?.series?.data?.attributes);
-// Get youtube video id from movie.data?.attributes?.youtube_url using regex
-const url = computed(
-  () => movie.data?.attributes?.youtube_url?.match(/v=(.*)/)?.[1],
-);
 
-const isLastEpisode = computed(
-  () =>
-    series.value?.videos?.data[series.value?.videos?.data.length - 1]?.id !==
-    id.value.toString(),
+const isExternal = computed(() => !!movie.data?.is_external);
+const series = computed(() => movie.data?.series || null);
+const url = computed(() => {
+  const youtubeUrl = movie.data?.youtube_url || '';
+  return (
+    youtubeUrl.match(/(?:v=|youtu\.be\/|embed\/)([\w-]{6,})/)?.[1] || undefined
+  );
+});
+
+const isLastEpisode = computed(() => {
+  const videos = series.value?.videos || [];
+  return videos[videos.length - 1]?.id !== movie.data?.id;
+});
+
+watch(
+  () => movie.data?.documentId,
+  (documentId) => {
+    if (isNumericId.value && documentId && documentId !== routeId.value) {
+      router.replace({ name: 'watch', params: { id: documentId } });
+    }
+  },
+  { immediate: true },
 );
 
 console.debug(
   '%c%s',
   consoleStyles,
-  `Video ID: ${id.value} | Series: ${series.value?.title} | Episode: ${movie.data?.attributes?.episode} | Last Episode: ${isLastEpisode.value}`,
+  `Video ID: ${movie.data?.id} | Series: ${series.value?.title} | Episode: ${movie.data?.episode} | Last Episode: ${isLastEpisode.value}`,
 );
 
-// When playback has finished and the video is not part of a series, get a random video from the same genre
-const recommendations = useStrapi<VideoEntity[]>(
+const recommendations = useStrapi<Video[]>(
   [
     'videos',
     {
-      populate: ['thumbnail'],
+      populate: { thumbnail: true },
       filters: {
-        genre: movie.data?.attributes?.genre,
+        genre: movie.data?.genre,
         id: {
           $ne: movie.data?.id,
         },
@@ -264,42 +265,35 @@ const recommendations = useStrapi<VideoEntity[]>(
       },
     },
   ],
-  // {
-  //   enabled: playbackFinished.value && !series.value?.videos?.data?.length,
-  // }
+  {
+    enabled: computed(() => !!movie.data?.genre),
+  },
 );
 
 const recommendation = computed(
   () =>
     recommendations.data?.[
-      Math.floor(Math.random() * recommendations.data?.length)
+      Math.floor(Math.random() * (recommendations.data?.length || 1))
     ],
 );
 
-const title = computed(() => movie.data?.attributes?.title);
-const description = computed(() => movie.data?.attributes?.description);
+const title = computed(() => movie.data?.title || '');
+const description = computed(() => movie.data?.description || '');
 
 watch(id, () => {
-  location.reload();
+  playbackFinished.value = false;
 });
 
 const playNext = () => {
   playbackFinished.value = true;
-  if (series.value?.videos?.data?.length) {
-    const currentEpisode = movie.data?.attributes?.episode;
-    const next = series.value.videos.data.find(
-      (video) =>
-        currentEpisode != null &&
-        video.attributes?.episode === currentEpisode + 1,
+  const videos = series.value?.videos || [];
+  if (videos.length) {
+    const currentEpisode = movie.data?.episode;
+    const next = videos.find(
+      (video) => currentEpisode != null && video.episode === currentEpisode + 1,
     );
     if (next) {
-      console.debug(
-        '%cWatchpage',
-        consoleStyles,
-        'Playing next episode',
-        next.id,
-      );
-      router.push({ name: 'watch', params: { id: next.id } });
+      router.push({ name: 'watch', params: { id: next.documentId } });
     }
   }
 };

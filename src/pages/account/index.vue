@@ -29,17 +29,7 @@
         <img
           v-if="userQuery.isSuccess && userQuery.data.badge?.length! > 0"
           class="w-5 h-5"
-          :src="
-            api(
-              (
-                userQuery.data.badge?.find(
-                  (value) =>
-                    parseInt(value?.id!) === userQuery.data?.selected_badge,
-                )?.badge as Badge
-              ).icon.url ||
-                (userQuery.data?.badge![0]?.badge as Badge).icon.url,
-            )
-          "
+          :src="api(selectedBadge?.icon?.url)"
         />
       </CInput>
       <CInput
@@ -79,9 +69,9 @@
           class="p-4 flex flex-col justify-center w-52 shrink-0 bg-clean-dark-700 rounded-lg shadow-lg hover:shadow-primary-500/20 transition-all relative h-full ring-1 ring-delorean-800"
         >
           <img
-            :src="api(badge?.badge?.icon.url)"
+            :src="api(badge?.badge?.icon?.url)"
             class="h-32 mb-auto"
-            :alt="badge?.badge?.icon.alternativeText || badge?.badge?.name"
+            :alt="badge?.badge?.icon?.alternativeText || badge?.badge?.name"
           />
           <h3 class="font-extrabold">{{ badge?.badge?.name }}</h3>
           <h5 class="absolute top-3 left-4 font-mono text-delorean-500">
@@ -89,7 +79,11 @@
           </h5>
           <p class="text-xs text-delorean-500">
             Erhalten am
-            {{ new Date(badge?.awarded).toLocaleDateString('de-DE') }}
+            {{
+              badge?.awarded
+                ? new Date(badge.awarded).toLocaleDateString('de-DE')
+                : ''
+            }}
           </p>
           <!-- eslint-disable-next-line vue/no-v-html -->
           <p v-html="badge?.badge?.description" />
@@ -97,18 +91,16 @@
             :data-button="badge?.id"
             class="mt-auto"
             width="full"
-            :disabled="parseInt(badge?.id) == user.selected_badge"
+            :disabled="badge?.id === user.selected_badge"
             type="outline"
             @click="
               {
-                user.selected_badge = parseInt(badge?.id!);
+                user.selected_badge = badge?.id ?? null;
                 update();
               }
             "
             >{{
-              parseInt(badge?.id) == user.selected_badge
-                ? 'Ausgewählt'
-                : 'Auswählen'
+              badge?.id === user.selected_badge ? 'Ausgewählt' : 'Auswählen'
             }}</Button
           >
         </article>
@@ -163,7 +155,7 @@
 import { getUser, strapi, useStrapiUpdateMutation } from '@/util/api';
 import Avatar from '@molecules/Avatar.vue';
 import CInput from '@/stories/molecules/Input/ConfirmableInput.vue';
-import { reactive } from 'vue';
+import { reactive, computed } from 'vue';
 import WindowLayout from '@/layouts/WindowLayout.vue';
 import Window from '@/stories/atoms/Window/Window.vue';
 import { useRouter } from 'vue-router';
@@ -177,33 +169,12 @@ import {
   ExclamationCircleIcon,
   TagIcon,
 } from '@heroicons/vue/outline';
-import {
-  Maybe,
-  Scalars,
-  UploadFile,
-  UsersPermissionsUser,
-} from '@/models/types';
+import { Badge, BadgeComponent, UsersPermissionsUser } from '@/models/types';
 import Error from '@/stories/atoms/State/Error.vue';
 import Href from '@/stories/atoms/Href.vue';
 import { api } from '@/util/paths';
 import Spinner from '@/stories/atoms/Spinner.vue';
 import BetaBadge from '@/stories/atoms/BetaBadge.vue';
-
-export type Badge = {
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  description: Scalars['String'];
-  icon: UploadFile;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type BadgeComponent = {
-  awarded: Maybe<Scalars['DateTime']>;
-  badge: Maybe<Badge>;
-  id: Scalars['ID'];
-};
 
 const checkEmail = (email: string) => {
   const re = /\S+@\S+\.\S+/;
@@ -213,7 +184,26 @@ const checkEmail = (email: string) => {
 const router = useRouter();
 
 const userQuery = getUser({
-  populate: ['image', 'badge', 'badge.badge', 'badge.badge.icon'],
+  populate: {
+    image: true,
+    badge: {
+      populate: {
+        badge: {
+          populate: { icon: true },
+        },
+      },
+    },
+  },
+});
+
+const selectedBadge = computed<Badge | undefined>(() => {
+  const badges = userQuery.data?.badge || [];
+  return (
+    badges.find((entry) => entry.badge?.id === userQuery.data?.selected_badge)
+      ?.badge ||
+    badges[0]?.badge ||
+    undefined
+  );
 });
 
 if (!strapi.user) {

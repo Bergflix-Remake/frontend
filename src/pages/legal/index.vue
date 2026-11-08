@@ -9,10 +9,10 @@
 
 <script setup lang="ts">
 import { useStrapi } from '@/main';
-import { ImprintEntity } from '@/models/types';
+import { Imprint } from '@/models/types';
 import Subtitle from '@/stories/atoms/Subtitle/Subtitle.vue';
 import Title from '@/stories/atoms/Title/Title.vue';
-const data = useStrapi<ImprintEntity>(['imprint']);
+const data = useStrapi<Imprint>(['imprint']);
 </script>
 
 <template>
@@ -23,21 +23,17 @@ const data = useStrapi<ImprintEntity>(['imprint']);
     <section
       v-if="data.isSuccess"
       class="p-5 mt-5"
-      v-html="data.data?.attributes?.impressum"
+      v-html="data.data?.impressum"
     />
     <Subtitle id="privacy">Datenschutz</Subtitle>
     <!-- eslint-disable-next-line vue/no-v-html -->
     <section
       v-if="data.isSuccess"
       class="p-5 mt-5"
-      v-html="data.data?.attributes?.privacy"
+      v-html="data.data?.privacy"
     />
     <Subtitle id="terms">Benuzungsbedingungen</Subtitle>
     <!-- eslint-disable-next-line vue/no-v-html -->
-    <section
-      v-if="data.isSuccess"
-      class="p-5 mt-5"
-      v-html="data.data?.attributes?.terms"
-    />
+    <section v-if="data.isSuccess" class="p-5 mt-5" v-html="data.data?.terms" />
   </div>
 </template>

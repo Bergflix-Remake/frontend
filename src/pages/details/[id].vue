@@ -5,25 +5,40 @@ name: details
 <script setup lang="ts">
 import { useStrapiOne } from '@/main';
 import { api, cdn } from '@/util/paths';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Serie, SerieEntity, UploadFile } from '@/models/types';
+import { Serie } from '@/models/types';
 import Info from '@/stories/molecules/Info/Info.vue';
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import PlaylistEntry from '@/stories/molecules/PlaylistEntry.vue';
 
 const route = useRoute();
+const router = useRouter();
+const routeId = computed(() => String(route.params.id));
+const isNumericId = computed(() => /^\d+$/.test(routeId.value));
 
-const id = computed(() => Number(route.params.id));
-
-const series = useStrapiOne<SerieEntity>([
+const series = useStrapiOne<Serie>([
   'series',
-  id,
+  routeId,
   {
-    populate: ['title_image', 'videos.thumbnail', 'background_image'],
-    sort: 'videos.episode:asc',
+    populate: {
+      title_image: true,
+      background_image: true,
+      videos: { populate: { thumbnail: true } },
+    },
   },
 ]);
+
+// Old numeric URLs keep working. Once the document is resolved, replace the
+// address bar with the canonical documentId URL.
+watch(
+  () => series.data?.documentId,
+  (documentId) => {
+    if (isNumericId.value && documentId && documentId !== routeId.value) {
+      router.replace({ name: 'details', params: { id: documentId } });
+    }
+  },
+  { immediate: true },
+);
 </script>
 
 <template>
@@ -31,7 +46,7 @@ const series = useStrapiOne<SerieEntity>([
     class="w-full h-full grid lg:grid-cols-2 grid-cols-1 lg:grid-rows-1 grid-rows-2 z-0 relative"
     :style="{
       backgroundImage: `url(${api(
-        series.data?.attributes?.background_image?.data?.attributes?.url,
+        series.data?.background_image?.url,
         cdn('/imgs/Background/3.png'),
       )})`,
       backgroundSize: 'cover',
@@ -44,15 +59,13 @@ const series = useStrapiOne<SerieEntity>([
     ></div>
     <div class="flex flex-col w-full h-screen justify-center z-20 relative">
       <Info
-        :title="series.data?.attributes?.title!"
-        :age="series.data?.attributes?.age!"
-        :year="new Date(series.data?.attributes?.year!).getFullYear()"
-        :description="series.data?.attributes?.description!"
-        :genre="series.data?.attributes?.genre!"
-        :episodes="series.data?.attributes?.videos?.data.length!"
-        :title-image="
-          series.data?.attributes?.title_image?.data?.attributes?.url
-        "
+        :title="series.data?.title || ''"
+        :age="series.data?.age || 0"
+        :year="new Date(series.data?.year || Date.now()).getFullYear()"
+        :description="series.data?.description || ''"
+        :genre="series.data?.genre || ''"
+        :episodes="series.data?.videos?.length || 0"
+        :title-image="series.data?.title_image?.url"
         :buttons="[]"
         class="md:max-w-md md:m-10"
       ></Info>
@@ -65,14 +78,12 @@ const series = useStrapiOne<SerieEntity>([
       >
         <div class="flex flex-col space-y-4 w-full overflow-x-visible">
           <PlaylistEntry
-            v-for="video in series.data?.attributes?.videos?.data!"
-            :id="video.id?.toString()!"
-            :key="video.id!"
-            :thumbnail="
-              api(video.attributes?.thumbnail?.data?.attributes?.url!)
-            "
-            :title="video.attributes?.title!"
-            :episode="video.attributes?.episode!"
+            v-for="video in series.data?.videos || []"
+            :id="video.documentId"
+            :key="video.id"
+            :thumbnail="api(video.thumbnail?.url)"
+            :title="video.title"
+            :episode="video.episode || undefined"
             class="snap-start"
           />
         </div>

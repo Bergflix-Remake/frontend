@@ -8,7 +8,7 @@
       <ais-instant-search
         class="w-full h-full flex flex-col justify-center"
         :search-client="searchClient"
-        index-name="video"
+        :index-name="indexName"
       >
         <ais-search-box />
         <ais-current-refinements />
@@ -27,7 +27,7 @@
         <ais-hits>
           <template #item="{ item }">
             <PlaylistEntry
-              :id="item.id"
+              :id="item.documentId || String(item.id)"
               :thumbnail="api(item.thumbnail?.url!)"
               :title="item.title"
               :series="item.series"
@@ -70,9 +70,10 @@ import Title from '@/stories/atoms/Title/Title.vue';
 import Subtitle from '@/stories/atoms/Subtitle/Subtitle.vue';
 import BetaBadge from '@/stories/atoms/BetaBadge.vue';
 import { onMounted } from 'vue';
-const searchClient = instantMeiliSearch(
-  'https://search.bergflix.de',
-  '623425c4ff203794010003bd8beed1ce7641404be4115991db283cb954314524',
+const indexName = import.meta.env.VITE_MEILISEARCH_INDEX || 'video';
+const { searchClient } = instantMeiliSearch(
+  import.meta.env.VITE_MEILISEARCH_HOST || 'http://127.0.0.1:7700',
+  import.meta.env.VITE_MEILISEARCH_API_KEY || '',
   {
     finitePagination: true,
   },
